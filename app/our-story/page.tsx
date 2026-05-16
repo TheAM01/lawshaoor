@@ -47,20 +47,17 @@ export default function OurStory() {
         <VectorNode className="absolute -right-8 bottom-0 w-44 h-44 opacity-35 hidden md:block" uid="story-vn" />
 
         <div className="max-w-[1440px] mx-auto relative">
-          <div className="grid grid-cols-12 gap-6 items-end">
-            <div className="col-span-12 md:col-span-2">
-              <span className="index-chip">001 · Our Story</span>
-            </div>
-            <div className="col-span-12 md:col-span-10">
-              <h1 className="display-xl font-display">
-                <span className="block"><SplitReveal trigger="load" delay={0.1}>A law firm</SplitReveal></span>
-                <span className="block">
-                  <SplitReveal trigger="load" delay={0.3}>built for </SplitReveal>
-                  <span className="text-gradient"><SplitReveal trigger="load" delay={0.5}>operators.</SplitReveal></span>
-                </span>
-              </h1>
-            </div>
+          <div className="mb-10 md:mb-14">
+            <span className="index-chip">001 · Our Story</span>
           </div>
+
+          <h1 className="display-xl font-display">
+            <span className="block"><SplitReveal trigger="load" delay={0.1}>A law firm</SplitReveal></span>
+            <span className="block">
+              <SplitReveal trigger="load" delay={0.3}>for </SplitReveal>
+              <span className="text-gradient"><SplitReveal trigger="load" delay={0.5}>operators.</SplitReveal></span>
+            </span>
+          </h1>
 
           <div className="grid grid-cols-12 gap-6 mt-16 md:mt-24 items-start">
             <div className="col-span-12 md:col-span-5 md:col-start-3">

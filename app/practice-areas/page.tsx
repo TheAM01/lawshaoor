@@ -113,17 +113,14 @@ export default function PracticeAreas() {
         <VectorNode className="absolute -right-8 bottom-0 w-44 h-44 opacity-35 hidden md:block" uid="pa-hero-vn" />
 
         <div className="max-w-[1440px] mx-auto relative">
-          <div className="grid grid-cols-12 gap-6 items-end">
-            <div className="col-span-12 md:col-span-2">
-              <span className="index-chip">001 · Practice</span>
-            </div>
-            <div className="col-span-12 md:col-span-10">
-              <h1 className="display-xl font-display">
-                <span className="block"><SplitReveal trigger="load" delay={0.1}>What we</SplitReveal></span>
-                <span className="block text-gradient"><SplitReveal trigger="load" delay={0.35}>actually do.</SplitReveal></span>
-              </h1>
-            </div>
+          <div className="mb-10 md:mb-14">
+            <span className="index-chip">001 · Practice</span>
           </div>
+
+          <h1 className="display-xl font-display">
+            <span className="block"><SplitReveal trigger="load" delay={0.1}>What we</SplitReveal></span>
+            <span className="block text-gradient"><SplitReveal trigger="load" delay={0.35}>actually do.</SplitReveal></span>
+          </h1>
 
           <div className="grid grid-cols-12 gap-6 mt-12 md:mt-20 items-end">
             <div className="col-span-12 md:col-span-6 md:col-start-3">

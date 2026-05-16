@@ -185,8 +185,8 @@
 .font-heading { font-family: var(--font-heading); }
 .font-mono    { font-family: var(--font-mono); }
 
-.display-xl   { font-size: clamp(2.5rem, 8.5vw, 8.5rem); line-height: 0.94; letter-spacing: -0.035em; font-weight: 500; }
-.display-hero { font-size: clamp(2.5rem, 8.5vw, 8.5rem); line-height: 0.94; letter-spacing: -0.04em;  font-weight: 500; }
+.display-xl   { font-size: clamp(3rem, 11vw, 11.5rem); line-height: 0.92; letter-spacing: -0.04em; font-weight: 500; }
+.display-hero { font-size: clamp(3rem, 11vw, 11.5rem); line-height: 0.92; letter-spacing: -0.045em; font-weight: 500; }
 .display-lg   { font-size: clamp(2.5rem, 8vw, 9rem);  line-height: 0.94; letter-spacing: -0.03em;  font-weight: 500; }
 .display-md   { font-size: clamp(2rem, 5.5vw, 5.5rem);line-height: 1;    letter-spacing: -0.025em; font-weight: 500; }
 .display-sm   { font-size: clamp(1.75rem, 3.6vw, 3.25rem); line-height: 1.05; letter-spacing: -0.02em; font-weight: 500; }
@@ -230,6 +230,7 @@
   will-change: transform;
 }
 
+
 /* Grain / paper texture (very subtle) */
 .grain::before {
   content: '';
@@ -261,40 +262,31 @@
    the section feels "anchored" while the content scrolls past.
    ============================================================ */
 
-/* Section backgrounds — texture stays fixed to the viewport,
-   radial blooms scroll with the section so they don't jitter. */
+/* Section backgrounds.
+   - mist: sparse dot texture
+   - lavender: sparse line texture
+   - deep: plain colour (tight grid removed) */
 
 .bg-fixed-mist {
   background-color: var(--background);
   background-image:
-    radial-gradient(circle at 12% 8%,  color-mix(in oklch, var(--primary) 14%, transparent) 0%, transparent 42%),
-    radial-gradient(circle at 88% 92%, color-mix(in oklch, var(--accent)  18%, transparent) 0%, transparent 48%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44'><circle cx='2' cy='2' r='1.1' fill='%23695224' fill-opacity='0.32'/></svg>");
-  background-attachment: scroll, scroll, fixed;
-  background-size: auto, auto, 44px 44px;
-  background-position: center, center, top left;
+  background-size: 44px 44px;
+  background-position: top left;
+  background-attachment: scroll;
 }
 
 .bg-fixed-lavender {
   background-color: var(--background-alt);
   background-image:
-    radial-gradient(circle at 80% 18%, color-mix(in oklch, var(--primary) 16%, transparent) 0%, transparent 50%),
-    radial-gradient(circle at 18% 82%, color-mix(in oklch, var(--accent)  20%, transparent) 0%, transparent 52%),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><line x1='0' y1='0' x2='90' y2='0' stroke='%23695224' stroke-opacity='0.18' stroke-width='1'/><line x1='0' y1='0' x2='0' y2='90' stroke='%23695224' stroke-opacity='0.18' stroke-width='1'/></svg>");
-  background-attachment: scroll, scroll, fixed;
-  background-size: auto, auto, 90px 90px;
-  background-position: center, center, top left;
+  background-size: 90px 90px;
+  background-position: top left;
+  background-attachment: scroll;
 }
 
 .bg-fixed-deep {
-  background-color: var(--background-deep);
-  background-image:
-    radial-gradient(circle at 50% 30%, color-mix(in oklch, var(--primary) 20%, transparent) 0%, transparent 55%),
-    radial-gradient(circle at 50% 90%, color-mix(in oklch, var(--accent)  14%, transparent) 0%, transparent 60%),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><path d='M0 16 L32 16 M16 0 L16 32' stroke='%23695224' stroke-opacity='0.20' stroke-width='1'/><circle cx='16' cy='16' r='1.5' fill='%23695224' fill-opacity='0.30'/></svg>");
-  background-attachment: scroll, scroll, fixed;
-  background-size: auto, auto, 32px 32px;
-  background-position: center, center, top left;
+  background: var(--background-deep);
 }
 
 /* Section vertical grid — 12-col faint */
@@ -574,8 +566,9 @@ button:hover .arrow-magnet {
    Gradient text
    ============================================================ */
 
-.text-gradient {
-  background: linear-gradient(120deg, var(--grad-text-from), var(--grad-text-to));
+.text-gradient,
+.text-gradient * {
+  background-image: linear-gradient(120deg, var(--grad-text-from), var(--grad-text-to));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

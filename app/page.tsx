@@ -152,28 +152,26 @@ export default function Home() {
         <StackedCubes className="absolute bottom-36 right-32 w-20 h-28 lg:w-24 lg:h-32 hidden md:block opacity-70" uid="hero-c2" />
 
         <div className="max-w-[1440px] mx-auto w-full relative">
-          <div className="grid grid-cols-12 gap-6 items-end">
-            <div className="col-span-12 md:col-span-2 flex md:flex-col gap-4 md:gap-3">
-              <span className="index-chip">001 · Studio</span>
-              <div className="hidden md:flex flex-col gap-1.5 mt-3 text-foreground/65">
-                <span className="eyebrow-sm">EST · 2005</span>
-                <span className="eyebrow-sm">NY · CA · TX · IL</span>
-              </div>
-            </div>
-
-            <div className="col-span-12 md:col-span-10">
-              <h1 className="display-hero font-display">
-                <span className="block"><SplitReveal trigger="load" delay={0.15}>Corporate law,</SplitReveal></span>
-                <span className="block">
-                  <SplitReveal trigger="load" delay={0.35}>for </SplitReveal>
-                  <span
-                    ref={wordSwapRef}
-                    className="text-gradient"
-                  >mergers.</span>
-                </span>
-              </h1>
+          {/* Meta row — chip + locations */}
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-10 md:mb-14">
+            <span className="index-chip">001 · Studio</span>
+            <div className="hidden md:flex gap-6 text-foreground/65">
+              <span className="eyebrow-sm">EST · 2005</span>
+              <span className="eyebrow-sm">NY · CA · TX · IL</span>
             </div>
           </div>
+
+          {/* Headline — full container width, 2 lines max */}
+          <h1 className="display-hero font-display">
+            <span className="block"><SplitReveal trigger="load" delay={0.15}>Corporate law,</SplitReveal></span>
+            <span className="block">
+              <SplitReveal trigger="load" delay={0.35}>for </SplitReveal>
+              <span
+                ref={wordSwapRef}
+                className="text-gradient"
+              >mergers.</span>
+            </span>
+          </h1>
         </div>
 
         {/* Scroll cue */}
@@ -523,7 +521,7 @@ export default function Home() {
                   <span>Schedule a call</span>
                   <span className="arrow-magnet">→</span>
                 </Link>
-                <Link href="/academy" className="btn-ghost">
+                <Link href="/lawshaoor-academy" className="btn-ghost">
                   <span>Explore the Academy</span>
                   <span className="arrow-magnet">→</span>
                 </Link>

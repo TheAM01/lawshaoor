@@ -9,7 +9,7 @@ const NAV = [
   { href: '/our-story',      label: 'Our Story' },
   { href: '/practice-areas', label: 'Practice Areas' },
   { href: '/people',         label: 'People' },
-  { href: '/academy',        label: 'LawShaoor Academy' },
+  { href: '/lawshaoor-academy', label: 'LawShaoor Academy' },
 ]
 
 export function Navbar() {

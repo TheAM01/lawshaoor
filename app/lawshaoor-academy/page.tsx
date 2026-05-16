@@ -117,17 +117,14 @@ export default function Academy() {
         <CirclesInCircumference className="absolute -left-16 -top-8 w-[340px] h-[340px] opacity-30 hidden md:block" uid="ac-hero-bc" />
 
         <div className="max-w-[1440px] mx-auto relative">
-          <div className="grid grid-cols-12 gap-6 items-end">
-            <div className="col-span-12 md:col-span-2">
-              <span className="index-chip">001 · Academy</span>
-            </div>
-            <div className="col-span-12 md:col-span-10">
-              <h1 className="display-xl font-display">
-                <span className="block"><SplitReveal trigger="load" delay={0.1}>The LawShaoor</SplitReveal></span>
-                <span className="block text-gradient"><SplitReveal trigger="load" delay={0.35}>Journal.</SplitReveal></span>
-              </h1>
-            </div>
+          <div className="mb-10 md:mb-14">
+            <span className="index-chip">001 · Academy</span>
           </div>
+
+          <h1 className="display-xl font-display">
+            <span className="block"><SplitReveal trigger="load" delay={0.1}>The LawShaoor</SplitReveal></span>
+            <span className="block text-gradient"><SplitReveal trigger="load" delay={0.35}>Academy.</SplitReveal></span>
+          </h1>
 
           <div className="grid grid-cols-12 gap-6 mt-12 md:mt-20 items-start">
             <div className="col-span-12 md:col-span-6 md:col-start-3">

@@ -44,7 +44,7 @@ export function Footer() {
               <li><Link href="/our-story" className="link-line">Our Story</Link></li>
               <li><Link href="/practice-areas" className="link-line">Practice</Link></li>
               <li><Link href="/people" className="link-line">People</Link></li>
-              <li><Link href="/academy" className="link-line">Academy</Link></li>
+              <li><Link href="/lawshaoor-academy" className="link-line">Academy</Link></li>
               <li><Link href="/contact" className="link-line">Contact</Link></li>
             </ul>
           </div>
