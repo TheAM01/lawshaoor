@@ -1,14 +1,21 @@
 import type { Metadata } from 'next'
-import { Fraunces, Geist, Geist_Mono } from 'next/font/google'
+import { Syne, Space_Grotesk, Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 
-const fraunces = Fraunces({
+const syne = Syne({
   subsets: ['latin'],
-  variable: '--font-serif',
+  variable: '--font-display',
   display: 'swap',
-  axes: ['SOFT', 'WONK', 'opsz'],
+  weight: ['400', '500', '600', '700', '800'],
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 const geist = Geist({
@@ -24,8 +31,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'LawShaoor — Corporate law, redrawn.',
-  description: 'A corporate law practice for ambitious operators. M&A, governance, capital, contracts. No filler.',
+  title: 'LawShaoor — Corporate law, engineered.',
+  description: 'A modern boutique practice for ambitious operators. Mergers, governance, capital, contracts. Drafted with precision.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -43,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${geist.variable} ${geistMono.variable}`}
+      className={`${syne.variable} ${spaceGrotesk.variable} ${geist.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
       <body className="grain antialiased">

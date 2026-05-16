@@ -62,7 +62,7 @@ export function PinnedWords({ words, className = '' }: Props) {
               <div
                 key={i}
                 data-word
-                className="absolute inset-0 display-md font-serif italic-display max-w-5xl"
+                className="absolute inset-0 display-md font-display max-w-5xl"
               >
                 {w}
               </div>

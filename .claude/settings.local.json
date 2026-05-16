@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(curl -s http://localhost:3000/)",
-      "Bash(pnpm exec *)"
+      "Bash(pnpm exec *)",
+      "Bash(pnpm build *)",
+      "Bash(npx tsc *)"
     ]
   }
 }
