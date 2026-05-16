@@ -4,7 +4,26 @@
       "Bash(curl -s http://localhost:3000/)",
       "Bash(pnpm exec *)",
       "Bash(pnpm build *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(Select-String -Pattern \"\\\\.env\" -SimpleMatch)",
+      "Bash(pnpm add *)",
+      "Bash(pnpm dev *)",
+      "Bash(grep -E \"MantineProvider|ae\\\\\\\\\\(\" node_modules/@blocknote/mantine/dist/blocknote-mantine.js)",
+      "Bash(grep -nE 'return \\\\[\\\\s*[`\"\\\\$]' node_modules/.pnpm/@blocknote+core@0.51.0_@types+hast@3.0.4/node_modules/@blocknote/core/dist/blocks-D0lMxErU.js)",
+      "Bash(grep -nE \"heading.*renderHTML|level.*renderHTML|h\\\\\\\\\\\\${\" node_modules/.pnpm/@blocknote+core@0.51.0_@types+hast@3.0.4/node_modules/@blocknote/core/dist/blocks-D0lMxErU.js)",
+      "Bash(grep -nE \"h\\\\\\\\\\\\$\\\\{|level\\\\}\" node_modules/.pnpm/@blocknote+core@0.51.0_@types+hast@3.0.4/node_modules/@blocknote/core/dist/blocks-D0lMxErU.js)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(exit 0)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill /F /PID 7756)",
+      "PowerShell(Stop-Process *)",
+      "Bash(grep -nB 2 'name: \"paragraph\"\\\\|name: \"image\"\\\\|name: \"video\"\\\\|name: \"audio\"\\\\|name: \"file\"\\\\|name: \"codeBlock\"' node_modules/.pnpm/@blocknote+core@0.51.0_@types+hast@3.0.4/node_modules/@blocknote/core/dist/blocks-D0lMxErU.js)",
+      "Bash(grep -nE \"toDOM\\\\\\\\b|renderHTML\\\\\\\\b\" node_modules/.pnpm/@tiptap+core@3.23.4_@tiptap+pm@3.23.4/node_modules/@tiptap/core/dist/index.js)",
+      "Bash(pnpm view *)",
+      "Bash(curl -sL https://unpkg.com/prosemirror-model@1.24.1/src/to_dom.ts)",
+      "Bash(pnpm install *)",
+      "PowerShell(Get-NetTCPConnection *)",
+      "Bash(find components/illustrations* -type f)"
     ]
   }
 }

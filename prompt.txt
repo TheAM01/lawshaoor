@@ -1,0 +1,16 @@
+Alright here comes the tough part, you are going to integrate a complete admin panel in this site. This site is going to have a blog section (lawshaoor academy).
+Here there is only a very simple log in, username and password. This will be in .env as ADMIN_USERNAME & ADMIN_PASSWORD. After logging in, the user can see a
+complete dashboard for the blogs. There is going to be the following pages in sidebar:
+
+1. Posts:
+Here, the user can manage & create posts, very much like how Wordpress allows, just not drag and drop kind of thing. There will be a list of all posts with the
+simple options to edit, delete and whatnot. The user can edit or create a post which will take him to the editor, There will be a properties panel on the right, and 
+mainspace with the default template of a section containing one heading and one paragraph. The user can obviously change the headings text content in the mainspace
+and color and each and everything else from the right side bar of properties panel. Then the user can add another heading, another paragraph, another section,
+another image, another whatever, change delete and whatnot. When the post is finalized, the user can select publishing options, the slug, the category, the
+thumbnail image, SEO stuff, and everything. Then the post gets published. There is going to be a MONGODB_URI in the .env file which, well, is the MongoDB 
+connection URI. Use that to add this post to mongo db and then the lawshaoor academy will become a COMPLETE blog.
+
+(rest of the pages ill tell later on)
+
+ASK QUESTIONS IF ESOMETING ISNT CLEAR

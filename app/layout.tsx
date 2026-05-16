@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Syne, Space_Grotesk, Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProvider, ThemeScript } from '@/components/theme-provider'
 import './globals.css'
 
 const syne = Syne({
@@ -53,6 +53,9 @@ export default function RootLayout({
       className={`${syne.variable} ${spaceGrotesk.variable} ${geist.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <ThemeScript defaultTheme="light" attribute="class" />
+      </head>
       <body className="grain antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}

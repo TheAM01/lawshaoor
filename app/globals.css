@@ -672,3 +672,127 @@ button:hover .arrow-magnet {
   background: var(--primary);
   color: var(--primary-foreground);
 }
+
+/* ============================================================
+   .bn-rendered — public-side article styles for HTML produced
+   by @blocknote/server-util's blocksToHTMLLossy()
+   ============================================================ */
+
+.bn-rendered {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  letter-spacing: -0.005em;
+  color: var(--foreground);
+}
+.bn-rendered > * + * { margin-top: 1.1em; }
+
+.bn-rendered h1,
+.bn-rendered h2,
+.bn-rendered h3,
+.bn-rendered h4,
+.bn-rendered h5,
+.bn-rendered h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+.bn-rendered h1 { font-size: clamp(2rem, 4vw, 2.75rem); }
+.bn-rendered h2 { font-size: clamp(1.65rem, 3vw, 2.1rem); }
+.bn-rendered h3 { font-size: clamp(1.3rem, 2.2vw, 1.55rem); }
+.bn-rendered h4 { font-size: 1.2rem; }
+
+.bn-rendered p {
+  color: color-mix(in oklch, var(--foreground) 92%, transparent);
+}
+
+.bn-rendered a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+.bn-rendered a:hover { opacity: 0.75; }
+
+.bn-rendered strong { font-weight: 600; color: var(--foreground); }
+.bn-rendered em { font-style: italic; }
+
+.bn-rendered ul,
+.bn-rendered ol {
+  padding-left: 1.5em;
+}
+.bn-rendered ul { list-style: disc; }
+.bn-rendered ol { list-style: decimal; }
+.bn-rendered li { margin-top: 0.4em; }
+.bn-rendered li::marker { color: var(--primary); }
+
+.bn-rendered blockquote {
+  border-left: 2px solid var(--primary);
+  padding-left: 1.25em;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  color: color-mix(in oklch, var(--foreground) 85%, transparent);
+  font-style: italic;
+}
+
+.bn-rendered code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--background-alt);
+  border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
+  padding: 0.1em 0.4em;
+}
+
+.bn-rendered pre {
+  background: var(--background-alt);
+  border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.bn-rendered pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.bn-rendered hr {
+  border: 0;
+  height: 1px;
+  background: color-mix(in oklch, var(--foreground) 18%, transparent);
+  margin: 2.5em 0;
+}
+
+.bn-rendered img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid color-mix(in oklch, var(--foreground) 14%, transparent);
+  margin-block: 1.25em;
+}
+
+.bn-rendered table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+}
+.bn-rendered th,
+.bn-rendered td {
+  border: 1px solid color-mix(in oklch, var(--foreground) 18%, transparent);
+  padding: 0.55rem 0.85rem;
+  text-align: left;
+}
+.bn-rendered th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--background-alt);
+}

@@ -1,0 +1,162 @@
+import { z } from 'zod'
+import slugify from 'slugify'
+import type { ObjectId } from 'mongodb'
+
+export const POST_STATUS = ['draft', 'published'] as const
+export const PostStatusSchema = z.enum(POST_STATUS)
+export type PostStatus = z.infer<typeof PostStatusSchema>
+
+export const PostSeoSchema = z.object({
+  title: z.string().default(''),
+  description: z.string().default(''),
+  ogImage: z.string().default(''),
+})
+export type PostSeo = z.infer<typeof PostSeoSchema>
+
+export const PostInputSchema = z.object({
+  title: z.string().min(1, 'Title is required'),
+  slug: z.string().min(1),
+  excerpt: z.string().default(''),
+  category: z.string().default('Opinion'),
+  thumbnailUrl: z.string().default(''),
+  blocks: z.array(z.any()).default([]),
+  status: PostStatusSchema.default('draft'),
+  seo: PostSeoSchema.default({ title: '', description: '', ogImage: '' }),
+})
+export type PostInput = z.infer<typeof PostInputSchema>
+
+export type PostDoc = PostInput & {
+  _id?: ObjectId
+  createdAt: Date
+  updatedAt: Date
+  publishedAt: Date | null
+  readMinutes: number
+}
+
+export type PostListItem = {
+  _id: string
+  title: string
+  slug: string
+  category: string
+  excerpt: string
+  thumbnailUrl: string
+  status: PostStatus
+  publishedAt: string | null
+  updatedAt: string
+  createdAt: string
+  readMinutes: number
+}
+
+export const CATEGORIES = [
+  'M&A',
+  'Governance',
+  'Contracts',
+  'Capital',
+  'Sector Notes',
+  'Opinion',
+] as const
+
+export function toSlug(input: string): string {
+  return slugify(input, { lower: true, strict: true, trim: true })
+}
+
+/** Walk BlockNote JSON, count words, return minutes at ~220wpm (floor 1). */
+export function estimateReadMinutes(blocks: unknown): number {
+  let words = 0
+  const walk = (node: unknown): void => {
+    if (!node) return
+    if (typeof node === 'string') {
+      words += node.split(/\s+/).filter(Boolean).length
+      return
+    }
+    if (Array.isArray(node)) {
+      node.forEach(walk)
+      return
+    }
+    if (typeof node === 'object') {
+      const obj = node as Record<string, unknown>
+      if (typeof obj.text === 'string') walk(obj.text)
+      if (obj.content) walk(obj.content)
+      if (obj.children) walk(obj.children)
+    }
+  }
+  walk(blocks)
+  return Math.max(1, Math.round(words / 220))
+}
+
+/** Convert a Mongo PostDoc into a JSON-serializable list item. */
+export function toListItem(doc: PostDoc): PostListItem {
+  return {
+    _id: String(doc._id),
+    title: doc.title,
+    slug: doc.slug,
+    category: doc.category,
+    excerpt: doc.excerpt,
+    thumbnailUrl: doc.thumbnailUrl,
+    status: doc.status,
+    publishedAt: doc.publishedAt ? doc.publishedAt.toISOString() : null,
+    updatedAt: doc.updatedAt.toISOString(),
+    createdAt: doc.createdAt.toISOString(),
+    readMinutes: doc.readMinutes ?? 1,
+  }
+}
+
+/** Default block tree for a fresh post: one heading + one paragraph.
+ *  Uses BlockNote's string-content shorthand so the editor fills in
+ *  inline-content defaults itself (avoids renderSpec edge cases). */
+export function defaultBlocks() {
+  return [
+    { type: 'heading', props: { level: 1 }, content: 'Untitled' },
+    { type: 'paragraph', content: 'Start writing…' },
+  ]
+}
+
+/** Normalize blocks coming from storage so BlockNote can render them safely.
+ *
+ *  Strategy: be aggressively conservative — only emit blocks of well-known
+ *  types, only keep the minimum props the runtime requires, and coerce
+ *  content into a plain string (lossy for formatting on load, but safe).
+ *  Users can re-add inline formatting in the editor and re-save. */
+const KNOWN_TYPES = new Set([
+  'paragraph',
+  'heading',
+  'bulletListItem',
+  'numberedListItem',
+  'quote',
+])
+
+function extractText(content: unknown): string {
+  if (typeof content === 'string') return content
+  if (!Array.isArray(content)) return ''
+  return content
+    .map((c) => {
+      if (typeof c === 'string') return c
+      if (!c || typeof c !== 'object') return ''
+      const x = c as { type?: unknown; text?: unknown; content?: unknown }
+      if (x.type === 'text') return String(x.text ?? '')
+      if (x.type === 'link') return extractText(x.content)
+      return ''
+    })
+    .join('')
+}
+
+export function sanitizeBlocks(blocks: unknown): unknown[] {
+  if (!Array.isArray(blocks)) return []
+  const out: unknown[] = []
+  for (const raw of blocks) {
+    if (!raw || typeof raw !== 'object') continue
+    const b = raw as Record<string, unknown>
+    const type =
+      typeof b.type === 'string' && KNOWN_TYPES.has(b.type) ? b.type : 'paragraph'
+    const text = extractText(b.content)
+    const block: Record<string, unknown> = { type, content: text }
+    if (type === 'heading') {
+      const lvl = (b.props as { level?: unknown } | undefined)?.level
+      const level =
+        typeof lvl === 'number' && lvl >= 1 && lvl <= 6 ? Math.floor(lvl) : 1
+      block.props = { level }
+    }
+    out.push(block)
+  }
+  return out
+}

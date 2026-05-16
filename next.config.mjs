@@ -6,6 +6,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  serverExternalPackages: [
+    '@blocknote/server-util',
+    'jsdom',
+    'mongodb',
+  ],
 }
 
 export default nextConfig

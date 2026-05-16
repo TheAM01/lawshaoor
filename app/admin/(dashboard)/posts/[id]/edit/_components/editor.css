@@ -1,0 +1,22 @@
+/* Tone down BlockNote's heading sizes a touch and remove its built-in padding,
+   since we wrap it in our own page padding. */
+
+.bn-container .bn-editor {
+  padding-inline: 0 !important;
+}
+
+.bn-container .bn-block-content[data-content-type='heading'] h1 {
+  font-size: 2.25rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.bn-container .bn-block-content[data-content-type='heading'] h2 {
+  font-size: 1.75rem;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+.bn-container .bn-block-content[data-content-type='heading'] h3 {
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
