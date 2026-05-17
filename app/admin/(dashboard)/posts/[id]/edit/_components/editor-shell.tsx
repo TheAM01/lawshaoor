@@ -59,7 +59,7 @@ export function EditorShell({ id, initial }: { id: string; initial: EditorInitia
   const editor = useCreateBlockNote({
     uploadFile: async (file: File) => {
       const form = new FormData()
-      form.append('image', file)
+      form.append('file', file)
       const res = await fetch('/api/admin/upload', { method: 'POST', body: form })
       if (!res.ok) {
         const data = (await res.json().catch(() => ({}))) as { error?: string }

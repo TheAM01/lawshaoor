@@ -24,24 +24,15 @@ import {
 } from '@/components/illustrations'
 import { postsCollection } from '@/lib/mongo'
 import type { PostDoc } from '@/lib/models/post'
+import { getAllCategories, buildIllustrationKeyMap } from '@/lib/server/categories'
+import { getIllustration } from '@/components/illustrations/registry'
+import { ShareButtons } from '@/components/share-buttons'
 
 export const dynamic = 'force-dynamic'
 
 /* ──────────────────────────────────────────────
    Data
    ────────────────────────────────────────────── */
-
-const CATEGORY_ILLO: Record<
-  string,
-  React.ComponentType<{ className?: string; uid?: string }>
-> = {
-  'M&A':          CirclesInCircumference,
-  'Governance':   HexagonalCascade,
-  'Contracts':    TesseractCube,
-  'Capital':      StackedCubes,
-  'Sector Notes': OrbitRings,
-  'Opinion':      VectorNode,
-}
 
 type RelatedPost = {
   _id: string
@@ -123,14 +114,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug)
-  if (!post) return { title: 'Not found · LawShaoor Academy' }
+  if (!post) return { title: { absolute: 'Not found · LawShaoor Academy' } }
 
   const title = post.seo?.title || post.title
   const description = post.seo?.description || post.excerpt
   const ogImage = post.seo?.ogImage || post.thumbnailUrl || undefined
 
   return {
-    title: `${title} · LawShaoor Academy`,
+    title: { absolute: `${title} · LawShaoor Academy — Law. Strategy. Future.` },
     description,
     openGraph: {
       title,
@@ -171,7 +162,10 @@ export default async function PostPage({
 
   const related = await getRelated(post, 3)
   const publishedAt = post.publishedAt ?? post.updatedAt
-  const HeroIllo = CATEGORY_ILLO[post.category] ?? CirclesInCircumference
+  const categories = await getAllCategories()
+  const keyMap = buildIllustrationKeyMap(categories)
+  const HeroIllo = getIllustration(keyMap.get(post.category))
+  const postCategory = categories.find((c) => c.name === post.category)
 
   return (
     <main className="relative overflow-hidden">
@@ -213,7 +207,13 @@ export default async function PostPage({
 
           {/* Category tag + meta */}
           <div className="flex items-center gap-4 flex-wrap mb-7">
-            <span className="tag tag-primary">{post.category}</span>
+            {postCategory ? (
+              <Link href={`/lawshaoor-academy/c/${postCategory.slug}`} className="tag tag-primary hover:opacity-80 transition-opacity">
+                {post.category}
+              </Link>
+            ) : (
+              <span className="tag tag-primary">{post.category}</span>
+            )}
             <span className="eyebrow text-foreground/55">{formatDate(publishedAt)}</span>
             <span className="eyebrow text-foreground/55">·</span>
             <span className="eyebrow text-foreground/55">
@@ -253,10 +253,15 @@ export default async function PostPage({
                 </p>
               </div>
               <span className="hidden md:block flex-1" />
-              <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-foreground/45">
+              <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-foreground/45 mr-2">
                 #{post.slug}
               </span>
             </div>
+          </FadeIn>
+
+          {/* Share row */}
+          <FadeIn delay={0.4} className="mt-6 pt-4 border-t border-foreground/10">
+            <ShareButtons title={post.title} excerpt={post.excerpt} />
           </FadeIn>
         </div>
       </section>
@@ -335,6 +340,29 @@ export default async function PostPage({
               </Link>
               .
             </p>
+
+            {/* Share — end of article */}
+            <div className="mt-8 pt-6 border-t border-foreground/10">
+              <ShareButtons title={post.title} excerpt={post.excerpt} />
+            </div>
+
+            {/* Tagline signature */}
+            <div className="mt-10 pt-8 border-t border-foreground/10 flex items-center gap-4">
+              <span
+                className="w-10 h-10 border border-primary/50 bg-primary/10 flex items-center justify-center font-display text-primary text-sm tracking-[-0.02em] shrink-0"
+                aria-hidden
+              >
+                LS
+              </span>
+              <div className="flex-1">
+                <p className="font-display text-base md:text-lg tracking-[-0.015em] text-foreground/90">
+                  LawShaoor Chambers
+                </p>
+                <p className="font-mono text-[10px] md:text-xs tracking-[0.32em] uppercase text-foreground/65 mt-1">
+                  Law<span className="text-primary">.</span> Strategy<span className="text-primary">.</span> Future<span className="text-primary">.</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -405,7 +433,7 @@ export default async function PostPage({
               className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground/15 border-x border-b border-foreground/15"
             >
               {related.map((p, i) => (
-                <RelatedCard key={p._id} post={p} index={i + 1} />
+                <RelatedCard key={p._id} post={p} index={i + 1} keyMap={keyMap} />
               ))}
             </FadeIn>
           </div>
@@ -468,8 +496,16 @@ export default async function PostPage({
    Related card
    ────────────────────────────────────────────── */
 
-function RelatedCard({ post, index }: { post: RelatedPost; index: number }) {
-  const Illo = CATEGORY_ILLO[post.category] ?? CirclesInCircumference
+function RelatedCard({
+  post,
+  index,
+  keyMap,
+}: {
+  post: RelatedPost
+  index: number
+  keyMap: Map<string, string>
+}) {
+  const Illo = getIllustration(keyMap.get(post.category))
   return (
     <Link
       href={`/lawshaoor-academy/${post.slug}`}

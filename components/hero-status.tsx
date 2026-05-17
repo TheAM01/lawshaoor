@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react'
 import { FadeIn } from '@/components/motion/fade-in'
 
-const MATTERS = [
-  { code: 'M-2204', desc: 'Cross-border SaaS acquisition', stage: 'Diligence' },
-  { code: 'G-3110', desc: 'Public-co board restructure',   stage: 'Drafting'  },
-  { code: 'C-7728', desc: 'Series C strategic JV',         stage: 'Closing'   },
-  { code: 'F-1190', desc: 'Senior debt renegotiation',     stage: 'Active'    },
+const STRENGTHS = [
+  { code: '01', desc: 'Banking & Finance',          stage: 'Core' },
+  { code: '02', desc: 'Energy & Natural Resources', stage: 'Core' },
+  { code: '03', desc: 'Corporate & Commercial',     stage: 'Core' },
+  { code: '04', desc: 'Dispute Resolution',         stage: 'Core' },
 ]
 
 function useClock(tz: string) {
@@ -23,27 +23,28 @@ function useClock(tz: string) {
 }
 
 export function HeroStatus() {
-  const ny  = useClock('America/New_York')
+  const isb = useClock('Asia/Karachi')
+  const hkg = useClock('Asia/Hong_Kong')
   const ldn = useClock('Europe/London')
-  const sng = useClock('Asia/Singapore')
+  const auh = useClock('Asia/Dubai')
 
   return (
     <FadeIn delay={0.8} className="surface bracketed p-5 md:p-6 w-full max-w-md ml-auto">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="dot-live" />
-          <span className="eyebrow text-foreground/85">On the desk</span>
+          <span className="eyebrow text-foreground/85">Strength sectors</span>
         </div>
-        <span className="eyebrow text-foreground/70">{new Date().getFullYear()} · Q2</span>
+        <span className="eyebrow text-foreground/70">Islamabad · PK</span>
       </div>
 
       <div className="h-px bg-foreground/30 mb-3" />
 
       <ul className="space-y-2.5 mb-4">
-        {MATTERS.map((m) => (
+        {STRENGTHS.map((m) => (
           <li key={m.code} className="grid grid-cols-12 gap-2 items-baseline">
-            <span className="col-span-3 eyebrow text-primary">{m.code}</span>
-            <span className="col-span-6 text-xs text-foreground/85 leading-tight font-heading tracking-[-0.005em]">{m.desc}</span>
+            <span className="col-span-2 eyebrow text-primary">{m.code}</span>
+            <span className="col-span-7 text-xs text-foreground/85 leading-tight font-heading tracking-[-0.005em]">{m.desc}</span>
             <span className="col-span-3 text-right eyebrow text-foreground/60">{m.stage}</span>
           </li>
         ))}
@@ -51,11 +52,12 @@ export function HeroStatus() {
 
       <div className="h-px bg-foreground/25 mb-3" />
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-4 gap-3">
         {[
-          { label: 'NY',  v: ny },
+          { label: 'ISB', v: isb },
+          { label: 'AUH', v: auh },
           { label: 'LDN', v: ldn },
-          { label: 'SNG', v: sng },
+          { label: 'HKG', v: hkg },
         ].map((c) => (
           <div key={c.label}>
             <p className="eyebrow text-foreground/60 mb-0.5">{c.label}</p>

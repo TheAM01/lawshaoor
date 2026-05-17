@@ -31,16 +31,28 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'LawShaoor — Corporate law, engineered.',
-  description: 'A modern boutique practice for ambitious operators. Mergers, governance, capital, contracts. Drafted with precision.',
+  title: {
+    default: 'LawShaoor Chambers — Law. Strategy. Future.',
+    template: '%s · LawShaoor Chambers',
+  },
+  description: 'LawShaoor Chambers — Law. Strategy. Future. A full-service law firm based in Islamabad, with associated offices in other major cities of Pakistan. In strategic partnership with M.B. KEMP (ME) LLP — Hong Kong, London, Milan, Abu Dhabi.',
+  keywords: ['LawShaoor Chambers', 'Law Strategy Future', 'Islamabad law firm', 'Pakistan corporate law', 'M.B. KEMP (ME) LLP', 'banking and finance law', 'energy law Pakistan', 'dispute resolution Pakistan', 'DIFC ADGM advisory'],
+  openGraph: {
+    title: 'LawShaoor Chambers — Law. Strategy. Future.',
+    description: 'A full-service law firm based in Islamabad. In strategic partnership with M.B. KEMP (ME) LLP — Hong Kong, London, Milan, Abu Dhabi.',
+    siteName: 'LawShaoor Chambers',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LawShaoor Chambers — Law. Strategy. Future.',
+    description: 'A full-service law firm based in Islamabad. Law. Strategy. Future.',
+  },
   generator: 'v0.app',
   icons: {
-    icon: [
-      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-    ],
-    apple: '/apple-icon.png',
+    icon: [{ url: '/lawshaoor-icon.png', type: 'image/png' }],
+    shortcut: '/lawshaoor-icon.png',
+    apple: '/lawshaoor-icon.png',
   },
 }
 

@@ -22,6 +22,10 @@ import {
 } from '@/components/illustrations'
 import { postsCollection } from '@/lib/mongo'
 import type { PostDoc } from '@/lib/models/post'
+import { getSiteSettings } from '@/lib/server/settings'
+import { getAllCategories, buildIllustrationKeyMap } from '@/lib/server/categories'
+import { getIllustration } from '@/components/illustrations/registry'
+import type { CategoryListItem } from '@/lib/models/category'
 
 export const dynamic = 'force-dynamic'
 
@@ -40,35 +44,23 @@ type AcademyPost = {
   readMinutes: number
 }
 
-const CATEGORY_ILLO: Record<
-  string,
-  React.ComponentType<{ className?: string; uid?: string }>
-> = {
-  'M&A':          CirclesInCircumference,
-  'Governance':   HexagonalCascade,
-  'Contracts':    TesseractCube,
-  'Capital':      StackedCubes,
-  'Sector Notes': OrbitRings,
-  'Opinion':      VectorNode,
+/** Resolve a post's category illustration via the DB-backed registry, with
+ *  fallback to the default illustration if the category was deleted. */
+function illoForCategory(
+  category: string,
+  keyMap: Map<string, string>
+): React.ComponentType<{ className?: string; uid?: string }> {
+  return getIllustration(keyMap.get(category))
 }
 
-const CATEGORY_ORDER = [
-  'M&A',
-  'Governance',
-  'Contracts',
-  'Capital',
-  'Sector Notes',
-  'Opinion',
-]
-
 const TOPICS = [
-  { label: 'Earnouts',           Illo: OrbitRings },
-  { label: 'Cap tables',         Illo: StackedCubes },
-  { label: 'Cross-border',       Illo: VectorNode },
-  { label: 'Board duty',         Illo: HexagonalCascade },
-  { label: 'Drafting craft',     Illo: WaveBars },
-  { label: 'Tax structuring',    Illo: SquareCascade },
-  { label: 'Diligence',          Illo: GridDots },
+  { label: 'Earnouts', Illo: OrbitRings },
+  { label: 'Cap tables', Illo: StackedCubes },
+  { label: 'Cross-border', Illo: VectorNode },
+  { label: 'Board duty', Illo: HexagonalCascade },
+  { label: 'Drafting craft', Illo: WaveBars },
+  { label: 'Tax structuring', Illo: SquareCascade },
+  { label: 'Diligence', Illo: GridDots },
   { label: 'Negotiation theory', Illo: SegmentedRing },
 ]
 
@@ -118,12 +110,34 @@ function groupByYear(posts: AcademyPost[]) {
 }
 
 /* ──────────────────────────────────────────────
-   Page
-   ────────────────────────────────────────────── */
+Page
+────────────────────────────────────────────── */
 
 export default async function Academy() {
   const { posts, error } = await getPublished()
-  const [featured, ...rest] = posts
+  const settings = await getSiteSettings()
+  const categories = await getAllCategories()
+  const keyMap = buildIllustrationKeyMap(categories)
+  /** Category order from DB (admin can re-sort by editing `order`). Falls back
+   *  to derived names from posts if the DB is empty. */
+  const categoryOrder = categories.length > 0
+    ? categories.map((c) => c.name)
+    : Array.from(new Set(posts.map((p) => p.category)))
+
+  // Pick the featured post:
+  //   1. settings.featuredPostId if it matches a published post
+  //   2. otherwise the most recently published
+  const featured =
+    posts.find((p) => p._id === settings.featuredPostId) ?? posts[0]
+  const restAll = posts.filter((p) => p._id !== featured?._id)
+
+  // Pinned post — surfaces at the top of the editorial picks (just under the
+  // featured slot). Falls through to normal order if not set or matches featured.
+  const pinned =
+    settings.pinnedPostId && settings.pinnedPostId !== featured?._id
+      ? restAll.find((p) => p._id === settings.pinnedPostId)
+      : undefined
+  const rest = pinned ? [pinned, ...restAll.filter((p) => p._id !== pinned._id)] : restAll
 
   // Stats
   const totalRead = posts.reduce((acc, p) => acc + p.readMinutes, 0)
@@ -134,11 +148,14 @@ export default async function Academy() {
     return acc
   }, {})
 
-  // Editorial layout: first 5 in mixed grid (1 large + 4 standard), rest in archive
-  const editorialPicks = rest.slice(0, 5)
+  // Editorial layout: 1 large + N rail, rest in archive.
+  // latestLimit controls the total editorial picks size (hero + rail).
+  const latestSize =
+    settings.latestLimit === 0 ? rest.length : Math.max(0, settings.latestLimit)
+  const editorialPicks = rest.slice(0, latestSize)
   const editorialHero = editorialPicks[0]
   const editorialRail = editorialPicks.slice(1)
-  const archivePosts = rest.slice(5)
+  const archivePosts = rest.slice(latestSize)
 
   return (
     <main className="relative overflow-hidden">
@@ -210,10 +227,10 @@ export default async function Academy() {
       <section className="border-y border-foreground/15 bg-background-alt/70 section-pad py-10 md:py-14">
         <div className="max-w-[1440px] mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0">
-            <Stat n="01" v={posts.length}      suffix="+" label="Pieces published" />
-            <Stat n="02" v={categoriesUsed}    suffix=""  label="Categories" />
-            <Stat n="03" v={totalRead}         suffix=" min" label="Total reading time" />
-            <Stat n="04" v={5}                 suffix="+" label="Partners writing" last />
+            <Stat n="01" v={posts.length} suffix="+" label="Pieces published" />
+            <Stat n="02" v={categoriesUsed} suffix="" label="Categories" />
+            <Stat n="03" v={totalRead} suffix=" min" label="Total reading time" />
+            <Stat n="04" v={5} suffix="+" label="Partners writing" last />
           </div>
         </div>
       </section>
@@ -282,7 +299,7 @@ export default async function Academy() {
                 </div>
 
                 <div className="col-span-12 md:col-span-6 order-1 md:order-2">
-                  <FeaturedVisual post={featured} />
+                  <FeaturedVisual post={featured} keyMap={keyMap} />
                 </div>
               </article>
             </FadeIn>
@@ -335,7 +352,7 @@ export default async function Academy() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-foreground/15 border border-foreground/15">
               {editorialHero && (
                 <FadeIn className="lg:col-span-7 lg:row-span-2 bg-background">
-                  <HeroCard post={editorialHero} />
+                  <HeroCard post={editorialHero} keyMap={keyMap} />
                 </FadeIn>
               )}
               {editorialRail.map((p, i) => (
@@ -344,7 +361,7 @@ export default async function Academy() {
                   delay={0.05 * (i + 1)}
                   className="lg:col-span-5 bg-background"
                 >
-                  <RailCard post={p} index={i + 2} />
+                  <RailCard post={p} index={i + 2} keyMap={keyMap} />
                 </FadeIn>
               ))}
             </div>
@@ -416,14 +433,19 @@ export default async function Academy() {
             staggerChildren
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/15 border-x border-b border-foreground/15"
           >
-            {CATEGORY_ORDER.map((label, i) => (
-              <CategoryCard
-                key={label}
-                label={label}
-                index={i + 1}
-                count={categoryCounts[label] ?? 0}
-              />
-            ))}
+            {categoryOrder.map((label, i) => {
+              const cat = categories.find((c) => c.name === label)
+              return (
+                <CategoryCard
+                  key={label}
+                  label={label}
+                  slug={cat?.slug ?? null}
+                  index={i + 1}
+                  count={categoryCounts[label] ?? 0}
+                  illustrationKey={cat?.illustrationKey ?? ''}
+                />
+              )
+            })}
           </FadeIn>
         </div>
       </section>
@@ -548,8 +570,9 @@ export default async function Academy() {
       </section>
 
       {/* ────────────────────────────────────────
-          08 · NEWSLETTER
+          08 · NEWSLETTER (gated by settings.showNewsletter)
           ──────────────────────────────────────── */}
+      {settings.showNewsletter && (
       <section className="relative section-pad py-24 md:py-36 bg-fixed-lavender overflow-hidden">
         <GridDots className="absolute -left-32 top-1/2 -translate-y-1/2 w-[520px] h-[520px] opacity-40 hidden md:block" uid="ac-news-dots" />
         <StackedCubes className="absolute right-12 -bottom-8 w-44 h-56 opacity-50 hidden md:block float-soft" uid="ac-news-stk" />
@@ -590,6 +613,7 @@ export default async function Academy() {
           </div>
         </div>
       </section>
+      )}
 
       <Footer />
     </main>
@@ -644,7 +668,7 @@ function EmptyState() {
   )
 }
 
-function FeaturedVisual({ post }: { post: AcademyPost }) {
+function FeaturedVisual({ post, keyMap }: { post: AcademyPost; keyMap: Map<string, string> }) {
   if (post.thumbnailUrl) {
     return (
       <div className="relative aspect-[4/5] md:aspect-[5/6] overflow-hidden border border-foreground/15 group">
@@ -658,11 +682,16 @@ function FeaturedVisual({ post }: { post: AcademyPost }) {
           aria-hidden
           className="absolute inset-0 bg-gradient-to-tr from-background/30 via-transparent to-transparent"
         />
-        <CategoryGlyph category={post.category} className="absolute -bottom-8 -right-8 w-44 h-44 opacity-90 mix-blend-multiply hidden md:block" uid={`feat-${post._id}`} />
+        <CategoryGlyph
+          category={post.category}
+          keyMap={keyMap}
+          className="absolute -bottom-8 -right-8 w-44 h-44 opacity-90 mix-blend-multiply hidden md:block"
+          uid={`feat-${post._id}`}
+        />
       </div>
     )
   }
-  const Illo = CATEGORY_ILLO[post.category] ?? CirclesInCircumference
+  const Illo = illoForCategory(post.category, keyMap)
   return (
     <div className="relative aspect-[5/6] flex items-center justify-center bg-background-alt border border-foreground/15">
       <Illo className="w-3/4 h-3/4" uid={`feat-${post._id}`} />
@@ -672,18 +701,20 @@ function FeaturedVisual({ post }: { post: AcademyPost }) {
 
 function CategoryGlyph({
   category,
+  keyMap,
   className,
   uid,
 }: {
   category: string
+  keyMap: Map<string, string>
   className?: string
   uid?: string
 }) {
-  const Illo = CATEGORY_ILLO[category] ?? CirclesInCircumference
+  const Illo = illoForCategory(category, keyMap)
   return <Illo className={className} uid={uid} />
 }
 
-function HeroCard({ post }: { post: AcademyPost }) {
+function HeroCard({ post, keyMap }: { post: AcademyPost; keyMap: Map<string, string> }) {
   return (
     <Link
       href={`/lawshaoor-academy/${post.slug}`}
@@ -705,7 +736,7 @@ function HeroCard({ post }: { post: AcademyPost }) {
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <CategoryGlyph category={post.category} className="w-2/3 h-2/3 opacity-80" uid={`hero-${post._id}`} />
+            <CategoryGlyph category={post.category} keyMap={keyMap} className="w-2/3 h-2/3 opacity-80" uid={`hero-${post._id}`} />
           </div>
         )}
         <span className="absolute top-5 left-5">
@@ -735,8 +766,8 @@ function HeroCard({ post }: { post: AcademyPost }) {
   )
 }
 
-function RailCard({ post, index }: { post: AcademyPost; index: number }) {
-  const Illo = CATEGORY_ILLO[post.category] ?? CirclesInCircumference
+function RailCard({ post, index, keyMap }: { post: AcademyPost; index: number; keyMap: Map<string, string> }) {
+  const Illo = illoForCategory(post.category, keyMap)
   return (
     <Link
       href={`/lawshaoor-academy/${post.slug}`}
@@ -782,17 +813,22 @@ function RailCard({ post, index }: { post: AcademyPost; index: number }) {
 
 function CategoryCard({
   label,
+  slug,
   index,
   count,
+  illustrationKey,
 }: {
   label: string
+  slug: string | null
   index: number
   count: number
+  illustrationKey: string
 }) {
-  const Illo = CATEGORY_ILLO[label] ?? CirclesInCircumference
+  const Illo = getIllustration(illustrationKey)
+  const href = slug ? `/lawshaoor-academy/c/${slug}` : '#archive'
   return (
     <Link
-      href={`#archive`}
+      href={href}
       className="group bg-background p-8 md:p-10 lift-card flex flex-col gap-5 min-h-[280px]"
     >
       <div className="flex items-center justify-between">

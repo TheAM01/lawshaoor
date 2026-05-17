@@ -796,3 +796,141 @@ button:hover .arrow-magnet {
   text-transform: uppercase;
   background: var(--background-alt);
 }
+
+/* ──────────────────────────────────────────────
+   Custom scrollbar — slim, themed
+   ────────────────────────────────────────────── */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklch, var(--foreground) 28%, transparent) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in oklch, var(--foreground) 22%, transparent);
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.3s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklch, var(--primary) 70%, var(--foreground) 30%);
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: var(--primary);
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Hide scrollbar buttons on Webkit */
+*::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Slightly thinner scrollbars on inner overflow containers */
+.scrollbar-fine::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.scrollbar-fine {
+  scrollbar-width: thin;
+}
+
+/* ──────────────────────────────────────────────
+   Admin guide prose styles
+   ────────────────────────────────────────────── */
+
+.admin-guide a:not(.btn-primary):not(.btn-ghost):not(.link-line) {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, var(--primary) 35%, transparent);
+  text-underline-offset: 0.2em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.admin-guide a:not(.btn-primary):not(.btn-ghost):not(.link-line):hover {
+  text-decoration-color: var(--primary);
+}
+
+.admin-guide p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.admin-guide strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.admin-guide em {
+  font-style: italic;
+}
+
+.admin-guide ul,
+.admin-guide ol {
+  padding-left: 1.4rem;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.admin-guide ul {
+  list-style: disc;
+}
+.admin-guide ol {
+  list-style: decimal;
+}
+.admin-guide li {
+  margin: 0.4rem 0;
+}
+.admin-guide li::marker {
+  color: color-mix(in oklch, var(--foreground) 45%, transparent);
+}
+
+.admin-guide code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: color-mix(in oklch, var(--foreground) 7%, transparent);
+  border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
+  padding: 0.1rem 0.35rem;
+  border-radius: 2px;
+  color: var(--foreground);
+  word-break: break-word;
+}
+
+.admin-guide table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+  border: 1px solid color-mix(in oklch, var(--foreground) 15%, transparent);
+}
+.admin-guide th,
+.admin-guide td {
+  border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.admin-guide th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--background-alt);
+  color: color-mix(in oklch, var(--foreground) 70%, transparent);
+}

@@ -113,17 +113,25 @@ export function defaultBlocks() {
 
 /** Normalize blocks coming from storage so BlockNote can render them safely.
  *
- *  Strategy: be aggressively conservative — only emit blocks of well-known
- *  types, only keep the minimum props the runtime requires, and coerce
- *  content into a plain string (lossy for formatting on load, but safe).
- *  Users can re-add inline formatting in the editor and re-save. */
-const KNOWN_TYPES = new Set([
+ *  Strategy:
+ *    – Text blocks (paragraph, heading, list items, quote): preserve type,
+ *      flatten content to a plain string (lossy for inline formatting on
+ *      load, conservative against renderSpec edge cases). User re-adds
+ *      formatting in the editor and re-saves.
+ *    – Media blocks (image, file, video, audio): preserve type + props
+ *      (url, caption, name, showPreview, previewWidth) so previously
+ *      uploaded media reappears on reopen. Content stays empty.
+ *    – Unknown types: coerce to paragraph with extracted text. */
+const TEXT_BLOCKS = new Set([
   'paragraph',
   'heading',
   'bulletListItem',
   'numberedListItem',
+  'checkListItem',
   'quote',
 ])
+
+const MEDIA_BLOCKS = new Set(['image', 'file', 'video', 'audio'])
 
 function extractText(content: unknown): string {
   if (typeof content === 'string') return content
@@ -140,23 +148,58 @@ function extractText(content: unknown): string {
     .join('')
 }
 
+function pickMediaProps(raw: Record<string, unknown>): Record<string, unknown> {
+  const props = (raw.props as Record<string, unknown> | undefined) ?? {}
+  const out: Record<string, unknown> = {}
+  if (typeof props.url === 'string') out.url = props.url
+  if (typeof props.caption === 'string') out.caption = props.caption
+  if (typeof props.name === 'string') out.name = props.name
+  if (typeof props.showPreview === 'boolean') out.showPreview = props.showPreview
+  if (typeof props.previewWidth === 'number') out.previewWidth = props.previewWidth
+  if (typeof props.textAlignment === 'string') out.textAlignment = props.textAlignment
+  return out
+}
+
 export function sanitizeBlocks(blocks: unknown): unknown[] {
   if (!Array.isArray(blocks)) return []
   const out: unknown[] = []
   for (const raw of blocks) {
     if (!raw || typeof raw !== 'object') continue
     const b = raw as Record<string, unknown>
-    const type =
-      typeof b.type === 'string' && KNOWN_TYPES.has(b.type) ? b.type : 'paragraph'
-    const text = extractText(b.content)
-    const block: Record<string, unknown> = { type, content: text }
-    if (type === 'heading') {
-      const lvl = (b.props as { level?: unknown } | undefined)?.level
-      const level =
-        typeof lvl === 'number' && lvl >= 1 && lvl <= 6 ? Math.floor(lvl) : 1
-      block.props = { level }
+    const rawType = typeof b.type === 'string' ? b.type : ''
+
+    if (MEDIA_BLOCKS.has(rawType)) {
+      const mediaProps = pickMediaProps(b)
+      // Skip media blocks that lost their URL (corrupt/incomplete record).
+      if (typeof mediaProps.url !== 'string' || mediaProps.url.length === 0) {
+        continue
+      }
+      out.push({ type: rawType, props: mediaProps })
+      continue
     }
-    out.push(block)
+
+    if (TEXT_BLOCKS.has(rawType)) {
+      const text = extractText(b.content)
+      const block: Record<string, unknown> = { type: rawType, content: text }
+      if (rawType === 'heading') {
+        const lvl = (b.props as { level?: unknown } | undefined)?.level
+        const level =
+          typeof lvl === 'number' && lvl >= 1 && lvl <= 6 ? Math.floor(lvl) : 1
+        block.props = { level }
+      }
+      if (rawType === 'checkListItem') {
+        const checked = (b.props as { checked?: unknown } | undefined)?.checked
+        if (typeof checked === 'boolean') {
+          block.props = { checked }
+        }
+      }
+      out.push(block)
+      continue
+    }
+
+    // Unknown type → coerce to paragraph with extracted text.
+    const text = extractText(b.content)
+    out.push({ type: 'paragraph', content: text })
   }
   return out
 }

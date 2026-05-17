@@ -4,11 +4,12 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
 import { Moon, Sun, Menu, X } from 'lucide-react'
+import { LinkedInBanner } from '@/components/linkedin-banner'
 
 const NAV = [
-  { href: '/our-story',      label: 'Our Story' },
+  { href: '/our-story',      label: 'The Firm' },
   { href: '/practice-areas', label: 'Practice Areas' },
-  { href: '/people',         label: 'People' },
+  { href: '/people',         label: 'Team' },
   { href: '/lawshaoor-academy', label: 'LawShaoor Academy' },
 ]
 
@@ -29,6 +30,8 @@ export function Navbar() {
   const isDark = mounted && (theme === 'dark' || resolvedTheme === 'dark')
 
   return (
+    <>
+    <LinkedInBanner />
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-[background,border,backdrop-filter] duration-500 ${
         scrolled
@@ -123,5 +126,6 @@ export function Navbar() {
         </nav>
       </div>
     </header>
+    </>
   )
 }
