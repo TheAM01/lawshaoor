@@ -11,6 +11,7 @@ import {
   Globe,
   BookOpen,
   LogOut,
+  BarChart3,
 } from 'lucide-react'
 
 type NavItem = {
@@ -30,6 +31,7 @@ const SECTIONS: NavSection[] = [
     title: 'Overview',
     items: [
       { href: '/admin', label: 'Dashboard', Icon: LayoutDashboard, exact: true },
+      { href: '/admin/analytics', label: 'Analytics', Icon: BarChart3 },
     ],
   },
   {

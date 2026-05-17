@@ -23,7 +23,9 @@
       "Bash(curl -sL https://unpkg.com/prosemirror-model@1.24.1/src/to_dom.ts)",
       "Bash(pnpm install *)",
       "PowerShell(Get-NetTCPConnection *)",
-      "Bash(find components/illustrations* -type f)"
+      "Bash(find components/illustrations* -type f)",
+      "Bash(curl *)",
+      "Bash(SEED_SESSIONS=60 npx tsx scripts/seed-analytics.ts)"
     ]
   }
 }

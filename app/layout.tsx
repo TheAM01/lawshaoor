@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Syne, Space_Grotesk, Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider, ThemeScript } from '@/components/theme-provider'
+import { SiteTracker } from '@/components/analytics/site-tracker'
 import './globals.css'
 
 const syne = Syne({
@@ -72,6 +73,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <SiteTracker />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

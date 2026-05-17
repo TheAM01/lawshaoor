@@ -1,5 +1,14 @@
 import Link from 'next/link'
-import { FileText, Image as ImageIcon, Tags, Settings as SettingsIcon, Plus, ArrowRight, Pencil } from 'lucide-react'
+import {
+  FileText,
+  Image as ImageIcon,
+  Tags,
+  Settings as SettingsIcon,
+  Plus,
+  ArrowRight,
+  Pencil,
+  BarChart3,
+} from 'lucide-react'
 import {
   categoriesCollection,
   mediaCollection,
@@ -12,6 +21,9 @@ import {
   type SiteSettings,
 } from '@/lib/models/settings'
 import type { PostDoc } from '@/lib/models/post'
+import { getDashboardSummary } from '@/lib/server/analytics-queries'
+import { Sparkline } from '@/components/analytics/charts'
+import { statFormat } from '@/components/analytics/format'
 
 export const dynamic = 'force-dynamic'
 
@@ -109,6 +121,14 @@ async function loadDashboard(): Promise<{
 export default async function AdminIndex() {
   const { stats, recent, settings, featuredTitle, error } = await loadDashboard()
 
+  let analytics: Awaited<ReturnType<typeof getDashboardSummary>> | null = null
+  let analyticsError: string | null = null
+  try {
+    analytics = await getDashboardSummary()
+  } catch (err) {
+    analyticsError = err instanceof Error ? err.message : 'Failed to load analytics summary'
+  }
+
   return (
     <div className="flex-1 flex flex-col">
       <div className="section-pad py-8 md:py-10 border-b border-foreground/15 bg-background-alt/50">
@@ -130,6 +150,117 @@ export default async function AdminIndex() {
             <p className="text-sm text-foreground/80 font-heading break-words">{error}</p>
           </div>
         )}
+
+        {/* Analytics — last 7 days */}
+        <section>
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-[10px] font-mono tracking-[0.32em] uppercase text-foreground/55">
+              Traffic · last 7 days
+            </p>
+            <Link
+              href="/admin/analytics"
+              className="link-line text-[10px] font-mono tracking-[0.22em] uppercase text-foreground/70 hover:text-primary transition-colors inline-flex items-center gap-1.5"
+            >
+              <BarChart3 className="w-3 h-3" />
+              Full analytics →
+            </Link>
+          </div>
+          {analyticsError && (
+            <div className="border border-destructive/40 bg-destructive/5 p-4 mb-4">
+              <p className="text-xs text-destructive font-mono">{analyticsError}</p>
+            </div>
+          )}
+          {analytics && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-foreground/15 border border-foreground/15">
+              <MiniStat
+                label="Page views"
+                value={statFormat('number', analytics.views)}
+                trend={analytics.series.map((s) => s.views)}
+                accent
+              />
+              <MiniStat
+                label="Visitors"
+                value={statFormat('number', analytics.visitors)}
+                trend={analytics.series.map((s) => s.uniques)}
+              />
+              <MiniStat
+                label="Sessions"
+                value={statFormat('number', analytics.sessions)}
+              />
+              <MiniStat
+                label="Reads"
+                value={statFormat('number', analytics.reads)}
+                trend={analytics.series.map((s) => s.reads)}
+              />
+              <MiniStat
+                label="Bounce rate"
+                value={statFormat('percent', analytics.bounceRate)}
+              />
+              <MiniStat
+                label="Retention"
+                value={statFormat('percent', analytics.retentionRate)}
+              />
+            </div>
+          )}
+          {analytics && (analytics.topPath || analytics.topReferrer) && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-foreground/15 border-x border-b border-foreground/15">
+              {analytics.topPath ? (
+                <Link
+                  href={analytics.topPath.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-background p-4 flex items-center justify-between gap-4 hover:bg-background-alt/60 transition-colors"
+                >
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-mono tracking-[0.32em] uppercase text-foreground/55">
+                      Most-visited page
+                    </p>
+                    <p className="font-heading text-foreground/95 truncate mt-1">
+                      {analytics.topPath.label}
+                    </p>
+                    <p className="text-[10px] font-mono tracking-[0.18em] text-foreground/45 truncate mt-0.5">
+                      {analytics.topPath.path}
+                    </p>
+                  </div>
+                  <span className="font-display text-2xl tracking-[-0.025em] tabular-fig shrink-0">
+                    {analytics.topPath.views}
+                  </span>
+                </Link>
+              ) : (
+                <div className="bg-background p-4">
+                  <p className="text-[10px] font-mono tracking-[0.32em] uppercase text-foreground/55">
+                    Most-visited page
+                  </p>
+                  <p className="text-sm text-foreground/55 font-heading italic mt-1">No views yet.</p>
+                </div>
+              )}
+              {analytics.topReferrer ? (
+                <div className="bg-background p-4 flex items-center justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-mono tracking-[0.32em] uppercase text-foreground/55">
+                      Top referrer
+                    </p>
+                    <p className="font-heading text-foreground/95 truncate mt-1">
+                      {analytics.topReferrer.key}
+                    </p>
+                  </div>
+                  <span className="font-display text-2xl tracking-[-0.025em] tabular-fig shrink-0">
+                    {analytics.topReferrer.value}
+                  </span>
+                </div>
+              ) : (
+                <div className="bg-background p-4">
+                  <p className="text-[10px] font-mono tracking-[0.32em] uppercase text-foreground/55">
+                    Top referrer
+                  </p>
+                  <p className="text-sm text-foreground/55 font-heading italic mt-1">
+                    All traffic is direct or internal.
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+        </section>
 
         {/* Quick stats */}
         <section>
@@ -284,6 +415,42 @@ function ActionCard({
         →
       </span>
     </Link>
+  )
+}
+
+function MiniStat({
+  label,
+  value,
+  trend,
+  accent = false,
+}: {
+  label: string
+  value: string
+  trend?: number[]
+  accent?: boolean
+}) {
+  return (
+    <div className="bg-background p-4 flex flex-col gap-1.5 min-h-[100px]">
+      <p className="text-[10px] font-mono tracking-[0.32em] uppercase text-foreground/55">
+        {label}
+      </p>
+      <p
+        className={`font-display text-2xl md:text-3xl tracking-[-0.025em] tabular-fig ${
+          accent ? 'text-primary' : 'text-foreground'
+        }`}
+      >
+        {value}
+      </p>
+      {trend && trend.length > 0 && (
+        <div className="mt-auto -mx-1 opacity-70">
+          <Sparkline
+            data={trend}
+            color={accent ? 'var(--primary)' : 'var(--chart-3)'}
+            height={24}
+          />
+        </div>
+      )}
+    </div>
   )
 }
 

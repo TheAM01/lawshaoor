@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { Linkedin, Facebook, Mail, Share2, Link2, Check } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { track } from '@/components/analytics/tracker'
 
 type Props = {
   title: string
@@ -10,10 +12,13 @@ type Props = {
   excerpt?: string
 }
 
+type SharePlatform = 'x' | 'linkedin' | 'facebook' | 'whatsapp' | 'email' | 'copy' | 'native'
+
 export function ShareButtons({ title, url, excerpt }: Props) {
   const [resolvedUrl, setResolvedUrl] = useState<string>(url ?? '')
   const [canNativeShare, setCanNativeShare] = useState(false)
   const [copied, setCopied] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     if (!url && typeof window !== 'undefined') {
@@ -23,6 +28,22 @@ export function ShareButtons({ title, url, excerpt }: Props) {
       setCanNativeShare(true)
     }
   }, [url])
+
+  /** Infer pageKind + slug from the current pathname so the share event
+   *  attaches to the right post in the dashboard. */
+  function shareCtx() {
+    const path = pathname ?? ''
+    const postMatch = path.match(/^\/lawshaoor-academy\/(?!c\/)([^\/]+)/)
+    if (postMatch) return { pageKind: 'post' as const, slug: postMatch[1] }
+    const catMatch = path.match(/^\/lawshaoor-academy\/c\/([^\/]+)/)
+    if (catMatch) return { pageKind: 'category' as const, slug: catMatch[1] }
+    if (path.startsWith('/lawshaoor-academy')) return { pageKind: 'listing' as const }
+    return { pageKind: 'other' as const }
+  }
+
+  function onShare(platform: SharePlatform) {
+    track('share', { ...shareCtx(), platform })
+  }
 
   const enc = encodeURIComponent
   const encTitle = enc(title)
@@ -41,6 +62,7 @@ export function ShareButtons({ title, url, excerpt }: Props) {
     if (typeof navigator === 'undefined' || typeof navigator.share !== 'function') return
     try {
       await navigator.share({ title, text: excerpt, url: resolvedUrl })
+      onShare('native')
     } catch {
       /* User cancelled or share unsupported. */
     }
@@ -51,6 +73,7 @@ export function ShareButtons({ title, url, excerpt }: Props) {
     try {
       await navigator.clipboard.writeText(resolvedUrl)
       setCopied(true)
+      onShare('copy')
       setTimeout(() => setCopied(false), 1800)
     } catch {
       /* clipboard unavailable */
@@ -65,19 +88,19 @@ export function ShareButtons({ title, url, excerpt }: Props) {
       <span className="block w-6 h-px bg-foreground/25" />
 
       <div className="flex items-center gap-1">
-        <ShareIcon href={links.x} label="Share on X">
+        <ShareIcon href={links.x} label="Share on X" onClick={() => onShare('x')}>
           <XIcon className="w-4 h-4" />
         </ShareIcon>
-        <ShareIcon href={links.linkedin} label="Share on LinkedIn">
+        <ShareIcon href={links.linkedin} label="Share on LinkedIn" onClick={() => onShare('linkedin')}>
           <Linkedin className="w-4 h-4" />
         </ShareIcon>
-        <ShareIcon href={links.facebook} label="Share on Facebook">
+        <ShareIcon href={links.facebook} label="Share on Facebook" onClick={() => onShare('facebook')}>
           <Facebook className="w-4 h-4" />
         </ShareIcon>
-        <ShareIcon href={links.whatsapp} label="Share on WhatsApp">
+        <ShareIcon href={links.whatsapp} label="Share on WhatsApp" onClick={() => onShare('whatsapp')}>
           <WhatsAppIcon className="w-4 h-4" />
         </ShareIcon>
-        <ShareIcon href={links.email} label="Share via email" external={false}>
+        <ShareIcon href={links.email} label="Share via email" external={false} onClick={() => onShare('email')}>
           <Mail className="w-4 h-4" />
         </ShareIcon>
 
@@ -112,11 +135,13 @@ function ShareIcon({
   href,
   label,
   external = true,
+  onClick,
   children,
 }: {
   href: string
   label: string
   external?: boolean
+  onClick?: () => void
   children: React.ReactNode
 }) {
   return (
@@ -126,6 +151,7 @@ function ShareIcon({
       rel={external ? 'noopener noreferrer' : undefined}
       aria-label={label}
       title={label}
+      onClick={onClick}
       className="inline-flex items-center justify-center w-9 h-9 border border-foreground/15 hover:border-primary hover:text-primary text-foreground/70 transition-colors"
     >
       {children}
