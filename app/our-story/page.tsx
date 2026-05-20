@@ -58,13 +58,13 @@ export default function OurStory() {
 
         <div className="max-w-[1440px] mx-auto relative">
           <div className="mb-10 md:mb-14">
-            <span className="index-chip">001 · The Firm</span>
+            <span className="index-chip">001 · The Chambers</span>
           </div>
 
           <h1 className="display-xl font-display">
             <span className="block"><SplitReveal trigger="load" delay={0.1}>A full-service</SplitReveal></span>
             <span className="block">
-              <SplitReveal trigger="load" delay={0.3}>law firm in </SplitReveal>
+              <SplitReveal trigger="load" delay={0.3}>law chambers in </SplitReveal>
               <span className="text-gradient"><SplitReveal trigger="load" delay={0.5}>Islamabad.</SplitReveal></span>
             </span>
           </h1>
@@ -73,7 +73,7 @@ export default function OurStory() {
             <div className="col-span-12 md:col-span-5 md:col-start-3">
               <FadeIn>
                 <p className="font-heading text-xl md:text-2xl leading-snug text-foreground/90 tracking-[-0.01em]">
-                  LawShaoor Chambers is a full-service law firm based in Islamabad, with associated offices in other major cities of Pakistan.
+                  LawShaoor Chambers is a full-service law chambers based in Islamabad, with associated offices in other major cities of Pakistan.
                 </p>
               </FadeIn>
             </div>
@@ -90,7 +90,7 @@ export default function OurStory() {
                     ['Reach', 'Other major cities of Pakistan'],
                     ['Lawyers', '6'],
                     ['Practice areas', '12'],
-                    ['Partner firm', 'M.B. KEMP (ME) LLP'],
+                    ['Partner chambers', 'M.B. KEMP (ME) LLP'],
                   ].map(([k, v], i) => (
                     <li key={i} className="flex justify-between gap-4 items-baseline">
                       <span className="text-foreground/70 font-mono text-xs tracking-[0.18em] uppercase">{k}</span>
@@ -135,7 +135,7 @@ export default function OurStory() {
                   We are committed to providing clear, practical, and reliable legal services that meet the commercial needs of our clients. Our approach is to simplify complex legal issues and offer solutions that are both legally sound and commercially workable.
                 </p>
                 <p>
-                  The Firm combines the experience of its partners with the skills of a dedicated team of associates to handle a wide range of civil, commercial, corporate, regulatory, and dispute resolution matters. We act for local and foreign companies, financial institutions, non-profit organizations, and individual clients. In every matter, we focus on professionalism, efficiency, and the best interests of the client.
+                  The Chambers combines the experience of its partners with the skills of a dedicated team of associates to handle a wide range of civil, commercial, corporate, regulatory, and dispute resolution matters. We act for local and foreign companies, financial institutions, non-profit organizations, and individual clients. In every matter, we focus on professionalism, efficiency, and the best interests of the client.
                 </p>
                 <p>
                   LawShaoor Chambers has developed strength in sectors that are heavily regulated and commercially sensitive, including banking and finance, energy and natural resources, infrastructure, and corporate transactions. Our lawyers are familiar with the regulatory landscape in Pakistan and regularly appear before courts, tribunals, and regulatory authorities. Through this combination of advisory and contentious work, we aim to provide comprehensive legal support to clients operating in complex business environments.
@@ -193,7 +193,7 @@ export default function OurStory() {
             {[
               { v: 12, suffix: '', label: 'Practice areas' },
               { v: 6, suffix: '', label: 'Lawyers' },
-              { v: 4, suffix: '', label: 'Partner-firm offices abroad' },
+              { v: 4, suffix: '', label: 'Partner-chambers offices abroad' },
               { v: 1, suffix: '', label: 'Strategic partnership' },
             ].map((s, i) => (
               <FadeIn key={i} delay={i * 0.08} className="relative px-5 md:px-8 first:pl-0 border-l border-foreground/20 first:border-l-0">
@@ -227,7 +227,7 @@ export default function OurStory() {
             <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-6 font-heading text-lg md:text-xl leading-relaxed text-foreground/85 tracking-[-0.005em]">
               <FadeIn>
                 <p>
-                  LawShaoor Chambers works in strategic partnership with M.B. KEMP (ME) LLP, a law firm with offices in Hong Kong, London, Milan and Abu Dhabi.
+                  LawShaoor Chambers works in strategic partnership with M.B. KEMP (ME) LLP, a law chambers with offices in Hong Kong, London, Milan and Abu Dhabi.
                 </p>
               </FadeIn>
               <FadeIn delay={0.1}>

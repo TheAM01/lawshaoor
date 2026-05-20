@@ -736,7 +736,7 @@ function AdvancedGuide() {
       <Section id="public-routes" Icon={Search} title="Public routes">
         <ul>
           <li><code>/</code> — homepage</li>
-          <li><code>/our-story</code> — about the firm</li>
+          <li><code>/our-story</code> — about the chambers</li>
           <li><code>/practice-areas</code> — twelve practice areas, anchor-jumpable</li>
           <li><code>/people</code> — team bios</li>
           <li><code>/contact</code> — contact form (form submit is a stub — wire up if you need email)</li>
@@ -750,7 +750,7 @@ function AdvancedGuide() {
       </Section>
 
       <Section id="tagline" title="Tagline &amp; brand">
-        <p>The firm&apos;s tagline <strong>&ldquo;Law. Strategy. Future.&rdquo;</strong> appears in four places by design:</p>
+        <p>The chambers&apos; tagline <strong>&ldquo;Law. Strategy. Future.&rdquo;</strong> appears in four places by design:</p>
         <ol>
           <li><strong>SEO metadata</strong> — site title and OpenGraph/Twitter cards.</li>
           <li><strong>Footer</strong> — caps line directly under the LAWSHAOOR wordmark.</li>

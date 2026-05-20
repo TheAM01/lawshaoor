@@ -173,7 +173,7 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
             <div className="col-span-12 md:col-span-5 md:col-start-2 space-y-7">
               <FadeIn>
                 <p className="font-heading text-2xl md:text-3xl leading-snug text-foreground/95 max-w-xl tracking-[-0.01em]">
-                  LawShaoor Chambers is a full-service law firm based in Islamabad, with associated offices in other major cities of Pakistan.
+                  LawShaoor Chambers is a full-service law chambers based in Islamabad, with associated offices in other major cities of Pakistan.
                 </p>
               </FadeIn>
               <FadeIn staggerChildren className="flex flex-col sm:flex-row gap-3 items-start">
@@ -252,7 +252,7 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
             {[
               { v: 12, suffix: '', label: 'Practice areas' },
               { v: 6, suffix: '', label: 'Lawyers on the bench' },
-              { v: 4, suffix: '', label: 'Partner-firm offices abroad' },
+              { v: 4, suffix: '', label: 'Partner-chambers offices abroad' },
               { v: 13, suffix: '+ yrs', label: 'Founder experience' },
             ].map((s, i) => (
               <FadeIn key={i} delay={i * 0.08} className="relative px-5 md:px-8 first:pl-0 border-l border-foreground/20 first:border-l-0">

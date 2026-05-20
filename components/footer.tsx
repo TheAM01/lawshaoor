@@ -50,7 +50,7 @@ export function Footer() {
           <div className="md:col-span-2">
             <p className="eyebrow text-foreground/65 mb-5">Navigate</p>
             <ul className="space-y-3 text-sm font-mono uppercase tracking-[0.18em]">
-              <li><Link href="/our-story" className="link-line">The Firm</Link></li>
+              <li><Link href="/our-story" className="link-line">The Chambers</Link></li>
               <li><Link href="/practice-areas" className="link-line">Practice</Link></li>
               <li><Link href="/people" className="link-line">Team</Link></li>
               <li><Link href="/lawshaoor-academy" className="link-line">Academy</Link></li>

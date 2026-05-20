@@ -33,13 +33,13 @@ const TEAM: Person[] = [
     focus: 'Corporate · Commercial · Energy · Tech · Banking',
     bio: [
       'Abdul Manan is an Islamabad-based corporate and commercial lawyer with over 13 years of experience specializing in the energy, technology, fintech, and banking sectors. He handles the full range of corporate and commercial matters, representing multinational corporations, financial institutions, high-growth tech enterprises, non-profit organizations and local & foreign companies. He regularly advises clients on everything from complex corporate structuring to the regulatory nuances of AI and financial technologies.',
-      'Before establishing LawShaoor Chambers, Mr. Manan worked with premier law firms across Pakistan and the Gulf region. He has a proven track record in executing major corporate restructurings, cross-border mergers and acquisitions, and corporate finance transactions.',
+      'Before establishing LawShaoor Chambers, Mr. Manan worked with premier law chambers across Pakistan and the Gulf region. He has a proven track record in executing major corporate restructurings, cross-border mergers and acquisitions, and corporate finance transactions.',
       'Alongside his primary focus on corporate and technology law, Mr. Manan possesses extensive experience in the energy and petroleum sectors. Drawing on his tenure at RIAA Barker Gillette, CMS (Saudi Arabia), and M.B. Kemp, he advised major energy companies on the commercial structuring, regulatory compliance and project documentation relating to upstream and downstream operations. His work included drafting and negotiating agreements for oil and gas projects, advising on licensing and regulatory frameworks, and supporting clients on cross-border energy transactions. This experience has given him a strong understanding of the legal and commercial dynamics of Pakistan’s energy and petroleum industry.',
       'Complementing his active practice, Mr. Manan is committed to the development of the legal profession. He serves as a visiting faculty member at several public sector universities in Islamabad, where he lectures on law.',
     ],
     highlights: [
       { label: 'Experience',    value: '13+ years' },
-      { label: 'Prior firms',   value: 'RIAA Barker Gillette · CMS (Saudi Arabia) · M.B. Kemp' },
+      { label: 'Prior chambers',   value: 'RIAA Barker Gillette · CMS (Saudi Arabia) · M.B. Kemp' },
       { label: 'Sectors',       value: 'Energy · Technology · Fintech · Banking' },
       { label: 'Teaching',      value: 'Visiting faculty, public sector universities in Islamabad' },
     ],

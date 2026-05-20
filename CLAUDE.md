@@ -21,7 +21,7 @@ It also lists `serverExternalPackages: ['@blocknote/server-util', 'jsdom', 'mong
 
 ## Architecture
 
-Marketing site + blog (the "Academy") + admin CMS for "LawShaoor" (a fictional corporate law firm). Built on **Next.js 16 App Router + React 19 + Tailwind v4 + shadcn/ui + MongoDB + BlockNote**.
+Marketing site + blog (the "Academy") + admin CMS for "LawShaoor" (a fictional corporate law chambers). Built on **Next.js 16 App Router + React 19 + Tailwind v4 + shadcn/ui + MongoDB + BlockNote**.
 
 ### Tech stack
 

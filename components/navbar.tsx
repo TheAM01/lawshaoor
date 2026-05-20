@@ -7,7 +7,7 @@ import { Moon, Sun, Menu, X } from 'lucide-react'
 import { LinkedInBanner } from '@/components/linkedin-banner'
 
 const NAV = [
-  { href: '/our-story',      label: 'The Firm' },
+  { href: '/our-story',      label: 'The Chambers' },
   { href: '/practice-areas', label: 'Practice Areas' },
   { href: '/people',         label: 'Team' },
   { href: '/lawshaoor-academy', label: 'LawShaoor Academy' },
@@ -40,15 +40,19 @@ export function Navbar() {
       }`}
     >
       <div className="section-pad max-w-[1440px] mx-auto flex items-center justify-between h-16 md:h-[72px]">
-        <Link href="/" className="flex items-center gap-3 group">
-          {/* Square + text logomark */}
-          <span className="relative inline-flex w-7 h-7">
-            <span className="absolute inset-0 border border-foreground/70 group-hover:border-primary transition-colors" />
-            <span className="absolute inset-[5px] bg-gradient-to-br from-[var(--grad-from)] to-[var(--grad-to)]" />
-          </span>
-          <span className="font-display text-[20px] md:text-[22px] tracking-[-0.02em] font-medium leading-none">
-            LawShaoor
-          </span>
+        <Link href="/" className="inline-flex items-center group" aria-label="LawShaoor Chambers — home">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/icon-light-32x32.png"
+            alt="LawShaoor Chambers"
+            className="block dark:hidden h-8 md:h-9 w-auto transition-opacity group-hover:opacity-80"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/icon-dark-32x32.png"
+            alt="LawShaoor Chambers"
+            className="hidden dark:block h-8 md:h-9 w-auto transition-opacity group-hover:opacity-80"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-9">

@@ -23,7 +23,7 @@ const PRACTICES = [
     n: '01',
     eyebrow: 'Regulated finance',
     title: 'Banking & Finance',
-    body: 'The Firm regularly advises commercial banks, financial institutions, and non-banking finance companies (NBFCs) on a wide array of matters. Our expertise encompasses syndicated financing, Islamic modes of finance, debt restructuring, and the drafting and vetting of complex security documentation. We provide strategic counsel on regulatory compliance with State Bank of Pakistan (SBP) directives and represent financial institutions in high-value recovery suits and foreclosure proceedings before specialized Banking Courts and Tribunals.',
+    body: 'The Chambers regularly advises commercial banks, financial institutions, and non-banking finance companies (NBFCs) on a wide array of matters. Our expertise encompasses syndicated financing, Islamic modes of finance, debt restructuring, and the drafting and vetting of complex security documentation. We provide strategic counsel on regulatory compliance with State Bank of Pakistan (SBP) directives and represent financial institutions in high-value recovery suits and foreclosure proceedings before specialized Banking Courts and Tribunals.',
     bullets: [
       'Syndicated financing',
       'Islamic modes of finance',
@@ -43,7 +43,7 @@ const PRACTICES = [
     n: '02',
     eyebrow: 'Corporate practice',
     title: 'Corporate & Commercial',
-    body: 'The Lawyers of the Firm have experience in mainstream and specialized corporate and commercial matters that extend to a diverse range of matters such as incorporation of companies, dissolutions, corporate governance, mergers and acquisitions, Islamic modes of investment, licensing, corporate organization, exchange and repatriation controls, tax, and risk insurance and liaison with concerned regulatory bodies such as the Securities & Exchange Commission of Pakistan, the State Bank of Pakistan, the Federal Board of Revenue, the Competition Commission of Pakistan etc.',
+    body: 'The Lawyers of the Chambers have experience in mainstream and specialized corporate and commercial matters that extend to a diverse range of matters such as incorporation of companies, dissolutions, corporate governance, mergers and acquisitions, Islamic modes of investment, licensing, corporate organization, exchange and repatriation controls, tax, and risk insurance and liaison with concerned regulatory bodies such as the Securities & Exchange Commission of Pakistan, the State Bank of Pakistan, the Federal Board of Revenue, the Competition Commission of Pakistan etc.',
     bullets: [
       'Incorporation & dissolutions',
       'Corporate governance',
@@ -91,7 +91,7 @@ const PRACTICES = [
     n: '04',
     eyebrow: 'EPC & infrastructure',
     title: 'Construction & Operation',
-    body: 'The team at LawShaoor Chambers have a proven ability of assisting in matters involving construction, maintenance, engineering and procurement issues etc. They have a proven track record of drafting, negotiating and advising on contracts based on FIDIC forms of contracts with contractors of international repute. In this respect, their practical experience in connection with export and import controls, licensing and understanding of regulatory compliance has provided additional value to the service provided to the Firm’s Clients.',
+    body: 'The team at LawShaoor Chambers have a proven ability of assisting in matters involving construction, maintenance, engineering and procurement issues etc. They have a proven track record of drafting, negotiating and advising on contracts based on FIDIC forms of contracts with contractors of international repute. In this respect, their practical experience in connection with export and import controls, licensing and understanding of regulatory compliance has provided additional value to the service provided to the Chambers’s Clients.',
     bullets: [
       'Construction & maintenance',
       'Engineering & procurement',
@@ -109,7 +109,7 @@ const PRACTICES = [
     n: '05',
     eyebrow: 'Contentious work',
     title: 'Dispute Resolution & Arbitration',
-    body: 'Dispute resolution is one of the Firm’s core strengths. We represent clients before the High Courts, District Courts, specialized tribunals, regulatory bodies, and arbitration forums. Our experience includes commercial disputes, contractual claims, regulatory proceedings, competition matters, labor disputes, and arbitration under domestic and international rules. We handle all stages of dispute resolution, including pleadings, evidence, cross-examination, and final arguments.',
+    body: 'Dispute resolution is one of the Chambers’s core strengths. We represent clients before the High Courts, District Courts, specialized tribunals, regulatory bodies, and arbitration forums. Our experience includes commercial disputes, contractual claims, regulatory proceedings, competition matters, labor disputes, and arbitration under domestic and international rules. We handle all stages of dispute resolution, including pleadings, evidence, cross-examination, and final arguments.',
     bullets: [
       'Commercial disputes',
       'Contractual claims',
@@ -131,7 +131,7 @@ const PRACTICES = [
     n: '06',
     eyebrow: 'M&A',
     title: 'Mergers & Acquisitions',
-    body: 'The Partner’s involvement in some of the recent corporate acquisitions in Pakistan and UAE has established mergers and acquisitions as one of the Firm’s most prominent strengths. The Firm’s substantial experience in company, securities and competition law and its familiarity with the regulatory regime and relevant offices provide additional insight into the quality of advice rendered in proposing corporate mergers. In addition, the Firm’s experience in proposing, undertaking and implementing Court approved compromises, arrangements and reconstructions provides an additional capability enabling sound and qualitative legal assistance.',
+    body: 'The Partner’s involvement in some of the recent corporate acquisitions in Pakistan and UAE has established mergers and acquisitions as one of the Chambers’s most prominent strengths. The Chambers’s substantial experience in company, securities and competition law and its familiarity with the regulatory regime and relevant offices provide additional insight into the quality of advice rendered in proposing corporate mergers. In addition, the Chambers’s experience in proposing, undertaking and implementing Court approved compromises, arrangements and reconstructions provides an additional capability enabling sound and qualitative legal assistance.',
     bullets: [
       'Private limited company sales & purchases',
       'Asset purchases & sales',
@@ -153,7 +153,7 @@ const PRACTICES = [
     n: '07',
     eyebrow: 'Public sector liaison',
     title: 'Government Sector',
-    body: 'The Firm’s substantial experience in negotiation has proved particularly valuable in its interaction with the different departmental levels of the Government of Pakistan, providing additional facilitation and expedition in the procedural administration of applications, renewals, licensing and regulation. Based in the capital, its high-level co-operation with the Government, its Ministries and departmental entities has established a firm liaison with the concerned commercial bodies of the government. This access proves an invaluable asset to our clients. The Firm is also on the panel of advocates for various government departments.',
+    body: 'The Chambers’s substantial experience in negotiation has proved particularly valuable in its interaction with the different departmental levels of the Government of Pakistan, providing additional facilitation and expedition in the procedural administration of applications, renewals, licensing and regulation. Based in the capital, its high-level co-operation with the Government, its Ministries and departmental entities has established a firm liaison with the concerned commercial bodies of the government. This access proves an invaluable asset to our clients. The Chambers is also on the panel of advocates for various government departments.',
     bullets: [
       'Applications, renewals & licensing',
       'Procedural administration',
@@ -171,7 +171,7 @@ const PRACTICES = [
     n: '08',
     eyebrow: 'TMT',
     title: 'Telecommunication & Information Technology',
-    body: 'The Firm has developed a broad capability with respect to the frontier aspects of the emerging fields of telecommunications and information technology. In this connection, lawyers of the Firm have extensively advised on telecommunication and information technology matters, including provision of Internet-based services; setting-up of software houses; regulatory framework, satellite-based services, Internet-based services, voice over internet protocol (VOIP); telecommunication systems & services, infrastructure Long Distance International, fiber network; E-banking; data communications; encryption; import, installation, operation and maintenance of telecommunication equipment, and other ancillary matters such as cryptographic products and its legal status. The Firm has successfully developed a practical understanding of all legal and practical issues involved in these areas and provides additional expertise to its routine advice and other areas of practice by way of its familiarity with the use and practice of state-of-the-art technology and its regulation and policy directives in Pakistan.',
+    body: 'The Chambers has developed a broad capability with respect to the frontier aspects of the emerging fields of telecommunications and information technology. In this connection, lawyers of the Chambers have extensively advised on telecommunication and information technology matters, including provision of Internet-based services; setting-up of software houses; regulatory framework, satellite-based services, Internet-based services, voice over internet protocol (VOIP); telecommunication systems & services, infrastructure Long Distance International, fiber network; E-banking; data communications; encryption; import, installation, operation and maintenance of telecommunication equipment, and other ancillary matters such as cryptographic products and its legal status. The Chambers has successfully developed a practical understanding of all legal and practical issues involved in these areas and provides additional expertise to its routine advice and other areas of practice by way of its familiarity with the use and practice of state-of-the-art technology and its regulation and policy directives in Pakistan.',
     bullets: [
       'Internet-based services',
       'Software house set-up',
@@ -209,7 +209,7 @@ const PRACTICES = [
     n: '10',
     eyebrow: 'Workforce',
     title: 'Labour & Employment',
-    body: 'Lawyers in the Firm regularly advise foreign as well as local clients on all labor/HR related issues in Pakistan including interpretation and application of labor legislation; advice and strategy with respect to CBA negotiations, employee benefits, compensation, employment contracts, termination, settlements, plant closings, lay-offs, employment contracts, employment insurance & protection and welfare, construction of labor management systems, drafting collective bargaining agreements including first contracts and renewals, in addition to acting as counsels and appearing before all labor forums including labor courts, labor appellate tribunals and High Courts of Pakistan.',
+    body: 'Lawyers in the Chambers regularly advise foreign as well as local clients on all labor/HR related issues in Pakistan including interpretation and application of labor legislation; advice and strategy with respect to CBA negotiations, employee benefits, compensation, employment contracts, termination, settlements, plant closings, lay-offs, employment contracts, employment insurance & protection and welfare, construction of labor management systems, drafting collective bargaining agreements including first contracts and renewals, in addition to acting as counsels and appearing before all labor forums including labor courts, labor appellate tribunals and High Courts of Pakistan.',
     bullets: [
       'Labour legislation interpretation',
       'CBA negotiations',
@@ -233,7 +233,7 @@ const PRACTICES = [
     n: '11',
     eyebrow: 'Philanthropy & aid',
     title: 'Non-Profit',
-    body: 'Lawyers of the Firm have extensively advised both local and foreign philanthropists on a national, international and private level to devise logistically and financially sustainable strategies for its Clients. While routinely involved in advising and assisting with respect to private non-profit sector ventures including incorporations and establishment of trusts, societies and companies for objects as diverse as education, female empowerment, sustainable community development, child labor, tourism and infrastructure development, the Firm has been prominently involved in national initiatives on social sector reform and the representation of international and governmental aid agencies with respect to their administrative and project related activities in Pakistan. The lawyers’ participation in social reform projects has involved advice and facilitation in all aspects of review and reform of the legislative, financial, administrative and co-coordinative reform of the concerned sectors while its representation of foreign donor agencies has entailed substantive advice and assistance with respect to project, labor, administrative, governmental, licensing, property, and other legal concerns arising in the context of their presence in Pakistan.',
+    body: 'Lawyers of the Chambers have extensively advised both local and foreign philanthropists on a national, international and private level to devise logistically and financially sustainable strategies for its Clients. While routinely involved in advising and assisting with respect to private non-profit sector ventures including incorporations and establishment of trusts, societies and companies for objects as diverse as education, female empowerment, sustainable community development, child labor, tourism and infrastructure development, the Chambers has been prominently involved in national initiatives on social sector reform and the representation of international and governmental aid agencies with respect to their administrative and project related activities in Pakistan. The lawyers’ participation in social reform projects has involved advice and facilitation in all aspects of review and reform of the legislative, financial, administrative and co-coordinative reform of the concerned sectors while its representation of foreign donor agencies has entailed substantive advice and assistance with respect to project, labor, administrative, governmental, licensing, property, and other legal concerns arising in the context of their presence in Pakistan.',
     bullets: [
       'Trusts, societies & non-profit companies',
       'Education & female empowerment ventures',
@@ -299,7 +299,7 @@ export default function PracticeAreas() {
             <div className="col-span-12 md:col-span-6 md:col-start-3">
               <FadeIn>
                 <p className="font-heading text-xl md:text-2xl leading-snug text-foreground/90 tracking-[-0.01em]">
-                  Civil, commercial, corporate, regulatory, and dispute resolution matters — across heavily regulated and commercially sensitive sectors. The Firm acts for local and foreign companies, financial institutions, non-profit organizations, and individual clients.
+                  Civil, commercial, corporate, regulatory, and dispute resolution matters — across heavily regulated and commercially sensitive sectors. The Chambers acts for local and foreign companies, financial institutions, non-profit organizations, and individual clients.
                 </p>
               </FadeIn>
             </div>

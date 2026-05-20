@@ -36,18 +36,18 @@ export const metadata: Metadata = {
     default: 'LawShaoor Chambers — Law. Strategy. Future.',
     template: '%s · LawShaoor Chambers',
   },
-  description: 'LawShaoor Chambers — Law. Strategy. Future. A full-service law firm based in Islamabad, with associated offices in other major cities of Pakistan. In strategic partnership with M.B. KEMP (ME) LLP — Hong Kong, London, Milan, Abu Dhabi.',
-  keywords: ['LawShaoor Chambers', 'Law Strategy Future', 'Islamabad law firm', 'Pakistan corporate law', 'M.B. KEMP (ME) LLP', 'banking and finance law', 'energy law Pakistan', 'dispute resolution Pakistan', 'DIFC ADGM advisory'],
+  description: 'LawShaoor Chambers — Law. Strategy. Future. A full-service law chambers based in Islamabad, with associated offices in other major cities of Pakistan. In strategic partnership with M.B. KEMP (ME) LLP — Hong Kong, London, Milan, Abu Dhabi.',
+  keywords: ['LawShaoor Chambers', 'Law Strategy Future', 'Islamabad law chambers', 'Pakistan corporate law', 'M.B. KEMP (ME) LLP', 'banking and finance law', 'energy law Pakistan', 'dispute resolution Pakistan', 'DIFC ADGM advisory'],
   openGraph: {
     title: 'LawShaoor Chambers — Law. Strategy. Future.',
-    description: 'A full-service law firm based in Islamabad. In strategic partnership with M.B. KEMP (ME) LLP — Hong Kong, London, Milan, Abu Dhabi.',
+    description: 'A full-service law chambers based in Islamabad. In strategic partnership with M.B. KEMP (ME) LLP — Hong Kong, London, Milan, Abu Dhabi.',
     siteName: 'LawShaoor Chambers',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'LawShaoor Chambers — Law. Strategy. Future.',
-    description: 'A full-service law firm based in Islamabad. Law. Strategy. Future.',
+    description: 'A full-service law chambers based in Islamabad. Law. Strategy. Future.',
   },
   generator: 'v0.app',
   icons: {
