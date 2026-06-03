@@ -120,8 +120,8 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
           <div className="flex flex-wrap items-end justify-between gap-6 mb-10 md:mb-14">
             <span className="index-chip">001 · Chambers</span>
             <div className="hidden md:flex gap-6 text-foreground/65">
-              <span className="eyebrow-sm">Islamabad · Pakistan</span>
-              <span className="eyebrow-sm">In partnership with M.B. KEMP (ME) LLP</span>
+              <span className="eyebrow-sm">Islamabad · UAE · DIFC · ADGM</span>
+              <span className="eyebrow-sm">In association with M.B. KEMP (ME) LLP</span>
             </div>
           </div>
 
@@ -146,6 +146,18 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
               </span>
               <span aria-hidden className="block w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-primary" />
             </p>
+          </FadeIn>
+
+          {/* Hero CTAs */}
+          <FadeIn delay={1.0} staggerChildren className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-3 items-start">
+            <Link href="/contact" className="btn-primary">
+              <span>Contact Us</span>
+              <span className="arrow-magnet">→</span>
+            </Link>
+            <Link href="/practice-areas" className="btn-ghost">
+              <span>Our Practice Areas</span>
+              <span className="arrow-magnet">→</span>
+            </Link>
           </FadeIn>
         </div>
 
@@ -173,12 +185,12 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
             <div className="col-span-12 md:col-span-5 md:col-start-2 space-y-7">
               <FadeIn>
                 <p className="font-heading text-2xl md:text-3xl leading-snug text-foreground/95 max-w-xl tracking-[-0.01em]">
-                  LawShaoor Chambers is a full-service law chambers based in Islamabad, with associated offices in other major cities of Pakistan.
+                  LawShaoor Chambers is a full-service law chambers based in Islamabad — and, in association with M.B. KEMP (ME) LLP, working across the UAE, DIFC and ADGM.
                 </p>
               </FadeIn>
               <FadeIn staggerChildren className="flex flex-col sm:flex-row gap-3 items-start">
                 <Link href="/contact" className="btn-primary">
-                  <span>Schedule a call</span>
+                  <span>Get in Touch</span>
                   <span className="arrow-magnet">→</span>
                 </Link>
                 <Link href="/practice-areas" className="btn-ghost">
@@ -368,7 +380,7 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
       </section>
 
       {/* ────────────────────────────────────────────
-          06b · STRATEGIC PARTNERSHIP — M.B. KEMP
+          06b · STRATEGIC ASSOCIATION — M.B. KEMP
           ──────────────────────────────────────────── */}
       <section className="relative section-pad py-24 md:py-36 border-t border-foreground/15 bg-background overflow-hidden">
         <VectorNode className="absolute right-8 top-12 w-44 h-44 opacity-40 hidden md:block" uid="mbk-vn" />
@@ -378,7 +390,7 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
             <div className="col-span-12 md:col-span-6 space-y-4">
               <span className="index-chip">006 · International reach</span>
               <h2 className="display-md font-display">
-                <SplitReveal>Strategic partnership</SplitReveal>{' '}
+                <SplitReveal>Strategic association</SplitReveal>{' '}
                 <span className="text-gradient"><SplitReveal>with M.B. KEMP (ME) LLP.</SplitReveal></span>
               </h2>
             </div>
@@ -391,7 +403,26 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
             </div>
           </div>
 
-          <Rule className="rule-heavy mb-10" />
+          {/* Cross-border capability — jurisdictions we operate across */}
+          <FadeIn staggerChildren className="grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground/15 border border-foreground/15 mb-12">
+            {[
+              { j: 'Pakistan', d: 'Full-service home practice — corporate, banking, energy, regulatory & disputes.' },
+              { j: 'UAE',      d: 'Onshore & free-zone matters across the Emirates.' },
+              { j: 'DIFC',     d: 'Dubai International Financial Centre — common-law framework.' },
+              { j: 'ADGM',     d: 'Abu Dhabi Global Market — international financial centre.' },
+            ].map((x) => (
+              <div key={x.j} className="bg-background p-6 md:p-8 flex flex-col gap-2">
+                <span className="eyebrow text-primary">Capability</span>
+                <p className="font-display text-2xl md:text-3xl tracking-[-0.02em]">{x.j}</p>
+                <p className="text-sm text-foreground/70 font-heading leading-snug">{x.d}</p>
+              </div>
+            ))}
+          </FadeIn>
+
+          <div className="flex items-center gap-4 mb-10">
+            <span className="eyebrow text-foreground/55 whitespace-nowrap">M.B. KEMP offices</span>
+            <Rule className="rule-heavy flex-1" />
+          </div>
 
           <FadeIn staggerChildren className="grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground/15 border border-foreground/15">
             {[
@@ -471,7 +502,7 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
             <div className="col-span-12 md:col-span-4 flex flex-col gap-4 md:items-end">
               <FadeIn delay={0.3} staggerChildren className="flex flex-col gap-3 md:items-end">
                 <Link href="/contact" className="btn-primary">
-                  <span>Schedule a call</span>
+                  <span>Schedule a Consultation</span>
                   <span className="arrow-magnet">→</span>
                 </Link>
                 <Link href="/lawshaoor-academy" className="btn-ghost">

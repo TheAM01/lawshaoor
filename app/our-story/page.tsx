@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
+import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
@@ -34,7 +35,7 @@ const PILLARS = [
   },
   {
     t: 'Connected',
-    d: 'Through our strategic partnership with M.B. KEMP (ME) LLP, we draw on a global team across Hong Kong, London, Milan and Abu Dhabi.',
+    d: 'Through our strategic association with M.B. KEMP (ME) LLP, we draw on a global team across Hong Kong, London, Milan and Abu Dhabi.',
   },
 ]
 
@@ -58,6 +59,7 @@ export default function OurStory() {
 
         <div className="max-w-[1440px] mx-auto relative">
           <div className="mb-10 md:mb-14">
+            <Breadcrumbs items={[{ label: 'The Chambers' }]} className="mb-8" />
             <span className="index-chip">001 · The Chambers</span>
           </div>
 
@@ -194,7 +196,7 @@ export default function OurStory() {
               { v: 12, suffix: '', label: 'Practice areas' },
               { v: 6, suffix: '', label: 'Lawyers' },
               { v: 4, suffix: '', label: 'Partner-chambers offices abroad' },
-              { v: 1, suffix: '', label: 'Strategic partnership' },
+              { v: 1, suffix: '', label: 'Strategic association' },
             ].map((s, i) => (
               <FadeIn key={i} delay={i * 0.08} className="relative px-5 md:px-8 first:pl-0 border-l border-foreground/20 first:border-l-0">
                 <div className="flex items-baseline gap-3 mb-3">
@@ -218,7 +220,7 @@ export default function OurStory() {
         <div className="max-w-[1440px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16">
             <div className="col-span-12 md:col-span-4 space-y-4">
-              <span className="index-chip">005 · Strategic partnership</span>
+              <span className="index-chip">005 · Strategic association</span>
               <h2 className="display-md font-display">
                 <SplitReveal>M.B. KEMP</SplitReveal>{' '}
                 <span className="text-gradient"><SplitReveal>(ME) LLP.</SplitReveal></span>
@@ -227,7 +229,7 @@ export default function OurStory() {
             <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-6 font-heading text-lg md:text-xl leading-relaxed text-foreground/85 tracking-[-0.005em]">
               <FadeIn>
                 <p>
-                  LawShaoor Chambers works in strategic partnership with M.B. KEMP (ME) LLP, a law chambers with offices in Hong Kong, London, Milan and Abu Dhabi.
+                  LawShaoor Chambers works in strategic association with M.B. KEMP (ME) LLP, a law chambers with offices in Hong Kong, London, Milan and Abu Dhabi.
                 </p>
               </FadeIn>
               <FadeIn delay={0.1}>
@@ -237,7 +239,7 @@ export default function OurStory() {
               </FadeIn>
               <FadeIn delay={0.2}>
                 <p>
-                  The partnership strengthens our cross-border capability and allows us to draw on the experience of a global team recognized for its work in corporate, commercial, banking and finance, restructuring, international arbitration and complex dispute resolution.
+                  The association strengthens our cross-border capability and allows us to draw on the experience of a global team recognized for its work in corporate, commercial, banking and finance, restructuring, international arbitration and complex dispute resolution.
                 </p>
               </FadeIn>
             </div>
@@ -277,7 +279,7 @@ export default function OurStory() {
                 <span className="arrow-magnet">→</span>
               </Link>
               <Link href="/contact" className="btn-ghost">
-                <span>Start a conversation</span>
+                <span>Contact Us</span>
                 <span className="arrow-magnet">→</span>
               </Link>
             </div>

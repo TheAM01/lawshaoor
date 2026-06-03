@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
+import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Marquee } from '@/components/motion/marquee'
@@ -177,6 +178,7 @@ export default async function Academy() {
         <CirclesInCircumference className="absolute left-[42%] -bottom-12 w-36 h-36 opacity-55 hidden lg:block float-soft" uid="ac-hero-circ" />
 
         <div className="max-w-[1440px] mx-auto relative">
+          <Breadcrumbs items={[{ label: 'Academy' }]} className="mb-8" />
           <div className="flex items-end justify-between gap-6 mb-10 md:mb-14 flex-wrap">
             <span className="index-chip">001 · Academy</span>
             <div className="hidden md:flex gap-6 text-foreground/65">

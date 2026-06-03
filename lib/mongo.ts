@@ -1,5 +1,6 @@
 import { MongoClient, type Db } from 'mongodb'
 import { SEED_CATEGORIES, normalizeCategorySlug } from './models/category'
+import { SEED_TEAM_MEMBERS } from './models/team'
 
 declare global {
   var _mongoClientPromise: Promise<MongoClient> | undefined
@@ -33,6 +34,9 @@ async function ensureIndexes(db: Db) {
 
     await db.collection('categories').createIndex({ slug: 1 }, { unique: true })
     await db.collection('categories').createIndex({ order: 1, name: 1 })
+
+    await db.collection('team').createIndex({ slug: 1 }, { unique: true })
+    await db.collection('team').createIndex({ order: 1, name: 1 })
 
     await db.collection('media').createIndex({ uploadedAt: -1 })
     await db.collection('media').createIndex({ url: 1 }, { unique: true })
@@ -99,6 +103,21 @@ async function ensureIndexes(db: Db) {
   } catch {
     /* Best-effort seed; ignore failures. */
   }
+
+  try {
+    const count = await db.collection('team').countDocuments({})
+    if (count === 0) {
+      const now = new Date()
+      const seeds = SEED_TEAM_MEMBERS.map((m) => ({
+        ...m,
+        createdAt: now,
+        updatedAt: now,
+      }))
+      await db.collection('team').insertMany(seeds as never[])
+    }
+  } catch {
+    /* Best-effort seed; ignore failures. */
+  }
 }
 
 export async function getDb(): Promise<Db> {
@@ -117,6 +136,11 @@ export async function postsCollection() {
 export async function categoriesCollection() {
   const db = await getDb()
   return db.collection('categories')
+}
+
+export async function teamCollection() {
+  const db = await getDb()
+  return db.collection('team')
 }
 
 export async function mediaCollection() {

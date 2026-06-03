@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
+import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
@@ -254,7 +255,7 @@ const PRACTICES = [
     n: '12',
     eyebrow: 'International',
     title: 'UAE & Cross-Border Practice',
-    body: 'In addition to our Pakistan-based practice, LawShaoor Chambers provides legal support on UAE-related matters through its partnership with M.B. KEMP (ME) LLP. Our combined team advises on corporate and commercial transactions, banking and finance, regulatory compliance, mergers and acquisitions, restructuring, DIFC and ADGM matters, and cross-border disputes. With experienced lawyers based in Abu Dhabi and Dubai, we are able to assist clients with both onshore and free-zone legal requirements, ensuring coordinated and efficient representation across jurisdictions.',
+    body: 'In addition to our Pakistan-based practice, LawShaoor Chambers provides legal support on UAE-related matters through its association with M.B. KEMP (ME) LLP. Our combined team advises on corporate and commercial transactions, banking and finance, regulatory compliance, mergers and acquisitions, restructuring, DIFC and ADGM matters, and cross-border disputes. With experienced lawyers based in Abu Dhabi and Dubai, we are able to assist clients with both onshore and free-zone legal requirements, ensuring coordinated and efficient representation across jurisdictions.',
     bullets: [
       'Corporate & commercial transactions',
       'Banking & finance',
@@ -266,7 +267,7 @@ const PRACTICES = [
       'Onshore & free-zone legal requirements',
     ],
     keys: [
-      { name: 'M.B. KEMP (ME) LLP', detail: 'Strategic partner — Hong Kong · London · Milan · Abu Dhabi' },
+      { name: 'M.B. KEMP (ME) LLP', detail: 'Associated firm — Hong Kong · London · Milan · Abu Dhabi' },
       { name: 'DIFC',               detail: 'Dubai International Financial Centre' },
       { name: 'ADGM',               detail: 'Abu Dhabi Global Market' },
     ],
@@ -287,6 +288,7 @@ export default function PracticeAreas() {
 
         <div className="max-w-[1440px] mx-auto relative">
           <div className="mb-10 md:mb-14">
+            <Breadcrumbs items={[{ label: 'Practice Areas' }]} className="mb-8" />
             <span className="index-chip">001 · Practice</span>
           </div>
 
@@ -417,7 +419,7 @@ export default function PracticeAreas() {
                 )}
 
                 <Link href="/contact" className="btn-primary mt-4 inline-flex">
-                  <span>Discuss your matter</span>
+                  <span>Get in Touch</span>
                   <span className="arrow-magnet">→</span>
                 </Link>
               </div>
@@ -433,7 +435,7 @@ export default function PracticeAreas() {
         <div className="max-w-[1440px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 items-end">
             <div className="col-span-12 md:col-span-8 space-y-6">
-              <span className="index-chip">Engage</span>
+              <span className="index-chip">Get in Touch</span>
               <h2 className="display-lg font-display">
                 <span className="block"><SplitReveal>Have a matter</SplitReveal></span>
                 <span className="block text-gradient"><SplitReveal>in mind?</SplitReveal></span>
@@ -441,7 +443,7 @@ export default function PracticeAreas() {
             </div>
             <div className="col-span-12 md:col-span-4 flex flex-col gap-3 md:items-end">
               <Link href="/contact" className="btn-primary">
-                <span>Schedule a call</span>
+                <span>Schedule a Consultation</span>
                 <span className="arrow-magnet">→</span>
               </Link>
               <Link href="/people" className="btn-ghost">

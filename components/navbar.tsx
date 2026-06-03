@@ -3,31 +3,76 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Moon, Sun, Menu, X, ChevronDown } from 'lucide-react'
 import { LinkedInBanner } from '@/components/linkedin-banner'
 
-const NAV = [
-  { href: '/our-story',      label: 'The Chambers' },
-  { href: '/practice-areas', label: 'Practice Areas' },
-  { href: '/people',         label: 'Team' },
-  { href: '/lawshaoor-academy', label: 'LawShaoor Academy' },
+type NavLeaf = { key: string; href: string; label: string }
+type NavGroup = { key: string; label: string; children: NavLeaf[] }
+type NavItem = NavLeaf | NavGroup
+
+/** Default nav with stable keys. Labels here are the fallback when no admin
+ *  override is set; `href`s never change. */
+const NAV: NavItem[] = [
+  { key: 'theChambers',   href: '/our-story',      label: 'The Chambers' },
+  { key: 'practiceAreas', href: '/practice-areas', label: 'Practice Areas' },
+  { key: 'team',          href: '/people',         label: 'Team' },
+  {
+    key: 'knowledge',
+    label: 'Knowledge',
+    children: [
+      { key: 'academy',  href: '/lawshaoor-academy',          label: 'Academy' },
+      { key: 'magazine', href: '/lawshaoor-academy/magazine', label: 'Magazine' },
+      { key: 'seminars', href: '/lawshaoor-academy/seminars', label: 'Seminars' },
+    ],
+  },
+  { key: 'careers',       href: '/careers',        label: 'Careers' },
 ]
+
+type Config = {
+  navLabels: Record<string, string>
+  magazineVisible: boolean
+  seminarsVisible: boolean
+}
+
+function isGroup(item: NavItem): item is NavGroup {
+  return 'children' in item
+}
 
 export function Navbar() {
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [openGroup, setOpenGroup] = useState<string | null>(null)
+  const [config, setConfig] = useState<Config | null>(null)
 
   useEffect(() => {
     setMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
+
+    fetch('/api/site-config')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (d) setConfig(d as Config) })
+      .catch(() => {})
+
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const isDark = mounted && (theme === 'dark' || resolvedTheme === 'dark')
+
+  // Resolve a leaf/group's display label, applying admin overrides.
+  const label = (key: string, fallback: string) =>
+    (config?.navLabels?.[key]?.trim() || fallback)
+
+  // Filter Knowledge children by visibility toggles.
+  const visibleChildren = (children: NavLeaf[]) =>
+    children.filter((c) => {
+      if (c.key === 'magazine' && config && !config.magazineVisible) return false
+      if (c.key === 'seminars' && config && !config.seminarsVisible) return false
+      return true
+    })
 
   return (
     <>
@@ -43,33 +88,70 @@ export function Navbar() {
         <Link href="/" className="inline-flex items-center group" aria-label="LawShaoor Chambers — home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/icon-light-32x32.png"
+            src="/lawshaoor-icon.png"
             alt="LawShaoor Chambers"
-            className="block dark:hidden h-8 md:h-9 w-auto transition-opacity group-hover:opacity-80"
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/icon-dark-32x32.png"
-            alt="LawShaoor Chambers"
-            className="hidden dark:block h-8 md:h-9 w-auto transition-opacity group-hover:opacity-80"
+            className="h-8 md:h-10 w-auto transition-opacity group-hover:opacity-80 dark:brightness-0 dark:invert"
           />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-9">
-          {NAV.map((item, i) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="group flex items-baseline gap-2"
-            >
-              <span className="eyebrow text-foreground/50 group-hover:text-primary transition-colors">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span className="link-line font-mono text-[11px] tracking-[0.22em] uppercase text-foreground/90 group-hover:text-primary transition-colors">
-                {item.label}
-              </span>
-            </Link>
-          ))}
+          {NAV.map((item, i) =>
+            isGroup(item) ? (
+              <div
+                key={item.key}
+                className="relative"
+                onMouseEnter={() => setOpenGroup(item.key)}
+                onMouseLeave={() => setOpenGroup(null)}
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenGroup((g) => (g === item.key ? null : item.key))}
+                  className="group flex items-baseline gap-2"
+                  aria-expanded={openGroup === item.key}
+                >
+                  <span className="eyebrow text-foreground/50 group-hover:text-primary transition-colors">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="font-mono text-[11px] tracking-[0.22em] uppercase text-foreground/90 group-hover:text-primary transition-colors inline-flex items-center gap-1">
+                    {label(item.key, item.label)}
+                    <ChevronDown className={`w-3 h-3 transition-transform ${openGroup === item.key ? 'rotate-180' : ''}`} />
+                  </span>
+                </button>
+
+                <div
+                  className={`absolute left-0 top-full pt-4 min-w-[220px] transition-[opacity,transform] duration-200 ${
+                    openGroup === item.key ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-1 pointer-events-none'
+                  }`}
+                >
+                  <div className="bg-background border border-foreground/15 shadow-xl">
+                    {visibleChildren(item.children).map((child) => (
+                      <Link
+                        key={child.key}
+                        href={child.href}
+                        onClick={() => setOpenGroup(null)}
+                        className="block px-5 py-3.5 font-mono text-[11px] tracking-[0.22em] uppercase text-foreground/85 hover:text-primary hover:bg-primary/5 border-b border-foreground/10 last:border-b-0 transition-colors"
+                      >
+                        {label(child.key, child.label)}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={item.key}
+                href={item.href}
+                className="group flex items-baseline gap-2"
+              >
+                <span className="eyebrow text-foreground/50 group-hover:text-primary transition-colors">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span className="link-line font-mono text-[11px] tracking-[0.22em] uppercase text-foreground/90 group-hover:text-primary transition-colors">
+                  {label(item.key, item.label)}
+                </span>
+              </Link>
+            )
+          )}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -83,7 +165,7 @@ export function Navbar() {
           </button>
 
           <Link href="/contact" className="hidden md:inline-flex btn-primary !py-3 !px-5">
-            <span>Contact</span>
+            <span>{label('contact', 'Contact Us')}</span>
             <span className="arrow-magnet">→</span>
           </Link>
 
@@ -101,23 +183,44 @@ export function Navbar() {
       {/* Mobile drawer */}
       <div
         className={`lg:hidden overflow-hidden transition-[max-height] duration-500 ease-out ${
-          open ? 'max-h-[480px] border-b border-foreground/15' : 'max-h-0'
+          open ? 'max-h-[640px] border-b border-foreground/15' : 'max-h-0'
         } bg-background`}
       >
         <nav className="section-pad py-7 flex flex-col gap-5">
-          {NAV.map((item, i) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="flex items-baseline gap-3"
-            >
-              <span className="eyebrow text-foreground/40">{String(i + 1).padStart(2, '0')}</span>
-              <span className="font-display text-3xl tracking-[-0.02em]">{item.label}</span>
-            </Link>
-          ))}
+          {NAV.map((item, i) =>
+            isGroup(item) ? (
+              <div key={item.key} className="flex flex-col gap-3">
+                <span className="flex items-baseline gap-3">
+                  <span className="eyebrow text-foreground/40">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="font-display text-3xl tracking-[-0.02em]">{label(item.key, item.label)}</span>
+                </span>
+                <div className="pl-9 flex flex-col gap-3">
+                  {visibleChildren(item.children).map((child) => (
+                    <Link
+                      key={child.key}
+                      href={child.href}
+                      onClick={() => setOpen(false)}
+                      className="font-mono text-xs tracking-[0.22em] uppercase text-foreground/75 hover:text-primary transition-colors"
+                    >
+                      {label(child.key, child.label)}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={item.key}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="flex items-baseline gap-3"
+              >
+                <span className="eyebrow text-foreground/40">{String(i + 1).padStart(2, '0')}</span>
+                <span className="font-display text-3xl tracking-[-0.02em]">{label(item.key, item.label)}</span>
+              </Link>
+            )
+          )}
           <Link href="/contact" onClick={() => setOpen(false)} className="btn-primary mt-4 self-start">
-            <span>Contact</span>
+            <span>{label('contact', 'Contact Us')}</span>
             <span className="arrow-magnet">→</span>
           </Link>
           <button

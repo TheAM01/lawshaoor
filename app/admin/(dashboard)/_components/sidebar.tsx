@@ -12,6 +12,8 @@ import {
   BookOpen,
   LogOut,
   BarChart3,
+  Users,
+  Newspaper,
 } from 'lucide-react'
 
 type NavItem = {
@@ -38,6 +40,7 @@ const SECTIONS: NavSection[] = [
     title: 'Content',
     items: [
       { href: '/admin/posts',      label: 'Posts',      Icon: FileText },
+      { href: '/admin/team',       label: 'Team',       Icon: Users },
       { href: '/admin/media',      label: 'Media',      Icon: ImageIcon },
       { href: '/admin/categories', label: 'Categories', Icon: Tags },
     ],
@@ -46,6 +49,7 @@ const SECTIONS: NavSection[] = [
     title: 'Configuration',
     items: [
       { href: '/admin/settings/site',    label: 'Site settings',    Icon: Globe },
+      { href: '/admin/settings/pages',   label: 'Pages & nav',      Icon: Newspaper },
       { href: '/admin/settings/general', label: 'General settings', Icon: Settings },
     ],
   },

@@ -474,7 +474,7 @@ export default async function PostPage({
             <div className="col-span-12 md:col-span-4 flex flex-col gap-3 md:items-end">
               <FadeIn delay={0.3} staggerChildren className="flex flex-col gap-3 md:items-end">
                 <Link href="/contact" className="btn-primary">
-                  <span>Schedule a call</span>
+                  <span>Get in Touch</span>
                   <span className="arrow-magnet">→</span>
                 </Link>
                 <Link href="/lawshaoor-academy" className="btn-ghost">

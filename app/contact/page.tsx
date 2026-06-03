@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
+import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
@@ -47,6 +48,7 @@ export default function Contact() {
 
         <div className="max-w-[1440px] mx-auto relative">
           <div className="mb-10 md:mb-14">
+            <Breadcrumbs items={[{ label: 'Contact' }]} className="mb-8" />
             <span className="index-chip">001 · Contact</span>
           </div>
 
@@ -125,7 +127,7 @@ export default function Contact() {
 
                 <FadeIn delay={0.2} className="pt-6">
                   <button type="submit" className="btn-primary">
-                    <span>Send the brief</span>
+                    <span>Send Message</span>
                     <span className="arrow-magnet">→</span>
                   </button>
                 </FadeIn>
@@ -162,7 +164,7 @@ export default function Contact() {
             </FadeIn>
 
             <FadeIn delay={0.3} className="space-y-3">
-              <span className="eyebrow text-foreground/65">— Strategic partner</span>
+              <span className="eyebrow text-foreground/65">— Associated firm</span>
               <p className="font-heading text-sm text-foreground/80 leading-relaxed tracking-[-0.005em]">
                 M.B. KEMP (ME) LLP — Hong Kong · London · Milan · Abu Dhabi
               </p>

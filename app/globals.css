@@ -4,107 +4,107 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
-   LAWSHAOOR — Techy Grotesk Design System
-   Lavender mist · Ink · Magenta + Light purple
-   Inspired by ikigailaw.com — squared, gradient lines, wide tracking
+   LAWSHAOOR — Monochrome Editorial Design System
+   White · Ink black · one signature blue (3 colours total)
+   Squared, lined, wide tracking
    ============================================================ */
 
 :root {
-  /* Surfaces — near-white with the faintest whisper of yellow */
-  --background:        oklch(0.988 0.006 100);   /* hint-of-cream */
-  --background-alt:    oklch(0.975 0.014 96);    /* a touch deeper */
-  --background-deep:   oklch(0.955 0.028 94);    /* deepest still-pastel */
-  --foreground:        oklch(0.21  0.04  85);    /* warm cocoa ink */
+  /* Surfaces — bright white, light-grey steps for section segregation */
+  --background:        oklch(1 0 0);         /* pure white */
+  --background-alt:    oklch(0.974 0 0);     /* faint grey — alternating sections */
+  --background-deep:   oklch(0.945 0 0);     /* deeper grey — footer / CTA */
+  --foreground:        oklch(0.17 0 0);      /* near-black ink */
 
-  --card:              oklch(0.992 0.005 100);
-  --card-foreground:   oklch(0.21  0.04  85);
-  --popover:           oklch(0.992 0.005 100);
-  --popover-foreground:oklch(0.21  0.04  85);
+  --card:              oklch(1 0 0);
+  --card-foreground:   oklch(0.17 0 0);
+  --popover:           oklch(1 0 0);
+  --popover-foreground:oklch(0.17 0 0);
 
-  /* Accents — deep enough to read on cream */
-  --primary:           oklch(0.68 0.20 90);     /* honey lemon — readable */
-  --primary-foreground:oklch(0.18 0.04 85);
-  --accent:            oklch(0.85 0.18 100);    /* bright pastel lemon */
-  --accent-foreground: oklch(0.18 0.04 85);
+  /* Signature colour — the single firm blue */
+  --primary:           oklch(0.48 0.17 256);  /* deep professional blue */
+  --primary-foreground:oklch(1 0 0);          /* white on blue */
+  --accent:            oklch(0.48 0.17 256);  /* same blue — only one signature colour */
+  --accent-foreground: oklch(1 0 0);
 
-  --secondary:         oklch(0.975 0.014 96);
-  --secondary-foreground: oklch(0.21 0.04 85);
-  --muted:             oklch(0.94  0.024 96);
-  --muted-foreground:  oklch(0.45  0.05  85);
+  --secondary:         oklch(0.974 0 0);
+  --secondary-foreground: oklch(0.17 0 0);
+  --muted:             oklch(0.95 0 0);
+  --muted-foreground:  oklch(0.45 0 0);
 
   --destructive:       oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(0.988 0.006 100);
+  --destructive-foreground: oklch(1 0 0);
 
-  --border:            oklch(0.21 0.04 85 / 0.18);
-  --border-strong:     oklch(0.21 0.04 85 / 0.42);
-  --input:             oklch(0.21 0.04 85 / 0.30);
-  --ring:              oklch(0.68 0.20 90 / 0.6);
+  --border:            oklch(0.17 0 0 / 0.14);
+  --border-strong:     oklch(0.17 0 0 / 0.42);
+  --input:             oklch(0.17 0 0 / 0.28);
+  --ring:              oklch(0.48 0.17 256 / 0.6);
 
-  --chart-1: oklch(0.68 0.20 90);
-  --chart-2: oklch(0.85 0.18 100);
-  --chart-3: oklch(0.62 0.18 75);
-  --chart-4: oklch(0.45 0.05 85);
-  --chart-5: oklch(0.78 0.12 95);
+  --chart-1: oklch(0.48 0.17 256);
+  --chart-2: oklch(0.62 0.15 250);
+  --chart-3: oklch(0.35 0 0);
+  --chart-4: oklch(0.55 0 0);
+  --chart-5: oklch(0.72 0.12 252);
 
   --radius: 0px;
 
-  --sidebar:                  oklch(0.988 0.006 100);
-  --sidebar-foreground:       oklch(0.21 0.04 85);
-  --sidebar-primary:          oklch(0.68 0.20 90);
-  --sidebar-primary-foreground: oklch(0.18 0.04 85);
-  --sidebar-accent:           oklch(0.94 0.024 96);
-  --sidebar-accent-foreground: oklch(0.21 0.04 85);
-  --sidebar-border:           oklch(0.21 0.04 85 / 0.18);
-  --sidebar-ring:             oklch(0.68 0.20 90 / 0.6);
+  --sidebar:                  oklch(1 0 0);
+  --sidebar-foreground:       oklch(0.17 0 0);
+  --sidebar-primary:          oklch(0.48 0.17 256);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent:           oklch(0.95 0 0);
+  --sidebar-accent-foreground: oklch(0.17 0 0);
+  --sidebar-border:           oklch(0.17 0 0 / 0.14);
+  --sidebar-ring:             oklch(0.48 0.17 256 / 0.6);
 
-  /* Gradient anchors — illustration lines (medium pastel) */
-  --grad-from: oklch(0.72 0.22 90);   /* lemon */
-  --grad-to:   oklch(0.88 0.18 100);  /* pastel lemon */
+  /* Gradient anchors — illustration lines (shades of the one blue) */
+  --grad-from: oklch(0.50 0.17 256);
+  --grad-to:   oklch(0.64 0.14 250);
 
-  /* Gradient anchors — TEXT (deeper for legibility on cream) */
-  --grad-text-from: oklch(0.55 0.18 70);   /* amber/gold */
-  --grad-text-to:   oklch(0.66 0.22 90);   /* deep lemon */
+  /* Gradient anchors — TEXT (deep enough to read on white) */
+  --grad-text-from: oklch(0.45 0.17 256);
+  --grad-text-to:   oklch(0.55 0.16 252);
 }
 
 .dark {
-  --background:        oklch(0.150 0.020 85);
-  --background-alt:    oklch(0.180 0.030 88);
-  --background-deep:   oklch(0.210 0.045 90);
-  --foreground:        oklch(0.94  0.040 95);
+  --background:        oklch(0.15 0 0);
+  --background-alt:    oklch(0.19 0 0);
+  --background-deep:   oklch(0.12 0 0);
+  --foreground:        oklch(0.97 0 0);
 
-  --card:              oklch(0.190 0.035 88);
-  --card-foreground:   oklch(0.94  0.040 95);
-  --popover:           oklch(0.190 0.035 88);
-  --popover-foreground:oklch(0.94  0.040 95);
+  --card:              oklch(0.19 0 0);
+  --card-foreground:   oklch(0.97 0 0);
+  --popover:           oklch(0.19 0 0);
+  --popover-foreground:oklch(0.97 0 0);
 
-  --primary:           oklch(0.86 0.20 100);
-  --primary-foreground:oklch(0.150 0.020 85);
-  --accent:            oklch(0.92 0.15 98);
-  --accent-foreground: oklch(0.150 0.020 85);
+  --primary:           oklch(0.70 0.15 252);   /* lighter blue for contrast on dark */
+  --primary-foreground:oklch(0.15 0 0);
+  --accent:            oklch(0.70 0.15 252);
+  --accent-foreground: oklch(0.15 0 0);
 
-  --secondary:         oklch(0.180 0.030 88);
-  --secondary-foreground: oklch(0.94 0.040 95);
-  --muted:             oklch(0.240 0.040 90);
-  --muted-foreground:  oklch(0.74 0.05 92);
+  --secondary:         oklch(0.19 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted:             oklch(0.26 0 0);
+  --muted-foreground:  oklch(0.72 0 0);
 
   --destructive:       oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(0.96 0.012 100);
+  --destructive-foreground: oklch(0.97 0 0);
 
-  --border:            oklch(0.94 0.040 95 / 0.18);
-  --border-strong:     oklch(0.94 0.040 95 / 0.40);
-  --input:             oklch(0.94 0.040 95 / 0.30);
-  --ring:              oklch(0.86 0.20 100 / 0.6);
+  --border:            oklch(0.97 0 0 / 0.16);
+  --border-strong:     oklch(0.97 0 0 / 0.40);
+  --input:             oklch(0.97 0 0 / 0.28);
+  --ring:              oklch(0.70 0.15 252 / 0.6);
 
-  --grad-from: oklch(0.86 0.20 100);
-  --grad-to:   oklch(0.94 0.14 95);
+  --grad-from: oklch(0.70 0.15 252);
+  --grad-to:   oklch(0.82 0.12 250);
 
-  --grad-text-from: oklch(0.82 0.20 95);
-  --grad-text-to:   oklch(0.94 0.16 100);
+  --grad-text-from: oklch(0.72 0.15 252);
+  --grad-text-to:   oklch(0.86 0.12 250);
 }
 
 @theme inline {
   --font-sans: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Syne', 'Syne Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Archivo', 'Archivo Fallback', ui-sans-serif, system-ui, sans-serif;
   --font-heading: 'Space Grotesk', 'Space Grotesk Fallback', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback', ui-monospace, monospace;
 
@@ -270,7 +270,7 @@
 .bg-fixed-mist {
   background-color: var(--background);
   background-image:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44'><circle cx='2' cy='2' r='1.1' fill='%23695224' fill-opacity='0.32'/></svg>");
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44'><circle cx='2' cy='2' r='1.1' fill='%23000000' fill-opacity='0.16'/></svg>");
   background-size: 44px 44px;
   background-position: top left;
   background-attachment: scroll;
@@ -279,7 +279,7 @@
 .bg-fixed-lavender {
   background-color: var(--background-alt);
   background-image:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><line x1='0' y1='0' x2='90' y2='0' stroke='%23695224' stroke-opacity='0.18' stroke-width='1'/><line x1='0' y1='0' x2='0' y2='90' stroke='%23695224' stroke-opacity='0.18' stroke-width='1'/></svg>");
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><line x1='0' y1='0' x2='90' y2='0' stroke='%23000000' stroke-opacity='0.08' stroke-width='1'/><line x1='0' y1='0' x2='0' y2='90' stroke='%23000000' stroke-opacity='0.08' stroke-width='1'/></svg>");
   background-size: 90px 90px;
   background-position: top left;
   background-attachment: scroll;
