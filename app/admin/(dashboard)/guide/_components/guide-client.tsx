@@ -17,6 +17,8 @@ import {
   Star,
   Trash2,
   HelpCircle,
+  Users,
+  Newspaper,
 } from 'lucide-react'
 
 type Mode = 'basic' | 'advanced'
@@ -33,6 +35,8 @@ const BASIC_SECTIONS = [
   { id: 'publish',        label: 'Publishing (going live)' },
   { id: 'featured',       label: 'Making a post the “featured” one' },
   { id: 'manage-cats',    label: 'Adding & organizing categories' },
+  { id: 'manage-team',    label: 'Managing the team' },
+  { id: 'pages-nav',      label: 'Magazine, Seminars & menu names' },
   { id: 'media-library',  label: 'The Media library' },
   { id: 'site-settings',  label: 'Site settings (in plain English)' },
   { id: 'deleting',       label: 'Deleting things safely' },
@@ -54,6 +58,9 @@ const ADVANCED_SECTIONS = [
   { id: 'categories-adv', label: 'Categories' },
   { id: 'cat-illos',      label: '— Illustrations' },
   { id: 'cat-reassign',   label: '— Reassign & delete' },
+  { id: 'team-adv',       label: 'Team' },
+  { id: 'pages-nav-adv',  label: 'Pages & navigation' },
+  { id: 'site-config',    label: '— Nav labels & visibility' },
   { id: 'settings-adv',   label: 'Settings' },
   { id: 'public-routes',  label: 'Public routes' },
   { id: 'tagline',        label: 'Tagline & brand' },
@@ -177,13 +184,15 @@ function BasicGuide() {
         <p>
           You don&apos;t need to know how websites work to use this. If you can use Microsoft Word or Google Docs, you can use this. Read this guide top to bottom once and you&apos;ll be set.
         </p>
-        <p>The five main screens, on the left sidebar:</p>
+        <p>The main screens, on the left sidebar:</p>
         <ul>
           <li><strong>Dashboard</strong> — a quick summary of everything.</li>
           <li><strong>Posts</strong> — all your blog posts (drafts and published ones).</li>
+          <li><strong>Team</strong> — the lawyers shown on the public &ldquo;Team&rdquo; page. Add, edit, reorder or remove people.</li>
           <li><strong>Media</strong> — every picture, video, and file you&apos;ve uploaded.</li>
           <li><strong>Categories</strong> — the topic buckets your posts go into.</li>
-          <li><strong>Settings</strong> — site-wide options like which post is &ldquo;featured&rdquo;.</li>
+          <li><strong>Site settings</strong> — site-wide options like which post is &ldquo;featured&rdquo;.</li>
+          <li><strong>Pages &amp; nav</strong> — rename the menu links and edit the Magazine &amp; Seminars pages.</li>
         </ul>
         <Tip>
           Try clicking each one in the sidebar now to see what they look like. Don&apos;t worry — looking around doesn&apos;t change anything.
@@ -366,6 +375,59 @@ function BasicGuide() {
         </p>
       </Section>
 
+      <Section id="manage-team" Icon={Users} title="Managing the team">
+        <p>
+          The <strong>Team</strong> page in the sidebar controls the lawyers shown on the public website — both the cards on the <em>Team</em> page and each person&apos;s own profile page. Everything here is live: save a change and it&apos;s on the website straight away.
+        </p>
+        <p>To add a new person:</p>
+        <ol>
+          <li>Click <strong>Team</strong> in the sidebar.</li>
+          <li>Click the blue <strong>Add member</strong> button (top right).</li>
+          <li>Fill in their <strong>name</strong>, <strong>designation</strong> (e.g. &ldquo;Senior Associate&rdquo;), <strong>location</strong> and <strong>email</strong>.</li>
+          <li>Add a <strong>photo</strong> — click <em>Upload</em> and pick a headshot from your computer (or paste a picture link). If you leave it empty, a graphic is shown instead.</li>
+          <li>Write the <strong>biography</strong> — use <em>Add paragraph</em> for each new paragraph.</li>
+          <li>Add <strong>highlights</strong> — these are the little label/value facts in the sidebar of the profile (e.g. &ldquo;Experience&rdquo; → &ldquo;13+ years&rdquo;).</li>
+          <li>Click <strong>Save member</strong>.</li>
+        </ol>
+        <p>To change or remove someone:</p>
+        <ol>
+          <li>On the Team page, find their row.</li>
+          <li>Click the <strong>pencil</strong> icon to edit, or the <strong>trash</strong> icon to remove them.</li>
+          <li>Use the up/down <strong>arrows</strong> on the left of each row to change the order they appear on the website.</li>
+        </ol>
+        <Tip>
+          A good headshot is a clear, front-facing photo, taller than it is wide (portrait). Once you add a real photo, it replaces the placeholder graphic everywhere automatically.
+        </Tip>
+        <Warn>
+          Deleting a person also removes their profile page. There&apos;s no undo — if you&apos;re unsure, leave them be.
+        </Warn>
+      </Section>
+
+      <Section id="pages-nav" Icon={Newspaper} title="Magazine, Seminars & menu names">
+        <p>
+          The <strong>Pages &amp; nav</strong> screen (under the settings area in the sidebar) does two things: it lets you <strong>rename the menu links</strong> at the top of the website, and it lets you <strong>edit the Magazine and Seminars pages</strong> without touching any code.
+        </p>
+        <p><strong>Renaming a menu link:</strong></p>
+        <ol>
+          <li>Open <strong>Pages &amp; nav</strong>.</li>
+          <li>In the <em>Navigation labels</em> section, type the new wording into the box for the link you want to change (e.g. change &ldquo;Team&rdquo; to &ldquo;Our Lawyers&rdquo;).</li>
+          <li>Leave a box <strong>empty</strong> to keep the standard wording (shown as faint placeholder text).</li>
+          <li>Click <strong>Save changes</strong> at the bottom.</li>
+        </ol>
+        <p><strong>Editing the Magazine or Seminars page:</strong></p>
+        <ol>
+          <li>Scroll to the <em>Magazine page</em> or <em>Seminars page</em> section.</li>
+          <li>Change the heading, the intro paragraph, the Substack link (Magazine), or the list of blocks (use <em>Add block</em> / the trash icon / the arrows to manage them).</li>
+          <li>Click <strong>Save changes</strong>.</li>
+        </ol>
+        <p>
+          Each of those two pages has a <strong>Show in menu</strong> switch. Turn it off and the page disappears from the website menu (and the page itself stops being reachable). Turn it back on whenever you like.
+        </p>
+        <Tip>
+          For the Magazine, clearing the <strong>Substack URL</strong> box hides the &ldquo;Subscribe&rdquo; buttons — handy if the newsletter isn&apos;t live yet.
+        </Tip>
+      </Section>
+
       <Section id="media-library" Icon={ImageIcon} title="The Media library">
         <p>
           Every time you upload a picture (cover image or inside a post) or any other file, the website remembers it and adds it to the Media library at <strong>Media</strong> in the sidebar.
@@ -475,14 +537,17 @@ function AdvancedGuide() {
     <>
       <Section id="overview" Icon={LayoutDashboard} title="Overview & layout">
         <p>
-          The admin is split into six screens, each accessible from the left sidebar:
+          The admin is split across the left sidebar:
         </p>
         <ul>
           <li><strong>Dashboard</strong> — at-a-glance numbers, recent activity, current site config, and quick actions.</li>
+          <li><strong>Analytics</strong> — traffic and engagement rollups.</li>
           <li><strong>Posts</strong> — the list of every post (draft and published). Click a row to open the editor.</li>
+          <li><strong>Team</strong> — CRUD over the lawyers shown on <code>/people</code> and their profile pages (own <code>team</code> collection).</li>
           <li><strong>Media</strong> — every file ever uploaded through the editor or thumbnail picker.</li>
           <li><strong>Categories</strong> — the canonical list of post categories with illustrations, slugs, descriptions, and post counts.</li>
-          <li><strong>Settings</strong> — the singleton site config: featured/pinned post, latest-rail size, newsletter toggle, SEO defaults, public links.</li>
+          <li><strong>Site settings</strong> — the singleton site config: featured/pinned post, latest-rail size, newsletter toggle, SEO defaults, public links.</li>
+          <li><strong>Pages &amp; nav</strong> — editable nav labels and the Magazine / Seminars page content (stored in the same settings doc).</li>
           <li><strong>Guide</strong> — this page.</li>
         </ul>
         <p>
@@ -715,6 +780,53 @@ function AdvancedGuide() {
         </Warn>
       </Section>
 
+      <Section id="team-adv" Icon={Users} title="Team">
+        <p>
+          The team lives in its own collection (<code>team</code>), seeded on first connect with the original five members. The admin at <code>/admin/team</code> is full CRUD; the public <code>/people</code> and <code>/people/[slug]</code> read from it at request time (<code>force-dynamic</code>).
+        </p>
+        <p>Schema (<code>lib/models/team.ts</code> → <code>TeamMemberInputSchema</code>):</p>
+        <ul>
+          <li><code>name</code>, <code>title</code>, <code>focus</code>, <code>location</code>, <code>email</code> — identity strings.</li>
+          <li><code>slug</code> — unique, DB-indexed. Auto-derived from name if blank. Editing it changes the profile URL; it is <em>not</em> re-derived on rename (avoids breaking links).</li>
+          <li><code>photo</code> — headshot URL. Empty → fall back to <code>illustrationKey</code>.</li>
+          <li><code>illustrationKey</code> — same registry as categories (<code>components/illustrations/registry.tsx</code>).</li>
+          <li><code>bio</code> — array of paragraph strings.</li>
+          <li><code>highlights</code> — array of <code>{`{ label, value }`}</code> pairs.</li>
+          <li><code>order</code> — sort order; the up/down arrows swap <code>order</code> on the two affected docs.</li>
+        </ul>
+        <p>
+          API: <code>/api/admin/team</code> (GET list, POST create) and <code>/api/admin/team/[id]</code> (PATCH, DELETE), mirroring the categories routes. Headshot upload reuses <code>/api/admin/upload</code> (images → ImgBB). Public reads go through <code>getTeam()</code> / <code>getTeamMember()</code> in <code>lib/server/team.ts</code>, which fall back to the seed list on DB failure so <code>/people</code> never 500s.
+        </p>
+        <Tip>
+          Deleting a member is a hard delete (no in-use check — unlike categories). Their <code>/people/[slug]</code> route 404s immediately afterwards.
+        </Tip>
+      </Section>
+
+      <Section id="pages-nav-adv" Icon={Newspaper} title="Pages & navigation">
+        <p>
+          <code>/admin/settings/pages</code> edits three things, all stored on the same singleton settings doc (<code>_id: 'site'</code>) and saved through the existing <code>PATCH /api/admin/settings</code>: <strong>nav label overrides</strong>, the <strong>Magazine</strong> page, and the <strong>Seminars</strong> page.
+        </p>
+        <p>
+          Schema additions are in <code>lib/models/settings.ts</code>: <code>navLabels</code> (per-link string overrides), <code>magazine</code> and <code>seminars</code> (each: <code>visible</code>, hero strings, <code>sections</code>/<code>formats</code> arrays of <code>{`{ title, body }`}</code> blocks, plus Substack URL / upcoming note). Every field carries a zod default, so <code>DEFAULT_SETTINGS = SettingsSchema.parse(&#123;&#125;)</code> stays in sync.
+        </p>
+        <p>
+          The public Magazine and Seminars pages (<code>app/lawshaoor-academy/magazine</code> &amp; <code>…/seminars</code>) are <code>force-dynamic</code>, read these fields via <code>getSiteSettings()</code>, and <code>notFound()</code> when <code>visible</code> is false.
+        </p>
+      </Section>
+
+      <Section id="site-config" title="— Nav labels & visibility">
+        <p>
+          The public navbar is a client component used per-page, so it can&apos;t read the DB directly. Instead it fetches a small <strong>public</strong>, unauthenticated endpoint on mount:
+        </p>
+        <ul>
+          <li><code>GET /api/site-config</code> → <code>{`{ navLabels, magazineVisible, seminarsVisible }`}</code>. It sits <em>outside</em> <code>/api/admin/*</code>, so middleware doesn&apos;t gate it.</li>
+          <li>The navbar applies label overrides (falling back to its built-in defaults) and hides the Magazine/Seminars dropdown items when their <code>visible</code> flag is off.</li>
+        </ul>
+        <Warn>
+          Because labels load client-side, a hard refresh can briefly show the default label before the override swaps in. Acceptable for menu text; page <em>content</em> is still server-rendered correctly. The footer&apos;s Knowledge links are static and do <em>not</em> yet honour the visibility toggles.
+        </Warn>
+      </Section>
+
       <Section id="settings-adv" Icon={SettingsIcon} title="Settings">
         <p>
           <code>/admin/settings</code> writes to a single document (<code>_id: 'site'</code>). Public routes that need config call <code>getSiteSettings()</code> from <code>lib/server/settings.ts</code> — falls back to <code>DEFAULT_SETTINGS</code> on DB failure so public never 500s.
@@ -738,14 +850,19 @@ function AdvancedGuide() {
           <li><code>/</code> — homepage</li>
           <li><code>/our-story</code> — about the chambers</li>
           <li><code>/practice-areas</code> — twelve practice areas, anchor-jumpable</li>
-          <li><code>/people</code> — team bios</li>
+          <li><code>/people</code> — team card grid (DB-backed)</li>
+          <li><code>/people/&lt;slug&gt;</code> — individual lawyer profile (DB-backed)</li>
+          <li><code>/careers</code> — careers / join us</li>
           <li><code>/contact</code> — contact form (form submit is a stub — wire up if you need email)</li>
           <li><code>/lawshaoor-academy</code> — Academy listing</li>
           <li><code>/lawshaoor-academy/&lt;slug&gt;</code> — individual post</li>
           <li><code>/lawshaoor-academy/c/&lt;category-slug&gt;</code> — category landing</li>
+          <li><code>/lawshaoor-academy/magazine</code> — Magazine page (editable in Pages &amp; nav)</li>
+          <li><code>/lawshaoor-academy/seminars</code> — Seminars page (editable in Pages &amp; nav)</li>
+          <li><code>/privacy</code>, <code>/disclaimer</code> — legal pages</li>
         </ul>
         <p>
-          Every public Academy route is <code>dynamic = 'force-dynamic'</code> — admin changes show up immediately, no rebuild required.
+          The Academy routes plus <code>/people</code>, <code>/people/[slug]</code>, Magazine and Seminars are all <code>dynamic = 'force-dynamic'</code> — admin changes show up immediately, no rebuild required.
         </p>
       </Section>
 
