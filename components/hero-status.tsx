@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react'
 import { FadeIn } from '@/components/motion/fade-in'
 
 const STRENGTHS = [
-  { code: '01', desc: 'Banking & Finance',          stage: 'Core' },
-  { code: '02', desc: 'Energy & Natural Resources', stage: 'Core' },
-  { code: '03', desc: 'Corporate & Commercial',     stage: 'Core' },
-  { code: '04', desc: 'Dispute Resolution',         stage: 'Core' },
+  { desc: 'Banking & Finance',          stage: 'Core' },
+  { desc: 'Energy & Natural Resources', stage: 'Core' },
+  { desc: 'Corporate & Commercial',     stage: 'Core' },
+  { desc: 'Dispute Resolution',         stage: 'Core' },
 ]
 
 function useClock(tz: string) {
@@ -42,10 +42,10 @@ export function HeroStatus() {
 
       <ul className="space-y-2.5 mb-4">
         {STRENGTHS.map((m) => (
-          <li key={m.code} className="grid grid-cols-12 gap-2 items-baseline">
-            <span className="col-span-2 eyebrow text-primary">{m.code}</span>
-            <span className="col-span-7 text-xs text-foreground/85 leading-tight font-heading tracking-[-0.005em]">{m.desc}</span>
-            <span className="col-span-3 text-right eyebrow text-foreground/60">{m.stage}</span>
+          <li key={m.desc} className="grid grid-cols-12 gap-2 items-center">
+            <span aria-hidden className="col-span-1 block w-3 h-px bg-primary" />
+            <span className="col-span-8 text-xs text-foreground/85 leading-tight">{m.desc}</span>
+            <span className="col-span-3 text-right eyebrow text-foreground/55">{m.stage}</span>
           </li>
         ))}
       </ul>

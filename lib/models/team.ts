@@ -13,6 +13,8 @@ export const TeamMemberInputSchema = z.object({
   title: z.string().max(160).default(''),
   location: z.string().max(120).default(''),
   email: z.string().max(160).default(''),
+  /** LinkedIn profile URL. Empty = no LinkedIn button shown. */
+  linkedin: z.string().max(300).default(''),
   /** Headshot URL (ImgBB or any). Empty = illustration fallback. */
   photo: z.string().max(600).default(''),
   focus: z.string().max(240).default(''),
@@ -41,6 +43,7 @@ export type TeamListItem = {
   title: string
   location: string
   email: string
+  linkedin: string
   photo: string
   focus: string
   illustrationKey: string
@@ -59,6 +62,7 @@ export function toTeamListItem(doc: TeamMemberDoc): TeamListItem {
     title: doc.title ?? '',
     location: doc.location ?? '',
     email: doc.email ?? '',
+    linkedin: doc.linkedin ?? '',
     photo: doc.photo ?? '',
     focus: doc.focus ?? '',
     illustrationKey: doc.illustrationKey ?? '',

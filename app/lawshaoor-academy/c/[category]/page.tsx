@@ -104,7 +104,7 @@ export default async function CategoryPage({
     .slice(0, 8)
 
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative overflow-x-clip">
       <Navbar />
 
       {/* ────────────────────────────────────────
@@ -129,13 +129,13 @@ export default async function CategoryPage({
 
           <div className="grid grid-cols-12 gap-6 items-end">
             <div className="col-span-12 md:col-span-8 space-y-5">
-              <span className="index-chip">Category</span>
-              <h1 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-[-0.03em] leading-[0.95]">
+              <span className="eyebrow text-foreground/55">Category</span>
+              <h1 className="display-xl font-display mt-2">
                 <SplitReveal trigger="load">{cat.name}</SplitReveal>
               </h1>
               {cat.description && (
                 <FadeIn delay={0.2}>
-                  <p className="font-heading text-xl md:text-2xl text-foreground/85 leading-snug tracking-[-0.005em] max-w-2xl mt-4">
+                  <p className="text-base md:text-lg text-foreground/70 leading-relaxed max-w-2xl mt-4">
                     {cat.description}
                   </p>
                 </FadeIn>
@@ -178,31 +178,26 @@ export default async function CategoryPage({
               </p>
               <Link href="/lawshaoor-academy" className="btn-ghost mt-6 inline-flex">
                 <span>Browse the Academy</span>
-                <span className="arrow-magnet">→</span>
               </Link>
             </div>
           ) : (
             <FadeIn staggerChildren className="border-x border-b border-foreground/15">
-              <div className="hidden md:grid grid-cols-12 gap-6 px-5 py-4 border-t border-b border-foreground/15 bg-background-alt/40 text-foreground/55 eyebrow-sm">
-                <div className="col-span-1">No.</div>
+              <div className="hidden md:grid grid-cols-12 gap-6 px-5 py-4 border-t border-b border-foreground/12 bg-background-alt/40 text-foreground/55 eyebrow-sm">
                 <div className="col-span-2">Date</div>
-                <div className="col-span-7">Piece</div>
+                <div className="col-span-8">Piece</div>
                 <div className="col-span-1 text-right">Read</div>
                 <div className="col-span-1 text-right">→</div>
               </div>
-              {posts.map((p, i) => (
+              {posts.map((p) => (
                 <Link
                   key={p._id}
                   href={`/lawshaoor-academy/${p.slug}`}
                   className="group grid grid-cols-12 gap-3 md:gap-6 px-5 py-5 md:py-6 border-b border-foreground/10 last:border-b-0 items-baseline hover:bg-background-alt/60 transition-colors"
                 >
-                  <span className="col-span-2 md:col-span-1 font-mono text-xs tracking-[0.18em] text-foreground/45 tabular-fig">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="col-span-3 md:col-span-2 font-mono text-xs tracking-[0.18em] text-foreground/60 tabular-fig">
+                  <span className="col-span-4 md:col-span-2 text-xs tracking-[0.1em] text-foreground/55 tabular-fig">
                     {formatMonth(p.publishedAt)}
                   </span>
-                  <span className="col-span-12 md:col-span-7">
+                  <span className="col-span-12 md:col-span-8">
                     <span className="block font-display text-xl md:text-2xl tracking-[-0.02em] leading-[1.15] text-foreground group-hover:text-primary transition-colors">
                       {p.title}
                     </span>
@@ -257,7 +252,7 @@ export default async function CategoryPage({
             <Rule className="rule-heavy mb-0" />
 
             <FadeIn staggerChildren className="grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground/15 border-x border-b border-foreground/15">
-              {otherCategories.map((c, i) => {
+              {otherCategories.map((c) => {
                 const Co = getIllustration(c.illustrationKey)
                 return (
                   <Link
@@ -266,7 +261,7 @@ export default async function CategoryPage({
                     className="group bg-background p-6 md:p-8 lift-card flex flex-col gap-4"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="eyebrow text-foreground/55">{String(i + 1).padStart(2, '0')}</span>
+                      <span aria-hidden className="block w-5 h-px bg-primary" />
                       <span className="eyebrow text-primary opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                     </div>
                     <div className="flex-1 flex items-center justify-center py-3">

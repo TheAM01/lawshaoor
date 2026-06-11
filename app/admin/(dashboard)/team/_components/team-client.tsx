@@ -16,6 +16,7 @@ type Draft = {
   title: string
   location: string
   email: string
+  linkedin: string
   photo: string
   focus: string
   illustrationKey: string
@@ -26,7 +27,7 @@ type Draft = {
 
 function emptyDraft(order: number): Draft {
   return {
-    _id: null, name: '', slug: '', title: '', location: '', email: '',
+    _id: null, name: '', slug: '', title: '', location: '', email: '', linkedin: '',
     photo: '', focus: '', illustrationKey: 'circles-in-circumference',
     bio: [''], highlights: [{ label: '', value: '' }], order,
   }
@@ -35,7 +36,7 @@ function emptyDraft(order: number): Draft {
 function toDraft(m: TeamListItem): Draft {
   return {
     _id: m._id, name: m.name, slug: m.slug, title: m.title, location: m.location,
-    email: m.email, photo: m.photo, focus: m.focus,
+    email: m.email, linkedin: m.linkedin, photo: m.photo, focus: m.focus,
     illustrationKey: m.illustrationKey || 'circles-in-circumference',
     bio: m.bio.length ? m.bio : [''],
     highlights: m.highlights.length ? m.highlights : [{ label: '', value: '' }],
@@ -204,7 +205,7 @@ function TeamEditor({
     const payload = {
       name: draft.name.trim(),
       slug: draft.slug.trim() || undefined,
-      title: draft.title, location: draft.location, email: draft.email,
+      title: draft.title, location: draft.location, email: draft.email, linkedin: draft.linkedin,
       photo: draft.photo, focus: draft.focus, illustrationKey: draft.illustrationKey,
       bio: draft.bio.map((b) => b.trim()).filter(Boolean),
       highlights: draft.highlights.filter((h) => h.label.trim() || h.value.trim()),
@@ -268,6 +269,9 @@ function TeamEditor({
           <Field label="Location"><Input value={draft.location} onChange={(e) => patch({ location: e.target.value })} placeholder="Islamabad, Pakistan" /></Field>
           <Field label="Email"><Input value={draft.email} onChange={(e) => patch({ email: e.target.value })} placeholder="name@lawshaoor.com" /></Field>
         </div>
+        <Field label="LinkedIn URL" help="Optional. Shows a LinkedIn button on the team card and profile.">
+          <Input value={draft.linkedin} onChange={(e) => patch({ linkedin: e.target.value })} placeholder="https://www.linkedin.com/in/…" />
+        </Field>
         <Field label="URL slug" help="Leave blank to auto-generate from the name. Changing this breaks existing links.">
           <Input value={draft.slug} onChange={(e) => patch({ slug: e.target.value })} placeholder="abdul-manan" />
         </Field>

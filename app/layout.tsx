@@ -1,34 +1,24 @@
 import type { Metadata } from 'next'
-import { Archivo, Space_Grotesk, Geist, Geist_Mono } from 'next/font/google'
+import { Poppins, Jost } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider, ThemeScript } from '@/components/theme-provider'
 import { SiteTracker } from '@/components/analytics/site-tracker'
 import './globals.css'
 
-const archivo = Archivo({
+/* Headings + buttons — Poppins (geometric sans) */
+const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
 })
 
-const spaceGrotesk = Space_Grotesk({
+/* Body, labels & everything else — Century-Gothic-style geometric sans */
+const jost = Jost({
   subsets: ['latin'],
   variable: '--font-heading',
   display: 'swap',
   weight: ['300', '400', '500', '600', '700'],
-})
-
-const geist = Geist({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-})
-
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -63,13 +53,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${spaceGrotesk.variable} ${geist.variable} ${geistMono.variable}`}
+      className={`${poppins.variable} ${jost.variable}`}
       suppressHydrationWarning
     >
       <head>
         <ThemeScript defaultTheme="light" attribute="class" />
       </head>
-      <body className="grain antialiased">
+      <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>

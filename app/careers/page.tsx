@@ -6,7 +6,15 @@ import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
+import { SectionNav } from '@/components/section-nav'
 import { StackedCubes, VectorNode, OrbitRings } from '@/components/illustrations'
+import { PanelImage } from '@/components/panel-image'
+
+const SECTIONS = [
+  { id: 'why',   label: 'Why LawShaoor' },
+  { id: 'roles', label: 'Open roles' },
+  { id: 'apply', label: 'Apply' },
+]
 
 export const metadata: Metadata = {
   title: 'Careers — Join LawShaoor Chambers',
@@ -29,45 +37,50 @@ const ROLES = [
 
 export default function Careers() {
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative overflow-x-clip">
       <Navbar />
 
-      {/* HERO */}
-      <section className="relative section-pad pt-32 md:pt-44 pb-20 md:pb-28 bg-fixed-mist overflow-hidden">
-        <span aria-hidden className="hero-orb accent-breathe top-[8%] -right-[12%] hidden md:block" />
-        <StackedCubes className="absolute -left-10 bottom-0 w-44 h-60 opacity-40 hidden md:block float-soft" uid="careers-hero-stk" />
-        <div className="max-w-[1440px] mx-auto relative">
-          <Breadcrumbs items={[{ label: 'Careers' }]} className="mb-8" />
-          <div className="mb-10 md:mb-14">
-            <span className="index-chip">Join us</span>
+      {/* HERO — 60/40 */}
+      <section className="relative section-pad pt-32 md:pt-40 pb-16 md:pb-24 bg-fixed-mist overflow-x-clip">
+        <span aria-hidden className="hero-orb top-[10%] -right-[12%] hidden md:block" />
+        <div className="max-w-[1560px] mx-auto relative grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-3">
+            <Breadcrumbs items={[{ label: 'Careers' }]} className="mb-7" />
+            <span className="eyebrow text-foreground/55">Join us</span>
+            <h1 className="display-xl font-display mt-5">
+              <span className="block"><SplitReveal trigger="load" delay={0.1}>Build a career</SplitReveal></span>
+              <span className="block text-primary"><SplitReveal trigger="load" delay={0.3}>that actually moves.</SplitReveal></span>
+            </h1>
+            <FadeIn delay={0.5}>
+              <p className="mt-7 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
+                We hire lawyers who want responsibility, not a queue. If you want cross-border work,
+                partner-level mentoring and room to grow, we want to hear from you.
+              </p>
+            </FadeIn>
           </div>
-          <h1 className="display-xl font-display">
-            <span className="block"><SplitReveal trigger="load" delay={0.1}>Build a career</SplitReveal></span>
-            <span className="block text-gradient"><SplitReveal trigger="load" delay={0.3}>that actually moves.</SplitReveal></span>
-          </h1>
-          <div className="grid grid-cols-12 gap-6 mt-12 md:mt-20">
-            <div className="col-span-12 md:col-span-7 md:col-start-3">
-              <FadeIn>
-                <p className="font-heading text-xl md:text-2xl leading-snug text-foreground/90 tracking-[-0.01em]">
-                  We hire lawyers who want responsibility, not a queue. If you want cross-border work, partner-level mentoring and room to grow, we want to hear from you.
-                </p>
-              </FadeIn>
+          <FadeIn delay={0.4} className="lg:col-span-2 hidden lg:block">
+            <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden flex items-center justify-center">
+              <PanelImage seed="careers" />
+              <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />
+              <StackedCubes className="absolute inset-0 m-auto w-[55%] h-[60%] opacity-70" uid="careers-hero-stk" />
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
+      <SectionNav sections={SECTIONS} label="Careers" />
+
       {/* WHY JOIN */}
-      <section className="section-pad py-20 md:py-28 border-t border-foreground/15 bg-background">
-        <div className="max-w-[1440px] mx-auto">
+      <section id="why" className="section-pad py-20 md:py-28 border-t border-foreground/15 bg-background scroll-mt-32">
+        <div className="max-w-[1560px] mx-auto">
           <span className="index-chip mb-10 inline-flex">Why LawShaoor</span>
           <Rule className="mb-12" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-foreground/12 border border-foreground/12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
             {WHY.map((w, i) => (
-              <FadeIn key={w.t} delay={i * 0.06} className="bg-background p-8 md:p-10 space-y-3">
-                <span className="eyebrow text-foreground/55">{String(i + 1).padStart(2, '0')}</span>
-                <h2 className="font-display text-2xl md:text-3xl tracking-[-0.02em]">{w.t}</h2>
-                <p className="font-heading text-base text-foreground/80 leading-relaxed">{w.d}</p>
+              <FadeIn key={w.t} delay={i * 0.06} className="az-card">
+                <span aria-hidden className="az-mark block w-7 h-px mb-1" />
+                <h2 className="font-display text-2xl md:text-3xl">{w.t}</h2>
+                <p className="text-base text-foreground/65 leading-relaxed">{w.d}</p>
               </FadeIn>
             ))}
           </div>
@@ -75,22 +88,16 @@ export default function Careers() {
       </section>
 
       {/* OPEN ROLES */}
-      <section className="section-pad py-20 md:py-28 border-t border-foreground/15 bg-background-alt">
-        <div className="max-w-[1440px] mx-auto">
+      <section id="roles" className="section-pad py-20 md:py-28 border-t border-foreground/15 bg-background-alt scroll-mt-32">
+        <div className="max-w-[1560px] mx-auto">
           <span className="index-chip mb-10 inline-flex">Open roles</span>
           <Rule className="mb-10" />
-          <div className="divide-y divide-foreground/15 border-y border-foreground/15">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
             {ROLES.map((r) => (
-              <FadeIn key={r.role} className="grid grid-cols-12 gap-4 py-7 items-baseline">
-                <div className="col-span-12 md:col-span-4">
-                  <h3 className="font-display text-2xl tracking-[-0.02em]">{r.role}</h3>
-                </div>
-                <div className="col-span-12 md:col-span-5">
-                  <p className="font-heading text-base text-foreground/80">{r.detail}</p>
-                </div>
-                <div className="col-span-12 md:col-span-3 md:text-right">
-                  <span className="eyebrow text-foreground/60">{r.type}</span>
-                </div>
+              <FadeIn key={r.role} className="az-card">
+                <h3 className="font-display text-2xl">{r.role}</h3>
+                <p className="text-base text-foreground/65 leading-relaxed">{r.detail}</p>
+                <span className="eyebrow text-foreground/55 mt-auto pt-3">{r.type}</span>
               </FadeIn>
             ))}
           </div>
@@ -101,29 +108,27 @@ export default function Careers() {
       </section>
 
       {/* CTA */}
-      <section className="relative section-pad py-32 md:py-44 border-t border-foreground/15 bg-fixed-deep overflow-hidden">
+      <section id="apply" className="relative section-pad py-32 md:py-44 border-t border-foreground/15 bg-fixed-deep overflow-hidden scroll-mt-32">
         <OrbitRings className="absolute -left-20 -top-12 w-[420px] h-[420px] opacity-30 hidden md:block" uid="careers-cta-orb" rotate />
         <VectorNode className="absolute right-12 bottom-8 w-44 h-44 opacity-40 hidden md:block" uid="careers-cta-vn" />
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 items-end">
             <div className="col-span-12 md:col-span-8 space-y-6">
-              <span className="index-chip">Apply</span>
+              <span className="eyebrow text-foreground/55">Apply</span>
               <h2 className="display-lg font-display">
                 <span className="block"><SplitReveal>Send us your</SplitReveal></span>
-                <span className="block text-gradient"><SplitReveal>application.</SplitReveal></span>
+                <span className="block text-primary"><SplitReveal>application.</SplitReveal></span>
               </h2>
-              <p className="font-heading text-base text-foreground/80 max-w-xl">
+              <p className="text-base text-foreground/75 max-w-xl">
                 Email your CV and a short note on the work you want to do to <a href="mailto:careers@lawshaoor.com" className="link-line text-primary">careers@lawshaoor.com</a>.
               </p>
             </div>
             <div className="col-span-12 md:col-span-4 flex flex-col gap-3 md:items-end">
               <a href="mailto:careers@lawshaoor.com" className="btn-primary">
                 <span>Apply now</span>
-                <span className="arrow-magnet">→</span>
               </a>
               <Link href="/contact" className="btn-ghost">
                 <span>General enquiries</span>
-                <span className="arrow-magnet">→</span>
               </Link>
             </div>
           </div>

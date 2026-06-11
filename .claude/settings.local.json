@@ -25,7 +25,12 @@
       "PowerShell(Get-NetTCPConnection *)",
       "Bash(find components/illustrations* -type f)",
       "Bash(curl *)",
-      "Bash(SEED_SESSIONS=60 npx tsx scripts/seed-analytics.ts)"
+      "Bash(SEED_SESSIONS=60 npx tsx scripts/seed-analytics.ts)",
+      "Bash(perl -0777 -ne 'while\\(/<w:t[^>]*>\\(.*?\\)<\\\\/w:t>/gs\\){print \"$1\\\\n\"}' word/document.xml)",
+      "Bash(mkdir -p \"/f/Documents/Codes/Projects/lawshaoor/.tmp-refs\")",
+      "Bash(cp /tmp/docx2/word/media/image*.png \"/f/Documents/Codes/Projects/lawshaoor/.tmp-refs/\")",
+      "Bash(grep -qi \"ready\\\\|local:\\\\|started server\\\\|localhost\" \"C:\\\\Users\\\\HMC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\F--Documents-Codes-Projects-lawshaoor\\\\4dfc28f7-01f7-42d6-bac7-1798f9ccfe03\\\\tasks\\\\bxsdy4189.output\")",
+      "Bash(break)"
     ]
   }
 }

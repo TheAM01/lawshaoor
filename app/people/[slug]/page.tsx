@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { MapPin, Mail } from 'lucide-react'
+import { MapPin, Mail, Linkedin } from 'lucide-react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { Breadcrumbs } from '@/components/breadcrumbs'
@@ -36,17 +36,17 @@ export default async function PersonPage({ params }: { params: Promise<{ slug: s
   const person = await getTeamMember(slug)
   if (!person) notFound()
 
-  const { name, title, location, email, photo, focus, bio, highlights, illustrationKey } = person
+  const { name, title, location, email, linkedin, photo, focus, bio, highlights, illustrationKey } = person
   const Illo = getIllustration(illustrationKey)
 
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative overflow-x-clip">
       <Navbar />
 
       {/* HERO */}
       <section className="relative section-pad pt-32 md:pt-40 pb-16 md:pb-20 bg-fixed-mist overflow-hidden">
         <span aria-hidden className="hero-orb accent-breathe top-[6%] -right-[14%] hidden md:block" />
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <Breadcrumbs items={[{ label: 'Team', href: '/people' }, { label: name }]} className="mb-10" />
 
           <div className="grid grid-cols-12 gap-6 md:gap-10 items-end">
@@ -65,9 +65,15 @@ export default async function PersonPage({ params }: { params: Promise<{ slug: s
                   </span>
                 )}
                 {email && (
-                  <a href={`mailto:${email}`} className="flex items-center gap-2 text-sm text-foreground/80 font-heading link-line hover:text-primary transition-colors">
+                  <a href={`mailto:${email}`} className="flex items-center gap-2 text-sm text-foreground/80 link-line hover:text-primary transition-colors">
                     <Mail className="w-4 h-4 text-primary" />
                     {email}
+                  </a>
+                )}
+                {linkedin && (
+                  <a href={linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-foreground/80 link-line hover:text-primary transition-colors">
+                    <Linkedin className="w-4 h-4 text-primary" />
+                    LinkedIn
                   </a>
                 )}
               </div>
@@ -79,7 +85,7 @@ export default async function PersonPage({ params }: { params: Promise<{ slug: s
       {/* BODY */}
       <section className="relative section-pad py-16 md:py-24 border-t border-foreground/15 bg-background overflow-hidden">
         <HexagonalCascade className="absolute -left-24 -bottom-12 w-72 h-72 opacity-25 hidden md:block" uid={`person-${slug}-hex`} />
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 md:gap-10">
             {/* Left: portrait + highlights */}
             <div className="col-span-12 md:col-span-4">
@@ -108,12 +114,19 @@ export default async function PersonPage({ params }: { params: Promise<{ slug: s
                 </FadeIn>
               )}
 
-              {email && (
-                <FadeIn delay={0.25} className="mt-6">
-                  <a href={`mailto:${email}`} className="btn-primary w-full justify-center">
-                    <span>Email {name.split(' ')[0]}</span>
-                    <span className="arrow-magnet">→</span>
-                  </a>
+              {(email || linkedin) && (
+                <FadeIn delay={0.25} className="mt-6 flex flex-col gap-3">
+                  {email && (
+                    <a href={`mailto:${email}`} className="btn-primary w-full justify-center">
+                      <span>Email {name.split(' ')[0]}</span>
+                    </a>
+                  )}
+                  {linkedin && (
+                    <a href={linkedin} target="_blank" rel="noopener noreferrer" className="btn-ghost w-full justify-center">
+                      <Linkedin className="w-4 h-4" />
+                      <span>LinkedIn profile</span>
+                    </a>
+                  )}
                 </FadeIn>
               )}
             </div>
@@ -134,22 +147,20 @@ export default async function PersonPage({ params }: { params: Promise<{ slug: s
       {/* CTA */}
       <section className="relative section-pad py-24 md:py-32 border-t border-foreground/15 bg-fixed-deep overflow-hidden">
         <OrbitRings className="absolute -left-20 -top-12 w-[420px] h-[420px] opacity-30 hidden md:block" uid={`person-${slug}-cta-orb`} rotate />
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 items-end">
             <div className="col-span-12 md:col-span-8 space-y-5">
-              <span className="index-chip">Get in Touch</span>
+              <span className="eyebrow text-foreground/55">Get in touch</span>
               <h2 className="display-md font-display">
                 <SplitReveal>Work with our team.</SplitReveal>
               </h2>
             </div>
             <div className="col-span-12 md:col-span-4 flex flex-col gap-3 md:items-end">
               <Link href="/contact" className="btn-primary">
-                <span>Contact Us</span>
-                <span className="arrow-magnet">→</span>
+                <span>Contact</span>
               </Link>
               <Link href="/people" className="btn-ghost">
                 <span>Back to team</span>
-                <span className="arrow-magnet">→</span>
               </Link>
             </div>
           </div>

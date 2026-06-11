@@ -22,7 +22,7 @@ export function LegalPage({
   sections: LegalSection[]
 }) {
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative overflow-x-clip">
       <Navbar />
 
       <section className="section-pad pt-32 md:pt-40 pb-12 md:pb-16 bg-fixed-mist border-b border-foreground/15">

@@ -40,15 +40,15 @@ export function Footer() {
       </Marquee>
 
       {/* Tagline under wordmark */}
-      <div className="section-pad max-w-[1440px] mx-auto mb-20 md:mb-28 flex items-center gap-4 md:gap-6">
+      <div className="section-pad max-w-[1560px] mx-auto mb-20 md:mb-28 flex items-center gap-4 md:gap-6">
         <span className="block h-px flex-1 bg-foreground/15" />
         <span className="font-mono text-[10px] md:text-xs tracking-[0.42em] uppercase text-foreground/70 whitespace-nowrap">
-          Law<span className="text-primary">.</span> Strategy<span className="text-primary">.</span> Future<span className="text-primary">.</span>
+          Law<span className="text-gold">.</span> Strategy<span className="text-gold">.</span> Future<span className="text-gold">.</span>
         </span>
         <span className="block h-px flex-1 bg-foreground/15" />
       </div>
 
-      <div className="section-pad max-w-[1440px] mx-auto">
+      <div className="section-pad max-w-[1560px] mx-auto">
         <Rule className="mb-14" />
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-20">
@@ -59,7 +59,6 @@ export function Footer() {
             </h3>
             <Link href="/contact" className="btn-primary mt-2">
               <span>Get in Touch</span>
-              <span className="arrow-magnet">→</span>
             </Link>
 
             <div className="pt-4 flex items-center gap-3">

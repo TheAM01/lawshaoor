@@ -7,6 +7,7 @@ import { FadeIn } from '@/components/motion/fade-in'
 import { Marquee } from '@/components/motion/marquee'
 import { Rule } from '@/components/motion/rule'
 import { Counter } from '@/components/motion/counter'
+import { SectionNav } from '@/components/section-nav'
 import {
   CirclesInCircumference,
   HexagonalCascade,
@@ -159,7 +160,7 @@ export default async function Academy() {
   const archivePosts = rest.slice(latestSize)
 
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative overflow-x-clip">
       <Navbar />
 
       {/* ────────────────────────────────────────
@@ -177,11 +178,11 @@ export default async function Academy() {
         <GridDots className="absolute right-[18%] bottom-16 w-44 h-44 opacity-50 hidden md:block float-soft" uid="ac-hero-dots" />
         <CirclesInCircumference className="absolute left-[42%] -bottom-12 w-36 h-36 opacity-55 hidden lg:block float-soft" uid="ac-hero-circ" />
 
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <Breadcrumbs items={[{ label: 'Academy' }]} className="mb-8" />
           <div className="flex items-end justify-between gap-6 mb-10 md:mb-14 flex-wrap">
-            <span className="index-chip">001 · Academy</span>
-            <div className="hidden md:flex gap-6 text-foreground/65">
+            <span className="eyebrow text-foreground/55">Academy</span>
+            <div className="hidden md:flex gap-6 text-foreground/55">
               <span className="eyebrow-sm">Long-form · Corporate law</span>
               <span className="eyebrow-sm">Updated weekly</span>
             </div>
@@ -191,7 +192,7 @@ export default async function Academy() {
             <span className="block">
               <SplitReveal trigger="load" delay={0.1}>The LawShaoor</SplitReveal>
             </span>
-            <span className="block text-gradient">
+            <span className="block text-primary">
               <SplitReveal trigger="load" delay={0.35}>Academy.</SplitReveal>
             </span>
           </h1>
@@ -205,13 +206,9 @@ export default async function Academy() {
               </FadeIn>
               <FadeIn delay={0.2} className="mt-8 flex flex-wrap gap-3">
                 <Link href="#latest" className="btn-primary">
-                  <span>Read the latest</span>
-                  <span className="arrow-magnet">→</span>
-                </Link>
+                  <span>Read the latest</span>                </Link>
                 <Link href="#archive" className="btn-ghost">
-                  <span>Browse archive</span>
-                  <span className="arrow-magnet">→</span>
-                </Link>
+                  <span>Browse archive</span>                </Link>
               </FadeIn>
             </div>
             <div className="col-span-12 md:col-span-4 md:col-start-9 hidden md:block">
@@ -227,12 +224,12 @@ export default async function Academy() {
           01b · STATS STRIP (animated counters)
           ──────────────────────────────────────── */}
       <section className="border-y border-foreground/15 bg-background-alt/70 section-pad py-10 md:py-14">
-        <div className="max-w-[1440px] mx-auto">
+        <div className="max-w-[1560px] mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0">
-            <Stat n="01" v={posts.length} suffix="+" label="Pieces published" />
-            <Stat n="02" v={categoriesUsed} suffix="" label="Categories" />
-            <Stat n="03" v={totalRead} suffix=" min" label="Total reading time" />
-            <Stat n="04" v={5} suffix="+" label="Partners writing" last />
+            <Stat v={posts.length} suffix="+" label="Pieces published" />
+            <Stat v={categoriesUsed} suffix="" label="Categories" />
+            <Stat v={totalRead} suffix=" min" label="Total reading time" />
+            <Stat v={5} suffix="+" label="Partners writing" last />
           </div>
         </div>
       </section>
@@ -252,18 +249,29 @@ export default async function Academy() {
         </Marquee>
       </div>
 
+      <SectionNav
+        sections={[
+          { id: 'featured', label: 'Featured' },
+          { id: 'latest', label: 'Latest' },
+          { id: 'categories', label: 'Categories' },
+          { id: 'topics', label: 'Topics' },
+          { id: 'archive', label: 'Archive' },
+        ]}
+        label="Academy"
+      />
+
       {/* ────────────────────────────────────────
           02 · FEATURED PIECE (editorial)
           ──────────────────────────────────────── */}
       {featured && (
-        <section className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-fixed-lavender overflow-hidden">
+        <section id="featured" className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-fixed-lavender overflow-x-clip scroll-mt-32">
           <OrbitRings className="absolute -right-32 top-12 w-[520px] h-[520px] opacity-25 hidden md:block" uid="ac-feat-orb" rotate />
           <SquareCascade className="absolute -left-20 -bottom-16 w-72 h-72 opacity-35 hidden md:block float-soft" uid="ac-feat-sq" />
 
-          <div className="max-w-[1440px] mx-auto relative">
+          <div className="max-w-[1560px] mx-auto relative">
             <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
               <div className="col-span-12 md:col-span-6 space-y-3">
-                <span className="index-chip">002 · This month&apos;s read</span>
+                <span className="eyebrow text-foreground/55">This month&apos;s read</span>
                 <h2 className="display-sm font-display">
                   <SplitReveal>Featured.</SplitReveal>
                 </h2>
@@ -296,8 +304,7 @@ export default async function Academy() {
                   </p>
                   <Link href={`/lawshaoor-academy/${featured.slug}`} className="btn-primary self-start">
                     <span>Read the piece</span>
-                    <span className="arrow-magnet">→</span>
-                  </Link>
+                                      </Link>
                 </div>
 
                 <div className="col-span-12 md:col-span-6 order-1 md:order-2">
@@ -314,18 +321,18 @@ export default async function Academy() {
           ──────────────────────────────────────── */}
       <section
         id="latest"
-        className="relative section-pad py-24 md:py-36 border-b border-foreground/15 bg-background overflow-hidden"
+        className="relative section-pad py-24 md:py-36 border-b border-foreground/15 bg-background overflow-x-clip scroll-mt-32"
       >
         <OrbitRings className="absolute -left-32 top-1/3 w-[520px] h-[520px] opacity-25 hidden md:block" uid="ac-latest-orb" rotate />
         <StackedCubes className="absolute right-10 -top-12 w-36 h-56 opacity-45 hidden md:block float-soft" uid="ac-latest-stk" />
 
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
             <div className="col-span-12 md:col-span-7">
-              <span className="index-chip">003 · Latest pieces</span>
+              <span className="eyebrow text-foreground/55">Latest pieces</span>
               <h2 className="display-md font-display mt-4">
                 <SplitReveal>Recent writing,</SplitReveal>{' '}
-                <span className="text-gradient">
+                <span className="text-primary">
                   <SplitReveal>fresh off the desk.</SplitReveal>
                 </span>
               </h2>
@@ -363,7 +370,7 @@ export default async function Academy() {
                   delay={0.05 * (i + 1)}
                   className="lg:col-span-5 bg-background"
                 >
-                  <RailCard post={p} index={i + 2} keyMap={keyMap} />
+                  <RailCard post={p} keyMap={keyMap} />
                 </FadeIn>
               ))}
             </div>
@@ -378,7 +385,7 @@ export default async function Academy() {
         <SquareCascade className="absolute -right-24 -top-12 w-[460px] h-[460px] opacity-30 hidden md:block" uid="ac-man-sq" />
         <GridDots className="absolute -left-20 bottom-0 w-64 h-64 opacity-35 hidden md:block" uid="ac-man-dots" />
 
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 md:gap-10 items-center">
             <div className="col-span-12 md:col-span-3 hidden md:flex justify-center">
               <FadeIn>
@@ -387,11 +394,11 @@ export default async function Academy() {
             </div>
 
             <div className="col-span-12 md:col-span-9 space-y-7">
-              <span className="index-chip">004 · Editorial</span>
+              <span className="eyebrow text-foreground/55">Editorial</span>
               <blockquote className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.025em] text-foreground">
                 <SplitReveal>No drip campaigns.</SplitReveal>{' '}
                 <SplitReveal>No SEO bait.</SplitReveal>{' '}
-                <span className="text-gradient">
+                <span className="text-primary">
                   <SplitReveal>One piece, when there is</SplitReveal>{' '}
                   <SplitReveal>something worth reading.</SplitReveal>
                 </span>
@@ -409,13 +416,13 @@ export default async function Academy() {
       {/* ────────────────────────────────────────
           05 · BROWSE BY CATEGORY
           ──────────────────────────────────────── */}
-      <section className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-background overflow-hidden">
+      <section id="categories" className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-background overflow-x-clip scroll-mt-32">
         <GridDots className="absolute -left-32 top-1/2 -translate-y-1/2 w-[480px] h-[480px] opacity-30 hidden md:block" uid="ac-cat-dots" />
 
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
             <div className="col-span-12 md:col-span-5 space-y-3">
-              <span className="index-chip">005 · Browse</span>
+              <span className="eyebrow text-foreground/55">Browse</span>
               <h2 className="display-md font-display">
                 <SplitReveal>By category.</SplitReveal>
               </h2>
@@ -455,16 +462,16 @@ export default async function Academy() {
       {/* ────────────────────────────────────────
           06 · TOPIC TILES
           ──────────────────────────────────────── */}
-      <section className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-fixed-lavender overflow-hidden">
+      <section id="topics" className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-fixed-lavender overflow-x-clip scroll-mt-32">
         <PulseRings className="absolute -right-24 -top-12 w-72 h-72 opacity-50 hidden md:block" uid="ac-topic-pulse" />
 
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
             <div className="col-span-12 md:col-span-5">
-              <span className="index-chip">006 · Topics</span>
+              <span className="eyebrow text-foreground/55">Topics</span>
               <h2 className="display-md font-display mt-4">
                 <SplitReveal>Threads</SplitReveal>{' '}
-                <span className="text-gradient">
+                <span className="text-primary">
                   <SplitReveal>we keep pulling on.</SplitReveal>
                 </span>
               </h2>
@@ -492,7 +499,7 @@ export default async function Academy() {
                   href="#"
                   className="group bg-background p-8 md:p-10 lift-card flex flex-col gap-6 items-start"
                 >
-                  <span className="eyebrow text-foreground/55">{String(i + 1).padStart(2, '0')}</span>
+                  <span aria-hidden className="block w-6 h-px bg-primary" />
                   <div className="w-full flex justify-center py-2">
                     <Illo className="w-32 h-32 md:w-40 md:h-40 group-hover:scale-110 transition-transform duration-500" uid={`tp-${i}`} />
                   </div>
@@ -511,14 +518,14 @@ export default async function Academy() {
           ──────────────────────────────────────── */}
       <section
         id="archive"
-        className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-background overflow-hidden"
+        className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-background overflow-x-clip scroll-mt-32"
       >
         <VectorNode className="absolute right-10 top-16 w-36 h-36 opacity-50 hidden md:block" uid="ac-archive-vec" />
 
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 mb-10 md:mb-12 items-end">
             <div className="col-span-12 md:col-span-6">
-              <span className="index-chip">007 · Archive</span>
+              <span className="eyebrow text-foreground/55">Archive</span>
               <h2 className="display-md font-display mt-4">
                 <SplitReveal>The whole shelf.</SplitReveal>
               </h2>
@@ -538,32 +545,27 @@ export default async function Academy() {
             <EmptyState />
           ) : (
             <div className="border-x border-b border-foreground/15">
-              <div className="hidden md:grid grid-cols-12 gap-6 px-5 py-4 border-b border-foreground/15 bg-background-alt/40 text-foreground/55 eyebrow-sm">
-                <div className="col-span-1">No.</div>
+              <div className="hidden md:grid grid-cols-12 gap-6 px-5 py-4 border-b border-foreground/12 bg-background-alt/40 text-foreground/55 eyebrow-sm">
                 <div className="col-span-1">Date</div>
                 <div className="col-span-2">Category</div>
-                <div className="col-span-6">Piece</div>
+                <div className="col-span-7">Piece</div>
                 <div className="col-span-1 text-right">Read</div>
                 <div className="col-span-1 text-right">→</div>
               </div>
-              {groupByYear(posts).flatMap(([year, group], yi) => [
+              {groupByYear(posts).flatMap(([year, group]) => [
                 <div
                   key={`year-${year}`}
                   className="grid grid-cols-12 gap-6 px-5 py-4 border-b border-foreground/10 bg-background"
                 >
                   <div className="col-span-12 md:col-span-2 font-display text-2xl tracking-[-0.02em]">
-                    <span className="text-gradient">{year}</span>
+                    <span className="text-primary">{year}</span>
                   </div>
                   <div className="col-span-12 md:col-span-10 flex items-end text-foreground/55 eyebrow-sm">
                     {group.length} {group.length === 1 ? 'piece' : 'pieces'}
                   </div>
                 </div>,
-                ...group.map((p, i) => (
-                  <ArchiveRow
-                    key={p._id}
-                    post={p}
-                    index={yi * 100 + i + 1}
-                  />
+                ...group.map((p) => (
+                  <ArchiveRow key={p._id} post={p} />
                 )),
               ])}
             </div>
@@ -579,15 +581,15 @@ export default async function Academy() {
         <GridDots className="absolute -left-32 top-1/2 -translate-y-1/2 w-[520px] h-[520px] opacity-40 hidden md:block" uid="ac-news-dots" />
         <StackedCubes className="absolute right-12 -bottom-8 w-44 h-56 opacity-50 hidden md:block float-soft" uid="ac-news-stk" />
 
-        <div className="max-w-[1440px] mx-auto relative">
+        <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-12 gap-6 items-end">
             <div className="col-span-12 md:col-span-7 space-y-6">
-              <span className="index-chip">008 · Subscribe</span>
+              <span className="eyebrow text-foreground/55">Subscribe</span>
               <h2 className="display-lg font-display">
                 <span className="block">
                   <SplitReveal>Get the next piece</SplitReveal>
                 </span>
-                <span className="block text-gradient">
+                <span className="block text-primary">
                   <SplitReveal>in your inbox.</SplitReveal>
                 </span>
               </h2>
@@ -606,8 +608,7 @@ export default async function Academy() {
                   </div>
                   <button type="submit" className="btn-primary w-full justify-center">
                     <span>Subscribe</span>
-                    <span className="arrow-magnet">→</span>
-                  </button>
+                                      </button>
                   <p className="eyebrow text-foreground/55">Unsubscribe in one click. We don&apos;t share email.</p>
                 </form>
               </FadeIn>
@@ -627,13 +628,11 @@ export default async function Academy() {
    ────────────────────────────────────────────── */
 
 function Stat({
-  n,
   v,
   suffix = '',
   label,
   last = false,
 }: {
-  n: string
   v: number
   suffix?: string
   label: string
@@ -641,16 +640,13 @@ function Stat({
 }) {
   return (
     <FadeIn
-      className={`relative px-5 md:px-8 first:pl-0 ${last ? '' : 'md:border-r'} border-foreground/15`}
+      className={`relative px-5 md:px-8 first:pl-0 ${last ? '' : 'md:border-r'} border-foreground/12`}
     >
-      <div className="flex items-baseline gap-3 mb-3">
-        <span className="eyebrow-sm text-foreground/60">{n}</span>
-        <span className="block w-6 h-px bg-gradient-to-r from-[var(--grad-from)] to-[var(--grad-to)]" />
-      </div>
-      <div className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[-0.025em] text-foreground">
+      <span aria-hidden className="block w-6 h-px bg-primary mb-3" />
+      <div className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground">
         <Counter value={v} suffix={suffix} />
       </div>
-      <p className="eyebrow text-foreground/60 mt-3">{label}</p>
+      <p className="eyebrow text-foreground/55 mt-3">{label}</p>
     </FadeIn>
   )
 }
@@ -748,8 +744,6 @@ function HeroCard({ post, keyMap }: { post: AcademyPost; keyMap: Map<string, str
 
       <div className="p-7 md:p-9 lg:p-10 flex flex-col gap-4">
         <div className="flex items-center gap-3 text-foreground/55 eyebrow-sm">
-          <span>01</span>
-          <span className="block w-6 h-px bg-foreground/30" />
           <span>{formatDate(post.publishedAt)}</span>
           <span>·</span>
           <span>{post.readMinutes} min</span>
@@ -768,7 +762,7 @@ function HeroCard({ post, keyMap }: { post: AcademyPost; keyMap: Map<string, str
   )
 }
 
-function RailCard({ post, index, keyMap }: { post: AcademyPost; index: number; keyMap: Map<string, string> }) {
+function RailCard({ post, keyMap }: { post: AcademyPost; keyMap: Map<string, string> }) {
   const Illo = illoForCategory(post.category, keyMap)
   return (
     <Link
@@ -792,8 +786,6 @@ function RailCard({ post, index, keyMap }: { post: AcademyPost; index: number; k
 
       <div className="flex-1 min-w-0 flex flex-col">
         <div className="flex items-center gap-3 mb-3 text-foreground/55 eyebrow-sm">
-          <span>{String(index).padStart(2, '0')}</span>
-          <span className="block w-4 h-px bg-foreground/30" />
           <span>{formatDate(post.publishedAt)}</span>
           <span>·</span>
           <span>{post.readMinutes} min</span>
@@ -834,7 +826,7 @@ function CategoryCard({
       className="group bg-background p-8 md:p-10 lift-card flex flex-col gap-5 min-h-[280px]"
     >
       <div className="flex items-center justify-between">
-        <span className="eyebrow text-foreground/55">{String(index).padStart(2, '0')}</span>
+        <span aria-hidden className="block w-6 h-px bg-primary" />
         <span className="eyebrow text-primary">
           {count} {count === 1 ? 'piece' : 'pieces'}
         </span>
@@ -854,22 +846,19 @@ function CategoryCard({
   )
 }
 
-function ArchiveRow({ post, index }: { post: AcademyPost; index: number }) {
+function ArchiveRow({ post }: { post: AcademyPost }) {
   return (
     <Link
       href={`/lawshaoor-academy/${post.slug}`}
       className="group grid grid-cols-12 gap-3 md:gap-6 px-5 py-5 md:py-6 border-b border-foreground/10 last:border-b-0 items-baseline hover:bg-background-alt/60 transition-colors"
     >
-      <span className="col-span-2 md:col-span-1 font-mono text-xs tracking-[0.18em] text-foreground/45 tabular-fig">
-        {String(index).padStart(2, '0')}
-      </span>
-      <span className="hidden md:block md:col-span-1 font-mono text-xs tracking-[0.18em] text-foreground/60 tabular-fig">
+      <span className="hidden md:block md:col-span-1 text-xs tracking-[0.1em] text-foreground/55 tabular-fig">
         {formatDay(post.publishedAt)}
       </span>
       <span className="col-span-4 md:col-span-2">
         <span className="tag text-[10px]">{post.category}</span>
       </span>
-      <span className="col-span-6 md:col-span-6 font-display text-xl md:text-2xl tracking-[-0.02em] leading-[1.1] text-foreground group-hover:text-primary transition-colors">
+      <span className="col-span-8 md:col-span-7 font-display text-xl md:text-2xl leading-[1.1] text-foreground group-hover:text-primary transition-colors">
         {post.title}
       </span>
       <span className="hidden md:block md:col-span-1 font-mono text-xs tracking-[0.18em] text-foreground/60 tabular-fig text-right">

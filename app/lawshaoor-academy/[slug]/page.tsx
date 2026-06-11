@@ -168,7 +168,7 @@ export default async function PostPage({
   const postCategory = categories.find((c) => c.name === post.category)
 
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative overflow-x-clip">
       <Navbar />
 
       {/* ────────────────────────────────────────
@@ -409,7 +409,7 @@ export default async function PostPage({
                 <span className="index-chip">Continue reading</span>
                 <h2 className="display-md font-display mt-4">
                   <SplitReveal>More from</SplitReveal>{' '}
-                  <span className="text-gradient">
+                  <span className="text-primary">
                     <SplitReveal>the desk.</SplitReveal>
                   </span>
                 </h2>
@@ -432,8 +432,8 @@ export default async function PostPage({
               staggerChildren
               className="grid grid-cols-1 md:grid-cols-3 gap-px bg-foreground/15 border-x border-b border-foreground/15"
             >
-              {related.map((p, i) => (
-                <RelatedCard key={p._id} post={p} index={i + 1} keyMap={keyMap} />
+              {related.map((p) => (
+                <RelatedCard key={p._id} post={p} keyMap={keyMap} />
               ))}
             </FadeIn>
           </div>
@@ -461,7 +461,7 @@ export default async function PostPage({
                 <span className="block">
                   <SplitReveal>Have a deal</SplitReveal>
                 </span>
-                <span className="block text-gradient">
+                <span className="block text-primary">
                   <SplitReveal>that looks like this?</SplitReveal>
                 </span>
               </h2>
@@ -474,13 +474,9 @@ export default async function PostPage({
             <div className="col-span-12 md:col-span-4 flex flex-col gap-3 md:items-end">
               <FadeIn delay={0.3} staggerChildren className="flex flex-col gap-3 md:items-end">
                 <Link href="/contact" className="btn-primary">
-                  <span>Get in Touch</span>
-                  <span className="arrow-magnet">→</span>
-                </Link>
+                  <span>Get in Touch</span>                </Link>
                 <Link href="/lawshaoor-academy" className="btn-ghost">
-                  <span>Back to Academy</span>
-                  <span className="arrow-magnet">→</span>
-                </Link>
+                  <span>Back to Academy</span>                </Link>
               </FadeIn>
             </div>
           </div>
@@ -498,11 +494,9 @@ export default async function PostPage({
 
 function RelatedCard({
   post,
-  index,
   keyMap,
 }: {
   post: RelatedPost
-  index: number
   keyMap: Map<string, string>
 }) {
   const Illo = getIllustration(keyMap.get(post.category))
@@ -534,8 +528,6 @@ function RelatedCard({
       </div>
 
       <div className="flex items-center gap-3 text-foreground/55 eyebrow-sm">
-        <span>{String(index).padStart(2, '0')}</span>
-        <span className="block w-4 h-px bg-foreground/30" />
         <span>{formatMonth(post.publishedAt)}</span>
         <span>·</span>
         <span>{post.readMinutes} min</span>

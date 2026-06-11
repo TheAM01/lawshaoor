@@ -2,13 +2,14 @@
 
 import { useRef, type ElementType, type ReactNode } from 'react'
 import { useGSAP } from '@gsap/react'
-import { gsap, ScrollTrigger } from './gsap-init'
+import { gsap } from './gsap-init'
 
 type Props = {
   children: ReactNode
   as?: ElementType
   className?: string
   delay?: number
+  /** Kept for API compatibility — translate is intentionally not used. */
   y?: number
   duration?: number
   stagger?: number
@@ -16,13 +17,16 @@ type Props = {
   staggerChildren?: boolean
 }
 
+/**
+ * Simple opacity fade-in. No transform / translate — just a gentle fade,
+ * triggered on scroll into view (with a hard safety reveal).
+ */
 export function FadeIn({
   children,
   as: Tag = 'div',
   className = '',
   delay = 0,
-  y = 20,
-  duration = 0.55,
+  duration = 0.5,
   stagger = 0.06,
   staggerChildren = false,
 }: Props) {
@@ -37,27 +41,24 @@ export function FadeIn({
 
       const tween = gsap.fromTo(
         targets,
-        { opacity: 0, y },
+        { opacity: 0 },
         {
           opacity: 1,
-          y: 0,
           duration,
-          ease: 'expo.inOut',
+          ease: 'power1.out',
           stagger: staggerChildren ? stagger : 0,
           delay,
           scrollTrigger: {
             trigger: ref.current,
-            start: 'top 92%',
+            start: 'top 94%',
             once: true,
           },
         }
       )
 
-      // Hard safety: if for any reason the trigger never fires (hydration,
-      // misreported viewport, late refresh), force-reveal after 1.4s so
-      // content never sits invisible.
+      // Hard safety: force-reveal if the trigger never fires.
       const safety = window.setTimeout(() => {
-        gsap.to(targets, { opacity: 1, y: 0, duration: 0.35, ease: 'expo.inOut', overwrite: 'auto' })
+        gsap.to(targets, { opacity: 1, duration: 0.3, overwrite: 'auto' })
       }, 1200 + delay * 1000)
 
       return () => {
