@@ -30,7 +30,13 @@
       "Bash(mkdir -p \"/f/Documents/Codes/Projects/lawshaoor/.tmp-refs\")",
       "Bash(cp /tmp/docx2/word/media/image*.png \"/f/Documents/Codes/Projects/lawshaoor/.tmp-refs/\")",
       "Bash(grep -qi \"ready\\\\|local:\\\\|started server\\\\|localhost\" \"C:\\\\Users\\\\HMC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\F--Documents-Codes-Projects-lawshaoor\\\\4dfc28f7-01f7-42d6-bac7-1798f9ccfe03\\\\tasks\\\\bxsdy4189.output\")",
-      "Bash(break)"
+      "Bash(break)",
+      "Bash(perl -0777 -ne 'print \\(/\\\\x00/ ? \"NULL BYTE PRESENT\\\\n\" : \"clean, no null bytes\\\\n\"\\)' app/practice-areas/page.tsx)",
+      "Bash(file app/practice-areas/page.tsx)",
+      "Bash(perl -0777 -ne 'while\\(/\\\\x00/g\\){ printf \"null byte at offset %d\\\\n\", pos\\(\\)-1 }' app/practice-areas/page.tsx)",
+      "Bash(dd if=app/practice-areas/page.tsx bs=1 skip=10300 count=120)",
+      "Bash(perl -i -pe 's/\\\\x00FIRM\\\\x00/__FIRM__/g' app/practice-areas/page.tsx)",
+      "Bash(perl -0777 -ne 'print \\(/\\\\x00/ ? \"STILL HAS NULL\\\\n\" : \"clean\\\\n\"\\)' app/practice-areas/page.tsx)"
     ]
   }
 }

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "seed:posts": "tsx scripts/seed-posts.ts"
+    "seed:posts": "tsx scripts/seed-posts.ts",
+    "seed:team": "tsx scripts/seed-team.ts"
   },
   "dependencies": {
     "@blocknote/core": "^0.51.0",

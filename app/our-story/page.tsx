@@ -20,14 +20,14 @@ const SECTIONS = [
   { id: 'introduction', label: 'Introduction' },
   { id: 'approach',     label: 'Approach' },
   { id: 'capability',   label: 'Capability' },
-  { id: 'association',  label: 'Association' },
+  { id: 'association',  label: 'Partnership' },
 ]
 
 const PILLARS = [
   { t: 'Clear',     d: 'We simplify complex legal issues and offer solutions that are both legally sound and commercially workable.' },
   { t: 'Practical', d: 'We focus on professionalism, efficiency, and the best interests of the client — in every matter.' },
   { t: 'Reliable',  d: 'Comprehensive legal support to clients operating in complex business environments — at home and across borders.' },
-  { t: 'Connected', d: 'Through our strategic association with M.B. KEMP (ME) LLP, we draw on a global team across Hong Kong, London, Milan and Abu Dhabi.' },
+  { t: 'Connected', d: 'Through our strategic partnership with M.B. KEMP (ME) LLP, we draw on a global team across Hong Kong, London, Milan and Abu Dhabi.' },
 ]
 
 const KEMP_OFFICES = [
@@ -59,7 +59,7 @@ export default function OurStory() {
             <FadeIn delay={0.5}>
               <p className="mt-7 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
                 LawShaoor Chambers is a full-service law chambers based in Islamabad, with associated offices in
-                other major cities of Pakistan — and, in association with M.B. KEMP (ME) LLP, reach across the
+                other major cities of Pakistan — and, in strategic partnership with M.B. KEMP (ME) LLP, reach across the
                 UAE, DIFC and ADGM.
               </p>
             </FadeIn>
@@ -84,7 +84,7 @@ export default function OurStory() {
                   ['Reach', 'Major cities of Pakistan'],
                   ['Lawyers', '6'],
                   ['Practice areas', '12'],
-                  ['Partner chambers', 'M.B. KEMP (ME) LLP'],
+                  ['Strategic partnership', 'M.B. KEMP (ME) LLP'],
                 ].map(([k, v], i) => (
                   <li key={i} className="flex justify-between gap-4 items-baseline">
                     <span className="text-foreground/55 text-xs tracking-[0.1em] uppercase">{k}</span>
@@ -199,8 +199,8 @@ export default function OurStory() {
             {[
               { v: 12, suffix: '', label: 'Practice areas' },
               { v: 6, suffix: '', label: 'Lawyers' },
-              { v: 4, suffix: '', label: 'Partner-chambers offices abroad' },
-              { v: 1, suffix: '', label: 'Strategic association' },
+              { v: 4, suffix: '', label: 'Partner firms' },
+              { v: 1, suffix: '', label: 'Strategic partnership' },
             ].map((s, i) => (
               <FadeIn key={i} delay={i * 0.08} className="relative px-5 md:px-8 first:pl-0 border-l border-foreground/15 first:border-l-0">
                 <span aria-hidden className="block w-6 h-px bg-primary mb-3" />
@@ -219,16 +219,16 @@ export default function OurStory() {
         <div className="max-w-[1560px] mx-auto relative">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-8 mb-12 md:mb-16">
             <div className="lg:col-span-2 space-y-4">
-              <span className="eyebrow text-foreground/55">Strategic association</span>
+              <span className="eyebrow text-foreground/55">Strategic partnership</span>
               <h2 className="display-md font-display">
                 <SplitReveal>M.B. KEMP</SplitReveal>{' '}
                 <span className="text-primary"><SplitReveal>(ME) LLP.</SplitReveal></span>
               </h2>
             </div>
             <div className="lg:col-span-3 space-y-5 text-base md:text-lg leading-relaxed text-foreground/75">
-              <FadeIn><p>LawShaoor Chambers works in strategic association with M.B. KEMP (ME) LLP, a law chambers with offices in Hong Kong, London, Milan and Abu Dhabi.</p></FadeIn>
-              <FadeIn delay={0.1}><p>Through this collaboration, we are able to support clients on matters involving the UAE, DIFC, ADGM and other international jurisdictions.</p></FadeIn>
-              <FadeIn delay={0.2}><p>The association strengthens our cross-border capability and lets us draw on the experience of a global team recognized for corporate, banking and finance, restructuring, international arbitration and complex dispute resolution.</p></FadeIn>
+              <FadeIn><p>LawShaoor Chambers works in strategic partnership with M.B. KEMP (ME) LLP, a law chambers with offices in Hong Kong, London, Milan and Abu Dhabi.</p></FadeIn>
+              <FadeIn delay={0.1}><p>Through this partnership, we are able to support clients on matters involving the UAE, DIFC, ADGM and other international jurisdictions.</p></FadeIn>
+              <FadeIn delay={0.2}><p>The partnership strengthens our cross-border capability and lets us draw on the experience of a global team recognized for corporate, banking and finance, restructuring, international arbitration and complex dispute resolution.</p></FadeIn>
             </div>
           </div>
 

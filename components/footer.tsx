@@ -120,7 +120,7 @@ export function Footer() {
             <Link href="/privacy" className="link-line hover:text-primary transition-colors">Privacy</Link>
             <Link href="/disclaimer" className="link-line hover:text-primary transition-colors">Disclaimer</Link>
             <span className="hidden md:inline text-foreground/40">·</span>
-            <span>In strategic association with M.B. KEMP (ME) LLP</span>
+            <span>In strategic partnership with M.B. KEMP (ME) LLP</span>
             <Link href="/admin" className="link-line text-foreground/60 hover:text-primary transition-colors">Admin →</Link>
           </div>
         </div>

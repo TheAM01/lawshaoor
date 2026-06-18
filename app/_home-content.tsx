@@ -140,8 +140,9 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
 
             <FadeIn delay={0.7}>
               <p className="mt-7 md:mt-9 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
-                A full-service law chambers based in Islamabad — clear, practical, commercially-minded
-                counsel, and, in association with M.B. KEMP (ME) LLP, reach across the UAE, DIFC and ADGM.
+                LawShaoor Chambers is a full-service law firm based in Islamabad, with associated offices
+                across Pakistan. Working in strategic partnership with M.B. KEMP (ME) LLP supporting clients
+                across the UAE, DIFC, ADGM and other international jurisdictions.
               </p>
             </FadeIn>
 
@@ -170,7 +171,7 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
               <CirclesInCircumference className="absolute right-5 top-5 w-20 h-20 opacity-80" uid="hero-c1" />
               <VectorNode className="absolute left-5 bottom-5 w-24 h-24 opacity-70" uid="hero-vn" />
               <div className="absolute left-6 bottom-6 right-6">
-                <span className="eyebrow text-foreground/50">In association with</span>
+                <span className="eyebrow text-foreground/50">In strategic partnership with</span>
                 <p className="font-display text-xl font-semibold mt-1 text-foreground/85">M.B. KEMP (ME) LLP</p>
               </div>
             </div>
@@ -191,8 +192,8 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
               <span className="eyebrow text-foreground/55">The Chambers</span>
               <FadeIn>
                 <p className="font-display text-[1.6rem] md:text-[2rem] leading-snug text-foreground max-w-2xl">
-                  LawShaoor Chambers is a full-service law chambers based in Islamabad — and, in association
-                  with M.B. KEMP (ME) LLP, working across the UAE, DIFC and ADGM.
+                  LawShaoor Chambers is a full-service law chambers based in Islamabad — and, in strategic
+                  partnership with M.B. KEMP (ME) LLP, working across the UAE, DIFC and ADGM.
                 </p>
               </FadeIn>
               <FadeIn>
@@ -261,7 +262,7 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
             {[
               { v: 12, suffix: '', label: 'Practice areas' },
               { v: 6, suffix: '', label: 'Lawyers on the bench' },
-              { v: 4, suffix: '', label: 'Partner-chambers offices abroad' },
+              { v: 4, suffix: '', label: 'Partner firms' },
               { v: 13, suffix: '+ yrs', label: 'Founder experience' },
             ].map((s, i) => (
               <FadeIn key={i} delay={i * 0.08} className="relative px-5 md:px-8 first:pl-0 border-l border-foreground/15 first:border-l-0">
@@ -370,7 +371,7 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
       </section>
 
       {/* ────────────────────────────────────────────
-          STRATEGIC ASSOCIATION — M.B. KEMP
+          STRATEGIC PARTNERSHIP — M.B. KEMP
           ──────────────────────────────────────────── */}
       <section className="relative section-pad py-24 md:py-32 border-t border-foreground/12 bg-background overflow-hidden">
         <div className="max-w-[1560px] mx-auto relative">
@@ -378,14 +379,14 @@ export function HomeContent({ marqueeItems }: { marqueeItems: string[] }) {
             <div className="lg:col-span-3 space-y-4">
               <span className="eyebrow text-foreground/55">International reach</span>
               <h2 className="display-md font-display">
-                <SplitReveal>Strategic association</SplitReveal>{' '}
+                <SplitReveal>Strategic partnership</SplitReveal>{' '}
                 <span className="text-primary"><SplitReveal>with M.B. KEMP (ME) LLP.</SplitReveal></span>
               </h2>
             </div>
             <div className="lg:col-span-2">
               <FadeIn>
                 <p className="text-foreground/70 leading-relaxed">
-                  Through our collaboration with M.B. KEMP (ME) LLP, we support clients on matters involving the
+                  Through our strategic partnership with M.B. KEMP (ME) LLP, we support clients on matters involving the
                   UAE, DIFC, ADGM and other international jurisdictions — drawing on a global team recognized for
                   corporate, banking and finance, restructuring, and international arbitration.
                 </p>

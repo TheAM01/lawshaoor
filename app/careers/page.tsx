@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 const WHY = [
   { t: 'Real work, early', d: 'No drip-fed busywork. You touch live matters — drafting, research, hearings — with partners who actually mentor.' },
-  { t: 'Cross-border exposure', d: 'Through our association with M.B. KEMP (ME) LLP, you work on UAE, DIFC and ADGM matters alongside Pakistan practice.' },
+  { t: 'Cross-border exposure', d: 'Through our strategic partnership with M.B. KEMP (ME) LLP, you work on UAE, DIFC and ADGM matters alongside Pakistan practice.' },
   { t: 'Range, not a silo', d: 'Corporate, banking, energy, regulatory and disputes under one roof — find your edge instead of being boxed in.' },
   { t: 'Built to teach', d: 'Our partners lecture at universities. That teaching instinct runs through how we bring people up.' },
 ]

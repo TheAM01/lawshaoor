@@ -40,7 +40,7 @@ export default async function People() {
             <FadeIn delay={0.5}>
               <p className="mt-7 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
                 A dedicated team of partners and associates handling civil, commercial, corporate, regulatory
-                and dispute-resolution matters across Pakistan and — through our association with
+                and dispute-resolution matters across Pakistan and — through our strategic partnership with
                 M.B. KEMP (ME) LLP — the UAE, DIFC and ADGM.
               </p>
             </FadeIn>

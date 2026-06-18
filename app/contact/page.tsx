@@ -171,7 +171,7 @@ export default function Contact() {
             </FadeIn>
 
             <FadeIn delay={0.3} className="space-y-3">
-              <span className="eyebrow text-foreground/65">— Associated firm</span>
+              <span className="eyebrow text-foreground/65">— Strategic partner firm</span>
               <p className="font-heading text-sm text-foreground/80 leading-relaxed tracking-[-0.005em]">
                 M.B. KEMP (ME) LLP — Hong Kong · London · Milan · Abu Dhabi
               </p>

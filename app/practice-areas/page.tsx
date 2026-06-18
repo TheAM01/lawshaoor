@@ -11,18 +11,16 @@ import { SectionNav } from '@/components/section-nav'
 import { PanelImage } from '@/components/panel-image'
 
 const PA_SECTIONS = [
-  { id: 'banking-finance',          label: 'Banking & Finance' },
-  { id: 'corporate-commercial',     label: 'Corporate' },
-  { id: 'energy-natural-resources', label: 'Energy' },
-  { id: 'construction-operation',   label: 'Construction' },
-  { id: 'dispute-resolution',       label: 'Disputes' },
-  { id: 'mergers-acquisitions',     label: 'M&A' },
-  { id: 'government-sector',         label: 'Government' },
-  { id: 'telecom-it',               label: 'Telecom & IT' },
-  { id: 'healthcare-pharma',        label: 'Healthcare' },
-  { id: 'labour-employment',        label: 'Labour' },
-  { id: 'non-profit',               label: 'Non-Profit' },
-  { id: 'cross-border',             label: 'Cross-Border' },
+  { id: 'technology',           label: 'Technology' },
+  { id: 'corporate-commercial', label: 'Corporate' },
+  { id: 'banking-finance',      label: 'Banking & Finance' },
+  { id: 'dispute-resolution',   label: 'Disputes' },
+  { id: 'mergers-acquisitions', label: 'M&A' },
+  { id: 'government-sector',     label: 'Government' },
+  { id: 'healthcare-pharma',    label: 'Healthcare' },
+  { id: 'labour-employment',    label: 'Labour' },
+  { id: 'non-profit',           label: 'Non-Profit' },
+  { id: 'cross-border',         label: 'Cross-Border' },
 ]
 import {
   CirclesInCircumference,
@@ -37,29 +35,30 @@ import {
 
 const PRACTICES = [
   {
-    id: 'banking-finance',
-    eyebrow: 'Regulated finance',
-    title: 'Banking & Finance',
-    body: 'The Chambers regularly advises commercial banks, financial institutions, and non-banking finance companies (NBFCs) on a wide array of matters. Our expertise encompasses syndicated financing, Islamic modes of finance, debt restructuring, and the drafting and vetting of complex security documentation. We provide strategic counsel on regulatory compliance with State Bank of Pakistan (SBP) directives and represent financial institutions in high-value recovery suits and foreclosure proceedings before specialized Banking Courts and Tribunals.',
+    id: 'technology',
+    eyebrow: 'Technology & TMT',
+    title: 'Technology',
+    body: 'We get tech and the law around it. We advise technology companies, digital platforms, telecom operators, and software businesses on regulatory compliance, data governance, cross-border technology transactions, encryption, and IT sector licensing. Our team has hands-on experience with Pakistan’s evolving tech and telecom landscape.',
     bullets: [
-      'Syndicated financing',
-      'Islamic modes of finance',
-      'Debt restructuring',
-      'Security documentation',
-      'SBP regulatory compliance',
-      'Recovery & foreclosure proceedings',
+      'Technology companies & digital platforms',
+      'Telecom operators & software businesses',
+      'Regulatory compliance',
+      'Data governance',
+      'Cross-border technology transactions',
+      'Encryption',
+      'IT sector licensing',
     ],
     keys: [
-      { name: 'State Bank of Pakistan (SBP)', detail: 'Regulatory directives & compliance' },
-      { name: 'Banking Courts & Tribunals', detail: 'High-value recovery and foreclosure' },
+      { name: 'IT & telecom licensing',             detail: 'Sector authorisations & compliance' },
+      { name: 'Pakistan tech & telecom regulation', detail: 'Evolving regulatory landscape' },
     ],
-    Illo: StackedCubes,
+    Illo: VectorNode,
   },
   {
     id: 'corporate-commercial',
     eyebrow: 'Corporate practice',
     title: 'Corporate & Commercial',
-    body: 'The Lawyers of the Chambers have experience in mainstream and specialized corporate and commercial matters that extend to a diverse range of matters such as incorporation of companies, dissolutions, corporate governance, mergers and acquisitions, Islamic modes of investment, licensing, corporate organization, exchange and repatriation controls, tax, and risk insurance and liaison with concerned regulatory bodies such as the Securities & Exchange Commission of Pakistan, the State Bank of Pakistan, the Federal Board of Revenue, the Competition Commission of Pakistan etc.',
+    body: 'We assist clients with incorporation of companies, dissolutions, corporate governance, mergers and acquisitions, Islamic modes of investment, licensing, corporate organization, exchange and repatriation controls, tax, and risk insurance — and liaison with concerned regulatory bodies such as the Securities & Exchange Commission of Pakistan, the State Bank of Pakistan, the Federal Board of Revenue, and the Competition Commission of Pakistan.',
     bullets: [
       'Incorporation & dissolutions',
       'Corporate governance',
@@ -78,51 +77,28 @@ const PRACTICES = [
     Illo: HexagonalCascade,
   },
   {
-    id: 'energy-natural-resources',
-    eyebrow: 'Energy & petroleum',
-    title: 'Energy & Natural Resources',
-    body: 'LawShaoor Chambers has developed strong capabilities in the energy and petroleum sectors. Our Lawyers have advised clients across the upstream, midstream, and downstream chain, including matters involving OGRA, DGPC, and the Ministry of Energy. Our work includes assistance with licensing, concession agreements, joint operating agreements, LNG supply and storage arrangements, pipeline and terminal development, refinery documentation, EPC contracts, fuel supply arrangements, and environmental compliance. We also assist with cross-border energy transactions and regulatory matters affecting both local and international investors. Our lawyers also possess extensive experience of representing petroleum companies in high-stakes litigation matters.',
+    id: 'banking-finance',
+    eyebrow: 'Regulated finance',
+    title: 'Banking & Finance',
+    body: 'We advise commercial banks, financial institutions, and non-banking finance companies (NBFCs) on syndicated financing, Islamic finance, debt restructuring, and security documentation. We also represent clients in recovery suits and foreclosure proceedings before Banking Courts and Tribunals.',
     bullets: [
-      'Upstream · midstream · downstream',
-      'Licensing & concession agreements',
-      'Joint operating agreements',
-      'LNG supply & storage arrangements',
-      'Pipeline & terminal development',
-      'Refinery documentation & EPC contracts',
-      'Fuel supply arrangements',
-      'Environmental compliance',
-      'Cross-border energy transactions',
-      'High-stakes petroleum litigation',
+      'Syndicated financing',
+      'Islamic finance',
+      'Debt restructuring',
+      'Security documentation',
+      'Recovery suits',
+      'Foreclosure proceedings',
     ],
     keys: [
-      { name: 'OGRA',                detail: 'Oil & Gas Regulatory Authority' },
-      { name: 'DGPC',                detail: 'Directorate General of Petroleum Concessions' },
-      { name: 'Ministry of Energy',  detail: 'Government of Pakistan' },
+      { name: 'Banking Courts & Tribunals', detail: 'Recovery and foreclosure proceedings' },
     ],
-    Illo: CirclesInCircumference,
-  },
-  {
-    id: 'construction-operation',
-    eyebrow: 'EPC & infrastructure',
-    title: 'Construction & Operation',
-    body: 'The team at LawShaoor Chambers have a proven ability of assisting in matters involving construction, maintenance, engineering and procurement issues etc. They have a proven track record of drafting, negotiating and advising on contracts based on FIDIC forms of contracts with contractors of international repute. In this respect, their practical experience in connection with export and import controls, licensing and understanding of regulatory compliance has provided additional value to the service provided to the Chambers’s Clients.',
-    bullets: [
-      'Construction & maintenance',
-      'Engineering & procurement',
-      'FIDIC-based contract drafting & negotiation',
-      'Export & import controls',
-      'Licensing & regulatory compliance',
-    ],
-    keys: [
-      { name: 'FIDIC forms', detail: 'International standard construction contracts' },
-    ],
-    Illo: SquareCascade,
+    Illo: StackedCubes,
   },
   {
     id: 'dispute-resolution',
     eyebrow: 'Contentious work',
     title: 'Dispute Resolution & Arbitration',
-    body: 'Dispute resolution is one of the Chambers’s core strengths. We represent clients before the High Courts, District Courts, specialized tribunals, regulatory bodies, and arbitration forums. Our experience includes commercial disputes, contractual claims, regulatory proceedings, competition matters, labor disputes, and arbitration under domestic and international rules. We handle all stages of dispute resolution, including pleadings, evidence, cross-examination, and final arguments.',
+    body: 'Our litigation team represents clients before the High Courts, District Courts, tribunals, regulators, and arbitration forums. We handle commercial disputes, contractual claims, regulatory proceedings, competition matters, labour disputes, and arbitration under domestic and international rules.',
     bullets: [
       'Commercial disputes',
       'Contractual claims',
@@ -130,11 +106,10 @@ const PRACTICES = [
       'Competition matters',
       'Labour disputes',
       'Domestic & international arbitration',
-      'Pleadings · evidence · cross-examination · final arguments',
     ],
     keys: [
       { name: 'High Courts & District Courts', detail: 'Trial and appellate representation' },
-      { name: 'Specialized tribunals',         detail: 'Regulatory and statutory forums' },
+      { name: 'Tribunals & regulators',        detail: 'Statutory and regulatory forums' },
       { name: 'Arbitration forums',            detail: 'Domestic and international rules' },
     ],
     Illo: TesseractCube,
@@ -143,20 +118,18 @@ const PRACTICES = [
     id: 'mergers-acquisitions',
     eyebrow: 'M&A',
     title: 'Mergers & Acquisitions',
-    body: 'The Partner’s involvement in some of the recent corporate acquisitions in Pakistan and UAE has established mergers and acquisitions as one of the Chambers’s most prominent strengths. The Chambers’s substantial experience in company, securities and competition law and its familiarity with the regulatory regime and relevant offices provide additional insight into the quality of advice rendered in proposing corporate mergers. In addition, the Chambers’s experience in proposing, undertaking and implementing Court approved compromises, arrangements and reconstructions provides an additional capability enabling sound and qualitative legal assistance.',
+    body: 'We advise on corporate takeovers, share and asset purchases, due diligence, vendor issues, and court-approved schemes of arrangement. Our experience includes major acquisitions in Pakistan and the UAE.',
     bullets: [
-      'Private limited company sales & purchases',
-      'Asset purchases & sales',
-      'Take-overs',
+      'Corporate takeovers',
+      'Share & asset purchases',
+      'Due diligence',
       'Vendor issues',
-      'Legal due diligence',
       'Court-approved schemes of arrangement',
-      'Compromises, arrangements & reconstructions',
+      'Major acquisitions in Pakistan & UAE',
     ],
     keys: [
-      { name: 'Company law',     detail: 'Substantive transactional experience' },
-      { name: 'Securities law',  detail: 'Familiarity with regulatory regime' },
-      { name: 'Competition law', detail: 'M&A clearance and review' },
+      { name: 'Company & securities law', detail: 'Transactional experience' },
+      { name: 'Competition law',          detail: 'M&A clearance and review' },
     ],
     Illo: CirclesInCircumference,
   },
@@ -164,44 +137,23 @@ const PRACTICES = [
     id: 'government-sector',
     eyebrow: 'Public sector liaison',
     title: 'Government Sector',
-    body: 'The Chambers’s substantial experience in negotiation has proved particularly valuable in its interaction with the different departmental levels of the Government of Pakistan, providing additional facilitation and expedition in the procedural administration of applications, renewals, licensing and regulation. Based in the capital, its high-level co-operation with the Government, its Ministries and departmental entities has established a firm liaison with the concerned commercial bodies of the government. This access proves an invaluable asset to our clients. The Chambers is also on the panel of advocates for various government departments.',
+    body: 'The Firm’s substantial experience in negotiation has proved particularly valuable in its interaction with the different departmental levels of the Government of Pakistan, providing additional facilitation and expedition in the procedural administration of applications, renewals, licensing and regulation. Our Islamabad base enables strong liaison with ministries and government bodies.',
     bullets: [
       'Applications, renewals & licensing',
       'Procedural administration',
-      'Ministry & departmental liaison',
-      'Panel advocacy for government departments',
+      'Ministry & government body liaison',
+      'Regulatory facilitation',
     ],
     keys: [
       { name: 'Government of Pakistan', detail: 'Ministries & departmental entities' },
-      { name: 'Panel of advocates',     detail: 'For various government departments' },
     ],
     Illo: HexagonalCascade,
-  },
-  {
-    id: 'telecom-it',
-    eyebrow: 'TMT',
-    title: 'Telecommunication & Information Technology',
-    body: 'The Chambers has developed a broad capability with respect to the frontier aspects of the emerging fields of telecommunications and information technology. Lawyers of the Chambers have extensively advised on the provision of Internet-based services, the setting-up of software houses, regulatory frameworks, satellite-based services, voice over internet protocol (VOIP), telecommunication systems and services, Long Distance International and fiber network, E-banking, data communications, and encryption. We also advise on the import, installation, operation and maintenance of telecommunication equipment, and ancillary matters such as cryptographic products and their legal status — supported by a practical understanding of the regulation and policy directives governing the sector in Pakistan.',
-    bullets: [
-      'Internet-based services',
-      'Software house set-up',
-      'Satellite-based services & VOIP',
-      'Long Distance International & fiber network',
-      'E-banking & data communications',
-      'Encryption & cryptographic products',
-      'Telecommunication equipment import, installation & operation',
-      'Regulatory framework & policy directives',
-    ],
-    keys: [
-      { name: 'TMT regulation', detail: 'Policy directives in Pakistan' },
-    ],
-    Illo: VectorNode,
   },
   {
     id: 'healthcare-pharma',
     eyebrow: 'Life sciences',
     title: 'Healthcare & Pharmaceuticals',
-    body: 'Our lawyers advise local and foreign clients on licensing, registration, and regulatory matters before the Drug Regulatory Authority of Pakistan. We assist with compliance, interpretation of applicable laws, and advisory work relating to the healthcare and pharmaceutical sectors.',
+    body: 'We advise local and foreign clients on licensing, registration, and regulatory matters before the Drug Regulatory Authority of Pakistan. We assist with compliance, interpretation of applicable laws, and advisory work relating to the healthcare and pharmaceutical sectors.',
     bullets: [
       'Licensing & registration',
       'DRAP regulatory matters',
@@ -217,17 +169,14 @@ const PRACTICES = [
     id: 'labour-employment',
     eyebrow: 'Workforce',
     title: 'Labour & Employment',
-    body: 'Lawyers in the Chambers regularly advise foreign as well as local clients on all labour and HR related issues in Pakistan, including the interpretation and application of labour legislation, advice and strategy on CBA negotiations, employee benefits, compensation, employment contracts, termination, settlements, plant closings and lay-offs. We advise on employment insurance, protection and welfare, the construction of labour management systems, and the drafting of collective bargaining agreements including first contracts and renewals — in addition to acting as counsel before all labour forums including labour courts, labour appellate tribunals and the High Courts of Pakistan.',
+    body: 'We advise on labour legislation, HR policies, CBA negotiations, employee benefits, employment contracts, terminations, settlements, and labour disputes. We represent clients before all labour forums including labour courts, labour appellate tribunals and the High Courts of Pakistan.',
     bullets: [
-      'Labour legislation interpretation',
+      'Labour legislation & HR policies',
       'CBA negotiations',
-      'Employee benefits & compensation',
+      'Employee benefits',
       'Employment contracts',
-      'Termination & settlements',
-      'Plant closings & lay-offs',
-      'Employment insurance, protection & welfare',
-      'Labour management systems',
-      'Collective bargaining agreements',
+      'Terminations & settlements',
+      'Labour disputes',
     ],
     keys: [
       { name: 'Labour Courts',            detail: 'Trial-level representation' },
@@ -240,19 +189,19 @@ const PRACTICES = [
     id: 'non-profit',
     eyebrow: 'Philanthropy & aid',
     title: 'Non-Profit',
-    body: 'Lawyers of the Chambers have extensively advised both local and foreign philanthropists at a national, international and private level to devise logistically and financially sustainable strategies. We routinely advise on private non-profit ventures — including incorporations and the establishment of trusts, societies and companies for objects as diverse as education, female empowerment, sustainable community development, child labour, tourism and infrastructure development. The Chambers has also been prominently involved in national initiatives on social-sector reform and in the representation of international and governmental aid agencies with respect to their administrative and project-related activities in Pakistan.',
+    body: 'We assist philanthropists, NGOs, and donor agencies with incorporations, trusts, societies, compliance, project structuring, and regulatory matters. Our lawyers are involved in national-level social sector reform initiatives such as education, female empowerment, sustainable community development, child labour, tourism and infrastructure development.',
     bullets: [
-      'Trusts, societies & non-profit companies',
-      'Education & female empowerment ventures',
+      'Incorporations, trusts & societies',
+      'NGO & donor agency advisory',
+      'Compliance & regulatory matters',
+      'Project structuring',
+      'Education & female empowerment',
       'Sustainable community development',
-      'Child labour & social-sector projects',
-      'Tourism & infrastructure development',
       'Social-sector reform initiatives',
-      'Representation of international & governmental aid agencies',
     ],
     keys: [
-      { name: 'Aid agencies',          detail: 'International & governmental' },
-      { name: 'Social-sector reform',  detail: 'Legislative, financial & administrative review' },
+      { name: 'NGOs & donor agencies', detail: 'Incorporation, compliance & structuring' },
+      { name: 'Social-sector reform',  detail: 'National-level initiatives' },
     ],
     Illo: SquareCascade,
   },
@@ -260,19 +209,18 @@ const PRACTICES = [
     id: 'cross-border',
     eyebrow: 'International',
     title: 'UAE & Cross-Border Practice',
-    body: 'In addition to our Pakistan-based practice, LawShaoor Chambers provides legal support on UAE-related matters through its association with M.B. KEMP (ME) LLP. Our combined team advises on corporate and commercial transactions, banking and finance, regulatory compliance, mergers and acquisitions, restructuring, DIFC and ADGM matters, and cross-border disputes. With experienced lawyers based in Abu Dhabi and Dubai, we are able to assist clients with both onshore and free-zone legal requirements, ensuring coordinated and efficient representation across jurisdictions.',
+    body: 'Through our strategic partnership with M.B. KEMP (ME) LLP, we advise on both onshore and free-zone legal requirements, UAE corporate and commercial matters, banking and finance, M&A, restructuring, DIFC/ADGM regulations, and cross-border disputes.',
     bullets: [
-      'Corporate & commercial transactions',
+      'Onshore & free-zone legal requirements',
+      'UAE corporate & commercial matters',
       'Banking & finance',
-      'Regulatory compliance',
       'Mergers & acquisitions',
       'Restructuring',
-      'DIFC & ADGM matters',
+      'DIFC & ADGM regulations',
       'Cross-border disputes',
-      'Onshore & free-zone legal requirements',
     ],
     keys: [
-      { name: 'M.B. KEMP (ME) LLP', detail: 'Associated firm — Hong Kong · London · Milan · Abu Dhabi' },
+      { name: 'M.B. KEMP (ME) LLP', detail: 'Strategic partner firm — Hong Kong · London · Milan · Abu Dhabi' },
       { name: 'DIFC',               detail: 'Dubai International Financial Centre' },
       { name: 'ADGM',               detail: 'Abu Dhabi Global Market' },
     ],
@@ -280,9 +228,17 @@ const PRACTICES = [
   },
 ] as const
 
+/** Protect abbreviations whose internal periods are NOT sentence boundaries
+ *  (e.g. the partner firm "M.B. KEMP (ME) LLP") before naive sentence splitting. */
+const FIRM = 'M.B. KEMP (ME) LLP'
+const FIRM_TOKEN = '__FIRM__'
+const protectFirm = (s: string) => s.split(FIRM).join(FIRM_TOKEN)
+const restoreFirm = (s: string) => s.split(FIRM_TOKEN).join(FIRM)
+
 /** Short one-line summary (first sentence, truncated on a word boundary). */
 function summarize(body: string, max = 150): string {
-  const first = (body.match(/^[^.]+\./) ?? [body])[0].trim()
+  const b = protectFirm(body)
+  const first = restoreFirm((b.match(/^[^.]+\./) ?? [b])[0]).trim()
   if (first.length <= max) return first
   const cut = first.slice(0, max)
   return cut.slice(0, cut.lastIndexOf(' ')).trim() + '…'
@@ -290,7 +246,8 @@ function summarize(body: string, max = 150): string {
 
 /** Split a long body string into shorter, easier-to-read paragraphs. */
 function toParagraphs(body: string): string[] {
-  const sentences = body.match(/[^.]+\./g) ?? [body]
+  const b = protectFirm(body)
+  const sentences = (b.match(/[^.]+\./g) ?? [b]).map(restoreFirm)
   const out: string[] = []
   for (let i = 0; i < sentences.length; i += 2) {
     out.push(sentences.slice(i, i + 2).join(' ').trim())
