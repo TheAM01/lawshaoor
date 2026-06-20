@@ -36,7 +36,11 @@
       "Bash(perl -0777 -ne 'while\\(/\\\\x00/g\\){ printf \"null byte at offset %d\\\\n\", pos\\(\\)-1 }' app/practice-areas/page.tsx)",
       "Bash(dd if=app/practice-areas/page.tsx bs=1 skip=10300 count=120)",
       "Bash(perl -i -pe 's/\\\\x00FIRM\\\\x00/__FIRM__/g' app/practice-areas/page.tsx)",
-      "Bash(perl -0777 -ne 'print \\(/\\\\x00/ ? \"STILL HAS NULL\\\\n\" : \"clean\\\\n\"\\)' app/practice-areas/page.tsx)"
+      "Bash(perl -0777 -ne 'print \\(/\\\\x00/ ? \"STILL HAS NULL\\\\n\" : \"clean\\\\n\"\\)' app/practice-areas/page.tsx)",
+      "Bash(node -e ' *)",
+      "Bash(ls app/brand-guide)",
+      "Bash(grep -l \"use client\" components/illustrations/index.tsx)",
+      "Bash(grep -oiE \"The wordmark|Colour|Typography|Graphic elements|Applications|Asset checklist|CMYK|Poppins|85.{0,6}55\" /tmp/bg3.html)"
     ]
   }
 }
