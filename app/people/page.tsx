@@ -17,7 +17,6 @@ import {
 import { getTeam } from '@/lib/server/team'
 import { TeamGrid } from './_components/team-grid'
 
-export const dynamic = 'force-dynamic'
 
 export default async function People() {
   const team = await getTeam()

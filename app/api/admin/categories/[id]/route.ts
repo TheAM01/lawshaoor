@@ -6,6 +6,7 @@ import {
   normalizeCategoryName,
   normalizeCategorySlug,
 } from '@/lib/models/category'
+import { revalidateAcademy } from '@/lib/server/revalidate'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -96,6 +97,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
     )
   }
 
+  revalidateAcademy()
   return NextResponse.json({ ok: true })
 }
 
@@ -122,5 +124,6 @@ export async function DELETE(_req: Request, ctx: Ctx) {
   }
 
   await col.deleteOne({ _id: new ObjectId(id) })
+  revalidateAcademy()
   return NextResponse.json({ ok: true })
 }

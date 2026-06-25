@@ -1,3 +1,4 @@
+import { cache } from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -11,8 +12,6 @@ import { Rule } from '@/components/motion/rule'
 import { Marquee } from '@/components/motion/marquee'
 import {
   CirclesInCircumference,
-  HexagonalCascade,
-  TesseractCube,
   StackedCubes,
   OrbitRings,
   GridDots,
@@ -27,8 +26,6 @@ import type { PostDoc } from '@/lib/models/post'
 import { getAllCategories, buildIllustrationKeyMap } from '@/lib/server/categories'
 import { getIllustration } from '@/components/illustrations/registry'
 import { ShareButtons } from '@/components/share-buttons'
-
-export const dynamic = 'force-dynamic'
 
 /* ──────────────────────────────────────────────
    Data
@@ -45,7 +42,9 @@ type RelatedPost = {
   readMinutes: number
 }
 
-async function getPostBySlug(slug: string): Promise<PostDoc | null> {
+/** Wrapped in React cache() so `generateMetadata` and the page body share a
+ *  single Mongo round-trip per render instead of fetching the post twice. */
+const getPostBySlug = cache(async (slug: string): Promise<PostDoc | null> => {
   try {
     const col = await postsCollection()
     const doc = await col.findOne({ slug, status: 'published' })
@@ -53,7 +52,7 @@ async function getPostBySlug(slug: string): Promise<PostDoc | null> {
   } catch {
     return null
   }
-}
+})
 
 async function getRelated(current: PostDoc, limit = 3): Promise<RelatedPost[]> {
   try {
@@ -105,6 +104,21 @@ function formatDate(d: Date) {
 
 function formatMonth(d: Date) {
   return d.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })
+}
+
+/** Prerender published posts at build, and opt this route into the Full Route
+ *  Cache so new/edited slugs render once on-demand then serve cached until an
+ *  admin mutation calls revalidatePath('/lawshaoor-academy'). */
+export async function generateStaticParams() {
+  try {
+    const col = await postsCollection()
+    const docs = await col
+      .find({ status: 'published' }, { projection: { slug: 1 } })
+      .toArray()
+    return docs.map((d) => ({ slug: String((d as { slug: string }).slug) }))
+  } catch {
+    return []
+  }
 }
 
 export async function generateMetadata({

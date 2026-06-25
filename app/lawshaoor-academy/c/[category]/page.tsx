@@ -18,7 +18,6 @@ import { getAllCategories, getCategoryBySlug } from '@/lib/server/categories'
 import { getIllustration } from '@/components/illustrations/registry'
 import type { PostDoc } from '@/lib/models/post'
 
-export const dynamic = 'force-dynamic'
 
 type CategoryPost = {
   _id: string
@@ -61,6 +60,13 @@ function formatDate(d: Date) {
 
 function formatMonth(d: Date) {
   return d.toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
+}
+
+/** Prerender known categories and opt the route into the Full Route Cache;
+ *  invalidated on-demand via revalidatePath('/lawshaoor-academy'). */
+export async function generateStaticParams() {
+  const categories = await getAllCategories()
+  return categories.map((c) => ({ category: c.slug }))
 }
 
 export async function generateMetadata({

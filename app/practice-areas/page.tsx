@@ -6,7 +6,6 @@ import { Footer } from '@/components/footer'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
-import { Rule } from '@/components/motion/rule'
 import { SectionNav } from '@/components/section-nav'
 import { PanelImage } from '@/components/panel-image'
 

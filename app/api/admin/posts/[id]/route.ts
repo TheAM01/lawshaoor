@@ -6,6 +6,7 @@ import {
   PostInputSchema,
   toSlug,
 } from '@/lib/models/post'
+import { revalidateAcademy } from '@/lib/server/revalidate'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -90,6 +91,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
     throw err
   }
 
+  revalidateAcademy()
   return NextResponse.json({ ok: true })
 }
 
@@ -103,5 +105,6 @@ export async function DELETE(_req: Request, ctx: Ctx) {
   if (result.deletedCount === 0) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 })
   }
+  revalidateAcademy()
   return NextResponse.json({ ok: true })
 }

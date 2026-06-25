@@ -11,7 +11,6 @@ import { SectionNav } from '@/components/section-nav'
 import {
   CirclesInCircumference,
   HexagonalCascade,
-  TesseractCube,
   StackedCubes,
   OrbitRings,
   GridDots,
@@ -28,8 +27,6 @@ import { getSiteSettings } from '@/lib/server/settings'
 import { getAllCategories, buildIllustrationKeyMap } from '@/lib/server/categories'
 import { getIllustration } from '@/components/illustrations/registry'
 import type { CategoryListItem } from '@/lib/models/category'
-
-export const dynamic = 'force-dynamic'
 
 /* ──────────────────────────────────────────────
    Data

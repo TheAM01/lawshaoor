@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { ObjectId } from 'mongodb'
 import { z } from 'zod'
 import { categoriesCollection, postsCollection } from '@/lib/mongo'
+import { revalidateAcademy } from '@/lib/server/revalidate'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -82,6 +83,7 @@ export async function POST(req: Request, ctx: Ctx) {
     deleted = true
   }
 
+  revalidateAcademy()
   return NextResponse.json({
     ok: true,
     movedPostCount: result.modifiedCount,

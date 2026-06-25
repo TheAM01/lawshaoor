@@ -6,6 +6,7 @@ import {
   toTeamListItem,
   type TeamMemberDoc,
 } from '@/lib/models/team'
+import { revalidatePeople } from '@/lib/server/revalidate'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -46,6 +47,7 @@ export async function POST(req: Request) {
       createdAt: now,
       updatedAt: now,
     } as never)
+    revalidatePeople()
     return NextResponse.json({ id: String(result.insertedId), slug })
   } catch (err) {
     const code = (err as { code?: number })?.code

@@ -12,7 +12,6 @@ import { HexagonalCascade, OrbitRings, SquareCascade } from '@/components/illust
 import { PanelImage } from '@/components/panel-image'
 import { getSiteSettings } from '@/lib/server/settings'
 
-export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Seminars & Training — LawShaoor Academy',

@@ -6,6 +6,7 @@ import {
   SETTINGS_KEY,
   type SiteSettings,
 } from '@/lib/models/settings'
+import { revalidateSiteWide } from '@/lib/server/revalidate'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -44,5 +45,6 @@ export async function PATCH(req: Request) {
     { upsert: true }
   )
 
+  revalidateSiteWide()
   return NextResponse.json({ ok: true })
 }

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { ObjectId } from 'mongodb'
 import { teamCollection } from '@/lib/mongo'
 import { TeamMemberInputSchema, normalizeTeamSlug } from '@/lib/models/team'
+import { revalidatePeople } from '@/lib/server/revalidate'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -64,6 +65,7 @@ export async function PATCH(req: Request, ctx: Ctx) {
     throw err
   }
 
+  revalidatePeople()
   return NextResponse.json({ ok: true })
 }
 
@@ -77,5 +79,6 @@ export async function DELETE(_req: Request, ctx: Ctx) {
   if (res.deletedCount === 0) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 })
   }
+  revalidatePeople()
   return NextResponse.json({ ok: true })
 }

@@ -12,7 +12,6 @@ import { OrbitRings, HexagonalCascade } from '@/components/illustrations'
 import { getIllustration } from '@/components/illustrations/registry'
 import { getTeam, getTeamMember } from '@/lib/server/team'
 
-export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
   const team = await getTeam()

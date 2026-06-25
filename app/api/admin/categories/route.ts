@@ -7,6 +7,7 @@ import {
   toCategoryListItem,
   type CategoryDoc,
 } from '@/lib/models/category'
+import { revalidateAcademy } from '@/lib/server/revalidate'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -73,6 +74,7 @@ export async function POST(req: Request) {
       createdAt: now,
       updatedAt: now,
     } as never)
+    revalidateAcademy()
     return NextResponse.json({ id: String(result.insertedId), slug })
   } catch (err) {
     const code = (err as { code?: number })?.code
