@@ -108,17 +108,14 @@ export function Navbar() {
       }`}
     >
       <div className="section-pad max-w-[1560px] mx-auto flex items-center justify-between h-[68px] md:h-20">
-        {/* Logo — icon + serif wordmark */}
-        <Link href="/" className="inline-flex items-center gap-3 group" aria-label="LawShaoor Chambers — home">
+        {/* Logo — horizontal wordmark lockup */}
+        <Link href="/" className="inline-flex items-center group" aria-label="LawShaoor Chambers — home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/lawshaoor-icon.png"
-            alt=""
-            className="h-10 md:h-12 w-auto transition-opacity group-hover:opacity-80 dark:brightness-0 dark:invert"
+            src="/ls-logo-min.png"
+            alt="LawShaoor Chambers"
+            className="h-9 md:h-11 w-auto transition-opacity group-hover:opacity-80"
           />
-          <span className="hidden sm:inline font-display text-[1.35rem] md:text-2xl font-semibold tracking-[-0.01em] text-primary leading-none">
-            LawShaoor
-          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">

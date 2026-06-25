@@ -41,9 +41,9 @@ export const metadata: Metadata = {
   },
   generator: 'v0.app',
   icons: {
-    icon: [{ url: '/lawshaoor-icon.png', type: 'image/png' }],
-    shortcut: '/lawshaoor-icon.png',
-    apple: '/lawshaoor-icon.png',
+    icon: [{ url: '/ls-logo-1x1.png', type: 'image/png' }],
+    shortcut: '/ls-logo-1x1.png',
+    apple: '/ls-logo-1x1.png',
   },
 }
 

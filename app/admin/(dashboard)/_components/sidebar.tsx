@@ -74,18 +74,15 @@ export function Sidebar({ user }: { user: string }) {
   return (
     <aside className="w-60 shrink-0 border-r border-foreground/15 bg-background-alt flex flex-col">
       <div className="p-6 border-b border-foreground/15">
-        <Link href="/" className="flex items-center gap-2.5 group" title="Back to public site">
+        <Link href="/" className="flex items-center group" title="Back to public site">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/lawshaoor-icon.png"
-            alt=""
-            className="w-7 h-7 object-contain shrink-0 transition-transform group-hover:scale-[1.04]"
+            src="/ls-logo-min.png"
+            alt="LawShaoor Chambers"
+            className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03]"
           />
-          <span className="font-display text-xl tracking-[-0.02em] text-foreground group-hover:text-primary transition-colors">
-            LawShaoor<span className="text-primary">.</span>
-          </span>
         </Link>
-        <p className="text-[10px] text-foreground/55 mt-1.5 font-mono tracking-[0.32em] uppercase pl-[38px]">
+        <p className="text-[10px] text-foreground/55 mt-2 font-mono tracking-[0.32em] uppercase">
           Admin
         </p>
       </div>
