@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation'
 import { MapPin, Mail, Linkedin } from 'lucide-react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
@@ -46,8 +45,6 @@ export default async function PersonPage({ params }: { params: Promise<{ slug: s
       <section className="relative section-pad pt-32 md:pt-40 pb-16 md:pb-20 bg-fixed-mist overflow-hidden">
         <span aria-hidden className="hero-orb accent-breathe top-[6%] -right-[14%] hidden md:block" />
         <div className="max-w-[1560px] mx-auto relative">
-          <Breadcrumbs items={[{ label: 'Team', href: '/people' }, { label: name }]} className="mb-10" />
-
           <div className="grid grid-cols-12 gap-6 md:gap-10 items-end">
             <div className="col-span-12 md:col-span-8 space-y-5">
               {focus && <p className="eyebrow text-primary">— {focus}</p>}

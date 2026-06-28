@@ -70,7 +70,6 @@ export function FadeIn({
   )
 
   return (
-    // @ts-expect-error dynamic tag
     <Tag ref={ref} className={`fade-in-root ${className}`}>
       {children}
     </Tag>

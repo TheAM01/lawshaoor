@@ -122,21 +122,9 @@ export default async function CategoryPage({
         <GridDots className="absolute right-[18%] bottom-16 w-44 h-44 opacity-45 hidden md:block float-soft" uid="cat-hero-dots" />
 
         <div className="max-w-[1180px] mx-auto relative">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-3 text-xs font-mono tracking-[0.22em] uppercase mb-10 md:mb-14 flex-wrap">
-            <Link href="/lawshaoor-academy" className="text-foreground/55 hover:text-primary transition-colors">
-              ← Academy
-            </Link>
-            <span className="block w-6 h-px bg-foreground/25" />
-            <span className="text-foreground/80">Category</span>
-            <span className="block w-6 h-px bg-foreground/25" />
-            <span className="text-foreground/55">{posts.length} {posts.length === 1 ? 'piece' : 'pieces'}</span>
-          </div>
-
           <div className="grid grid-cols-12 gap-6 items-end">
             <div className="col-span-12 md:col-span-8 space-y-5">
-              <span className="eyebrow text-foreground/55">Category</span>
-              <h1 className="display-xl font-display mt-2">
+              <h1 className="display-xl font-display">
                 <SplitReveal trigger="load">{cat.name}</SplitReveal>
               </h1>
               {cat.description && (
@@ -147,7 +135,7 @@ export default async function CategoryPage({
                 </FadeIn>
               )}
             </div>
-            <div className="col-span-12 md:col-span-4 hidden md:flex justify-end">
+            <div className="col-span-12 md:col-span-4 flex justify-end">
               <FadeIn delay={0.3}>
                 <Illo className="w-56 lg:w-64 opacity-90" uid={`cat-hero-${cat.slug}`} />
               </FadeIn>

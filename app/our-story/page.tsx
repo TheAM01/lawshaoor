@@ -3,12 +3,10 @@
 import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SectionNav } from '@/components/section-nav'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
-import { Marquee } from '@/components/motion/marquee'
 import { PanelImage } from '@/components/panel-image'
 import { Counter } from '@/components/motion/counter'
 import {
@@ -47,9 +45,7 @@ export default function OurStory() {
         <span aria-hidden className="hero-orb top-[8%] -right-[12%] hidden md:block" />
         <div className="max-w-[1560px] mx-auto relative grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-3">
-            <Breadcrumbs items={[{ label: 'The Chambers' }]} className="mb-7" />
-            <span className="eyebrow text-foreground/55">The Chambers</span>
-            <h1 className="display-xl font-display mt-5">
+            <h1 className="display-xl font-display">
               <span className="block"><SplitReveal trigger="load" delay={0.1}>A full-service law</SplitReveal></span>
               <span className="block">
                 <SplitReveal trigger="load" delay={0.3}>chambers in </SplitReveal>
@@ -62,10 +58,6 @@ export default function OurStory() {
                 other major cities of Pakistan — and, in strategic partnership with M.B. KEMP (ME) LLP, reach across the
                 UAE, DIFC and ADGM.
               </p>
-            </FadeIn>
-            <FadeIn delay={0.65} staggerChildren className="mt-8 flex flex-col sm:flex-row gap-3 items-start">
-              <Link href="/people" className="btn-primary"><span>Meet the team</span></Link>
-              <Link href="/practice-areas" className="btn-ghost"><span>Practice areas</span></Link>
             </FadeIn>
           </div>
 
@@ -96,19 +88,6 @@ export default function OurStory() {
           </FadeIn>
         </div>
       </section>
-
-      {/* MARQUEE — practice areas */}
-      <div className="border-y border-foreground/12 bg-background-alt py-5 md:py-6">
-        <Marquee speed={45}>
-          <div className="flex items-center gap-12 pr-12 text-foreground/80 font-display text-xl md:text-2xl whitespace-nowrap">
-            {['Banking', 'Corporate', 'Energy', 'Construction', 'Disputes', 'M&A', 'Government', 'Telecoms', 'Healthcare', 'Labour', 'Non-Profit', 'UAE'].map((w, i) => (
-              <span key={i} className="flex items-center gap-12">
-                {w} <span className="text-primary">✦</span>
-              </span>
-            ))}
-          </div>
-        </Marquee>
-      </div>
 
       <SectionNav sections={SECTIONS} label="The Chambers" />
 

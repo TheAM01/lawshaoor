@@ -2,11 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Loader2, Save, Plus, Trash2, RotateCcw, GripVertical } from 'lucide-react'
-import {
-  DEFAULT_MARQUEE_ITEMS,
-  type SiteSettings,
-} from '@/lib/models/settings'
+import { Loader2, Save } from 'lucide-react'
+import { type SiteSettings } from '@/lib/models/settings'
 import { Section, Field, Input, Select, Toggle } from '../../_components/form-atoms'
 
 type PostOption = { _id: string; title: string; status: string }
@@ -17,7 +14,6 @@ type SiteFormShape = Pick<
   | 'pinnedPostId'
   | 'latestLimit'
   | 'showNewsletter'
-  | 'siteMarqueeItems'
   | 'linkedInUrl'
 >
 
@@ -34,7 +30,6 @@ export function SiteSettingsForm({
     pinnedPostId: initial.pinnedPostId,
     latestLimit: initial.latestLimit,
     showNewsletter: initial.showNewsletter,
-    siteMarqueeItems: initial.siteMarqueeItems,
     linkedInUrl: initial.linkedInUrl,
   })
   const [saving, setSaving] = useState(false)
@@ -54,11 +49,7 @@ export function SiteSettingsForm({
       const res = await fetch('/api/admin/settings', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          // Trim and drop empty marquee items on save.
-          siteMarqueeItems: form.siteMarqueeItems.map((s) => s.trim()).filter(Boolean),
-        }),
+        body: JSON.stringify(form),
       })
       if (!res.ok) {
         const data = (await res.json().catch(() => ({}))) as { error?: string }
@@ -137,16 +128,6 @@ export function SiteSettingsForm({
         </Field>
       </Section>
 
-      <Section title="Home-page marquee">
-        <p className="text-[11px] text-foreground/55 font-heading leading-relaxed">
-          The scrolling strip on the home page, just below the hero. Reorder by editing the list (top item appears first). Empty list falls back to a sensible default.
-        </p>
-        <MarqueeEditor
-          items={form.siteMarqueeItems}
-          onChange={(items) => patch({ siteMarqueeItems: items })}
-        />
-      </Section>
-
       <Section title="Public links">
         <Field
           label="LinkedIn URL"
@@ -173,125 +154,6 @@ export function SiteSettingsForm({
         >
           <span>{saving ? 'Saving…' : 'Save site settings'}</span>
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-        </button>
-      </div>
-    </div>
-  )
-}
-
-/* ────────────────────────────────────────────────
-   Marquee item editor — list of strings with
-   add / remove / reorder by typing.
-   ──────────────────────────────────────────────── */
-
-function MarqueeEditor({
-  items,
-  onChange,
-}: {
-  items: string[]
-  onChange: (items: string[]) => void
-}) {
-  function update(idx: number, value: string) {
-    const next = [...items]
-    next[idx] = value
-    onChange(next)
-  }
-
-  function remove(idx: number) {
-    onChange(items.filter((_, i) => i !== idx))
-  }
-
-  function add() {
-    onChange([...items, ''])
-  }
-
-  function move(idx: number, dir: -1 | 1) {
-    const j = idx + dir
-    if (j < 0 || j >= items.length) return
-    const next = [...items]
-    ;[next[idx], next[j]] = [next[j], next[idx]]
-    onChange(next)
-  }
-
-  function loadDefaults() {
-    if (
-      items.length > 0 &&
-      !confirm('Replace your current marquee items with the defaults?')
-    ) {
-      return
-    }
-    onChange([...DEFAULT_MARQUEE_ITEMS])
-  }
-
-  return (
-    <div className="space-y-2">
-      {items.length === 0 && (
-        <div className="border border-dashed border-foreground/20 p-4 text-center">
-          <p className="text-sm text-foreground/60 font-heading">
-            No marquee items configured. The home page is showing the default list.
-          </p>
-        </div>
-      )}
-
-      {items.map((item, i) => (
-        <div key={i} className="flex items-center gap-2">
-          <div className="flex flex-col">
-            <button
-              type="button"
-              onClick={() => move(i, -1)}
-              disabled={i === 0}
-              className="text-foreground/40 hover:text-foreground disabled:opacity-20 disabled:pointer-events-none text-xs"
-              title="Move up"
-            >
-              ▲
-            </button>
-            <button
-              type="button"
-              onClick={() => move(i, 1)}
-              disabled={i === items.length - 1}
-              className="text-foreground/40 hover:text-foreground disabled:opacity-20 disabled:pointer-events-none text-xs"
-              title="Move down"
-            >
-              ▼
-            </button>
-          </div>
-          <GripVertical className="w-4 h-4 text-foreground/30" />
-          <span className="text-[10px] font-mono text-foreground/45 tabular-fig w-6 text-center">
-            {String(i + 1).padStart(2, '0')}
-          </span>
-          <Input
-            value={item}
-            onChange={(e) => update(i, e.target.value)}
-            placeholder="e.g. Cross-Border"
-            maxLength={80}
-          />
-          <button
-            type="button"
-            onClick={() => remove(i)}
-            className="p-2 text-foreground/55 hover:text-destructive transition-colors"
-            title="Remove"
-          >
-            <Trash2 className="w-4 h-4" />
-          </button>
-        </div>
-      ))}
-
-      <div className="flex items-center justify-between gap-3 pt-3 border-t border-foreground/10">
-        <button
-          type="button"
-          onClick={loadDefaults}
-          className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.18em] uppercase text-foreground/60 hover:text-primary transition-colors"
-        >
-          <RotateCcw className="w-3.5 h-3.5" />
-          Load defaults
-        </button>
-        <button
-          type="button"
-          onClick={add}
-          className="btn-ghost"
-        >
-          <span>Add item</span>
-          <Plus className="w-4 h-4" />
         </button>
       </div>
     </div>

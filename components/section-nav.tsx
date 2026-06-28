@@ -41,8 +41,8 @@ export function SectionNav({ sections, label }: { sections: Section[]; label?: s
   }, [])
 
   return (
-    <div className="sticky top-[68px] md:top-20 z-40 bg-background/92 backdrop-blur-md border-y border-foreground/12">
-      <div className="section-pad max-w-[1560px] mx-auto flex items-center gap-3 h-12 overflow-x-auto scrollbar-fine">
+    <div className="sticky top-[60px] md:top-[68px] z-40 bg-background/92 backdrop-blur-md border-y border-foreground/12">
+      <div className="section-pad max-w-[1560px] mx-auto flex items-center gap-2.5 h-9 overflow-x-auto scrollbar-fine">
         {label && (
           <span className="eyebrow text-foreground/45 whitespace-nowrap pr-3 mr-1 border-r border-foreground/12 hidden md:inline">
             {label}
@@ -55,7 +55,7 @@ export function SectionNav({ sections, label }: { sections: Section[]; label?: s
               key={s.id}
               type="button"
               onClick={() => go(s.id)}
-              className={`relative whitespace-nowrap font-heading text-[11.5px] tracking-[0.06em] uppercase py-1.5 transition-colors ${
+              className={`relative whitespace-nowrap font-heading text-[11.5px] tracking-[0.06em] uppercase py-1 transition-colors ${
                 isActive ? 'text-primary' : 'text-foreground/55 hover:text-foreground/90'
               }`}
             >

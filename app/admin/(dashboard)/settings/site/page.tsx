@@ -52,7 +52,7 @@ export default async function SiteSettingsPage() {
           What visitors see
         </h1>
         <p className="text-sm text-foreground/65 font-heading mt-2 max-w-2xl">
-          Featured post, Academy display rules, the home-page marquee strip, and the LinkedIn link in the floating side banner. Changes go live immediately — no rebuild needed.
+          Featured post, Academy display rules, and the LinkedIn link in the floating side banner. Changes go live immediately — no rebuild needed.
         </p>
       </div>
 

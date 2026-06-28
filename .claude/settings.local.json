@@ -40,7 +40,12 @@
       "Bash(node -e ' *)",
       "Bash(ls app/brand-guide)",
       "Bash(grep -l \"use client\" components/illustrations/index.tsx)",
-      "Bash(grep -oiE \"The wordmark|Colour|Typography|Graphic elements|Applications|Asset checklist|CMYK|Poppins|85.{0,6}55\" /tmp/bg3.html)"
+      "Bash(grep -oiE \"The wordmark|Colour|Typography|Graphic elements|Applications|Asset checklist|CMYK|Poppins|85.{0,6}55\" /tmp/bg3.html)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(npx eslint *)",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('eslintConfig:', JSON.stringify\\(p.eslintConfig\\)||'none'\\); console.log\\('devDeps eslint:', p.devDependencies&&p.devDependencies.eslint\\)\")",
+      "Bash(grep -iE \"\\\\.\\(png|svg|webp|jpg|jpeg\\)$\")"
     ]
   }
 }

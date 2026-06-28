@@ -258,13 +258,6 @@
 /* Grain texture removed — clean paper feel (no textures/patterns) */
 .grain::before { content: none; }
 
-/* Marquee */
-.marquee-track {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-}
-
 /* Section frame — generous, comfortable side padding */
 .section-pad {
   padding-inline: clamp(1.5rem, 5vw, 6rem);

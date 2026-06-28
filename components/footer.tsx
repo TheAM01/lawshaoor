@@ -3,8 +3,6 @@
 import Link from 'next/link'
 import { Linkedin, Instagram, Mail } from 'lucide-react'
 import { Rule } from '@/components/motion/rule'
-import { SplitReveal } from '@/components/motion/split-reveal'
-import { Marquee } from '@/components/motion/marquee'
 
 /* Firm socials — update the hrefs with the real handles. */
 const SOCIALS = [
@@ -24,44 +22,25 @@ function SubstackIcon({ className }: { className?: string }) {
 
 export function Footer() {
   return (
-    <footer className="relative pt-24 md:pt-32 pb-10 bg-background-deep text-foreground border-t border-foreground/15 overflow-hidden">
-      {/* Massive wordmark marquee */}
-      <Marquee speed={45} className="mb-6 md:mb-8">
-        <div className="flex items-center gap-12 pr-12">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <span
-              key={i}
-              className="font-display text-[16vw] md:text-[12vw] leading-none tracking-[-0.04em] text-foreground/15 whitespace-nowrap"
-            >
-              LAWSHAOOR ✦
-            </span>
-          ))}
-        </div>
-      </Marquee>
-
-      {/* Tagline under wordmark */}
-      <div className="section-pad max-w-[1560px] mx-auto mb-20 md:mb-28 flex items-center gap-4 md:gap-6">
-        <span className="block h-px flex-1 bg-foreground/15" />
-        <span className="font-mono text-[10px] md:text-xs tracking-[0.42em] uppercase text-foreground/70 whitespace-nowrap">
-          Law<span className="text-gold">.</span> Strategy<span className="text-gold">.</span> Future<span className="text-gold">.</span>
-        </span>
-        <span className="block h-px flex-1 bg-foreground/15" />
-      </div>
-
+    <footer className="relative pt-12 md:pt-16 pb-10 bg-background-deep text-foreground border-t border-foreground/15 overflow-hidden">
       <div className="section-pad max-w-[1560px] mx-auto">
         <Rule className="mb-14" />
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-20">
           <div className="md:col-span-5 space-y-6">
-            <span className="eyebrow text-foreground/65">— Get in touch</span>
-            <h3 className="display-sm font-display">
-              <SplitReveal>Let&apos;s discuss your matter.</SplitReveal>
-            </h3>
-            <Link href="/contact" className="btn-primary mt-2">
-              <span>Get in Touch</span>
-            </Link>
+            <div className="space-y-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/ls-logo-min.png"
+                alt="LawShaoor Chambers"
+                className="h-12 md:h-14 w-auto"
+              />
+              <p className="font-mono text-[10px] md:text-xs tracking-[0.32em] uppercase text-foreground/65">
+                Law<span className="text-gold">.</span> Strategy<span className="text-gold">.</span> Future<span className="text-gold">.</span>
+              </p>
+            </div>
 
-            <div className="pt-4 flex items-center gap-3">
+            <div className="pt-2 flex items-center gap-3">
               {SOCIALS.map(({ label, href, Icon }) => (
                 <a
                   key={label}

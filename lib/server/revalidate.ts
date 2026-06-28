@@ -20,7 +20,7 @@ export function revalidatePeople() {
   revalidatePath('/people', 'layout')
 }
 
-/** Site settings surface everywhere (home, footer marquee, Academy header). */
+/** Site settings surface everywhere (home, footer, Academy header). */
 export function revalidateSiteWide() {
   revalidatePath('/', 'layout')
 }

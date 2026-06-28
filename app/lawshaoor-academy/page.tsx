@@ -1,10 +1,8 @@
 import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
-import { Marquee } from '@/components/motion/marquee'
 import { Rule } from '@/components/motion/rule'
 import { Counter } from '@/components/motion/counter'
 import { SectionNav } from '@/components/section-nav'
@@ -176,15 +174,6 @@ export default async function Academy() {
         <CirclesInCircumference className="absolute left-[42%] -bottom-12 w-36 h-36 opacity-55 hidden lg:block float-soft" uid="ac-hero-circ" />
 
         <div className="max-w-[1560px] mx-auto relative">
-          <Breadcrumbs items={[{ label: 'Academy' }]} className="mb-8" />
-          <div className="flex items-end justify-between gap-6 mb-10 md:mb-14 flex-wrap">
-            <span className="eyebrow text-foreground/55">Academy</span>
-            <div className="hidden md:flex gap-6 text-foreground/55">
-              <span className="eyebrow-sm">Long-form · Corporate law</span>
-              <span className="eyebrow-sm">Updated weekly</span>
-            </div>
-          </div>
-
           <h1 className="display-xl font-display">
             <span className="block">
               <SplitReveal trigger="load" delay={0.1}>The LawShaoor</SplitReveal>
@@ -201,14 +190,8 @@ export default async function Academy() {
                   Long-form notes, deal teardowns, and practical guides on corporate law. Written by the partners doing the work — for operators, founders, GCs, and the curious.
                 </p>
               </FadeIn>
-              <FadeIn delay={0.2} className="mt-8 flex flex-wrap gap-3">
-                <Link href="#latest" className="btn-primary">
-                  <span>Read the latest</span>                </Link>
-                <Link href="#archive" className="btn-ghost">
-                  <span>Browse archive</span>                </Link>
-              </FadeIn>
             </div>
-            <div className="col-span-12 md:col-span-4 md:col-start-9 hidden md:block">
+            <div className="col-span-12 md:col-span-4 md:col-start-9">
               <FadeIn delay={0.3}>
                 <CirclesInCircumference className="w-full max-w-xs ml-auto opacity-90" uid="ac-hero-big" />
               </FadeIn>
@@ -230,21 +213,6 @@ export default async function Academy() {
           </div>
         </div>
       </section>
-
-      {/* ────────────────────────────────────────
-          01c · CATEGORY MARQUEE
-          ──────────────────────────────────────── */}
-      <div className="border-b border-foreground/15 bg-background py-5 md:py-6 overflow-hidden">
-        <Marquee speed={40}>
-          <div className="flex items-center gap-12 pr-12 text-foreground/85 font-display text-xl md:text-2xl whitespace-nowrap tracking-[0.02em]">
-            {['Mergers', 'Governance', 'Contracts', 'Capital', 'Sector Notes', 'Opinion', 'Cross-Border', 'Restructuring', 'Diligence', 'Boards', 'Earnouts', 'Drafting'].map((w, i) => (
-              <span key={i} className="flex items-center gap-12">
-                {w} <span className="text-primary">✦</span>
-              </span>
-            ))}
-          </div>
-        </Marquee>
-      </div>
 
       <SectionNav
         sections={[

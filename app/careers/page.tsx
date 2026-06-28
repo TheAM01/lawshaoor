@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { Breadcrumbs } from '@/components/breadcrumbs'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
@@ -45,9 +44,7 @@ export default function Careers() {
         <span aria-hidden className="hero-orb top-[10%] -right-[12%] hidden md:block" />
         <div className="max-w-[1560px] mx-auto relative grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-3">
-            <Breadcrumbs items={[{ label: 'Careers' }]} className="mb-7" />
-            <span className="eyebrow text-foreground/55">Join us</span>
-            <h1 className="display-xl font-display mt-5">
+            <h1 className="display-xl font-display">
               <span className="block"><SplitReveal trigger="load" delay={0.1}>Build a career</SplitReveal></span>
               <span className="block text-primary"><SplitReveal trigger="load" delay={0.3}>that actually moves.</SplitReveal></span>
             </h1>
@@ -58,7 +55,7 @@ export default function Careers() {
               </p>
             </FadeIn>
           </div>
-          <FadeIn delay={0.4} className="lg:col-span-2 hidden lg:block">
+          <FadeIn delay={0.4} className="lg:col-span-2">
             <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden flex items-center justify-center">
               <PanelImage seed="careers" />
               <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />

@@ -55,7 +55,7 @@ export function PinnedWords({ words, className = '' }: Props) {
   return (
     <div ref={wrap} className={className}>
       <div ref={panel} className="h-screen flex items-center justify-start section-pad">
-        <div className="relative w-full max-w-[1440px] mx-auto">
+        <div className="relative w-full max-w-360 mx-auto">
           <div className="eyebrow text-foreground/60 mb-12">— Our Philosophy</div>
           <div className="relative h-[40vh] md:h-[50vh]">
             {words.map((w, i) => (

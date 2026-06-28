@@ -82,6 +82,13 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Lock body scroll while the mobile drawer is open so the drawer (not the
+  // page behind it) scrolls, and the user can reach the bottom of the menu.
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [open])
+
   const isDark = mounted && (theme === 'dark' || resolvedTheme === 'dark')
 
   // Resolve a leaf/group's display label, applying admin overrides.
@@ -107,15 +114,40 @@ export function Navbar() {
           : 'bg-background/70 backdrop-blur-sm border-b border-transparent'
       }`}
     >
-      <div className="section-pad max-w-[1560px] mx-auto flex items-center justify-between h-[68px] md:h-20">
-        {/* Logo — horizontal wordmark lockup */}
-        <Link href="/" className="inline-flex items-center group" aria-label="LawShaoor Chambers — home">
+      <div
+        className={`section-pad max-w-[1560px] mx-auto flex items-center justify-between transition-[height] duration-300 ${
+          scrolled || open ? 'h-[60px] md:h-[68px]' : 'h-[84px] md:h-24'
+        }`}
+      >
+        {/* Logo — wordmark + tagline lockup. The tagline is absolutely
+            positioned so it can SLIDE (transform) between its two spots rather
+            than snapping when flex-direction would otherwise flip: centered
+            below the logo at the top of the page, beside it once scrolled. The
+            span matches the logo's height and flex-centers its text, so the
+            side-by-side vertical alignment stays metric-proof.
+            Tweakables: translate-y-[..] = how far below it sits at the top;
+            md:ml-[..] = the side gap when beside the logo. */}
+        <Link
+          href="/"
+          className="relative inline-flex items-center group"
+          aria-label="LawShaoor Chambers — home"
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/ls-logo-min.png"
             alt="LawShaoor Chambers"
-            className="h-9 md:h-11 w-auto transition-opacity group-hover:opacity-80"
+            className=" h-9 md:h-11 w-auto mr-2 transition-opacity group-hover:opacity-80"
           />
+          <span
+            aria-hidden
+            className={`pointer-events-none absolute top-0 h-9 md:h-11 flex items-center leading-none whitespace-nowrap font-mono text-[9px] md:text-[10px] tracking-[0.28em] uppercase text-foreground/55 transition-all duration-300 ${
+              scrolled
+                ? 'left-1/2 -translate-x-1/2 translate-y-[28px] opacity-0 md:left-full md:ml-2 md:translate-x-0 md:translate-y-0 md:opacity-100'
+                : 'left-1/2 -translate-x-1/2 translate-y-[28px] md:translate-y-[34px] opacity-100'
+            }`}
+          >
+            Law<span className="text-gold">.</span> Strategy<span className="text-gold">.</span> Future<span className="text-gold">.</span>
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -191,12 +223,12 @@ export function Navbar() {
             type="button"
             onClick={() => setTheme(isDark ? 'light' : 'dark')}
             aria-label="Toggle theme"
-            className="hidden md:inline-flex items-center justify-center w-10 h-10 border border-foreground/25 hover:border-primary hover:text-primary hover:bg-primary/8 transition-colors"
+            className="hidden md:inline-flex items-center justify-center w-9 h-9 border border-foreground/25 hover:border-primary hover:text-primary hover:bg-primary/8 transition-colors"
           >
-            {mounted && (isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />)}
+            {mounted && (isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />)}
           </button>
 
-          <Link href="/contact" className="hidden md:inline-flex btn-primary !py-2.5 !px-5 !text-[0.8rem]">
+          <Link href="/contact" className="hidden md:inline-flex btn-primary !h-9 !py-0 !px-4 !text-[0.78rem]">
             <span>{label('contact', 'Contact')}</span>
           </Link>
 
@@ -204,18 +236,21 @@ export function Navbar() {
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
-            className="lg:hidden inline-flex items-center justify-center w-10 h-10 border border-foreground/25 hover:border-primary hover:text-primary transition-colors"
+            className="lg:hidden inline-flex items-center justify-center w-9 h-9 border border-foreground/25 hover:border-primary hover:text-primary transition-colors"
           >
             {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — caps at the viewport height and scrolls internally so
+          tall menus stay reachable on phones (body scroll is locked while open). */}
       <div
-        className={`lg:hidden overflow-hidden transition-[max-height] duration-500 ease-out ${
-          open ? 'max-h-[760px] border-b border-foreground/12' : 'max-h-0'
-        } bg-background`}
+        className={`lg:hidden transition-[max-height] duration-500 ease-out bg-background ${
+          open
+            ? 'max-h-[calc(100dvh-60px)] overflow-y-auto overscroll-contain border-b border-foreground/12'
+            : 'max-h-0 overflow-hidden'
+        }`}
       >
         <nav className="section-pad py-7 flex flex-col gap-5">
           {NAV.map((item) =>
@@ -269,7 +304,7 @@ export function Navbar() {
               </Link>
             )
           )}
-          <Link href="/contact" onClick={() => setOpen(false)} className="btn-primary mt-4 self-start">
+          <Link href="/contact" onClick={() => setOpen(false)} className="btn-primary mt-4 self-start ">
             <span>{label('contact', 'Contact')}</span>
           </Link>
           <button

@@ -9,7 +9,6 @@ import { Footer } from '@/components/footer'
 import { FadeIn } from '@/components/motion/fade-in'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { Rule } from '@/components/motion/rule'
-import { Marquee } from '@/components/motion/marquee'
 import {
   CirclesInCircumference,
   StackedCubes,
@@ -380,27 +379,6 @@ export default async function PostPage({
           </div>
         </div>
       </section>
-
-      {/* ────────────────────────────────────────
-          04 · INLINE MARQUEE BREAK
-          ──────────────────────────────────────── */}
-      <div className="border-y border-foreground/15 bg-background-alt py-5 md:py-6 overflow-hidden">
-        <Marquee speed={36}>
-          <div className="flex items-center gap-12 pr-12 text-foreground/80 font-display text-xl md:text-2xl whitespace-nowrap tracking-[0.02em]">
-            {[
-              'More from the Academy',
-              'Long-form corporate law',
-              'Senior partners only',
-              'Written slowly · edited honestly',
-              'Read what you cite',
-            ].map((w, i) => (
-              <span key={i} className="flex items-center gap-12">
-                {w} <span className="text-primary">✦</span>
-              </span>
-            ))}
-          </div>
-        </Marquee>
-      </div>
 
       {/* ────────────────────────────────────────
           05 · CONTINUE READING (related)

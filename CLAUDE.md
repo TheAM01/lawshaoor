@@ -31,7 +31,7 @@ Marketing site + blog (the "Academy") + admin CMS for "LawShaoor" (a fictional c
 - **MongoDB** via the native `mongodb` driver (no Mongoose). Connection cached in `globalThis._mongoClientPromise` to survive HMR / serverless invocations.
 - **iron-session** for the single-admin session cookie. Not NextAuth.
 - **BlockNote** (`@blocknote/core`, `react`, `mantine`, `server-util`) — Notion-style block editor on top of Tiptap + ProseMirror. Server-side rendering via `@blocknote/server-util` → HTML for the public Academy posts.
-- **GSAP + @gsap/react** for motion (`SplitReveal`, `FadeIn`, `Counter`, `Marquee`, `PinnedWords`, `Rule` in `components/motion/`).
+- **GSAP + @gsap/react** for motion (`SplitReveal`, `FadeIn`, `Counter`, `PinnedWords`, `Rule` in `components/motion/`).
 - **ImgBB** as the image host. The editor's image block and the thumbnail/OG picker both POST through `/api/admin/upload`.
 
 ### Three layers of the app

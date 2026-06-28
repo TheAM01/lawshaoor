@@ -64,7 +64,6 @@ export function SplitReveal({
   )
 
   return (
-    // @ts-expect-error dynamic tag
     <Tag ref={ref} className={className}>
       {children}
     </Tag>
