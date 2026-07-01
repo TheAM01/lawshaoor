@@ -4,7 +4,9 @@ import { Breadcrumbs } from '@/components/breadcrumbs'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
 
-export type LegalSection = { heading: string; body: string[] }
+/** A block is either a paragraph (string) or a bulleted list ({ list: [...] }). */
+export type LegalBlock = string | { list: string[] }
+export type LegalSection = { heading: string; body: LegalBlock[] }
 
 /**
  * Shared shell for static legal pages (Privacy, Disclaimer, Terms…).
@@ -42,9 +44,20 @@ export function LegalPage({
             {sections.map((s, i) => (
               <FadeIn key={s.heading} delay={i * 0.04} className="space-y-4">
                 <h2 className="font-display text-2xl md:text-3xl tracking-[-0.02em]">{s.heading}</h2>
-                {s.body.map((p, j) => (
-                  <p key={j} className="font-heading text-base md:text-lg text-foreground/80 leading-relaxed">{p}</p>
-                ))}
+                {s.body.map((block, j) =>
+                  typeof block === 'string' ? (
+                    <p key={j} className="font-heading text-base md:text-lg text-foreground/80 leading-relaxed">{block}</p>
+                  ) : (
+                    <ul key={j} className="space-y-2.5 pl-1">
+                      {block.list.map((item, k) => (
+                        <li key={k} className="flex gap-3 font-heading text-base md:text-lg text-foreground/80 leading-relaxed">
+                          <span aria-hidden className="mt-[0.7em] h-1 w-1 shrink-0 bg-gold" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ),
+                )}
               </FadeIn>
             ))}
           </div>
