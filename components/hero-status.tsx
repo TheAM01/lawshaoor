@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react'
 import { FadeIn } from '@/components/motion/fade-in'
 
 const STRENGTHS = [
-  { desc: 'Technology & Digital',       stage: 'Core' },
-  { desc: 'Fintech & Banking',          stage: 'Core' },
-  { desc: 'Corporate & Investment',     stage: 'Core' },
-  { desc: 'Energy & Natural Resources', stage: 'Core' },
-  { desc: 'Disputes & White-Collar',    stage: 'Core' },
+  'Technology & Digital',
+  'Fintech & Banking',
+  'Corporate & Investment',
+  'Energy & Natural Resources',
+  'Disputes & White-Collar',
 ]
 
 function useClock(tz: string) {
@@ -42,11 +42,10 @@ export function HeroStatus() {
       <div className="h-px bg-foreground/30 mb-3" />
 
       <ul className="space-y-2.5 mb-4">
-        {STRENGTHS.map((m) => (
-          <li key={m.desc} className="grid grid-cols-12 gap-2 items-center">
-            <span aria-hidden className="col-span-1 block w-3 h-px bg-primary" />
-            <span className="col-span-8 text-xs text-foreground/85 leading-tight">{m.desc}</span>
-            <span className="col-span-3 text-right eyebrow text-foreground/55">{m.stage}</span>
+        {STRENGTHS.map((desc) => (
+          <li key={desc} className="flex gap-3 items-center">
+            <span aria-hidden className="block w-3 h-px bg-primary shrink-0" />
+            <span className="text-xs text-foreground/85 leading-tight">{desc}</span>
           </li>
         ))}
       </ul>

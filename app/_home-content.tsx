@@ -61,7 +61,7 @@ export function HomeContent() {
               <CirclesInCircumference className="absolute right-5 top-5 w-20 h-20 opacity-80" uid="hero-c1" />
               <VectorNode className="absolute left-5 bottom-5 w-24 h-24 opacity-70" uid="hero-vn" />
               <div className="absolute left-6 bottom-6 right-6">
-                <span className="eyebrow text-foreground/50">In association with</span>
+                <span className="eyebrow text-foreground/50">International partner</span>
                 <p className="font-display text-xl font-semibold mt-1 text-foreground/85">M.B. KEMP (ME) LLP</p>
               </div>
             </div>
@@ -135,8 +135,8 @@ export function HomeContent() {
             <div className="lg:col-span-2">
               <FadeIn>
                 <p className="text-foreground/70 leading-relaxed">
-                  Our lawyers possess transactional, regulatory and contentious capability, together with a
-                  combined experience of 50 years. This enables us to see the full legal picture.
+                  Our lawyers possess transactional, regulatory and contentious capability. This enables us to
+                  see the full legal picture.
                 </p>
               </FadeIn>
             </div>
@@ -211,10 +211,9 @@ export function HomeContent() {
             <div className="lg:col-span-2">
               <FadeIn>
                 <p className="text-foreground/70 leading-relaxed">
-                  Through our strategic partnership with M.B. KEMP (ME) LLP, an international law firm with offices
-                  in Abu Dhabi, Dubai, London, Milan and Hong Kong, we support clients operating between Pakistan and
-                  the GCC, with a particular focus on the UAE and Saudi Arabia. One legal strategy across the relevant
-                  jurisdictions, rather than disconnected advice from separate teams.
+                  An international law firm with offices across the Gulf, Europe and Asia. Together, we support
+                  clients operating between Pakistan and the GCC with a unified legal strategy, rather than
+                  disconnected advice from separate teams.
                 </p>
               </FadeIn>
             </div>
@@ -222,14 +221,13 @@ export function HomeContent() {
 
           <FadeIn staggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0 mb-12">
             {[
-              { j: 'Pakistan',     d: 'Home practice — technology, fintech, corporate, energy, regulatory & disputes.' },
+              { j: 'Pakistan',     d: 'Islamabad headquarters, with associated offices in other major cities.' },
               { j: 'UAE',          d: 'Free-zone & onshore arrangements across the Emirates.' },
-              { j: 'DIFC',         d: 'Dubai International Financial Centre — common-law framework.' },
-              { j: 'ADGM',         d: 'Abu Dhabi Global Market — international financial centre.' },
+              { j: 'DIFC',         d: 'Dubai International Financial Centre structures.' },
+              { j: 'ADGM',         d: 'Abu Dhabi Global Market structures.' },
               { j: 'Saudi Arabia', d: 'Market entry, investment & regulatory coordination.' },
             ].map((x) => (
               <div key={x.j} className="az-card">
-                <span className="eyebrow text-primary">Capability</span>
                 <h3 className="font-display text-2xl md:text-3xl">{x.j}</h3>
                 <p className="text-sm text-foreground/65 leading-snug">{x.d}</p>
               </div>
@@ -237,22 +235,20 @@ export function HomeContent() {
           </FadeIn>
 
           <div className="flex items-center gap-4 mb-10">
-            <span className="eyebrow text-foreground/55 whitespace-nowrap">M.B. KEMP offices</span>
+            <span className="eyebrow text-foreground/55 whitespace-nowrap">Offices</span>
             <Rule className="rule-heavy flex-1" />
           </div>
 
           <FadeIn staggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0">
             {[
-              { city: 'Abu Dhabi', region: 'UAE · GCC' },
-              { city: 'Dubai',     region: 'UAE · GCC' },
-              { city: 'London',    region: 'United Kingdom' },
-              { city: 'Milan',     region: 'Europe' },
-              { city: 'Hong Kong', region: 'East Asia' },
-            ].map((c) => (
-              <div key={c.city} className="az-card">
-                <span className="eyebrow text-foreground/50">M.B. KEMP office</span>
-                <h3 className="font-display text-2xl md:text-3xl">{c.city}</h3>
-                <p className="text-sm text-foreground/60 tracking-[0.12em] uppercase mt-1">{c.region}</p>
+              'Abu Dhabi',
+              'Dubai',
+              'London',
+              'Milan',
+              'Hong Kong',
+            ].map((city) => (
+              <div key={city} className="az-card">
+                <h3 className="font-display text-2xl md:text-3xl">{city}</h3>
               </div>
             ))}
           </FadeIn>
