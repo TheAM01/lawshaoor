@@ -12,18 +12,16 @@ type NavItem = NavLeaf | NavGroup
 
 /** Curated practice-area dropdown. Anchors match the ids on /practice-areas. */
 const PRACTICE_AREAS: NavLeaf[] = [
-  { key: 'pa-banking',      href: '/practice-areas#banking-finance',         label: 'Banking & Finance' },
-  { key: 'pa-corporate',    href: '/practice-areas#corporate-commercial',    label: 'Corporate & Commercial' },
-  { key: 'pa-energy',       href: '/practice-areas#energy-natural-resources', label: 'Energy & Natural Resources' },
-  { key: 'pa-disputes',     href: '/practice-areas#dispute-resolution',      label: 'Dispute Resolution & Arbitration' },
-  { key: 'pa-ma',           href: '/practice-areas#mergers-acquisitions',    label: 'Mergers & Acquisitions' },
-  { key: 'pa-construction', href: '/practice-areas#construction-operation',  label: 'Construction & Operation' },
-  { key: 'pa-government',   href: '/practice-areas#government-sector',        label: 'Government Sector' },
-  { key: 'pa-telecom',      href: '/practice-areas#telecom-it',              label: 'Telecommunication & IT' },
-  { key: 'pa-healthcare',   href: '/practice-areas#healthcare-pharma',       label: 'Healthcare & Pharmaceuticals' },
-  { key: 'pa-labour',       href: '/practice-areas#labour-employment',       label: 'Labour & Employment' },
-  { key: 'pa-nonprofit',    href: '/practice-areas#non-profit',              label: 'Non-Profit' },
-  { key: 'pa-crossborder',  href: '/practice-areas#cross-border',            label: 'UAE & Cross-Border Practice' },
+  { key: 'pa-technology',   href: '/practice-areas#technology',             label: 'Technology & Digital Frontiers' },
+  { key: 'pa-banking',      href: '/practice-areas#banking-finance',        label: 'Fintech, Banking & Financial Regulation' },
+  { key: 'pa-corporate',    href: '/practice-areas#corporate-commercial',   label: 'Corporate Transactions & Investment' },
+  { key: 'pa-ip',           href: '/practice-areas#ip-data',                label: 'IP, Data & Brand Protection' },
+  { key: 'pa-disputes',     href: '/practice-areas#dispute-resolution',     label: 'Disputes, Arbitration & White-Collar' },
+  { key: 'pa-labour',       href: '/practice-areas#labour-employment',      label: 'Employment & HR Structuring' },
+  { key: 'pa-government',   href: '/practice-areas#government-sector',      label: 'Government Relations & Public Policy' },
+  { key: 'pa-healthcare',   href: '/practice-areas#healthcare-pharma',      label: 'Healthcare & Pharmaceuticals' },
+  { key: 'pa-nonprofit',    href: '/practice-areas#non-profit',             label: 'Non-Profit, Trusts & Development' },
+  { key: 'pa-crossborder',  href: '/practice-areas#cross-border',           label: 'Pakistan–GCC & Cross-Border' },
 ]
 
 /** Default nav with stable keys. Labels here are the fallback when no admin

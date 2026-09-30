@@ -1,9 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { useRef } from 'react'
-import { useGSAP } from '@gsap/react'
-import { gsap } from '@/components/motion/gsap-init'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { SectionNav } from '@/components/section-nav'
@@ -22,39 +19,12 @@ import {
 const SECTIONS = [
   { id: 'chambers',    label: 'The Chambers' },
   { id: 'capability',  label: 'Capability' },
+  { id: 'difference',  label: 'Difference' },
   { id: 'partnership', label: 'Partnership' },
   { id: 'contact',     label: 'Contact' },
 ]
 
 export function HomeContent() {
-  const wordSwapRef = useRef<HTMLSpanElement>(null)
-
-  useGSAP(() => {
-    if (!wordSwapRef.current) return
-    const words = ['business.', 'banking.', 'energy.', 'disputes.', 'cross-border.']
-    const node = wordSwapRef.current
-    const HOLD = 1.8
-    const FADE = 0.6
-    const INTRO_WAIT = 2
-
-    gsap.set(node, { opacity: 0 })
-
-    const tl = gsap.timeline({
-      repeat: -1,
-      defaults: { duration: FADE, ease: 'power2.inOut' },
-    })
-
-    tl.to(node, { opacity: 0, duration: INTRO_WAIT })
-    tl.to(node, { opacity: 1 })
-
-    for (let i = 0; i < words.length; i++) {
-      const next = words[(i + 1) % words.length]
-      tl.to(node, { opacity: 0 }, `+=${HOLD}`)
-        .set(node, { textContent: next })
-        .to(node, { opacity: 1 })
-    }
-  })
-
   return (
     <main className="relative overflow-x-clip">
       <Navbar />
@@ -69,21 +39,15 @@ export function HomeContent() {
           {/* LEFT — 60% */}
           <div className="lg:col-span-3">
             <h1 className="display-hero font-display">
-              <span className="block"><SplitReveal trigger="load" delay={0.1}>Practical law,</SplitReveal></span>
-              <span className="block">
-                <SplitReveal trigger="load" delay={0.28}>for </SplitReveal>
-                <span
-                  ref={wordSwapRef}
-                  className="text-primary underline decoration-2 underline-offset-[6px] decoration-primary/45"
-                >business.</span>
-              </span>
+              <span className="block"><SplitReveal trigger="load" delay={0.1}>The law firm for</SplitReveal></span>
+              <span className="block text-primary"><SplitReveal trigger="load" delay={0.28}>Pakistan’s next economy.</SplitReveal></span>
             </h1>
 
             <FadeIn delay={0.7}>
               <p className="mt-7 md:mt-9 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
-                LawShaoor Chambers is a full-service law firm based in Islamabad, with associated offices
-                across Pakistan. Working in strategic partnership with M.B. KEMP (ME) LLP supporting clients
-                across the UAE, DIFC, ADGM and other international jurisdictions.
+                We are a specialist Pakistani law firm advising ambitious businesses, financial institutions,
+                investors, technology companies and senior decision-makers operating at the intersection of law,
+                commerce and regulation.
               </p>
             </FadeIn>
           </div>
@@ -118,15 +82,26 @@ export function HomeContent() {
               <span className="eyebrow text-foreground/55">The Chambers</span>
               <FadeIn>
                 <p className="font-display text-[1.6rem] md:text-[2rem] leading-snug text-foreground max-w-2xl">
-                  LawShaoor Chambers is a full-service law chambers based in Islamabad — and, in strategic
-                  partnership with M.B. KEMP (ME) LLP, working across the UAE, DIFC and ADGM.
+                  Legal advice cannot remain confined to legal theory or standard documentation.
+                  LawShaoor Chambers is built for precisely that environment.
                 </p>
               </FadeIn>
-              <FadeIn>
-                <p className="text-foreground/70 leading-relaxed max-w-xl">
-                  We provide clear, practical and reliable legal services that meet the commercial needs of our
-                  clients — simplifying complex issues into solutions that are both legally sound and commercially
-                  workable.
+              <FadeIn className="space-y-5 text-foreground/70 leading-relaxed max-w-xl">
+                <p>
+                  Pakistan’s business environment is entering a more complex and consequential era. Technology is
+                  transforming financial services, capital is moving across borders, artificial intelligence is
+                  reshaping business models, digital platforms are changing how people work, transact and consume
+                  services — and regulators are imposing greater scrutiny on businesses operating in financial,
+                  technological and other sensitive sectors.
+                </p>
+                <p>
+                  Businesses need counsel that understands the commercial objective, the regulatory architecture,
+                  the technology, the people involved and the consequences of getting the legal structure wrong.
+                </p>
+                <p>
+                  Our work is concentrated in sectors where legal complexity is greatest and the cost of imprecision
+                  is highest. We help clients launch, structure, finance, regulate, protect, defend and scale their
+                  businesses with greater confidence.
                 </p>
               </FadeIn>
               <FadeIn staggerChildren className="flex flex-col sm:flex-row gap-3 items-start pt-1">
@@ -160,9 +135,8 @@ export function HomeContent() {
             <div className="lg:col-span-2">
               <FadeIn>
                 <p className="text-foreground/70 leading-relaxed">
-                  A dedicated team handling civil, commercial, corporate, regulatory, and dispute resolution
-                  matters — for local and foreign companies, financial institutions, non-profit organizations,
-                  and individual clients.
+                  Our lawyers possess transactional, regulatory and contentious capability, together with a
+                  combined experience of 50 years. This enables us to see the full legal picture.
                 </p>
               </FadeIn>
             </div>
@@ -172,10 +146,10 @@ export function HomeContent() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0">
             {[
-              { v: 12, suffix: '', label: 'Practice areas' },
+              { v: 10, suffix: '', label: 'Practice areas' },
               { v: 6, suffix: '', label: 'Lawyers on the bench' },
               { v: 4, suffix: '', label: 'Partner firms' },
-              { v: 13, suffix: '+ yrs', label: 'Founder experience' },
+              { v: 50, suffix: '+ yrs', label: 'Combined experience' },
             ].map((s, i) => (
               <FadeIn key={i} delay={i * 0.08} className="relative px-5 md:px-8 first:pl-0 border-l border-foreground/15 first:border-l-0">
                 <span aria-hidden className="block w-6 h-px bg-primary mb-3" />
@@ -185,6 +159,38 @@ export function HomeContent() {
                 <p className="eyebrow text-foreground/55 mt-3">{s.label}</p>
               </FadeIn>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────
+          THE LAWSHAOOR DIFFERENCE
+          ──────────────────────────────────────────── */}
+      <section id="difference" className="section-pad py-24 md:py-32 border-t border-foreground/12 bg-background scroll-mt-32">
+        <div className="max-w-[1560px] mx-auto grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
+          <div className="lg:col-span-2 space-y-4">
+            <span className="eyebrow text-foreground/55">The LawShaoor difference</span>
+            <h2 className="display-md font-display">
+              <SplitReveal>Legal judgment,</SplitReveal>{' '}
+              <span className="text-primary"><SplitReveal>connected to commercial reality.</SplitReveal></span>
+            </h2>
+          </div>
+          <div className="lg:col-span-3 space-y-7">
+            <FadeIn className="space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">
+              <p>
+                We offer the focus of a boutique, the reach of an international relationship and the resilience of
+                a disputes practice.
+              </p>
+              <p>
+                Our ambition is not to be the largest firm in Pakistan. It is to be the firm clients call when the
+                matter is strategically important, legally difficult and commercially consequential.
+              </p>
+            </FadeIn>
+            <FadeIn staggerChildren className="flex flex-col sm:flex-row gap-3 items-start">
+              <Link href="/our-story" className="btn-ghost">
+                <span>Why LawShaoor</span>
+              </Link>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -205,20 +211,22 @@ export function HomeContent() {
             <div className="lg:col-span-2">
               <FadeIn>
                 <p className="text-foreground/70 leading-relaxed">
-                  Through our strategic partnership with M.B. KEMP (ME) LLP, we support clients on matters involving the
-                  UAE, DIFC, ADGM and other international jurisdictions — drawing on a global team recognized for
-                  corporate, banking and finance, restructuring, and international arbitration.
+                  Through our strategic partnership with M.B. KEMP (ME) LLP, an international law firm with offices
+                  in Abu Dhabi, Dubai, London, Milan and Hong Kong, we support clients operating between Pakistan and
+                  the GCC, with a particular focus on the UAE and Saudi Arabia. One legal strategy across the relevant
+                  jurisdictions, rather than disconnected advice from separate teams.
                 </p>
               </FadeIn>
             </div>
           </div>
 
-          <FadeIn staggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 mb-12">
+          <FadeIn staggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0 mb-12">
             {[
-              { j: 'Pakistan', d: 'Full-service home practice — corporate, banking, energy, regulatory & disputes.' },
-              { j: 'UAE',      d: 'Onshore & free-zone matters across the Emirates.' },
-              { j: 'DIFC',     d: 'Dubai International Financial Centre — common-law framework.' },
-              { j: 'ADGM',     d: 'Abu Dhabi Global Market — international financial centre.' },
+              { j: 'Pakistan',     d: 'Home practice — technology, fintech, corporate, energy, regulatory & disputes.' },
+              { j: 'UAE',          d: 'Free-zone & onshore arrangements across the Emirates.' },
+              { j: 'DIFC',         d: 'Dubai International Financial Centre — common-law framework.' },
+              { j: 'ADGM',         d: 'Abu Dhabi Global Market — international financial centre.' },
+              { j: 'Saudi Arabia', d: 'Market entry, investment & regulatory coordination.' },
             ].map((x) => (
               <div key={x.j} className="az-card">
                 <span className="eyebrow text-primary">Capability</span>
@@ -233,12 +241,13 @@ export function HomeContent() {
             <Rule className="rule-heavy flex-1" />
           </div>
 
-          <FadeIn staggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
+          <FadeIn staggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0">
             {[
-              { city: 'Hong Kong', region: 'East Asia' },
+              { city: 'Abu Dhabi', region: 'UAE · GCC' },
+              { city: 'Dubai',     region: 'UAE · GCC' },
               { city: 'London',    region: 'United Kingdom' },
               { city: 'Milan',     region: 'Europe' },
-              { city: 'Abu Dhabi', region: 'UAE · GCC' },
+              { city: 'Hong Kong', region: 'East Asia' },
             ].map((c) => (
               <div key={c.city} className="az-card">
                 <span className="eyebrow text-foreground/50">M.B. KEMP office</span>

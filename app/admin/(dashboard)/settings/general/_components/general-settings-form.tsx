@@ -90,7 +90,7 @@ export function GeneralSettingsForm({ initial }: { initial: SiteSettings }) {
             rows={3}
             value={form.metaDescription}
             onChange={(e) => patch({ metaDescription: e.target.value })}
-            placeholder="A full-service law chambers based in Islamabad…"
+            placeholder="A specialist law firm based in Islamabad…"
           />
         </Field>
       </Section>

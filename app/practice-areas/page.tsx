@@ -10,15 +10,15 @@ import { PanelImage } from '@/components/panel-image'
 
 const PA_SECTIONS = [
   { id: 'technology',           label: 'Technology' },
+  { id: 'banking-finance',      label: 'Fintech & Banking' },
   { id: 'corporate-commercial', label: 'Corporate' },
-  { id: 'banking-finance',      label: 'Banking & Finance' },
+  { id: 'ip-data',              label: 'IP & Data' },
   { id: 'dispute-resolution',   label: 'Disputes' },
-  { id: 'mergers-acquisitions', label: 'M&A' },
-  { id: 'government-sector',     label: 'Government' },
+  { id: 'labour-employment',    label: 'Employment' },
+  { id: 'government-sector',    label: 'Government' },
   { id: 'healthcare-pharma',    label: 'Healthcare' },
-  { id: 'labour-employment',    label: 'Labour' },
   { id: 'non-profit',           label: 'Non-Profit' },
-  { id: 'cross-border',         label: 'Cross-Border' },
+  { id: 'cross-border',         label: 'Pakistan–GCC' },
 ]
 import {
   CirclesInCircumference,
@@ -31,20 +31,39 @@ import {
   VectorNode,
 } from '@/components/illustrations'
 
-const PRACTICES = [
+type Practice = {
+  id: string
+  eyebrow: string
+  title: string
+  /** One-line positioning line under the title. Optional. */
+  tagline?: string
+  paragraphs: string[]
+  bullets: string[]
+  keys: { name: string; detail: string }[]
+  Illo: typeof VectorNode
+}
+
+const PRACTICES: Practice[] = [
   {
     id: 'technology',
     eyebrow: 'Technology & TMT',
-    title: 'Technology',
-    body: 'We get tech and the law around it. We advise technology companies, digital platforms, telecom operators, and software businesses on regulatory compliance, data governance, cross-border technology transactions, encryption, and IT sector licensing. Our team has hands-on experience with Pakistan’s evolving tech and telecom landscape.',
+    title: 'Technology & Digital Frontiers',
+    tagline: 'Legal architecture for businesses building what comes next.',
+    paragraphs: [
+      'Technology businesses move quickly, while the legal framework around them continues to evolve. We advise software companies, digital platforms, technology investors, fintech ventures and emerging businesses on the legal structures required to build, launch and scale.',
+      'Our work covers digital platforms, SaaS and cloud services, artificial intelligence, machine learning, virtual and immersive environments, blockchain, digital assets, API integrations, technology procurement, software development, licensing and platform terms.',
+      'We advise clients from the design stage, helping them incorporate legal and regulatory considerations into their products, data processes, customer journeys and commercial arrangements. Our approach is based on compliance by design: identifying legal risk early and building practical safeguards into the business model.',
+      'We also advise on AI governance, training data, intellectual property in AI-generated outputs, algorithmic accountability, automated decision-making, confidentiality, procurement and the responsible deployment of AI tools.',
+    ],
     bullets: [
-      'Technology companies & digital platforms',
-      'Telecom operators & software businesses',
-      'Regulatory compliance',
-      'Data governance',
-      'Cross-border technology transactions',
-      'Encryption',
-      'IT sector licensing',
+      'Digital platforms, SaaS & cloud services',
+      'Artificial intelligence & machine learning',
+      'Virtual & immersive environments',
+      'Blockchain & digital assets',
+      'API integrations & technology procurement',
+      'Software development, licensing & platform terms',
+      'AI governance & responsible deployment',
+      'Compliance by design',
     ],
     keys: [
       { name: 'IT & telecom licensing',             detail: 'Sector authorisations & compliance' },
@@ -53,18 +72,51 @@ const PRACTICES = [
     Illo: VectorNode,
   },
   {
+    id: 'banking-finance',
+    eyebrow: 'Regulated finance',
+    title: 'Fintech, Banking and Financial Regulation',
+    tagline: 'Making regulated innovation workable.',
+    paragraphs: [
+      'Financial services are becoming increasingly digital, interconnected and technology-dependent. We advise banks, financial institutions, NBFCs, fintech businesses, payment providers and technology companies operating in or around the financial sector.',
+      'Our work includes digital banking, payment services, electronic money, digital wallets, embedded finance, fintech licensing, payment interoperability, API arrangements, cloud outsourcing, virtual assets and emerging digital financial models. We also advise on AML/CFT frameworks, financial product documentation, syndicated lending, Islamic finance, security documentation, financial institution governance, regulatory investigations and enforcement.',
+      'We help clients navigate Pakistan’s financial regulatory environment while preserving the commercial viability of their products and operating models.',
+    ],
+    bullets: [
+      'Digital banking & payment services',
+      'Electronic money, digital wallets & embedded finance',
+      'Fintech licensing & payment interoperability',
+      'Cloud outsourcing & virtual assets',
+      'AML/CFT frameworks',
+      'Syndicated lending & Islamic finance',
+      'Security & financial product documentation',
+      'Regulatory investigations & enforcement',
+    ],
+    keys: [
+      { name: 'SBP',                        detail: 'State Bank of Pakistan' },
+      { name: 'Banking Courts & Tribunals', detail: 'Recovery and foreclosure proceedings' },
+    ],
+    Illo: StackedCubes,
+  },
+  {
     id: 'corporate-commercial',
     eyebrow: 'Corporate practice',
-    title: 'Corporate & Commercial',
-    body: 'We assist clients with incorporation of companies, dissolutions, corporate governance, mergers and acquisitions, Islamic modes of investment, licensing, corporate organization, exchange and repatriation controls, tax, and risk insurance — and liaison with concerned regulatory bodies such as the Securities & Exchange Commission of Pakistan, the State Bank of Pakistan, the Federal Board of Revenue, and the Competition Commission of Pakistan.',
+    title: 'Corporate Transactions, Investment and Commercial Growth',
+    tagline: 'Structuring ambition before it becomes exposure.',
+    paragraphs: [
+      'We support businesses throughout their corporate and commercial lifecycle, from initial structuring and investment through to expansion, restructuring and exit.',
+      'Our practice covers corporate structuring, shareholder arrangements, joint ventures, strategic alliances, mergers and acquisitions, foreign investment, technology transactions, due diligence, corporate governance, restructuring and commercial contracting. We prepare and negotiate share purchase agreements, shareholders’ agreements, term sheets, investment documents, vendor and procurement contracts, distribution arrangements and other strategic commercial agreements.',
+      'We also advise founders, investors and growing businesses on SAFEs (Simple Agreements for Future Equity), convertible investment structures and ESOPs (Employee Stock Ownership Plans), helping align investment, ownership and employee incentives with the company’s long-term growth strategy.',
+      'For businesses without a fully developed in-house legal function, we provide practical day-to-day support, including contract review, negotiation, legal triage, corporate records, regulatory correspondence and executive-level advice.',
+    ],
     bullets: [
-      'Incorporation & dissolutions',
-      'Corporate governance',
+      'Corporate structuring & shareholder arrangements',
+      'Joint ventures & strategic alliances',
       'Mergers & acquisitions',
-      'Islamic modes of investment',
-      'Licensing & corporate organization',
-      'Exchange & repatriation controls',
-      'Tax & risk insurance',
+      'Foreign investment & due diligence',
+      'Corporate governance & restructuring',
+      'SAFEs, convertibles & ESOPs',
+      'Commercial contracting',
+      'Outsourced in-house legal support',
     ],
     keys: [
       { name: 'SECP', detail: 'Securities & Exchange Commission of Pakistan' },
@@ -75,35 +127,46 @@ const PRACTICES = [
     Illo: HexagonalCascade,
   },
   {
-    id: 'banking-finance',
-    eyebrow: 'Regulated finance',
-    title: 'Banking & Finance',
-    body: 'We advise commercial banks, financial institutions, and non-banking finance companies (NBFCs) on syndicated financing, Islamic finance, debt restructuring, and security documentation. We also represent clients in recovery suits and foreclosure proceedings before Banking Courts and Tribunals.',
+    id: 'ip-data',
+    eyebrow: 'Intangible assets',
+    title: 'Intellectual Property, Data and Brand Protection',
+    tagline: 'Protecting the assets that make the business valuable.',
+    paragraphs: [
+      'Modern businesses are often built on intangible assets: software, brands, data, algorithms, content and proprietary business models.',
+      'We advise on trademarks, copyrights, patents, software ownership, source-code protection, employee and contractor intellectual property, AI models and outputs, data ownership, technology licensing, IP assignments, research and development arrangements, technology transfer, brand licensing, digital content and platform terms.',
+      'Our advice connects intellectual property with corporate, commercial, employment and data protection considerations. We help clients establish ownership, preserve confidentiality, commercialise their assets and respond to infringement.',
+    ],
     bullets: [
-      'Syndicated financing',
-      'Islamic finance',
-      'Debt restructuring',
-      'Security documentation',
-      'Recovery suits',
-      'Foreclosure proceedings',
+      'Trademarks, copyrights & patents',
+      'Software ownership & source-code protection',
+      'Employee & contractor IP',
+      'AI models & outputs',
+      'Data ownership & protection',
+      'Technology licensing & transfer',
+      'Brand licensing & digital content',
+      'Infringement response',
     ],
-    keys: [
-      { name: 'Banking Courts & Tribunals', detail: 'Recovery and foreclosure proceedings' },
-    ],
-    Illo: StackedCubes,
+    keys: [],
+    Illo: CirclesInCircumference,
   },
   {
     id: 'dispute-resolution',
     eyebrow: 'Contentious work',
-    title: 'Dispute Resolution & Arbitration',
-    body: 'Our litigation team represents clients before the High Courts, District Courts, tribunals, regulators, and arbitration forums. We handle commercial disputes, contractual claims, regulatory proceedings, competition matters, labour disputes, and arbitration under domestic and international rules.',
+    title: 'Dispute Resolution, Arbitration and White-Collar Defence',
+    paragraphs: [
+      'Disputes can disrupt cash flow, delay transactions, damage relationships and expose businesses and executives to regulatory or reputational risk.',
+      'We represent companies, financial institutions, shareholders, executives and individuals in contractual, corporate, banking, regulatory, civil and criminal matters. Our work includes commercial disputes, shareholder claims, recovery proceedings, fraud and misrepresentation, constitutional petitions, injunctions, arbitration, financial crime investigations, white-collar defence, breach of trust allegations and complex multi-party disputes.',
+      'We also advise before proceedings begin, helping clients preserve evidence, manage exposure, improve settlement leverage and develop a clear strategy for resolution or defence.',
+    ],
     bullets: [
-      'Commercial disputes',
-      'Contractual claims',
-      'Regulatory proceedings',
-      'Competition matters',
-      'Labour disputes',
-      'Domestic & international arbitration',
+      'Commercial & shareholder disputes',
+      'Recovery proceedings',
+      'Fraud & misrepresentation',
+      'Constitutional petitions & injunctions',
+      'Arbitration',
+      'Financial crime investigations',
+      'White-collar defence & breach of trust',
+      'Pre-action strategy & evidence preservation',
     ],
     keys: [
       { name: 'High Courts & District Courts', detail: 'Trial and appellate representation' },
@@ -113,34 +176,49 @@ const PRACTICES = [
     Illo: TesseractCube,
   },
   {
-    id: 'mergers-acquisitions',
-    eyebrow: 'M&A',
-    title: 'Mergers & Acquisitions',
-    body: 'We advise on corporate takeovers, share and asset purchases, due diligence, vendor issues, and court-approved schemes of arrangement. Our experience includes major acquisitions in Pakistan and the UAE.',
+    id: 'labour-employment',
+    eyebrow: 'Workforce',
+    title: 'Employment, Workforce and HR Structuring',
+    tagline: 'Workforce structures for businesses that intend to grow.',
+    paragraphs: [
+      'We advise local and international businesses on the legal frameworks required to recruit, manage, incentivise and reorganise their workforce.',
+      'Our work includes executive employment agreements, employment policies, confidentiality and non-disclosure arrangements, intellectual property ownership, restrictive covenants, employee incentives, ESOP-related documentation, workforce restructuring, termination strategy, disciplinary processes, workplace investigations, contractor arrangements and labour disputes.',
+      'Our objective is to help employers make commercially necessary decisions while reducing contractual, procedural and reputational risk.',
+    ],
     bullets: [
-      'Corporate takeovers',
-      'Share & asset purchases',
-      'Due diligence',
-      'Vendor issues',
-      'Court-approved schemes of arrangement',
-      'Major acquisitions in Pakistan & UAE',
+      'Executive employment agreements',
+      'Employment policies & NDAs',
+      'Restrictive covenants & IP ownership',
+      'Employee incentives & ESOPs',
+      'Workforce restructuring & terminations',
+      'Disciplinary processes & investigations',
+      'Contractor arrangements',
+      'Labour disputes',
     ],
     keys: [
-      { name: 'Company & securities law', detail: 'Transactional experience' },
-      { name: 'Competition law',          detail: 'M&A clearance and review' },
+      { name: 'Labour Courts',              detail: 'Trial-level representation' },
+      { name: 'Labour Appellate Tribunals', detail: 'Appellate advocacy' },
+      { name: 'High Courts of Pakistan',    detail: 'Constitutional & statutory review' },
     ],
-    Illo: CirclesInCircumference,
+    Illo: GridDots,
   },
   {
     id: 'government-sector',
-    eyebrow: 'Public sector liaison',
-    title: 'Government Sector',
-    body: 'The Firm’s substantial experience in negotiation has proved particularly valuable in its interaction with the different departmental levels of the Government of Pakistan, providing additional facilitation and expedition in the procedural administration of applications, renewals, licensing and regulation. Our Islamabad base enables strong liaison with ministries and government bodies.',
+    eyebrow: 'Public sector',
+    title: 'Government Relations, Regulatory Affairs and Public Policy',
+    tagline: 'Helping businesses navigate the institutions that shape their operating environment.',
+    paragraphs: [
+      'From our base in Islamabad, we advise clients on government-facing legal and regulatory matters, including licensing and approvals, regulator and ministry engagement, policy and legislative analysis, public-sector contracting, regulatory correspondence, public-private initiatives, government investigations and strategic policy advocacy.',
+      'We help clients understand institutional processes, present their position effectively and pursue lawful, transparent and commercially informed engagement with public authorities.',
+    ],
     bullets: [
-      'Applications, renewals & licensing',
-      'Procedural administration',
-      'Ministry & government body liaison',
-      'Regulatory facilitation',
+      'Licensing & approvals',
+      'Regulator & ministry engagement',
+      'Policy & legislative analysis',
+      'Public-sector contracting',
+      'Public-private initiatives',
+      'Government investigations',
+      'Strategic policy advocacy',
     ],
     keys: [
       { name: 'Government of Pakistan', detail: 'Ministries & departmental entities' },
@@ -151,12 +229,21 @@ const PRACTICES = [
     id: 'healthcare-pharma',
     eyebrow: 'Life sciences',
     title: 'Healthcare & Pharmaceuticals',
-    body: 'We advise local and foreign clients on licensing, registration, and regulatory matters before the Drug Regulatory Authority of Pakistan. We assist with compliance, interpretation of applicable laws, and advisory work relating to the healthcare and pharmaceutical sectors.',
+    tagline: 'Legal support for sectors where regulation and public interest are inseparable.',
+    paragraphs: [
+      'Healthcare, pharmaceutical and life sciences businesses operate under significant regulatory, ethical and operational pressure.',
+      'We advise healthcare providers, pharmaceutical companies, medical technology businesses and life sciences organisations on business structuring, DRAP and other relevant health-sector regulatory requirements, licensing, product registration, market access, distribution, procurement, medical technology agreements, clinical and research arrangements, pharmaceutical and technology licensing, intellectual property, advertising, patient confidentiality, employment and regulatory investigations.',
+      'Our advice is designed to help clients operate commercially while maintaining appropriate standards of patient welfare, product integrity and regulatory compliance.',
+    ],
     bullets: [
-      'Licensing & registration',
-      'DRAP regulatory matters',
-      'Compliance & interpretation of applicable laws',
-      'Healthcare & pharmaceutical advisory',
+      'DRAP & health-sector regulation',
+      'Licensing & product registration',
+      'Market access, distribution & procurement',
+      'Medical technology agreements',
+      'Clinical & research arrangements',
+      'Pharmaceutical & technology licensing',
+      'Advertising & patient confidentiality',
+      'Regulatory investigations',
     ],
     keys: [
       { name: 'DRAP', detail: 'Drug Regulatory Authority of Pakistan' },
@@ -164,38 +251,21 @@ const PRACTICES = [
     Illo: OrbitRings,
   },
   {
-    id: 'labour-employment',
-    eyebrow: 'Workforce',
-    title: 'Labour & Employment',
-    body: 'We advise on labour legislation, HR policies, CBA negotiations, employee benefits, employment contracts, terminations, settlements, and labour disputes. We represent clients before all labour forums including labour courts, labour appellate tribunals and the High Courts of Pakistan.',
-    bullets: [
-      'Labour legislation & HR policies',
-      'CBA negotiations',
-      'Employee benefits',
-      'Employment contracts',
-      'Terminations & settlements',
-      'Labour disputes',
-    ],
-    keys: [
-      { name: 'Labour Courts',            detail: 'Trial-level representation' },
-      { name: 'Labour Appellate Tribunals', detail: 'Appellate advocacy' },
-      { name: 'High Courts of Pakistan',  detail: 'Constitutional & statutory review' },
-    ],
-    Illo: GridDots,
-  },
-  {
     id: 'non-profit',
     eyebrow: 'Philanthropy & aid',
-    title: 'Non-Profit',
-    body: 'We assist philanthropists, NGOs, and donor agencies with incorporations, trusts, societies, compliance, project structuring, and regulatory matters. Our lawyers are involved in national-level social sector reform initiatives such as education, female empowerment, sustainable community development, child labour, tourism and infrastructure development.',
+    title: 'Non-Profit, Trusts and Development Organisations',
+    paragraphs: [
+      'We advise non-profit organisations, trusts, donor-funded entities and international organisations establishing or operating programmes in Pakistan.',
+      'Our work covers organisational structuring, governance, donor and grant documentation, registrations, international donor operations, employment and consultancy arrangements, local implementation structures and operational compliance.',
+    ],
     bullets: [
-      'Incorporations, trusts & societies',
-      'NGO & donor agency advisory',
-      'Compliance & regulatory matters',
-      'Project structuring',
-      'Education & female empowerment',
-      'Sustainable community development',
-      'Social-sector reform initiatives',
+      'Organisational structuring & governance',
+      'Donor & grant documentation',
+      'Registrations',
+      'International donor operations',
+      'Employment & consultancy arrangements',
+      'Local implementation structures',
+      'Operational compliance',
     ],
     keys: [
       { name: 'NGOs & donor agencies', detail: 'Incorporation, compliance & structuring' },
@@ -206,25 +276,33 @@ const PRACTICES = [
   {
     id: 'cross-border',
     eyebrow: 'International',
-    title: 'UAE & Cross-Border Practice',
-    body: 'Through our strategic partnership with M.B. KEMP (ME) LLP, we advise on both onshore and free-zone legal requirements, UAE corporate and commercial matters, banking and finance, M&A, restructuring, DIFC/ADGM regulations, and cross-border disputes.',
+    title: 'Pakistan–GCC and Cross-Border Business',
+    tagline: 'Coordinated advice across a strategic commercial corridor.',
+    paragraphs: [
+      'Pakistan’s commercial relationships with the Gulf Cooperation Council (GCC) are creating significant opportunities in investment, technology, financial services, trade, remittances, real estate and corporate expansion, particularly in the United Arab Emirates and Saudi Arabia.',
+      'Through our strategic partnership with M.B. KEMP (ME) LLP, an international law firm with offices in Abu Dhabi, Dubai, London, Milan and Hong Kong, we support clients operating between Pakistan and the GCC, with a particular focus on the UAE and Saudi Arabia.',
+      'Our cross-border practice covers investment, corporate establishment and restructuring, inbound and outbound transactions, cross-border payments, remittance corridors, technology transfer, fintech, financial services, DIFC and ADGM structures, UAE free-zone and onshore arrangements, Saudi Arabian market entry, commercial agreements, regulatory coordination and cross-border disputes.',
+      'We aim to provide a unified legal strategy across the relevant jurisdictions, rather than disconnected advice from separate teams. Our clients benefit from coordinated support as they establish operations, structure investments, enter regulated markets and develop commercial relationships across Pakistan, the UAE and Saudi Arabia.',
+    ],
     bullets: [
-      'Onshore & free-zone legal requirements',
-      'UAE corporate & commercial matters',
-      'Banking & finance',
-      'Mergers & acquisitions',
-      'Restructuring',
-      'DIFC & ADGM regulations',
+      'Investment & corporate establishment',
+      'Inbound & outbound transactions',
+      'Cross-border payments & remittance corridors',
+      'Technology transfer, fintech & financial services',
+      'DIFC & ADGM structures',
+      'UAE free-zone & onshore arrangements',
+      'Saudi Arabian market entry',
       'Cross-border disputes',
     ],
     keys: [
-      { name: 'M.B. KEMP (ME) LLP', detail: 'Strategic partner firm — Hong Kong · London · Milan · Abu Dhabi' },
+      { name: 'M.B. KEMP (ME) LLP', detail: 'Strategic partner firm — Abu Dhabi · Dubai · London · Milan · Hong Kong' },
       { name: 'DIFC',               detail: 'Dubai International Financial Centre' },
       { name: 'ADGM',               detail: 'Abu Dhabi Global Market' },
+      { name: 'Saudi Arabia',       detail: 'Market entry & regulatory coordination' },
     ],
     Illo: VectorNode,
   },
-] as const
+]
 
 /** Protect abbreviations whose internal periods are NOT sentence boundaries
  *  (e.g. the partner firm "M.B. KEMP (ME) LLP") before naive sentence splitting. */
@@ -233,24 +311,15 @@ const FIRM_TOKEN = '__FIRM__'
 const protectFirm = (s: string) => s.split(FIRM).join(FIRM_TOKEN)
 const restoreFirm = (s: string) => s.split(FIRM_TOKEN).join(FIRM)
 
-/** Short one-line summary (first sentence, truncated on a word boundary). */
-function summarize(body: string, max = 150): string {
-  const b = protectFirm(body)
+/** Short one-line summary for the index cards: the tagline, else the first
+ *  sentence (truncated on a word boundary). */
+function summarize(p: Practice, max = 150): string {
+  if (p.tagline) return p.tagline
+  const b = protectFirm(p.paragraphs[0] ?? '')
   const first = restoreFirm((b.match(/^[^.]+\./) ?? [b])[0]).trim()
   if (first.length <= max) return first
   const cut = first.slice(0, max)
   return cut.slice(0, cut.lastIndexOf(' ')).trim() + '…'
-}
-
-/** Split a long body string into shorter, easier-to-read paragraphs. */
-function toParagraphs(body: string): string[] {
-  const b = protectFirm(body)
-  const sentences = (b.match(/[^.]+\./g) ?? [b]).map(restoreFirm)
-  const out: string[] = []
-  for (let i = 0; i < sentences.length; i += 2) {
-    out.push(sentences.slice(i, i + 2).join(' ').trim())
-  }
-  return out
 }
 
 export default function PracticeAreas() {
@@ -269,9 +338,9 @@ export default function PracticeAreas() {
             </h1>
             <FadeIn delay={0.5}>
               <p className="mt-7 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
-                Civil, commercial, corporate, regulatory and dispute-resolution matters — across heavily
-                regulated and commercially sensitive sectors. We act for local and foreign companies, financial
-                institutions, non-profit organizations, and individual clients.
+                Our work is concentrated in sectors where legal complexity is greatest and the cost of imprecision
+                is highest. We help clients launch, structure, finance, regulate, protect, defend and scale their
+                businesses with greater confidence.
               </p>
             </FadeIn>
           </div>
@@ -300,7 +369,7 @@ export default function PracticeAreas() {
               <Link key={p.id} href={`#${p.id}`} className="az-card group">
                 <p className="eyebrow text-primary group-hover:text-primary-foreground transition-colors">{p.eyebrow}</p>
                 <h3 className="font-display text-2xl md:text-[1.6rem] leading-tight">{p.title}</h3>
-                <p className="text-sm md:text-base text-foreground/65 leading-relaxed">{summarize(p.body)}</p>
+                <p className="text-sm md:text-base text-foreground/65 leading-relaxed">{summarize(p)}</p>
                 <span className="mt-auto pt-4 inline-flex items-center gap-2 text-sm text-primary group-hover:text-primary-foreground transition-colors">
                   Read <span aria-hidden>→</span>
                 </span>
@@ -327,8 +396,16 @@ export default function PracticeAreas() {
                 </h2>
               </div>
 
+              {p.tagline && (
+                <FadeIn>
+                  <p className="font-display text-xl md:text-2xl leading-snug text-foreground max-w-2xl mb-6">
+                    {p.tagline}
+                  </p>
+                </FadeIn>
+              )}
+
               <FadeIn className="space-y-5 max-w-2xl">
-                {toParagraphs(p.body).map((para, j) => (
+                {p.paragraphs.map((para, j) => (
                   <p key={j} className="text-base md:text-lg leading-relaxed text-foreground/75">
                     {para}
                   </p>

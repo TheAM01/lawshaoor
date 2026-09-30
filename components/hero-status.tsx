@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 import { FadeIn } from '@/components/motion/fade-in'
 
 const STRENGTHS = [
-  { desc: 'Banking & Finance',          stage: 'Core' },
+  { desc: 'Technology & Digital',       stage: 'Core' },
+  { desc: 'Fintech & Banking',          stage: 'Core' },
+  { desc: 'Corporate & Investment',     stage: 'Core' },
   { desc: 'Energy & Natural Resources', stage: 'Core' },
-  { desc: 'Corporate & Commercial',     stage: 'Core' },
-  { desc: 'Dispute Resolution',         stage: 'Core' },
+  { desc: 'Disputes & White-Collar',    stage: 'Core' },
 ]
 
 function useClock(tz: string) {

@@ -263,8 +263,8 @@ function TeamEditor({
 
       <Section title="Identity">
         <Field label="Name"><Input value={draft.name} onChange={(e) => patch({ name: e.target.value })} placeholder="Abdul Manan" /></Field>
-        <Field label="Designation / title"><Input value={draft.title} onChange={(e) => patch({ title: e.target.value })} placeholder="Founder, LawShaoor Chambers" /></Field>
-        <Field label="Focus" help="Short practice summary shown above the name on the profile."><Input value={draft.focus} onChange={(e) => patch({ focus: e.target.value })} placeholder="Corporate · Commercial · Energy" /></Field>
+        <Field label="Designation / title"><Input value={draft.title} onChange={(e) => patch({ title: e.target.value })} placeholder="Founder and Lead Partner" /></Field>
+        <Field label="Focus" help="Short practice summary shown above the name on the profile."><Input value={draft.focus} onChange={(e) => patch({ focus: e.target.value })} placeholder="Technology · Fintech · Banking" /></Field>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="Location"><Input value={draft.location} onChange={(e) => patch({ location: e.target.value })} placeholder="Islamabad, Pakistan" /></Field>
           <Field label="Email"><Input value={draft.email} onChange={(e) => patch({ email: e.target.value })} placeholder="name@lawshaoor.com" /></Field>

@@ -13,6 +13,7 @@
  * inserted, regardless of RESEED.
  */
 
+import dns from 'node:dns'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { MongoClient } from 'mongodb'
@@ -37,6 +38,10 @@ function loadEnv(file: string) {
 }
 loadEnv('.env.local')
 loadEnv('.env')
+
+// Node's resolver can't use an IPv6 link-local DNS server (common on Windows
+// routers), which breaks `mongodb+srv://` lookups. Use public resolvers.
+dns.setServers(['1.1.1.1', '8.8.8.8'])
 
 // ─── Main ──────────────────────────────────────────────────────
 async function main() {

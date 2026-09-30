@@ -24,18 +24,17 @@ import {
 } from '@/components/illustrations'
 
 const PRACTICE_OPTIONS = [
-  'Banking & Finance',
-  'Corporate & Commercial',
-  'Energy & Natural Resources',
-  'Construction & Operation',
-  'Dispute Resolution & Arbitration',
-  'Mergers & Acquisitions',
-  'Government Sector',
-  'Telecommunication & Information Technology',
+  'Technology & Digital Frontiers',
+  'Fintech, Banking & Financial Regulation',
+  'Corporate Transactions, Investment & Commercial Growth',
+  'Intellectual Property, Data & Brand Protection',
+  'Dispute Resolution, Arbitration & White-Collar Defence',
+  'Employment, Workforce & HR Structuring',
+  'Government Relations, Regulatory Affairs & Public Policy',
   'Healthcare & Pharmaceuticals',
-  'Labour & Employment',
-  'Non-Profit',
-  'UAE & Cross-Border Practice',
+  'Non-Profit, Trusts & Development Organisations',
+  'Pakistan–GCC & Cross-Border Business',
+  'Energy & Natural Resources',
   'Something else',
 ]
 
@@ -166,7 +165,7 @@ export default function Contact() {
             <FadeIn delay={0.3} className="space-y-3">
               <span className="eyebrow text-foreground/65">— Strategic partner firm</span>
               <p className="font-heading text-sm text-foreground/80 leading-relaxed tracking-[-0.005em]">
-                M.B. KEMP (ME) LLP — Hong Kong · London · Milan · Abu Dhabi
+                M.B. KEMP (ME) LLP — Abu Dhabi · Dubai · London · Milan · Hong Kong
               </p>
             </FadeIn>
 
