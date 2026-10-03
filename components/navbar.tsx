@@ -132,7 +132,7 @@ export function Navbar() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/ls-logo-min.png"
+            src="/ls-logo.png"
             alt="LawShaoor Chambers"
             className=" h-9 md:h-11 w-auto mr-2 transition-opacity group-hover:opacity-80"
           />

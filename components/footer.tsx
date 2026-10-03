@@ -31,7 +31,7 @@ export function Footer() {
             <div className="space-y-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/ls-logo-min.png"
+                src="/ls-logo.png"
                 alt="LawShaoor Chambers"
                 className="h-12 md:h-14 w-auto"
               />

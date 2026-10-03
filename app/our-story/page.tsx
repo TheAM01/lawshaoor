@@ -58,11 +58,9 @@ export default function OurStory() {
               </span>
             </h1>
             <FadeIn delay={0.5}>
-              <p className="mt-7 text-sm md:text-base leading-relaxed text-foreground/70 max-w-xl">
-                LawShaoor Chambers advises ambitious businesses, financial institutions, investors, technology
-                companies and senior decision-makers operating at the intersection of law, commerce and regulation —
-                from Islamabad, with associated offices in other major cities of Pakistan and, in strategic
-                partnership with M.B. KEMP (ME) LLP, across the UAE, Saudi Arabia and the wider GCC.
+              <p className="mt-7 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
+                We advise businesses, financial institutions, investors and technology companies where law, commerce
+                and regulation meet — from Islamabad, and across the GCC with M.B. KEMP (ME) LLP.
               </p>
             </FadeIn>
           </div>
@@ -107,29 +105,19 @@ export default function OurStory() {
               <SplitReveal>A boutique law firm</SplitReveal>{' '}
               <span className="text-primary"><SplitReveal>built around consequence.</SplitReveal></span>
             </h2>
-            <FadeIn className="space-y-5 text-sm md:text-base leading-relaxed text-foreground/75 max-w-2xl">
+            <FadeIn className="space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">
               <p>
-                LawShaoor Chambers is not structured as a traditional firm that attempts to cover every area of law
-                equally. We are built around the matters that shape businesses: whether a digital product can
-                legally launch, whether a fintech model can operate within the regulatory framework, whether an
-                investment structure protects both founder and investor, whether a cross-border transaction can be
-                implemented efficiently, whether valuable technology and data are properly protected, and whether a
-                company can respond decisively to regulatory scrutiny or litigation.
+                We don’t try to cover every area of law. We focus on what shapes a business: launching a product,
+                running a fintech model, structuring an investment, protecting technology and data, and answering
+                regulators or litigation.
               </p>
               <p>
-                Our lawyers possess transactional, regulatory and contentious capability, together with a combined
-                experience of 50 years. This enables us to see the full legal picture. A financing arrangement may
-                also involve licensing, corporate governance, data protection, employment and regulatory issues. A
-                technology dispute may involve intellectual property, investment, contractual and criminal exposure.
+                With 50 years’ combined transactional, regulatory and contentious experience, we see the whole
+                picture, find the pressure points and give clients a clear route forward.
               </p>
               <p>
-                We do not treat these issues in isolation. We bring them together, identify the pressure points and
-                give clients a clear route forward.
-              </p>
-              <p>
-                We have also developed strength in sectors that are heavily regulated and commercially sensitive,
-                including energy and natural resources. Our lawyers regularly appear before courts, tribunals and
-                regulatory authorities across Pakistan.
+                We regularly appear before courts, tribunals and regulators across Pakistan, including in energy and
+                other heavily regulated sectors.
               </p>
             </FadeIn>
           </div>
@@ -157,17 +145,14 @@ export default function OurStory() {
                 <span className="text-primary"><SplitReveal>legal service.</SplitReveal></span>
               </h2>
             </div>
-            <FadeIn className="lg:col-span-3 space-y-5 text-sm md:text-base leading-relaxed text-foreground/75 max-w-2xl">
+            <FadeIn className="lg:col-span-3 space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">
               <p>
-                LawShaoor Chambers is positioned for clients who require more than a general legal service. Our
-                work is defined by sector depth, partner-led attention, commercially usable advice, regulatory
-                fluency, cross-border coordination and contentious strength when the business environment becomes
+                Sector depth, partner-led attention, advice you can actually use, and real strength when things turn
                 adversarial.
               </p>
               <p>
-                We are particularly suited to matters where regulation and innovation collide, where technology is
-                central to the business model, where a transaction requires rapid and senior-level execution, or
-                where the client is facing significant regulatory or contentious exposure.
+                We’re at our best where regulation meets innovation, where a deal needs senior speed, or where the
+                exposure is serious.
               </p>
             </FadeIn>
           </div>
@@ -195,20 +180,14 @@ export default function OurStory() {
               <span className="text-primary"><SplitReveal>connected to commercial reality.</SplitReveal></span>
             </h2>
           </div>
-          <FadeIn className="lg:col-span-3 space-y-5 text-sm md:text-base leading-relaxed text-foreground/75 max-w-2xl">
+          <FadeIn className="lg:col-span-3 space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">
             <p>
-              There are many firms that provide legal services. LawShaoor Chambers is built for clients who need
-              legal judgment connected to commercial reality.
+              The focus of a boutique, the reach of an international partnership and the resilience of a disputes
+              practice.
             </p>
             <p>
-              We offer the focus of a boutique, the reach of an international relationship and the resilience of a
-              disputes practice. Our ambition is not to be the largest firm in Pakistan. It is to be the firm clients
-              call when the matter is strategically important, legally difficult and commercially consequential.
-            </p>
-            <p>
-              Whether you are launching a regulated product, structuring an investment, protecting a technology
-              platform or defending a high-stakes claim, we help you identify the legal route forward and move with
-              confidence.
+              We don’t aim to be Pakistan’s largest firm. We aim to be the one you call when the matter is difficult
+              and the stakes are high.
             </p>
           </FadeIn>
         </div>
@@ -256,10 +235,9 @@ export default function OurStory() {
                 <span className="text-primary"><SplitReveal>(ME) LLP.</SplitReveal></span>
               </h2>
             </div>
-            <div className="lg:col-span-3 space-y-5 text-sm md:text-base leading-relaxed text-foreground/75">
-              <FadeIn><p>LawShaoor Chambers works in strategic partnership with M.B. KEMP (ME) LLP, an international law firm with offices in Abu Dhabi, Dubai, London, Milan and Hong Kong.</p></FadeIn>
-              <FadeIn delay={0.1}><p>Through this partnership, we support clients operating between Pakistan and the GCC, with a particular focus on the UAE and Saudi Arabia, as well as matters involving DIFC, ADGM and other international jurisdictions. We aim to provide a unified legal strategy across the relevant jurisdictions, rather than disconnected advice from separate teams.</p></FadeIn>
-              <FadeIn delay={0.2}><p>The partnership strengthens our cross-border capability and lets us draw on the experience of a global team recognized for corporate, banking and finance, restructuring, international arbitration and complex dispute resolution.</p></FadeIn>
+            <div className="lg:col-span-3 space-y-5 text-base md:text-lg leading-relaxed text-foreground/75">
+              <FadeIn><p>We work in strategic partnership with M.B. KEMP (ME) LLP — offices in Abu Dhabi, Dubai, London, Milan and Hong Kong.</p></FadeIn>
+              <FadeIn delay={0.1}><p>For clients working between Pakistan and the GCC, including DIFC and ADGM matters, that means one legal strategy instead of disconnected advice from separate teams.</p></FadeIn>
             </div>
           </div>
 

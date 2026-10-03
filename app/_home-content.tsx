@@ -81,27 +81,18 @@ export function HomeContent() {
             <div className="lg:col-span-3 space-y-7">
               <span className="eyebrow text-foreground/55">The Chambers</span>
               <FadeIn>
-                <p className="font-display text-xl md:text-[1.4rem] leading-snug text-foreground max-w-xl">
-                  Legal advice cannot remain confined to legal theory or standard documentation.
-                  LawShaoor Chambers is built for precisely that environment.
+                <p className="font-display text-[1.6rem] md:text-[2rem] leading-snug text-foreground max-w-2xl">
+                  Practical counsel for complex business.
                 </p>
               </FadeIn>
-              <FadeIn className="space-y-4 text-sm md:text-[0.95rem] text-foreground/70 leading-relaxed max-w-xl">
+              <FadeIn className="space-y-5 text-foreground/70 leading-relaxed max-w-xl">
                 <p>
-                  Pakistan’s business environment is entering a more complex and consequential era. Technology is
-                  transforming financial services, capital is moving across borders, artificial intelligence is
-                  reshaping business models, digital platforms are changing how people work, transact and consume
-                  services — and regulators are imposing greater scrutiny on businesses operating in financial,
-                  technological and other sensitive sectors.
+                  Pakistan’s business environment is getting more complex. Technology is reshaping finance, capital
+                  moves across borders, AI is changing business models — and regulators are watching more closely.
                 </p>
                 <p>
-                  Businesses need counsel that understands the commercial objective, the regulatory architecture,
-                  the technology, the people involved and the consequences of getting the legal structure wrong.
-                </p>
-                <p>
-                  Our work is concentrated in sectors where legal complexity is greatest and the cost of imprecision
-                  is highest. We help clients launch, structure, finance, regulate, protect, defend and scale their
-                  businesses with greater confidence.
+                  We focus where legal complexity is greatest and mistakes cost the most, helping clients launch,
+                  structure, finance, protect, defend and scale with confidence.
                 </p>
               </FadeIn>
               <FadeIn staggerChildren className="flex flex-col sm:flex-row gap-3 items-start pt-1">

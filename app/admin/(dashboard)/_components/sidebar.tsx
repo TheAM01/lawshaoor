@@ -77,7 +77,7 @@ export function Sidebar({ user }: { user: string }) {
         <Link href="/" className="flex items-center group" title="Back to public site">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/ls-logo-min.png"
+            src="/ls-logo.png"
             alt="LawShaoor Chambers"
             className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03]"
           />
