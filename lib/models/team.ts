@@ -89,7 +89,7 @@ export const SEED_TEAM_MEMBERS: (TeamMemberInput & { slug: string })[] = [
     location: 'Islamabad, Pakistan',
     email: 'abdul.manan@lawshaoor.com',
     linkedin: '',
-    photo: '',
+    photo: '/team/abdul-manan.jpg',
     focus: 'Technology · Fintech · Banking · Corporate · Energy',
     illustrationKey: 'circles-in-circumference',
     bio: [
@@ -114,7 +114,7 @@ export const SEED_TEAM_MEMBERS: (TeamMemberInput & { slug: string })[] = [
     location: 'Islamabad, Pakistan',
     email: 'sahibzada.saad@lawshaoor.com',
     linkedin: '',
-    photo: '',
+    photo: '/team/sahibzada-saad.jpg',
     focus: 'Civil Litigation · White-Collar Defence · Financial Crime',
     illustrationKey: 'tesseract-cube',
     bio: [
@@ -136,7 +136,7 @@ export const SEED_TEAM_MEMBERS: (TeamMemberInput & { slug: string })[] = [
     location: 'Islamabad, Pakistan',
     email: 'arif.firdos@lawshaoor.com',
     linkedin: '',
-    photo: '',
+    photo: '/team/muhammad-arif-firdos.jpg',
     focus: 'Dispute Resolution · Corporate Advisory',
     illustrationKey: 'stacked-cubes',
     bio: [
@@ -159,7 +159,7 @@ export const SEED_TEAM_MEMBERS: (TeamMemberInput & { slug: string })[] = [
     location: 'Islamabad, Pakistan',
     email: 'komal.iqbal@lawshaoor.com',
     linkedin: '',
-    photo: '',
+    photo: '/team/komal-iqbal.jpg',
     focus: 'Data Protection · Privacy Governance · AI · Cross-Border',
     illustrationKey: 'orbit-rings',
     bio: [
@@ -182,7 +182,7 @@ export const SEED_TEAM_MEMBERS: (TeamMemberInput & { slug: string })[] = [
     location: 'Islamabad, Pakistan',
     email: 'hussain.adeed@lawshaoor.com',
     linkedin: '',
-    photo: '',
+    photo: '/team/malak-hussain-adeed.jpg',
     focus: 'Criminal Defence · White-Collar · Financial Crime',
     illustrationKey: 'vector-node',
     bio: [
@@ -204,7 +204,7 @@ export const SEED_TEAM_MEMBERS: (TeamMemberInput & { slug: string })[] = [
     location: 'Islamabad, Pakistan',
     email: 'kalim.wali@lawshaoor.com',
     linkedin: '',
-    photo: '',
+    photo: '/team/mohammad-kalim-wali.jpg',
     focus: 'Civil · Corporate · Regulatory · SECP',
     illustrationKey: 'grid-dots',
     bio: [

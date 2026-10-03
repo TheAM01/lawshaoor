@@ -149,6 +149,18 @@ export default function Contact() {
                 Islamabad, 44000
               </p>
               <Rule className="my-5" />
+              <p className="font-display text-xl mb-1">Direct</p>
+              <ul className="text-sm text-foreground/70 space-y-1.5">
+                <li className="flex gap-3">
+                  <span className="eyebrow-sm text-foreground/55 w-12 shrink-0 pt-0.5">Office</span>
+                  <a href="tel:+92518742077" className="link-line text-foreground">051 8742077</a>
+                </li>
+                <li className="flex gap-3">
+                  <span className="eyebrow-sm text-foreground/55 w-12 shrink-0 pt-0.5">Email</span>
+                  <a href="mailto:hello@lawshaoor.com" className="link-line text-foreground">hello@lawshaoor.com</a>
+                </li>
+              </ul>
+              <Rule className="my-5" />
               <p className="font-display text-xl mb-1">Online</p>
               <ul className="text-sm space-y-1 tracking-[0.1em] uppercase">
                 <li><a href="https://www.lawshaoor.com" className="link-line">www.lawshaoor.com</a></li>

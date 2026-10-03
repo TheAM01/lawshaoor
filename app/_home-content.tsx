@@ -81,12 +81,12 @@ export function HomeContent() {
             <div className="lg:col-span-3 space-y-7">
               <span className="eyebrow text-foreground/55">The Chambers</span>
               <FadeIn>
-                <p className="font-display text-[1.6rem] md:text-[2rem] leading-snug text-foreground max-w-2xl">
+                <p className="font-display text-xl md:text-[1.4rem] leading-snug text-foreground max-w-xl">
                   Legal advice cannot remain confined to legal theory or standard documentation.
                   LawShaoor Chambers is built for precisely that environment.
                 </p>
               </FadeIn>
-              <FadeIn className="space-y-5 text-foreground/70 leading-relaxed max-w-xl">
+              <FadeIn className="space-y-4 text-sm md:text-[0.95rem] text-foreground/70 leading-relaxed max-w-xl">
                 <p>
                   Pakistan’s business environment is entering a more complex and consequential era. Technology is
                   transforming financial services, capital is moving across borders, artificial intelligence is

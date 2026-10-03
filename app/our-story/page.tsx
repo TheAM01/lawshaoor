@@ -58,7 +58,7 @@ export default function OurStory() {
               </span>
             </h1>
             <FadeIn delay={0.5}>
-              <p className="mt-7 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
+              <p className="mt-7 text-sm md:text-base leading-relaxed text-foreground/70 max-w-xl">
                 LawShaoor Chambers advises ambitious businesses, financial institutions, investors, technology
                 companies and senior decision-makers operating at the intersection of law, commerce and regulation —
                 from Islamabad, with associated offices in other major cities of Pakistan and, in strategic
@@ -107,7 +107,7 @@ export default function OurStory() {
               <SplitReveal>A boutique law firm</SplitReveal>{' '}
               <span className="text-primary"><SplitReveal>built around consequence.</SplitReveal></span>
             </h2>
-            <FadeIn className="space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">
+            <FadeIn className="space-y-5 text-sm md:text-base leading-relaxed text-foreground/75 max-w-2xl">
               <p>
                 LawShaoor Chambers is not structured as a traditional firm that attempts to cover every area of law
                 equally. We are built around the matters that shape businesses: whether a digital product can
@@ -157,7 +157,7 @@ export default function OurStory() {
                 <span className="text-primary"><SplitReveal>legal service.</SplitReveal></span>
               </h2>
             </div>
-            <FadeIn className="lg:col-span-3 space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">
+            <FadeIn className="lg:col-span-3 space-y-5 text-sm md:text-base leading-relaxed text-foreground/75 max-w-2xl">
               <p>
                 LawShaoor Chambers is positioned for clients who require more than a general legal service. Our
                 work is defined by sector depth, partner-led attention, commercially usable advice, regulatory
@@ -195,7 +195,7 @@ export default function OurStory() {
               <span className="text-primary"><SplitReveal>connected to commercial reality.</SplitReveal></span>
             </h2>
           </div>
-          <FadeIn className="lg:col-span-3 space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">
+          <FadeIn className="lg:col-span-3 space-y-5 text-sm md:text-base leading-relaxed text-foreground/75 max-w-2xl">
             <p>
               There are many firms that provide legal services. LawShaoor Chambers is built for clients who need
               legal judgment connected to commercial reality.
@@ -256,7 +256,7 @@ export default function OurStory() {
                 <span className="text-primary"><SplitReveal>(ME) LLP.</SplitReveal></span>
               </h2>
             </div>
-            <div className="lg:col-span-3 space-y-5 text-base md:text-lg leading-relaxed text-foreground/75">
+            <div className="lg:col-span-3 space-y-5 text-sm md:text-base leading-relaxed text-foreground/75">
               <FadeIn><p>LawShaoor Chambers works in strategic partnership with M.B. KEMP (ME) LLP, an international law firm with offices in Abu Dhabi, Dubai, London, Milan and Hong Kong.</p></FadeIn>
               <FadeIn delay={0.1}><p>Through this partnership, we support clients operating between Pakistan and the GCC, with a particular focus on the UAE and Saudi Arabia, as well as matters involving DIFC, ADGM and other international jurisdictions. We aim to provide a unified legal strategy across the relevant jurisdictions, rather than disconnected advice from separate teams.</p></FadeIn>
               <FadeIn delay={0.2}><p>The partnership strengthens our cross-border capability and lets us draw on the experience of a global team recognized for corporate, banking and finance, restructuring, international arbitration and complex dispute resolution.</p></FadeIn>
