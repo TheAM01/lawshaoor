@@ -28,13 +28,16 @@ const PRACTICE_AREAS: NavLeaf[] = [
  *  override is set; `href`s never change. */
 const NAV: NavItem[] = [
   { key: 'theChambers', href: '/our-story', label: 'The Chambers' },
-  {
-    key: 'practiceAreas',
-    label: 'Practice Areas',
-    href: '/practice-areas',
-    wide: true,
-    children: PRACTICE_AREAS,
-  },
+  { key: 'practiceAreas', href: '/practice-areas', label: 'Practice Areas' },
+  // Practice-areas dropdown — disabled for now; restore this (and remove the
+  // plain link above) to bring back the per-area submenu.
+  // {
+  //   key: 'practiceAreas',
+  //   label: 'Practice Areas',
+  //   href: '/practice-areas',
+  //   wide: true,
+  //   children: PRACTICE_AREAS,
+  // },
   { key: 'team', href: '/people', label: 'Team' },
   {
     key: 'knowledge',

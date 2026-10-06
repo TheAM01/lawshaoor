@@ -8,7 +8,6 @@ import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
 import { PanelImage } from '@/components/panel-image'
-import { Counter } from '@/components/motion/counter'
 import {
   CirclesInCircumference,
   VectorNode,
@@ -18,7 +17,6 @@ const SECTIONS = [
   { id: 'introduction', label: 'Built around consequence' },
   { id: 'approach',     label: 'Our position' },
   { id: 'difference',   label: 'The difference' },
-  { id: 'capability',   label: 'Capability' },
   { id: 'association',  label: 'Partnership' },
 ]
 
@@ -51,46 +49,17 @@ export default function OurStory() {
         <div className="max-w-[1560px] mx-auto relative grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-3">
             <h1 className="display-xl font-display">
-              <span className="block"><SplitReveal trigger="load" delay={0.1}>A specialist law</SplitReveal></span>
-              <span className="block">
-                <SplitReveal trigger="load" delay={0.3}>firm in </SplitReveal>
-                <span className="text-primary"><SplitReveal trigger="load" delay={0.5}>Islamabad.</SplitReveal></span>
-              </span>
+              <span className="block"><SplitReveal trigger="load" delay={0.1}>A specialist</SplitReveal></span>
+              <span className="block text-primary"><SplitReveal trigger="load" delay={0.3}>law firm.</SplitReveal></span>
             </h1>
             <FadeIn delay={0.5}>
               <p className="mt-7 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
                 We advise businesses, financial institutions, investors and technology companies where law, commerce
-                and regulation meet — from Islamabad, and across the GCC with M.B. KEMP (ME) LLP.
+                and regulation meet. Six lawyers, ten practice areas, 50+ years’ combined experience. Based in
+                Islamabad, with reach across Pakistan and the GCC through M.B. KEMP (ME) LLP.
               </p>
             </FadeIn>
           </div>
-
-          {/* Right 40% — "at a glance" visual card */}
-          <FadeIn delay={0.4} className="lg:col-span-2">
-            <div className="relative bg-background-alt border border-foreground/12 p-6 md:p-8 overflow-hidden">
-              <span aria-hidden className="hero-orb accent-breathe -right-16 -top-16 opacity-40" />
-              <div className="relative flex items-center justify-between mb-4">
-                <span className="eyebrow text-foreground/55">At a glance</span>
-                <span className="dot-live" />
-              </div>
-              <div className="h-px bg-foreground/15 mb-4" />
-              <ul className="relative space-y-3.5 text-sm">
-                {[
-                  ['Headquarters', 'Islamabad'],
-                  ['Reach', 'Major cities of Pakistan'],
-                  ['Lawyers', '6'],
-                  ['Combined experience', '50+ years'],
-                  ['Practice areas', '10'],
-                  ['Strategic partnership', 'M.B. KEMP (ME) LLP'],
-                ].map(([k, v], i) => (
-                  <li key={i} className="flex justify-between gap-4 items-baseline">
-                    <span className="text-foreground/55 text-xs tracking-[0.1em] uppercase">{k}</span>
-                    <span className="font-display text-base text-foreground text-right">{v}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </FadeIn>
         </div>
       </section>
 
@@ -125,7 +94,7 @@ export default function OurStory() {
           {/* Right 40% — simple office/visual panel */}
           <div className="lg:col-span-2">
             <FadeIn className="lg:sticky lg:top-[120px] relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden flex items-center justify-center">
-              <PanelImage seed="our-story-chambers" />
+              <PanelImage src="/images/seed/our-story-chambers.jpg" />
               <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40" />
               <CirclesInCircumference className="absolute inset-0 m-auto w-[70%] h-[70%] opacity-70" uid="story-hero-circ" />
               <VectorNode className="absolute right-5 bottom-5 w-20 h-20 opacity-70" uid="story-hero-vn" />
@@ -190,37 +159,6 @@ export default function OurStory() {
               and the stakes are high.
             </p>
           </FadeIn>
-        </div>
-      </section>
-
-      {/* CAPABILITY STATS */}
-      <section id="capability" className="relative section-pad py-20 md:py-28 border-t border-foreground/12 bg-fixed-deep overflow-hidden scroll-mt-32">
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="mb-10 space-y-4">
-            <span className="eyebrow text-foreground/55">Capability</span>
-            <h2 className="display-md font-display">
-              <SplitReveal>At a glance.</SplitReveal>
-            </h2>
-          </div>
-
-          <Rule className="rule-heavy mb-10" />
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0">
-            {[
-              { v: 10, suffix: '', label: 'Practice areas' },
-              { v: 6, suffix: '', label: 'Lawyers' },
-              { v: 50, suffix: '+ yrs', label: 'Combined experience' },
-              { v: 1, suffix: '', label: 'Strategic partnership' },
-            ].map((s, i) => (
-              <FadeIn key={i} delay={i * 0.08} className="relative px-5 md:px-8 first:pl-0 border-l border-foreground/15 first:border-l-0">
-                <span aria-hidden className="block w-6 h-px bg-primary mb-3" />
-                <div className="display-md font-display">
-                  <Counter value={s.v} suffix={s.suffix} />
-                </div>
-                <p className="eyebrow text-foreground/55 mt-3">{s.label}</p>
-              </FadeIn>
-            ))}
-          </div>
         </div>
       </section>
 

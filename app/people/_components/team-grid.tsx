@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, Mail, ArrowUpRight, Linkedin } from 'lucide-react'
+import { ArrowUpRight, Linkedin } from 'lucide-react'
 import { FadeIn } from '@/components/motion/fade-in'
 import { getIllustration } from '@/components/illustrations/registry'
 import type { TeamListItem } from '@/lib/models/team'
@@ -38,21 +38,6 @@ export function TeamGrid({ team }: { team: TeamListItem[] }) {
                 </h2>
                 <p className="eyebrow text-foreground/55 mt-1.5">{p.title}</p>
               </Link>
-
-              <div className="space-y-1.5">
-                {p.location && (
-                  <span className="flex items-center gap-2 text-sm text-foreground/65">
-                    <MapPin className="w-3.5 h-3.5 text-primary shrink-0" />
-                    {p.location}
-                  </span>
-                )}
-                {p.email && (
-                  <span className="flex items-center gap-2 text-sm text-foreground/65 break-all">
-                    <Mail className="w-3.5 h-3.5 text-primary shrink-0" />
-                    {p.email}
-                  </span>
-                )}
-              </div>
 
               <div className="flex items-center gap-2 mt-1.5">
                 <Link

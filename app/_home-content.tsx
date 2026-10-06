@@ -3,26 +3,113 @@
 import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { SectionNav } from '@/components/section-nav'
 import { PanelImage } from '@/components/panel-image'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
-import { Counter } from '@/components/motion/counter'
-import { HeroStatus } from '@/components/hero-status'
+import { cn } from '@/lib/utils'
+import { ArrowRight } from 'lucide-react'
 import {
   CirclesInCircumference,
   OrbitRings,
+  StackedCubes,
+  TesseractCube,
   VectorNode,
 } from '@/components/illustrations'
 
-const SECTIONS = [
-  { id: 'chambers',    label: 'The Chambers' },
-  { id: 'capability',  label: 'Capability' },
-  { id: 'difference',  label: 'Difference' },
-  { id: 'partnership', label: 'Partnership' },
-  { id: 'contact',     label: 'Contact' },
+type Illustration = typeof TesseractCube
+
+/** Legally astute + Commercially aware = The clarity to move forward. */
+const EQUATION: {
+  label: string
+  phrase: [string, string]
+  image: string
+  Illo: Illustration
+  motion: string
+  cta: string
+  href: string
+  operator?: string
+  result?: boolean
+}[] = [
+  { label: '01 · Law',      phrase: ['Legally', 'astute.'],          image: '/images/seed/legally-astute.jpg',              Illo: TesseractCube,           motion: 'group-hover:rotate-[10deg]',    cta: 'Practice areas',     href: '/practice-areas', operator: '+' },
+  { label: '02 · Strategy', phrase: ['Commercially', 'aware.'],      image: '/images/seed/commercially-aware.jpg',          Illo: StackedCubes,           motion: 'group-hover:-translate-y-2',    cta: 'The team',           href: '/people',         operator: '=' },
+  { label: '03 · Future',   phrase: ['The clarity', 'to move forward.'], image: '/images/seed/the-clarity-to-move-forward.jpg', Illo: CirclesInCircumference, motion: 'group-hover:scale-110',      cta: 'About the Chambers', href: '/our-story',      result: true },
 ]
+
+/** One term of the equation. Terms rest on paper with a faint photo and turn
+ *  into the azure "result" look on hover; the result term is always azure. */
+function EquationPanel({ label, phrase, image, Illo, motion, cta, href, operator, result }: (typeof EQUATION)[number]) {
+  const ease = 'duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]'
+  // Each pair: [result panel — always on, other panels — on hover]. Written out
+  // in full so Tailwind can see every class.
+  const on = (always: string, hover: string) => (result ? always : hover)
+  return (
+    <Link
+      href={href}
+      className={cn(
+        'group relative bg-background p-8 md:p-10 min-h-[22rem] lg:min-h-[30rem] flex flex-col justify-between transition-colors',
+        ease,
+        on('bg-primary', 'hover:bg-primary'),
+      )}
+    >
+      {/* Photo + azure wash, clipped here so the operator can overhang the panel edge */}
+      <span aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          alt=""
+          loading="lazy"
+          className={cn(
+            'absolute inset-0 w-full h-full object-cover grayscale contrast-125 mix-blend-multiply dark:mix-blend-normal dark:brightness-90 opacity-40 transition-[opacity,scale] duration-[1.6s] ease-out group-hover:scale-105',
+            on('opacity-35', 'group-hover:opacity-35'),
+          )}
+        />
+        <span className={cn('absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/25 to-transparent opacity-0 transition-opacity', ease, on('opacity-100', 'group-hover:opacity-100'))} />
+      </span>
+
+      <div className="relative flex items-start justify-between">
+        <span className={cn('font-mono text-[0.68rem] tracking-[0.3em] uppercase text-foreground/50 transition-colors', ease, on('text-primary-foreground/70', 'group-hover:text-primary-foreground/70'))}>
+          {label}
+        </span>
+        <Illo
+          uid={`eq-${label.slice(0, 2)}`}
+          className={cn(
+            'w-24 h-24 md:w-28 md:h-28 opacity-70 transition-[opacity,rotate,translate,scale,filter]',
+            ease,
+            motion,
+            on('opacity-100 brightness-0 invert', 'group-hover:opacity-100 group-hover:brightness-0 group-hover:invert'),
+          )}
+        />
+      </div>
+
+      <div className="relative">
+        <span aria-hidden className={cn('block h-px w-8 bg-primary mb-5 transition-[width,background-color]', ease, 'group-hover:w-24', on('bg-primary-foreground', 'group-hover:bg-primary-foreground'))} />
+        <h2 className={cn('display-sm font-display transition-colors', ease, on('text-primary-foreground', 'group-hover:text-primary-foreground'))}>
+          {phrase[0]}<br />{phrase[1]}
+        </h2>
+        <span className={cn('mt-8 inline-flex items-center gap-3 font-mono text-[0.68rem] tracking-[0.3em] uppercase text-foreground/55 transition-colors', ease, on('text-primary-foreground/80', 'group-hover:text-primary-foreground/80'))}>
+          {cta}
+          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+        </span>
+      </div>
+
+      {operator && <Operator symbol={operator} />}
+    </Link>
+  )
+}
+
+/** Equation operator pinned to a panel's divider — bottom edge when the
+ *  panels stack, right edge when they sit side by side. */
+function Operator({ symbol }: { symbol: string }) {
+  return (
+    <span
+      aria-hidden
+      className="absolute z-10 left-1/2 -bottom-6 -translate-x-1/2 lg:left-auto lg:bottom-auto lg:-right-6 lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2 w-12 h-12 flex items-center justify-center bg-background border border-foreground/15 font-display text-2xl text-primary"
+    >
+      {symbol}
+    </span>
+  )
+}
 
 export function HomeContent() {
   return (
@@ -55,7 +142,7 @@ export function HomeContent() {
           {/* RIGHT — 40% : abstract, professional visual panel */}
           <FadeIn delay={0.5} className="lg:col-span-2">
             <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden">
-              <PanelImage seed="lawshaoor-chambers" />
+              <PanelImage src="/images/seed/lawshaoor.jpg" />
               <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50" />
               <OrbitRings className="absolute inset-0 m-auto w-[78%] h-[78%] opacity-70" uid="hero-orbit" rotate />
               <CirclesInCircumference className="absolute right-5 top-5 w-20 h-20 opacity-80" uid="hero-c1" />
@@ -69,178 +156,21 @@ export function HomeContent() {
         </div>
       </section>
 
-      {/* Sticky path bar */}
-      <SectionNav sections={SECTIONS} label="On this page" />
-
       {/* ────────────────────────────────────────────
-          THE CHAMBERS — intro
+          THE EQUATION — astute + aware = clarity.
+          Three panels read as one sentence; the operators
+          sit on the hairline dividers between them.
           ──────────────────────────────────────────── */}
-      <section id="chambers" className="section-pad py-20 md:py-28 border-t border-foreground/12 bg-background scroll-mt-32">
+      <section id="approach" className="section-pad py-24 md:py-32 border-t border-foreground/12 bg-background">
         <div className="max-w-[1560px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-3 space-y-7">
-              <span className="eyebrow text-foreground/55">The Chambers</span>
-              <FadeIn>
-                <p className="font-display text-[1.6rem] md:text-[2rem] leading-snug text-foreground max-w-2xl">
-                  Practical counsel for complex business.
-                </p>
-              </FadeIn>
-              <FadeIn className="space-y-5 text-foreground/70 leading-relaxed max-w-xl">
-                <p>
-                  Pakistan’s business environment is getting more complex. Technology is reshaping finance, capital
-                  moves across borders, AI is changing business models — and regulators are watching more closely.
-                </p>
-                <p>
-                  We focus where legal complexity is greatest and mistakes cost the most, helping clients launch,
-                  structure, finance, protect, defend and scale with confidence.
-                </p>
-              </FadeIn>
-              <FadeIn staggerChildren className="flex flex-col sm:flex-row gap-3 items-start pt-1">
-                <Link href="/our-story" className="btn-primary">
-                  <span>About the Chambers</span>
-                </Link>
-                <Link href="/practice-areas" className="btn-ghost">
-                  <span>See practice areas</span>
-                </Link>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-2">
-              <HeroStatus />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ────────────────────────────────────────────
-          CAPABILITY SNAPSHOT
-          ──────────────────────────────────────────── */}
-      <section id="capability" className="relative section-pad py-24 md:py-32 border-t border-foreground/12 bg-fixed-mist overflow-hidden scroll-mt-32">
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-16 md:mb-20 lg:items-end">
-            <div className="lg:col-span-3 space-y-4">
-              <span className="eyebrow text-foreground/55">Capability</span>
-              <h2 className="display-sm font-display">
-                <SplitReveal>At a glance.</SplitReveal>
-              </h2>
-            </div>
-            <div className="lg:col-span-2">
-              <FadeIn>
-                <p className="text-foreground/70 leading-relaxed">
-                  Our lawyers possess transactional, regulatory and contentious capability. This enables us to
-                  see the full legal picture.
-                </p>
-              </FadeIn>
-            </div>
+          <div className="flex items-center gap-6 mb-12 md:mb-16">
+            <span className="index-chip whitespace-nowrap">The LawShaoor equation</span>
+            <Rule className="flex-1" />
           </div>
 
-          <Rule className="rule-heavy mb-10" />
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0">
-            {[
-              { v: 10, suffix: '', label: 'Practice areas' },
-              { v: 6, suffix: '', label: 'Lawyers on the bench' },
-              { v: 4, suffix: '', label: 'Partner firms' },
-              { v: 50, suffix: '+ yrs', label: 'Combined experience' },
-            ].map((s, i) => (
-              <FadeIn key={i} delay={i * 0.08} className="relative px-5 md:px-8 first:pl-0 border-l border-foreground/15 first:border-l-0">
-                <span aria-hidden className="block w-6 h-px bg-primary mb-3" />
-                <div className="display-md font-display text-foreground">
-                  <Counter value={s.v} suffix={s.suffix} />
-                </div>
-                <p className="eyebrow text-foreground/55 mt-3">{s.label}</p>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ────────────────────────────────────────────
-          THE LAWSHAOOR DIFFERENCE
-          ──────────────────────────────────────────── */}
-      <section id="difference" className="section-pad py-24 md:py-32 border-t border-foreground/12 bg-background scroll-mt-32">
-        <div className="max-w-[1560px] mx-auto grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
-          <div className="lg:col-span-2 space-y-4">
-            <span className="eyebrow text-foreground/55">The LawShaoor difference</span>
-            <h2 className="display-md font-display">
-              <SplitReveal>Legal judgment,</SplitReveal>{' '}
-              <span className="text-primary"><SplitReveal>connected to commercial reality.</SplitReveal></span>
-            </h2>
-          </div>
-          <div className="lg:col-span-3 space-y-7">
-            <FadeIn className="space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">
-              <p>
-                We offer the focus of a boutique, the reach of an international relationship and the resilience of
-                a disputes practice.
-              </p>
-              <p>
-                Our ambition is not to be the largest firm in Pakistan. It is to be the firm clients call when the
-                matter is strategically important, legally difficult and commercially consequential.
-              </p>
-            </FadeIn>
-            <FadeIn staggerChildren className="flex flex-col sm:flex-row gap-3 items-start">
-              <Link href="/our-story" className="btn-ghost">
-                <span>Why LawShaoor</span>
-              </Link>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* ────────────────────────────────────────────
-          STRATEGIC PARTNERSHIP — M.B. KEMP
-          ──────────────────────────────────────────── */}
-      <section id="partnership" className="relative section-pad py-24 md:py-32 border-t border-foreground/12 bg-background overflow-hidden scroll-mt-32">
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12 md:mb-16 lg:items-end">
-            <div className="lg:col-span-3 space-y-4">
-              <span className="eyebrow text-foreground/55">International reach</span>
-              <h2 className="display-md font-display">
-                <SplitReveal>Strategic partnership</SplitReveal>{' '}
-                <span className="text-primary"><SplitReveal>with M.B. KEMP (ME) LLP.</SplitReveal></span>
-              </h2>
-            </div>
-            <div className="lg:col-span-2">
-              <FadeIn>
-                <p className="text-foreground/70 leading-relaxed">
-                  An international law firm with offices across the Gulf, Europe and Asia. Together, we support
-                  clients operating between Pakistan and the GCC with a unified legal strategy, rather than
-                  disconnected advice from separate teams.
-                </p>
-              </FadeIn>
-            </div>
-          </div>
-
-          <FadeIn staggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0 mb-12">
-            {[
-              { j: 'Pakistan',     d: 'Islamabad headquarters, with associated offices in other major cities.' },
-              { j: 'UAE',          d: 'Free-zone & onshore arrangements across the Emirates.' },
-              { j: 'DIFC',         d: 'Dubai International Financial Centre structures.' },
-              { j: 'ADGM',         d: 'Abu Dhabi Global Market structures.' },
-              { j: 'Saudi Arabia', d: 'Market entry, investment & regulatory coordination.' },
-            ].map((x) => (
-              <div key={x.j} className="az-card">
-                <h3 className="font-display text-2xl md:text-3xl">{x.j}</h3>
-                <p className="text-sm text-foreground/65 leading-snug">{x.d}</p>
-              </div>
-            ))}
-          </FadeIn>
-
-          <div className="flex items-center gap-4 mb-10">
-            <span className="eyebrow text-foreground/55 whitespace-nowrap">Offices</span>
-            <Rule className="rule-heavy flex-1" />
-          </div>
-
-          <FadeIn staggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0">
-            {[
-              'Abu Dhabi',
-              'Dubai',
-              'London',
-              'Milan',
-              'Hong Kong',
-            ].map((city) => (
-              <div key={city} className="az-card">
-                <h3 className="font-display text-2xl md:text-3xl">{city}</h3>
-              </div>
+          <FadeIn staggerChildren className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-foreground/12 border border-foreground/12">
+            {EQUATION.map((term) => (
+              <EquationPanel key={term.label} {...term} />
             ))}
           </FadeIn>
         </div>

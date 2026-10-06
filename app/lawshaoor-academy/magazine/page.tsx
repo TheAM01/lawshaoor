@@ -43,7 +43,7 @@ export default async function Magazine() {
           </div>
           <FadeIn delay={0.4} className="lg:col-span-2">
             <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden flex items-center justify-center">
-              <PanelImage seed="magazine" />
+              <PanelImage src="/images/seed/magazine.jpg" />
               <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />
               <TesseractCube className="absolute inset-0 m-auto w-[58%] h-[58%] opacity-70" uid="mag-hero-tc" />
             </div>

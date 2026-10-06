@@ -43,7 +43,7 @@ export default async function People() {
           </div>
           <FadeIn delay={0.4} className="lg:col-span-2">
             <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden flex items-center justify-center">
-              <PanelImage seed="team" />
+              <PanelImage src="/images/seed/team.jpg" />
               <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />
               <CirclesInCircumference className="absolute inset-0 m-auto w-[72%] h-[72%] opacity-70" uid="ppl-hero-circ" />
               <VectorNode className="absolute right-5 bottom-5 w-20 h-20 opacity-70" uid="ppl-hero-vn" />

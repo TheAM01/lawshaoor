@@ -61,15 +61,15 @@ export default async function PersonPage({ params }: { params: Promise<{ slug: s
                   </span>
                 )}
                 {email && (
-                  <a href={`mailto:${email}`} className="flex items-center gap-2 text-sm text-foreground/80 link-line hover:text-primary transition-colors">
-                    <Mail className="w-4 h-4 text-primary" />
-                    {email}
+                  <a href={`mailto:${email}`} className="flex items-center gap-2 text-sm text-foreground/80 hover:text-primary transition-colors">
+                    <Mail className="w-4 h-4 text-primary shrink-0" />
+                    <span className="link-line">{email}</span>
                   </a>
                 )}
                 {linkedin && (
-                  <a href={linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-foreground/80 link-line hover:text-primary transition-colors">
-                    <Linkedin className="w-4 h-4 text-primary" />
-                    LinkedIn
+                  <a href={linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-foreground/80 hover:text-primary transition-colors">
+                    <Linkedin className="w-4 h-4 text-primary shrink-0" />
+                    <span className="link-line">LinkedIn</span>
                   </a>
                 )}
               </div>
