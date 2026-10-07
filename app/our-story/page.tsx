@@ -1,9 +1,7 @@
 'use client'
 
-import Link from 'next/link'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
-import { SectionNav } from '@/components/section-nav'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Rule } from '@/components/motion/rule'
@@ -13,29 +11,13 @@ import {
   VectorNode,
 } from '@/components/illustrations'
 
-const SECTIONS = [
-  { id: 'introduction', label: 'Built around consequence' },
-  { id: 'approach',     label: 'Our position' },
-  { id: 'difference',   label: 'The difference' },
-  { id: 'association',  label: 'Partnership' },
-]
-
-/** What defines the work — from "Our Position" in the client's content doc. */
-const PILLARS = [
-  'Sector depth',
-  'Partner-led attention',
-  'Commercially usable advice',
-  'Regulatory fluency',
-  'Cross-border coordination',
-  'Contentious strength',
-]
-
-const KEMP_OFFICES = [
-  { city: 'Abu Dhabi', region: 'UAE · GCC' },
-  { city: 'Dubai',     region: 'UAE · GCC' },
-  { city: 'London',    region: 'United Kingdom' },
-  { city: 'Milan',     region: 'Europe' },
-  { city: 'Hong Kong', region: 'East Asia' },
+const OFFICES = [
+  { city: 'Islamabad', region: 'Pakistan · Head office', label: 'LawShaoor Chambers', home: true },
+  { city: 'Abu Dhabi', region: 'UAE · GCC', label: 'M.B. KEMP office', home: false },
+  { city: 'Dubai',     region: 'UAE · GCC', label: 'M.B. KEMP office', home: false },
+  { city: 'London',    region: 'United Kingdom', label: 'M.B. KEMP office', home: false },
+  { city: 'Milan',     region: 'Europe', label: 'M.B. KEMP office', home: false },
+  { city: 'Hong Kong', region: 'East Asia', label: 'M.B. KEMP office', home: false },
 ]
 
 export default function OurStory() {
@@ -62,8 +44,6 @@ export default function OurStory() {
           </div>
         </div>
       </section>
-
-      <SectionNav sections={SECTIONS} label="The Chambers" />
 
       {/* INTRODUCTION — 60/40, short paragraphs */}
       <section id="introduction" className="section-pad py-20 md:py-28 bg-background relative overflow-x-clip scroll-mt-32">
@@ -103,42 +83,6 @@ export default function OurStory() {
         </div>
       </section>
 
-      {/* APPROACH — pillars */}
-      <section id="approach" className="section-pad py-20 md:py-28 border-t border-foreground/12 bg-fixed-lavender scroll-mt-32">
-        <div className="max-w-[1560px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-10 md:mb-14 lg:items-end">
-            <div className="lg:col-span-2 space-y-4">
-              <span className="eyebrow text-foreground/55">Our position</span>
-              <h2 className="display-sm font-display">
-                <SplitReveal>More than a general</SplitReveal>{' '}
-                <span className="text-primary"><SplitReveal>legal service.</SplitReveal></span>
-              </h2>
-            </div>
-            <FadeIn className="lg:col-span-3 space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">
-              <p>
-                Sector depth, partner-led attention, advice you can actually use, and real strength when things turn
-                adversarial.
-              </p>
-              <p>
-                We’re at our best where regulation meets innovation, where a deal needs senior speed, or where the
-                exposure is serious.
-              </p>
-            </FadeIn>
-          </div>
-
-          <Rule className="rule-heavy mb-10" />
-
-          <FadeIn staggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
-            {PILLARS.map((t, i) => (
-              <div key={t} className="az-card">
-                <span className="eyebrow text-foreground/50">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="font-display text-2xl md:text-3xl text-primary">{t}</h3>
-              </div>
-            ))}
-          </FadeIn>
-        </div>
-      </section>
-
       {/* THE LAWSHAOOR DIFFERENCE */}
       <section id="difference" className="section-pad py-20 md:py-28 border-t border-foreground/12 bg-background scroll-mt-32">
         <div className="max-w-[1560px] mx-auto grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-8">
@@ -174,41 +118,22 @@ export default function OurStory() {
               </h2>
             </div>
             <div className="lg:col-span-3 space-y-5 text-base md:text-lg leading-relaxed text-foreground/75">
-              <FadeIn><p>We work in strategic partnership with M.B. KEMP (ME) LLP — offices in Abu Dhabi, Dubai, London, Milan and Hong Kong.</p></FadeIn>
+              <FadeIn><p>We are based in Islamabad, the capital, with associated offices in other major cities of Pakistan. From there we work in strategic partnership with M.B. KEMP (ME) LLP — offices in Abu Dhabi, Dubai, London, Milan and Hong Kong.</p></FadeIn>
               <FadeIn delay={0.1}><p>For clients working between Pakistan and the GCC, including DIFC and ADGM matters, that means one legal strategy instead of disconnected advice from separate teams.</p></FadeIn>
             </div>
           </div>
 
           <Rule className="rule-heavy mb-10" />
 
-          <FadeIn staggerChildren className="grid grid-cols-2 md:grid-cols-5 gap-px bg-foreground/12 border border-foreground/12">
-            {KEMP_OFFICES.map((c) => (
-              <div key={c.city} className="bg-background p-8 md:p-10 flex flex-col gap-2 last:col-span-2 md:last:col-span-1">
-                <span className="eyebrow text-foreground/50">M.B. KEMP office</span>
+          <FadeIn staggerChildren className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-foreground/12 border border-foreground/12">
+            {OFFICES.map((c) => (
+              <div key={c.city} className={`p-8 md:p-10 flex flex-col gap-2 ${c.home ? 'bg-background-alt' : 'bg-background'}`}>
+                <span className={`eyebrow ${c.home ? 'text-primary' : 'text-foreground/50'}`}>{c.label}</span>
                 <p className="font-display text-2xl md:text-3xl">{c.city}</p>
                 <p className="text-sm text-foreground/60 tracking-[0.12em] uppercase mt-1">{c.region}</p>
               </div>
             ))}
           </FadeIn>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="relative section-pad py-28 md:py-40 border-t border-foreground/12 bg-fixed-deep overflow-hidden">
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <div className="lg:col-span-8 space-y-6">
-              <span className="eyebrow text-foreground/55">Work with us</span>
-              <h2 className="display-lg font-display">
-                <span className="block"><SplitReveal>Meet the people</SplitReveal></span>
-                <span className="block text-primary"><SplitReveal>behind the work.</SplitReveal></span>
-              </h2>
-            </div>
-            <div className="lg:col-span-4 flex flex-col gap-3 lg:items-end">
-              <Link href="/people" className="btn-primary"><span>Meet the team</span></Link>
-              <Link href="/contact" className="btn-ghost"><span>Contact</span></Link>
-            </div>
-          </div>
         </div>
       </section>
 

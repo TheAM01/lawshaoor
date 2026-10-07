@@ -12,16 +12,16 @@ type NavItem = NavLeaf | NavGroup
 
 /** Curated practice-area dropdown. Anchors match the ids on /practice-areas. */
 const PRACTICE_AREAS: NavLeaf[] = [
-  { key: 'pa-technology',   href: '/practice-areas#technology',             label: 'Technology & Digital Frontiers' },
-  { key: 'pa-banking',      href: '/practice-areas#banking-finance',        label: 'Fintech, Banking & Financial Regulation' },
-  { key: 'pa-corporate',    href: '/practice-areas#corporate-commercial',   label: 'Corporate Transactions & Investment' },
-  { key: 'pa-ip',           href: '/practice-areas#ip-data',                label: 'IP, Data & Brand Protection' },
-  { key: 'pa-disputes',     href: '/practice-areas#dispute-resolution',     label: 'Disputes, Arbitration & White-Collar' },
-  { key: 'pa-labour',       href: '/practice-areas#labour-employment',      label: 'Employment & HR Structuring' },
-  { key: 'pa-government',   href: '/practice-areas#government-sector',      label: 'Government Relations & Public Policy' },
-  { key: 'pa-healthcare',   href: '/practice-areas#healthcare-pharma',      label: 'Healthcare & Pharmaceuticals' },
-  { key: 'pa-nonprofit',    href: '/practice-areas#non-profit',             label: 'Non-Profit, Trusts & Development' },
-  { key: 'pa-crossborder',  href: '/practice-areas#cross-border',           label: 'Pakistan–GCC & Cross-Border' },
+  { key: 'pa-technology',   href: '/practice-areas/technology',             label: 'Technology & Digital Frontiers' },
+  { key: 'pa-banking',      href: '/practice-areas/banking-finance',        label: 'Fintech, Banking & Financial Regulation' },
+  { key: 'pa-corporate',    href: '/practice-areas/corporate-commercial',   label: 'Corporate Transactions & Investment' },
+  { key: 'pa-ip',           href: '/practice-areas/ip-data',                label: 'IP, Data & Brand Protection' },
+  { key: 'pa-disputes',     href: '/practice-areas/dispute-resolution',     label: 'Disputes, Arbitration & White-Collar' },
+  { key: 'pa-labour',       href: '/practice-areas/labour-employment',      label: 'Employment & HR Structuring' },
+  { key: 'pa-government',   href: '/practice-areas/government-sector',      label: 'Government Relations & Public Policy' },
+  { key: 'pa-healthcare',   href: '/practice-areas/healthcare-pharma',      label: 'Healthcare & Pharmaceuticals' },
+  { key: 'pa-nonprofit',    href: '/practice-areas/non-profit',             label: 'Non-Profit, Trusts & Development' },
+  { key: 'pa-crossborder',  href: '/practice-areas/cross-border',           label: 'Pakistan–GCC & Cross-Border' },
 ]
 
 /** Default nav with stable keys. Labels here are the fallback when no admin
@@ -103,6 +103,9 @@ export function Navbar() {
       return true
     })
 
+  // Logo height — shared by the tagline span so their alignment stays in sync.
+  const logoH = scrolled || open ? 'h-9 md:h-12' : 'h-10 md:h-14'
+
   const linkClass = 'font-heading text-[13px] tracking-[0.04em] uppercase text-foreground/80 hover:text-primary transition-colors'
 
   return (
@@ -117,7 +120,7 @@ export function Navbar() {
     >
       <div
         className={`section-pad max-w-[1560px] mx-auto flex items-center justify-between transition-[height] duration-300 ${
-          scrolled || open ? 'h-[60px] md:h-[68px]' : 'h-[84px] md:h-24'
+          scrolled || open ? 'h-[60px] md:h-[68px]' : 'h-[92px] md:h-[104px]'
         }`}
       >
         {/* Logo — wordmark + tagline lockup. The tagline is absolutely
@@ -135,16 +138,16 @@ export function Navbar() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/ls-logo.png"
+            src="/ls-logo-tight.png"
             alt="LawShaoor Chambers"
-            className=" h-9 md:h-11 w-auto mr-2 transition-opacity group-hover:opacity-80"
+            className={`${logoH} w-auto transition-[height,opacity] duration-300 group-hover:opacity-80`}
           />
           <span
             aria-hidden
-            className={`pointer-events-none absolute top-0 h-9 md:h-11 flex items-center leading-none whitespace-nowrap font-mono text-[9px] md:text-[10px] tracking-[0.28em] uppercase text-foreground/55 transition-all duration-300 ${
+            className={`pointer-events-none absolute top-0 ${logoH} flex items-center leading-none whitespace-nowrap font-mono text-[9px] md:text-[10px] tracking-[0.28em] uppercase text-foreground/55 transition-all duration-300 ${
               scrolled
-                ? 'left-1/2 -translate-x-1/2 translate-y-[28px] opacity-0 md:left-full md:ml-2 md:translate-x-0 md:translate-y-0 md:opacity-100'
-                : 'left-1/2 -translate-x-1/2 translate-y-[28px] md:translate-y-[34px] opacity-100'
+                ? 'left-1/2 -translate-x-1/2 translate-y-[30px] opacity-0 md:left-full md:ml-4 md:translate-x-0 md:translate-y-0 md:opacity-100'
+                : 'left-1/2 -translate-x-1/2 translate-y-[38px] md:translate-y-[46px] opacity-100'
             }`}
           >
             Law<span className="text-gold">.</span> Strategy<span className="text-gold">.</span> Future<span className="text-gold">.</span>

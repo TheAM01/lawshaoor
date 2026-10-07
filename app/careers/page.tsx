@@ -57,7 +57,7 @@ export default function Careers() {
           </div>
           <FadeIn delay={0.4} className="lg:col-span-2">
             <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden flex items-center justify-center">
-              <PanelImage seed="careers" />
+              <PanelImage src="/images/seed/careers.jpg" />
               <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />
               <StackedCubes className="absolute inset-0 m-auto w-[55%] h-[60%] opacity-70" uid="careers-hero-stk" />
             </div>
@@ -65,44 +65,47 @@ export default function Careers() {
         </div>
       </section>
 
-      <SectionNav sections={SECTIONS} label="Careers" />
+      {
+        // Hidden for now — section nav, Why join and Open roles commented out. Uncomment to restore.
+        // <SectionNav sections={SECTIONS} label="Careers" />
 
-      {/* WHY JOIN */}
-      <section id="why" className="section-pad py-20 md:py-28 border-t border-foreground/15 bg-background scroll-mt-32">
-        <div className="max-w-[1560px] mx-auto">
-          <span className="index-chip mb-10 inline-flex">Why LawShaoor</span>
-          <Rule className="mb-12" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
-            {WHY.map((w, i) => (
-              <FadeIn key={w.t} delay={i * 0.06} className="az-card">
-                <span aria-hidden className="az-mark block w-7 h-px mb-1" />
-                <h2 className="font-display text-2xl md:text-3xl">{w.t}</h2>
-                <p className="text-base text-foreground/65 leading-relaxed">{w.d}</p>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+        // {/* WHY JOIN */}
+        // <section id="why" className="section-pad py-20 md:py-28 border-t border-foreground/15 bg-background scroll-mt-32">
+        //   <div className="max-w-[1560px] mx-auto">
+        //     <span className="index-chip mb-10 inline-flex">Why LawShaoor</span>
+        //     <Rule className="mb-12" />
+        //     <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
+        //       {WHY.map((w, i) => (
+        //         <FadeIn key={w.t} delay={i * 0.06} className="az-card">
+        //           <span aria-hidden className="az-mark block w-7 h-px mb-1" />
+        //           <h2 className="font-display text-2xl md:text-3xl">{w.t}</h2>
+        //           <p className="text-base text-foreground/65 leading-relaxed">{w.d}</p>
+        //         </FadeIn>
+        //       ))}
+        //     </div>
+        //   </div>
+        // </section>
 
-      {/* OPEN ROLES */}
-      <section id="roles" className="section-pad py-20 md:py-28 border-t border-foreground/15 bg-background-alt scroll-mt-32">
-        <div className="max-w-[1560px] mx-auto">
-          <span className="index-chip mb-10 inline-flex">Open roles</span>
-          <Rule className="mb-10" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
-            {ROLES.map((r) => (
-              <FadeIn key={r.role} className="az-card">
-                <h3 className="font-display text-2xl">{r.role}</h3>
-                <p className="text-base text-foreground/65 leading-relaxed">{r.detail}</p>
-                <span className="eyebrow text-foreground/55 mt-auto pt-3">{r.type}</span>
-              </FadeIn>
-            ))}
-          </div>
-          <p className="mt-8 text-sm text-foreground/65 font-heading">
-            Don&apos;t see your role? We still want to meet good lawyers. Send us a speculative application.
-          </p>
-        </div>
-      </section>
+        // {/* OPEN ROLES */}
+        // <section id="roles" className="section-pad py-20 md:py-28 border-t border-foreground/15 bg-background-alt scroll-mt-32">
+        //   <div className="max-w-[1560px] mx-auto">
+        //     <span className="index-chip mb-10 inline-flex">Open roles</span>
+        //     <Rule className="mb-10" />
+        //     <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+        //       {ROLES.map((r) => (
+        //         <FadeIn key={r.role} className="az-card">
+        //           <h3 className="font-display text-2xl">{r.role}</h3>
+        //           <p className="text-base text-foreground/65 leading-relaxed">{r.detail}</p>
+        //           <span className="eyebrow text-foreground/55 mt-auto pt-3">{r.type}</span>
+        //         </FadeIn>
+        //       ))}
+        //     </div>
+        //     <p className="mt-8 text-sm text-foreground/65 font-heading">
+        //       Don&apos;t see your role? We still want to meet good lawyers. Send us a speculative application.
+        //     </p>
+        //   </div>
+        // </section>
+      }
 
       {/* CTA */}
       <section id="apply" className="relative section-pad py-32 md:py-44 border-t border-foreground/15 bg-fixed-deep overflow-hidden scroll-mt-32">

@@ -8,7 +8,7 @@ import type { CSSProperties } from 'react'
    Each illustration is square and scales via the className prop.
    ============================================================ */
 
-type IProps = {
+export type IProps = {
   className?: string
   style?: CSSProperties
   /** Unique id suffix to avoid clashing gradients on a single page */
@@ -20,7 +20,7 @@ type IProps = {
 const FROM = 'var(--grad-from)'
 const TO = 'var(--grad-to)'
 
-function defs(uid: string) {
+export function defs(uid: string) {
   return (
     <defs>
       <linearGradient id={`grad-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">

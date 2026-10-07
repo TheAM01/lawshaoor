@@ -111,48 +111,49 @@ Page
 ────────────────────────────────────────────── */
 
 export default async function Academy() {
-  const { posts, error } = await getPublished()
-  const settings = await getSiteSettings()
-  const categories = await getAllCategories()
-  const keyMap = buildIllustrationKeyMap(categories)
-  /** Category order from DB (admin can re-sort by editing `order`). Falls back
-   *  to derived names from posts if the DB is empty. */
-  const categoryOrder = categories.length > 0
-    ? categories.map((c) => c.name)
-    : Array.from(new Set(posts.map((p) => p.category)))
+  // Hidden for now — only the hero renders. Uncomment to restore.
+  // const { posts, error } = await getPublished()
+  // const settings = await getSiteSettings()
+  // const categories = await getAllCategories()
+  // const keyMap = buildIllustrationKeyMap(categories)
+  // /** Category order from DB (admin can re-sort by editing `order`). Falls back
+  //  *  to derived names from posts if the DB is empty. */
+  // const categoryOrder = categories.length > 0
+  //   ? categories.map((c) => c.name)
+  //   : Array.from(new Set(posts.map((p) => p.category)))
 
-  // Pick the featured post:
-  //   1. settings.featuredPostId if it matches a published post
-  //   2. otherwise the most recently published
-  const featured =
-    posts.find((p) => p._id === settings.featuredPostId) ?? posts[0]
-  const restAll = posts.filter((p) => p._id !== featured?._id)
+  // // Pick the featured post:
+  // //   1. settings.featuredPostId if it matches a published post
+  // //   2. otherwise the most recently published
+  // const featured =
+  //   posts.find((p) => p._id === settings.featuredPostId) ?? posts[0]
+  // const restAll = posts.filter((p) => p._id !== featured?._id)
 
-  // Pinned post — surfaces at the top of the editorial picks (just under the
-  // featured slot). Falls through to normal order if not set or matches featured.
-  const pinned =
-    settings.pinnedPostId && settings.pinnedPostId !== featured?._id
-      ? restAll.find((p) => p._id === settings.pinnedPostId)
-      : undefined
-  const rest = pinned ? [pinned, ...restAll.filter((p) => p._id !== pinned._id)] : restAll
+  // // Pinned post — surfaces at the top of the editorial picks (just under the
+  // // featured slot). Falls through to normal order if not set or matches featured.
+  // const pinned =
+  //   settings.pinnedPostId && settings.pinnedPostId !== featured?._id
+  //     ? restAll.find((p) => p._id === settings.pinnedPostId)
+  //     : undefined
+  // const rest = pinned ? [pinned, ...restAll.filter((p) => p._id !== pinned._id)] : restAll
 
-  // Stats
-  const totalRead = posts.reduce((acc, p) => acc + p.readMinutes, 0)
-  const categoriesUsed = new Set(posts.map((p) => p.category)).size
+  // // Stats
+  // const totalRead = posts.reduce((acc, p) => acc + p.readMinutes, 0)
+  // const categoriesUsed = new Set(posts.map((p) => p.category)).size
 
-  const categoryCounts = posts.reduce<Record<string, number>>((acc, p) => {
-    acc[p.category] = (acc[p.category] ?? 0) + 1
-    return acc
-  }, {})
+  // const categoryCounts = posts.reduce<Record<string, number>>((acc, p) => {
+  //   acc[p.category] = (acc[p.category] ?? 0) + 1
+  //   return acc
+  // }, {})
 
-  // Editorial layout: 1 large + N rail, rest in archive.
-  // latestLimit controls the total editorial picks size (hero + rail).
-  const latestSize =
-    settings.latestLimit === 0 ? rest.length : Math.max(0, settings.latestLimit)
-  const editorialPicks = rest.slice(0, latestSize)
-  const editorialHero = editorialPicks[0]
-  const editorialRail = editorialPicks.slice(1)
-  const archivePosts = rest.slice(latestSize)
+  // // Editorial layout: 1 large + N rail, rest in archive.
+  // // latestLimit controls the total editorial picks size (hero + rail).
+  // const latestSize =
+  //   settings.latestLimit === 0 ? rest.length : Math.max(0, settings.latestLimit)
+  // const editorialPicks = rest.slice(0, latestSize)
+  // const editorialHero = editorialPicks[0]
+  // const editorialRail = editorialPicks.slice(1)
+  // const archivePosts = rest.slice(latestSize)
 
   return (
     <main className="relative overflow-x-clip">
@@ -161,7 +162,7 @@ export default async function Academy() {
       {/* ────────────────────────────────────────
           01 · HERO
           ──────────────────────────────────────── */}
-      <section className="relative section-pad pt-32 md:pt-44 pb-24 md:pb-32 bg-fixed-mist overflow-hidden">
+      <section className="relative section-pad pt-32 md:pt-44 pb-24 md:pb-32 bg-fixed-mist overflow-hidden min-h-svh flex flex-col justify-center">
         <span aria-hidden className="hero-orb accent-breathe top-[8%] -right-[14%] hidden md:block" />
         <span
           aria-hidden
@@ -173,7 +174,7 @@ export default async function Academy() {
         <GridDots className="absolute right-[18%] bottom-16 w-44 h-44 opacity-50 hidden md:block float-soft" uid="ac-hero-dots" />
         <CirclesInCircumference className="absolute left-[42%] -bottom-12 w-36 h-36 opacity-55 hidden lg:block float-soft" uid="ac-hero-circ" />
 
-        <div className="max-w-[1560px] mx-auto relative">
+        <div className="max-w-[1560px] w-full mx-auto relative">
           <h1 className="display-xl font-display">
             <span className="block">
               <SplitReveal trigger="load" delay={0.1}>The LawShaoor</SplitReveal>
@@ -200,388 +201,391 @@ export default async function Academy() {
         </div>
       </section>
 
-      {/* ────────────────────────────────────────
-          01b · STATS STRIP (animated counters)
-          ──────────────────────────────────────── */}
-      <section className="border-y border-foreground/15 bg-background-alt/70 section-pad py-10 md:py-14">
-        <div className="max-w-[1560px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0">
-            <Stat v={posts.length} suffix="+" label="Pieces published" />
-            <Stat v={categoriesUsed} suffix="" label="Categories" />
-            <Stat v={totalRead} suffix=" min" label="Total reading time" />
-            <Stat v={5} suffix="+" label="Partners writing" last />
-          </div>
-        </div>
-      </section>
+      {
+        // Hidden for now — sections 01b–08 commented out. Uncomment to restore.
+        // {/* ────────────────────────────────────────
+        //     01b · STATS STRIP (animated counters)
+        //     ──────────────────────────────────────── */}
+        // <section className="border-y border-foreground/15 bg-background-alt/70 section-pad py-10 md:py-14">
+        //   <div className="max-w-[1560px] mx-auto">
+        //     <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 md:gap-y-0">
+        //       <Stat v={posts.length} suffix="+" label="Pieces published" />
+        //       <Stat v={categoriesUsed} suffix="" label="Categories" />
+        //       <Stat v={totalRead} suffix=" min" label="Total reading time" />
+        //       <Stat v={5} suffix="+" label="Partners writing" last />
+        //     </div>
+        //   </div>
+        // </section>
 
-      <SectionNav
-        sections={[
-          { id: 'featured', label: 'Featured' },
-          { id: 'latest', label: 'Latest' },
-          { id: 'categories', label: 'Categories' },
-          { id: 'topics', label: 'Topics' },
-          { id: 'archive', label: 'Archive' },
-        ]}
-        label="Academy"
-      />
+        // <SectionNav
+        //   sections={[
+        //     { id: 'featured', label: 'Featured' },
+        //     { id: 'latest', label: 'Latest' },
+        //     { id: 'categories', label: 'Categories' },
+        //     { id: 'topics', label: 'Topics' },
+        //     { id: 'archive', label: 'Archive' },
+        //   ]}
+        //   label="Academy"
+        // />
 
-      {/* ────────────────────────────────────────
-          02 · FEATURED PIECE (editorial)
-          ──────────────────────────────────────── */}
-      {featured && (
-        <section id="featured" className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-fixed-lavender overflow-x-clip scroll-mt-32">
-          <OrbitRings className="absolute -right-32 top-12 w-[520px] h-[520px] opacity-25 hidden md:block" uid="ac-feat-orb" rotate />
-          <SquareCascade className="absolute -left-20 -bottom-16 w-72 h-72 opacity-35 hidden md:block float-soft" uid="ac-feat-sq" />
+        // {/* ────────────────────────────────────────
+        //     02 · FEATURED PIECE (editorial)
+        //     ──────────────────────────────────────── */}
+        // {featured && (
+        //   <section id="featured" className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-fixed-lavender overflow-x-clip scroll-mt-32">
+        //     <OrbitRings className="absolute -right-32 top-12 w-[520px] h-[520px] opacity-25 hidden md:block" uid="ac-feat-orb" rotate />
+        //     <SquareCascade className="absolute -left-20 -bottom-16 w-72 h-72 opacity-35 hidden md:block float-soft" uid="ac-feat-sq" />
 
-          <div className="max-w-[1560px] mx-auto relative">
-            <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
-              <div className="col-span-12 md:col-span-6 space-y-3">
-                <span className="eyebrow text-foreground/55">This month&apos;s read</span>
-                <h2 className="display-sm font-display">
-                  <SplitReveal>Featured.</SplitReveal>
-                </h2>
-              </div>
-              <div className="col-span-12 md:col-span-4 md:col-start-9 md:text-right">
-                <FadeIn>
-                  <p className="font-mono text-xs tracking-[0.22em] uppercase text-foreground/55">
-                    {formatDate(featured.publishedAt)} · {featured.readMinutes} min read
-                  </p>
-                </FadeIn>
-              </div>
-            </div>
+        //     <div className="max-w-[1560px] mx-auto relative">
+        //       <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
+        //         <div className="col-span-12 md:col-span-6 space-y-3">
+        //           <span className="eyebrow text-foreground/55">This month&apos;s read</span>
+        //           <h2 className="display-sm font-display">
+        //             <SplitReveal>Featured.</SplitReveal>
+        //           </h2>
+        //         </div>
+        //         <div className="col-span-12 md:col-span-4 md:col-start-9 md:text-right">
+        //           <FadeIn>
+        //             <p className="font-mono text-xs tracking-[0.22em] uppercase text-foreground/55">
+        //               {formatDate(featured.publishedAt)} · {featured.readMinutes} min read
+        //             </p>
+        //           </FadeIn>
+        //         </div>
+        //       </div>
 
-            <Rule className="rule-heavy mb-10" />
+        //       <Rule className="rule-heavy mb-10" />
 
-            <FadeIn>
-              <article className="grid grid-cols-12 gap-6 md:gap-10 lg:gap-16">
-                <div className="col-span-12 md:col-span-6 order-2 md:order-1 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-6 flex-wrap">
-                    <span className="tag tag-primary">{featured.category}</span>
-                    <span className="eyebrow text-foreground/55">{formatDay(featured.publishedAt)} · {featured.publishedAt.getFullYear()}</span>
-                  </div>
-                  <h3 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[-0.025em] leading-[0.98] mb-7">
-                    <Link href={`/lawshaoor-academy/${featured.slug}`} className="hover:text-primary transition-colors">
-                      {featured.title}
-                    </Link>
-                  </h3>
-                  <p className="font-heading text-lg md:text-xl text-foreground/85 leading-relaxed mb-8 max-w-2xl tracking-[-0.005em]">
-                    {featured.excerpt}
-                  </p>
-                  <Link href={`/lawshaoor-academy/${featured.slug}`} className="btn-primary self-start">
-                    <span>Read the piece</span>
-                                      </Link>
-                </div>
+        //       <FadeIn>
+        //         <article className="grid grid-cols-12 gap-6 md:gap-10 lg:gap-16">
+        //           <div className="col-span-12 md:col-span-6 order-2 md:order-1 flex flex-col justify-center">
+        //             <div className="flex items-center gap-3 mb-6 flex-wrap">
+        //               <span className="tag tag-primary">{featured.category}</span>
+        //               <span className="eyebrow text-foreground/55">{formatDay(featured.publishedAt)} · {featured.publishedAt.getFullYear()}</span>
+        //             </div>
+        //             <h3 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-[-0.025em] leading-[0.98] mb-7">
+        //               <Link href={`/lawshaoor-academy/${featured.slug}`} className="hover:text-primary transition-colors">
+        //                 {featured.title}
+        //               </Link>
+        //             </h3>
+        //             <p className="font-heading text-lg md:text-xl text-foreground/85 leading-relaxed mb-8 max-w-2xl tracking-[-0.005em]">
+        //               {featured.excerpt}
+        //             </p>
+        //             <Link href={`/lawshaoor-academy/${featured.slug}`} className="btn-primary self-start">
+        //               <span>Read the piece</span>
+        //                                 </Link>
+        //           </div>
 
-                <div className="col-span-12 md:col-span-6 order-1 md:order-2">
-                  <FeaturedVisual post={featured} keyMap={keyMap} />
-                </div>
-              </article>
-            </FadeIn>
-          </div>
-        </section>
-      )}
+        //           <div className="col-span-12 md:col-span-6 order-1 md:order-2">
+        //             <FeaturedVisual post={featured} keyMap={keyMap} />
+        //           </div>
+        //         </article>
+        //       </FadeIn>
+        //     </div>
+        //   </section>
+        // )}
 
-      {/* ────────────────────────────────────────
-          03 · LATEST WRITING (editorial mixed grid)
-          ──────────────────────────────────────── */}
-      <section
-        id="latest"
-        className="relative section-pad py-24 md:py-36 border-b border-foreground/15 bg-background overflow-x-clip scroll-mt-32"
-      >
-        <OrbitRings className="absolute -left-32 top-1/3 w-[520px] h-[520px] opacity-25 hidden md:block" uid="ac-latest-orb" rotate />
-        <StackedCubes className="absolute right-10 -top-12 w-36 h-56 opacity-45 hidden md:block float-soft" uid="ac-latest-stk" />
+        // {/* ────────────────────────────────────────
+        //     03 · LATEST WRITING (editorial mixed grid)
+        //     ──────────────────────────────────────── */}
+        // <section
+        //   id="latest"
+        //   className="relative section-pad py-24 md:py-36 border-b border-foreground/15 bg-background overflow-x-clip scroll-mt-32"
+        // >
+        //   <OrbitRings className="absolute -left-32 top-1/3 w-[520px] h-[520px] opacity-25 hidden md:block" uid="ac-latest-orb" rotate />
+        //   <StackedCubes className="absolute right-10 -top-12 w-36 h-56 opacity-45 hidden md:block float-soft" uid="ac-latest-stk" />
 
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
-            <div className="col-span-12 md:col-span-7">
-              <span className="eyebrow text-foreground/55">Latest pieces</span>
-              <h2 className="display-md font-display mt-4">
-                <SplitReveal>Recent writing,</SplitReveal>{' '}
-                <span className="text-primary">
-                  <SplitReveal>fresh off the desk.</SplitReveal>
-                </span>
-              </h2>
-            </div>
-            <div className="col-span-12 md:col-span-4 md:col-start-9">
-              <FadeIn>
-                <p className="text-foreground/80 leading-relaxed font-heading tracking-[-0.005em]">
-                  New pieces every week or two. No filler. If we publish it, a partner sat down and wrote it.
-                </p>
-              </FadeIn>
-            </div>
-          </div>
+        //   <div className="max-w-[1560px] mx-auto relative">
+        //     <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
+        //       <div className="col-span-12 md:col-span-7">
+        //         <span className="eyebrow text-foreground/55">Latest pieces</span>
+        //         <h2 className="display-md font-display mt-4">
+        //           <SplitReveal>Recent writing,</SplitReveal>{' '}
+        //           <span className="text-primary">
+        //             <SplitReveal>fresh off the desk.</SplitReveal>
+        //           </span>
+        //         </h2>
+        //       </div>
+        //       <div className="col-span-12 md:col-span-4 md:col-start-9">
+        //         <FadeIn>
+        //           <p className="text-foreground/80 leading-relaxed font-heading tracking-[-0.005em]">
+        //             New pieces every week or two. No filler. If we publish it, a partner sat down and wrote it.
+        //           </p>
+        //         </FadeIn>
+        //       </div>
+        //     </div>
 
-          <Rule className="rule-heavy mb-12 md:mb-14" />
+        //     <Rule className="rule-heavy mb-12 md:mb-14" />
 
-          {error ? (
-            <div className="border border-destructive/40 bg-destructive/5 p-8">
-              <p className="font-mono text-xs tracking-[0.2em] uppercase text-destructive mb-2">
-                Failed to load articles
-              </p>
-              <p className="text-sm text-foreground/80 font-heading">{error}</p>
-            </div>
-          ) : editorialPicks.length === 0 ? (
-            <EmptyState />
-          ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-foreground/15 border border-foreground/15">
-              {editorialHero && (
-                <FadeIn className="lg:col-span-7 lg:row-span-2 bg-background">
-                  <HeroCard post={editorialHero} keyMap={keyMap} />
-                </FadeIn>
-              )}
-              {editorialRail.map((p, i) => (
-                <FadeIn
-                  key={p._id}
-                  delay={0.05 * (i + 1)}
-                  className="lg:col-span-5 bg-background"
-                >
-                  <RailCard post={p} keyMap={keyMap} />
-                </FadeIn>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+        //     {error ? (
+        //       <div className="border border-destructive/40 bg-destructive/5 p-8">
+        //         <p className="font-mono text-xs tracking-[0.2em] uppercase text-destructive mb-2">
+        //           Failed to load articles
+        //         </p>
+        //         <p className="text-sm text-foreground/80 font-heading">{error}</p>
+        //       </div>
+        //     ) : editorialPicks.length === 0 ? (
+        //       <EmptyState />
+        //     ) : (
+        //       <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-foreground/15 border border-foreground/15">
+        //         {editorialHero && (
+        //           <FadeIn className="lg:col-span-7 lg:row-span-2 bg-background">
+        //             <HeroCard post={editorialHero} keyMap={keyMap} />
+        //           </FadeIn>
+        //         )}
+        //         {editorialRail.map((p, i) => (
+        //           <FadeIn
+        //             key={p._id}
+        //             delay={0.05 * (i + 1)}
+        //             className="lg:col-span-5 bg-background"
+        //           >
+        //             <RailCard post={p} keyMap={keyMap} />
+        //           </FadeIn>
+        //         ))}
+        //       </div>
+        //     )}
+        //   </div>
+        // </section>
 
-      {/* ────────────────────────────────────────
-          04 · MANIFESTO / EDITORIAL CALLOUT
-          ──────────────────────────────────────── */}
-      <section className="relative section-pad py-28 md:py-40 border-b border-foreground/15 bg-fixed-deep overflow-hidden">
-        <SquareCascade className="absolute -right-24 -top-12 w-[460px] h-[460px] opacity-30 hidden md:block" uid="ac-man-sq" />
-        <GridDots className="absolute -left-20 bottom-0 w-64 h-64 opacity-35 hidden md:block" uid="ac-man-dots" />
+        // {/* ────────────────────────────────────────
+        //     04 · MANIFESTO / EDITORIAL CALLOUT
+        //     ──────────────────────────────────────── */}
+        // <section className="relative section-pad py-28 md:py-40 border-b border-foreground/15 bg-fixed-deep overflow-hidden">
+        //   <SquareCascade className="absolute -right-24 -top-12 w-[460px] h-[460px] opacity-30 hidden md:block" uid="ac-man-sq" />
+        //   <GridDots className="absolute -left-20 bottom-0 w-64 h-64 opacity-35 hidden md:block" uid="ac-man-dots" />
 
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="grid grid-cols-12 gap-6 md:gap-10 items-center">
-            <div className="col-span-12 md:col-span-3 hidden md:flex justify-center">
-              <FadeIn>
-                <BigCircles className="w-64 h-64 lg:w-72 lg:h-72 opacity-85" uid="ac-man-big" />
-              </FadeIn>
-            </div>
+        //   <div className="max-w-[1560px] mx-auto relative">
+        //     <div className="grid grid-cols-12 gap-6 md:gap-10 items-center">
+        //       <div className="col-span-12 md:col-span-3 hidden md:flex justify-center">
+        //         <FadeIn>
+        //           <BigCircles className="w-64 h-64 lg:w-72 lg:h-72 opacity-85" uid="ac-man-big" />
+        //         </FadeIn>
+        //       </div>
 
-            <div className="col-span-12 md:col-span-9 space-y-7">
-              <span className="eyebrow text-foreground/55">Editorial</span>
-              <blockquote className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.025em] text-foreground">
-                <SplitReveal>No drip campaigns.</SplitReveal>{' '}
-                <SplitReveal>No SEO bait.</SplitReveal>{' '}
-                <span className="text-primary">
-                  <SplitReveal>One piece, when there is</SplitReveal>{' '}
-                  <SplitReveal>something worth reading.</SplitReveal>
-                </span>
-              </blockquote>
-              <FadeIn delay={0.2}>
-                <p className="font-heading text-lg text-foreground/75 leading-relaxed max-w-2xl tracking-[-0.005em]">
-                  Every piece on the Academy is drafted by a partner who is doing the work, not a marketing team writing in their voice. We publish slowly and edit honestly.
-                </p>
-              </FadeIn>
-            </div>
-          </div>
-        </div>
-      </section>
+        //       <div className="col-span-12 md:col-span-9 space-y-7">
+        //         <span className="eyebrow text-foreground/55">Editorial</span>
+        //         <blockquote className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.025em] text-foreground">
+        //           <SplitReveal>No drip campaigns.</SplitReveal>{' '}
+        //           <SplitReveal>No SEO bait.</SplitReveal>{' '}
+        //           <span className="text-primary">
+        //             <SplitReveal>One piece, when there is</SplitReveal>{' '}
+        //             <SplitReveal>something worth reading.</SplitReveal>
+        //           </span>
+        //         </blockquote>
+        //         <FadeIn delay={0.2}>
+        //           <p className="font-heading text-lg text-foreground/75 leading-relaxed max-w-2xl tracking-[-0.005em]">
+        //             Every piece on the Academy is drafted by a partner who is doing the work, not a marketing team writing in their voice. We publish slowly and edit honestly.
+        //           </p>
+        //         </FadeIn>
+        //       </div>
+        //     </div>
+        //   </div>
+        // </section>
 
-      {/* ────────────────────────────────────────
-          05 · BROWSE BY CATEGORY
-          ──────────────────────────────────────── */}
-      <section id="categories" className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-background overflow-x-clip scroll-mt-32">
-        <GridDots className="absolute -left-32 top-1/2 -translate-y-1/2 w-[480px] h-[480px] opacity-30 hidden md:block" uid="ac-cat-dots" />
+        // {/* ────────────────────────────────────────
+        //     05 · BROWSE BY CATEGORY
+        //     ──────────────────────────────────────── */}
+        // <section id="categories" className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-background overflow-x-clip scroll-mt-32">
+        //   <GridDots className="absolute -left-32 top-1/2 -translate-y-1/2 w-[480px] h-[480px] opacity-30 hidden md:block" uid="ac-cat-dots" />
 
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
-            <div className="col-span-12 md:col-span-5 space-y-3">
-              <span className="eyebrow text-foreground/55">Browse</span>
-              <h2 className="display-md font-display">
-                <SplitReveal>By category.</SplitReveal>
-              </h2>
-            </div>
-            <div className="col-span-12 md:col-span-5 md:col-start-8">
-              <FadeIn>
-                <p className="text-foreground/80 leading-relaxed font-heading tracking-[-0.005em]">
-                  Six running threads. Every piece sits in one — and every category is updated on its own rhythm.
-                </p>
-              </FadeIn>
-            </div>
-          </div>
+        //   <div className="max-w-[1560px] mx-auto relative">
+        //     <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
+        //       <div className="col-span-12 md:col-span-5 space-y-3">
+        //         <span className="eyebrow text-foreground/55">Browse</span>
+        //         <h2 className="display-md font-display">
+        //           <SplitReveal>By category.</SplitReveal>
+        //         </h2>
+        //       </div>
+        //       <div className="col-span-12 md:col-span-5 md:col-start-8">
+        //         <FadeIn>
+        //           <p className="text-foreground/80 leading-relaxed font-heading tracking-[-0.005em]">
+        //             Six running threads. Every piece sits in one — and every category is updated on its own rhythm.
+        //           </p>
+        //         </FadeIn>
+        //       </div>
+        //     </div>
 
-          <Rule className="rule-heavy mb-0" />
+        //     <Rule className="rule-heavy mb-0" />
 
-          <FadeIn
-            staggerChildren
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/15 border-x border-b border-foreground/15"
-          >
-            {categoryOrder.map((label, i) => {
-              const cat = categories.find((c) => c.name === label)
-              return (
-                <CategoryCard
-                  key={label}
-                  label={label}
-                  slug={cat?.slug ?? null}
-                  index={i + 1}
-                  count={categoryCounts[label] ?? 0}
-                  illustrationKey={cat?.illustrationKey ?? ''}
-                />
-              )
-            })}
-          </FadeIn>
-        </div>
-      </section>
+        //     <FadeIn
+        //       staggerChildren
+        //       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/15 border-x border-b border-foreground/15"
+        //     >
+        //       {categoryOrder.map((label, i) => {
+        //         const cat = categories.find((c) => c.name === label)
+        //         return (
+        //           <CategoryCard
+        //             key={label}
+        //             label={label}
+        //             slug={cat?.slug ?? null}
+        //             index={i + 1}
+        //             count={categoryCounts[label] ?? 0}
+        //             illustrationKey={cat?.illustrationKey ?? ''}
+        //           />
+        //         )
+        //       })}
+        //     </FadeIn>
+        //   </div>
+        // </section>
 
-      {/* ────────────────────────────────────────
-          06 · TOPIC TILES
-          ──────────────────────────────────────── */}
-      <section id="topics" className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-fixed-lavender overflow-x-clip scroll-mt-32">
-        <PulseRings className="absolute -right-24 -top-12 w-72 h-72 opacity-50 hidden md:block" uid="ac-topic-pulse" />
+        // {/* ────────────────────────────────────────
+        //     06 · TOPIC TILES
+        //     ──────────────────────────────────────── */}
+        // <section id="topics" className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-fixed-lavender overflow-x-clip scroll-mt-32">
+        //   <PulseRings className="absolute -right-24 -top-12 w-72 h-72 opacity-50 hidden md:block" uid="ac-topic-pulse" />
 
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
-            <div className="col-span-12 md:col-span-5">
-              <span className="eyebrow text-foreground/55">Topics</span>
-              <h2 className="display-md font-display mt-4">
-                <SplitReveal>Threads</SplitReveal>{' '}
-                <span className="text-primary">
-                  <SplitReveal>we keep pulling on.</SplitReveal>
-                </span>
-              </h2>
-            </div>
-            <div className="col-span-12 md:col-span-5 md:col-start-8">
-              <FadeIn>
-                <p className="text-foreground/80 leading-relaxed font-heading tracking-[-0.005em]">
-                  Eight running threads that show up across our writing. Click in for the curated sequence.
-                </p>
-              </FadeIn>
-            </div>
-          </div>
+        //   <div className="max-w-[1560px] mx-auto relative">
+        //     <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16 items-end">
+        //       <div className="col-span-12 md:col-span-5">
+        //         <span className="eyebrow text-foreground/55">Topics</span>
+        //         <h2 className="display-md font-display mt-4">
+        //           <SplitReveal>Threads</SplitReveal>{' '}
+        //           <span className="text-primary">
+        //             <SplitReveal>we keep pulling on.</SplitReveal>
+        //           </span>
+        //         </h2>
+        //       </div>
+        //       <div className="col-span-12 md:col-span-5 md:col-start-8">
+        //         <FadeIn>
+        //           <p className="text-foreground/80 leading-relaxed font-heading tracking-[-0.005em]">
+        //             Eight running threads that show up across our writing. Click in for the curated sequence.
+        //           </p>
+        //         </FadeIn>
+        //       </div>
+        //     </div>
 
-          <Rule className="rule-heavy mb-0" />
+        //     <Rule className="rule-heavy mb-0" />
 
-          <FadeIn
-            staggerChildren
-            className="grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground/15 border-x border-b border-foreground/15"
-          >
-            {TOPICS.map((t, i) => {
-              const Illo = t.Illo
-              return (
-                <Link
-                  key={t.label}
-                  href="#"
-                  className="group bg-background p-8 md:p-10 lift-card flex flex-col gap-6 items-start"
-                >
-                  <span aria-hidden className="block w-6 h-px bg-primary" />
-                  <div className="w-full flex justify-center py-2">
-                    <Illo className="w-32 h-32 md:w-40 md:h-40 group-hover:scale-110 transition-transform duration-500" uid={`tp-${i}`} />
-                  </div>
-                  <span className="font-display text-xl md:text-2xl tracking-[-0.02em] group-hover:text-primary transition-colors mt-auto">
-                    {t.label}
-                  </span>
-                </Link>
-              )
-            })}
-          </FadeIn>
-        </div>
-      </section>
+        //     <FadeIn
+        //       staggerChildren
+        //       className="grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground/15 border-x border-b border-foreground/15"
+        //     >
+        //       {TOPICS.map((t, i) => {
+        //         const Illo = t.Illo
+        //         return (
+        //           <Link
+        //             key={t.label}
+        //             href="#"
+        //             className="group bg-background p-8 md:p-10 lift-card flex flex-col gap-6 items-start"
+        //           >
+        //             <span aria-hidden className="block w-6 h-px bg-primary" />
+        //             <div className="w-full flex justify-center py-2">
+        //               <Illo className="w-32 h-32 md:w-40 md:h-40 group-hover:scale-110 transition-transform duration-500" uid={`tp-${i}`} />
+        //             </div>
+        //             <span className="font-display text-xl md:text-2xl tracking-[-0.02em] group-hover:text-primary transition-colors mt-auto">
+        //               {t.label}
+        //             </span>
+        //           </Link>
+        //         )
+        //       })}
+        //     </FadeIn>
+        //   </div>
+        // </section>
 
-      {/* ────────────────────────────────────────
-          07 · ARCHIVE INDEX (full list)
-          ──────────────────────────────────────── */}
-      <section
-        id="archive"
-        className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-background overflow-x-clip scroll-mt-32"
-      >
-        <VectorNode className="absolute right-10 top-16 w-36 h-36 opacity-50 hidden md:block" uid="ac-archive-vec" />
+        // {/* ────────────────────────────────────────
+        //     07 · ARCHIVE INDEX (full list)
+        //     ──────────────────────────────────────── */}
+        // <section
+        //   id="archive"
+        //   className="relative section-pad py-24 md:py-32 border-b border-foreground/15 bg-background overflow-x-clip scroll-mt-32"
+        // >
+        //   <VectorNode className="absolute right-10 top-16 w-36 h-36 opacity-50 hidden md:block" uid="ac-archive-vec" />
 
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="grid grid-cols-12 gap-6 mb-10 md:mb-12 items-end">
-            <div className="col-span-12 md:col-span-6">
-              <span className="eyebrow text-foreground/55">Archive</span>
-              <h2 className="display-md font-display mt-4">
-                <SplitReveal>The whole shelf.</SplitReveal>
-              </h2>
-            </div>
-            <div className="col-span-12 md:col-span-4 md:col-start-9">
-              <FadeIn>
-                <p className="text-foreground/75 leading-relaxed font-heading tracking-[-0.005em]">
-                  Every piece we have published. Sorted newest first, grouped by year.
-                </p>
-              </FadeIn>
-            </div>
-          </div>
+        //   <div className="max-w-[1560px] mx-auto relative">
+        //     <div className="grid grid-cols-12 gap-6 mb-10 md:mb-12 items-end">
+        //       <div className="col-span-12 md:col-span-6">
+        //         <span className="eyebrow text-foreground/55">Archive</span>
+        //         <h2 className="display-md font-display mt-4">
+        //           <SplitReveal>The whole shelf.</SplitReveal>
+        //         </h2>
+        //       </div>
+        //       <div className="col-span-12 md:col-span-4 md:col-start-9">
+        //         <FadeIn>
+        //           <p className="text-foreground/75 leading-relaxed font-heading tracking-[-0.005em]">
+        //             Every piece we have published. Sorted newest first, grouped by year.
+        //           </p>
+        //         </FadeIn>
+        //       </div>
+        //     </div>
 
-          <Rule className="rule-heavy mb-0" />
+        //     <Rule className="rule-heavy mb-0" />
 
-          {posts.length === 0 ? (
-            <EmptyState />
-          ) : (
-            <div className="border-x border-b border-foreground/15">
-              <div className="hidden md:grid grid-cols-12 gap-6 px-5 py-4 border-b border-foreground/12 bg-background-alt/40 text-foreground/55 eyebrow-sm">
-                <div className="col-span-1">Date</div>
-                <div className="col-span-2">Category</div>
-                <div className="col-span-7">Piece</div>
-                <div className="col-span-1 text-right">Read</div>
-                <div className="col-span-1 text-right">→</div>
-              </div>
-              {groupByYear(posts).flatMap(([year, group]) => [
-                <div
-                  key={`year-${year}`}
-                  className="grid grid-cols-12 gap-6 px-5 py-4 border-b border-foreground/10 bg-background"
-                >
-                  <div className="col-span-12 md:col-span-2 font-display text-2xl tracking-[-0.02em]">
-                    <span className="text-primary">{year}</span>
-                  </div>
-                  <div className="col-span-12 md:col-span-10 flex items-end text-foreground/55 eyebrow-sm">
-                    {group.length} {group.length === 1 ? 'piece' : 'pieces'}
-                  </div>
-                </div>,
-                ...group.map((p) => (
-                  <ArchiveRow key={p._id} post={p} />
-                )),
-              ])}
-            </div>
-          )}
-        </div>
-      </section>
+        //     {posts.length === 0 ? (
+        //       <EmptyState />
+        //     ) : (
+        //       <div className="border-x border-b border-foreground/15">
+        //         <div className="hidden md:grid grid-cols-12 gap-6 px-5 py-4 border-b border-foreground/12 bg-background-alt/40 text-foreground/55 eyebrow-sm">
+        //           <div className="col-span-1">Date</div>
+        //           <div className="col-span-2">Category</div>
+        //           <div className="col-span-7">Piece</div>
+        //           <div className="col-span-1 text-right">Read</div>
+        //           <div className="col-span-1 text-right">→</div>
+        //         </div>
+        //         {groupByYear(posts).flatMap(([year, group]) => [
+        //           <div
+        //             key={`year-${year}`}
+        //             className="grid grid-cols-12 gap-6 px-5 py-4 border-b border-foreground/10 bg-background"
+        //           >
+        //             <div className="col-span-12 md:col-span-2 font-display text-2xl tracking-[-0.02em]">
+        //               <span className="text-primary">{year}</span>
+        //             </div>
+        //             <div className="col-span-12 md:col-span-10 flex items-end text-foreground/55 eyebrow-sm">
+        //               {group.length} {group.length === 1 ? 'piece' : 'pieces'}
+        //             </div>
+        //           </div>,
+        //           ...group.map((p) => (
+        //             <ArchiveRow key={p._id} post={p} />
+        //           )),
+        //         ])}
+        //       </div>
+        //     )}
+        //   </div>
+        // </section>
 
-      {/* ────────────────────────────────────────
-          08 · NEWSLETTER (gated by settings.showNewsletter)
-          ──────────────────────────────────────── */}
-      {settings.showNewsletter && (
-      <section className="relative section-pad py-24 md:py-36 bg-fixed-lavender overflow-hidden">
-        <GridDots className="absolute -left-32 top-1/2 -translate-y-1/2 w-[520px] h-[520px] opacity-40 hidden md:block" uid="ac-news-dots" />
-        <StackedCubes className="absolute right-12 -bottom-8 w-44 h-56 opacity-50 hidden md:block float-soft" uid="ac-news-stk" />
+        // {/* ────────────────────────────────────────
+        //     08 · NEWSLETTER (gated by settings.showNewsletter)
+        //     ──────────────────────────────────────── */}
+        // {settings.showNewsletter && (
+        // <section className="relative section-pad py-24 md:py-36 bg-fixed-lavender overflow-hidden">
+        //   <GridDots className="absolute -left-32 top-1/2 -translate-y-1/2 w-[520px] h-[520px] opacity-40 hidden md:block" uid="ac-news-dots" />
+        //   <StackedCubes className="absolute right-12 -bottom-8 w-44 h-56 opacity-50 hidden md:block float-soft" uid="ac-news-stk" />
 
-        <div className="max-w-[1560px] mx-auto relative">
-          <div className="grid grid-cols-12 gap-6 items-end">
-            <div className="col-span-12 md:col-span-7 space-y-6">
-              <span className="eyebrow text-foreground/55">Subscribe</span>
-              <h2 className="display-lg font-display">
-                <span className="block">
-                  <SplitReveal>Get the next piece</SplitReveal>
-                </span>
-                <span className="block text-primary">
-                  <SplitReveal>in your inbox.</SplitReveal>
-                </span>
-              </h2>
-              <FadeIn delay={0.2}>
-                <p className="font-heading text-lg md:text-xl text-foreground/85 max-w-xl tracking-[-0.005em]">
-                  No drip campaigns. No funnel. One email when there is something worth reading.
-                </p>
-              </FadeIn>
-            </div>
-            <div className="col-span-12 md:col-span-5">
-              <FadeIn delay={0.3} className="surface bracketed p-6 md:p-8">
-                <form className="space-y-4">
-                  <div className="field">
-                    <label>Email</label>
-                    <input type="email" required placeholder="you@company.com" />
-                  </div>
-                  <button type="submit" className="btn-primary w-full justify-center">
-                    <span>Subscribe</span>
-                                      </button>
-                  <p className="eyebrow text-foreground/55">Unsubscribe in one click. We don&apos;t share email.</p>
-                </form>
-              </FadeIn>
-            </div>
-          </div>
-        </div>
-      </section>
-      )}
+        //   <div className="max-w-[1560px] mx-auto relative">
+        //     <div className="grid grid-cols-12 gap-6 items-end">
+        //       <div className="col-span-12 md:col-span-7 space-y-6">
+        //         <span className="eyebrow text-foreground/55">Subscribe</span>
+        //         <h2 className="display-lg font-display">
+        //           <span className="block">
+        //             <SplitReveal>Get the next piece</SplitReveal>
+        //           </span>
+        //           <span className="block text-primary">
+        //             <SplitReveal>in your inbox.</SplitReveal>
+        //           </span>
+        //         </h2>
+        //         <FadeIn delay={0.2}>
+        //           <p className="font-heading text-lg md:text-xl text-foreground/85 max-w-xl tracking-[-0.005em]">
+        //             No drip campaigns. No funnel. One email when there is something worth reading.
+        //           </p>
+        //         </FadeIn>
+        //       </div>
+        //       <div className="col-span-12 md:col-span-5">
+        //         <FadeIn delay={0.3} className="surface bracketed p-6 md:p-8">
+        //           <form className="space-y-4">
+        //             <div className="field">
+        //               <label>Email</label>
+        //               <input type="email" required placeholder="you@company.com" />
+        //             </div>
+        //             <button type="submit" className="btn-primary w-full justify-center">
+        //               <span>Subscribe</span>
+        //                                 </button>
+        //             <p className="eyebrow text-foreground/55">Unsubscribe in one click. We don&apos;t share email.</p>
+        //           </form>
+        //         </FadeIn>
+        //       </div>
+        //     </div>
+        //   </div>
+        // </section>
+        // )}
+      }
 
       <Footer />
     </main>
