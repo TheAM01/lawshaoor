@@ -10,7 +10,8 @@ export default async function PostsPage() {
   let dbError: string | null = null
   try {
     const col = await postsCollection()
-    const docs = await col.find({}).sort({ updatedAt: -1 }).toArray()
+    // The table never shows post content — skip the (large) BlockNote blocks.
+    const docs = await col.find({}, { projection: { blocks: 0 } }).sort({ updatedAt: -1 }).toArray()
     posts = docs.map((d) => toListItem(d as unknown as PostDoc))
   } catch (err) {
     dbError = err instanceof Error ? err.message : 'Failed to load posts'

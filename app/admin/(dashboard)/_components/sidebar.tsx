@@ -72,7 +72,7 @@ export function Sidebar({ user }: { user: string }) {
   }
 
   return (
-    <aside className="w-60 shrink-0 border-r border-foreground/15 bg-background-alt flex flex-col">
+    <aside className="w-60 shrink-0 sticky top-0 h-svh self-start border-r border-foreground/15 bg-background-alt flex flex-col">
       <div className="p-6 border-b border-foreground/15">
         <Link href="/" className="flex items-center group" title="Back to public site">
           {/* eslint-disable-next-line @next/next/no-img-element */}
