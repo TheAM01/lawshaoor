@@ -11,7 +11,7 @@ export function LinkedInBanner() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="LawShaoor Chambers on LinkedIn"
-      className="group fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden md:flex"
+      className="group fixed right-0 top-1/2 -translate-y-1/2 z-[45] hidden md:flex"
     >
       <span
         aria-hidden

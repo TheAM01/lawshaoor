@@ -14,6 +14,7 @@ import {
   BarChart3,
   Users,
   Newspaper,
+  Inbox,
 } from 'lucide-react'
 
 type NavItem = {
@@ -39,6 +40,7 @@ const SECTIONS: NavSection[] = [
   {
     title: 'Content',
     items: [
+      { href: '/admin/briefs',     label: 'Briefs',     Icon: Inbox },
       { href: '/admin/posts',      label: 'Posts',      Icon: FileText },
       { href: '/admin/team',       label: 'Team',       Icon: Users },
       { href: '/admin/media',      label: 'Media',      Icon: ImageIcon },

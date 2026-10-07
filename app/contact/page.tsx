@@ -40,6 +40,31 @@ const PRACTICE_OPTIONS = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setSending(true)
+    setError('')
+    const payload = Object.fromEntries(new FormData(e.currentTarget))
+    try {
+      const res = await fetch('/api/briefs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { error?: string }
+        throw new Error(data.error || 'Something went wrong. Please try again.')
+      }
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+    } finally {
+      setSending(false)
+    }
+  }
 
   return (
     <main className="relative overflow-x-clip">
@@ -91,28 +116,25 @@ export default function Contact() {
               </FadeIn>
             ) : (
               <form
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  setSubmitted(true)
-                }}
-                className="space-y-2 mt-6"
+                onSubmit={onSubmit}
+                className="relative space-y-2 mt-6"
               >
                 <FadeIn staggerChildren className="space-y-2">
                   <div className="field">
                     <label>Name</label>
-                    <input type="text" required placeholder="Who's writing?" />
+                    <input name="name" type="text" required maxLength={120} placeholder="Who's writing?" />
                   </div>
                   <div className="field">
                     <label>Company / Organization</label>
-                    <input type="text" placeholder="If applicable" />
+                    <input name="company" type="text" maxLength={160} placeholder="If applicable" />
                   </div>
                   <div className="field">
                     <label>Email</label>
-                    <input type="email" required placeholder="you@company.com" />
+                    <input name="email" type="email" required maxLength={160} placeholder="you@company.com" />
                   </div>
                   <div className="field">
                     <label>Practice area of interest</label>
-                    <select required defaultValue="">
+                    <select name="practiceArea" required defaultValue="">
                       <option value="" disabled>Choose one</option>
                       {PRACTICE_OPTIONS.map((opt) => (
                         <option key={opt}>{opt}</option>
@@ -121,13 +143,30 @@ export default function Contact() {
                   </div>
                   <div className="field">
                     <label>The matter</label>
-                    <textarea required placeholder="A paragraph is plenty. What is the actual issue?" />
+                    <textarea name="message" required maxLength={5000} placeholder="A paragraph is plenty. What is the actual issue?" />
                   </div>
                 </FadeIn>
 
-                <FadeIn delay={0.2} className="pt-6">
-                  <button type="submit" className="btn-primary">
-                    <span>Send Message</span>
+                {/* Honeypot — hidden from people; bots that fill it are dropped. */}
+                <div aria-hidden className="absolute -left-[9999px] w-px h-px overflow-hidden">
+                  <label>
+                    Website
+                    <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </div>
+
+                <FadeIn delay={0.2} className="pt-6 space-y-4">
+                  {error && (
+                    <p role="alert" className="text-sm text-destructive font-heading">
+                      {error}
+                    </p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="btn-primary disabled:opacity-60 disabled:pointer-events-none"
+                  >
+                    <span>{sending ? 'Sending…' : 'Send Message'}</span>
                   </button>
                 </FadeIn>
               </form>

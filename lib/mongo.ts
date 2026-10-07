@@ -45,6 +45,12 @@ async function ensureIndexes(db: Db) {
     db.collection('media').createIndex({ uploadedAt: -1 }),
     db.collection('media').createIndex({ url: 1 }, { unique: true }),
 
+    // Briefs — contact-form enquiries. Inbox sorts newest first, filters by
+    // status; the public route counts recent submissions per IP hash.
+    db.collection('briefs').createIndex({ createdAt: -1 }),
+    db.collection('briefs').createIndex({ status: 1, createdAt: -1 }),
+    db.collection('briefs').createIndex({ ipHash: 1, createdAt: -1 }),
+
     // Analytics — raw events (TTL 90 days). Indexed for the dashboard's
     // dominant access patterns: by-day-and-slug rollups, by-visitor for
     // de-dup, and a live tail by recency.
@@ -148,6 +154,11 @@ export async function teamCollection() {
 export async function mediaCollection() {
   const db = await getDb()
   return db.collection('media')
+}
+
+export async function briefsCollection() {
+  const db = await getDb()
+  return db.collection('briefs')
 }
 
 export async function settingsCollection() {
