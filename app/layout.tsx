@@ -1,24 +1,19 @@
 import type { Metadata } from 'next'
-import { Poppins, Jost } from 'next/font/google'
+import { Jost } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider, ThemeScript } from '@/components/theme-provider'
 import { SiteTracker } from '@/components/analytics/site-tracker'
 import './globals.css'
 
-/* Headings + buttons — Poppins (geometric sans) */
-const poppins = Poppins({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-})
-
-/* Body, labels & everything else — Century-Gothic-style geometric sans */
+/* The site font is Century Gothic (see --font-century in globals.css). It is
+   not on Google Fonts, so Jost — the closest free match — is the fallback for
+   devices without it. preload:false so it only downloads when actually used. */
 const jost = Jost({
   subsets: ['latin'],
-  variable: '--font-heading',
+  variable: '--font-fallback',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+  preload: false,
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -27,7 +22,7 @@ export const metadata: Metadata = {
     template: '%s · LawShaoor Chambers',
   },
   description: 'LawShaoor Chambers — the law firm for Pakistan’s next economy. A specialist Islamabad law firm advising businesses, financial institutions, investors and technology companies on technology, fintech, corporate, regulatory and disputes. In strategic partnership with M.B. KEMP (ME) LLP — Abu Dhabi, Dubai, London, Milan, Hong Kong.',
-  keywords: ['LawShaoor Chambers', 'Law Strategy Future', 'Islamabad law chambers', 'Pakistan corporate law', 'M.B. KEMP (ME) LLP', 'fintech law Pakistan', 'technology law Pakistan', 'banking and finance law', 'energy law Pakistan', 'white-collar defence Pakistan', 'Pakistan GCC cross-border', 'dispute resolution Pakistan', 'DIFC ADGM advisory'],
+  keywords: ['LawShaoor Chambers', 'Law Strategy Future', 'Islamabad law Chambers', 'Pakistan corporate law', 'M.B. KEMP (ME) LLP', 'fintech law Pakistan', 'technology law Pakistan', 'banking and finance law', 'energy law Pakistan', 'white-collar defence Pakistan', 'Pakistan GCC cross-border', 'dispute resolution Pakistan', 'DIFC ADGM advisory'],
   openGraph: {
     title: 'LawShaoor Chambers — Law. Strategy. Future.',
     description: 'The law firm for Pakistan’s next economy. A specialist Islamabad law firm, in strategic partnership with M.B. KEMP (ME) LLP — Abu Dhabi, Dubai, London, Milan, Hong Kong.',
@@ -53,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${jost.variable}`}
+      className={jost.variable}
       suppressHydrationWarning
     >
       <head>

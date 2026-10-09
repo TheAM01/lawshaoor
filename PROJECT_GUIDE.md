@@ -204,7 +204,7 @@ vercel deploy
 
 ## 📝 Notes
 
-- All placeholder copy should be replaced with actual lawyer/chambers information
+- All placeholder copy should be replaced with actual lawyer/Chambers information
 - Contact form requires backend integration (email/CRM)
 - Consider adding testimonials/case studies
 - Blog/insights can be connected to CMS

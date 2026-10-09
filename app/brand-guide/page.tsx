@@ -146,7 +146,7 @@ export default function BrandGuide() {
           </p>
           <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-foreground/70">
             A reference for designers producing the logo, letterheads, business cards and other
-            printed and digital collateral for LawShaoor Chambers — a corporate law chambers based in
+            printed and digital collateral for LawShaoor Chambers — a corporate law Chambers based in
             Islamabad. Colours are given in HEX, RGB and CMYK; type and licensing are specified for
             production.
           </p>
@@ -154,7 +154,7 @@ export default function BrandGuide() {
 
         {/* ── 01 — POSITIONING & VOICE ── */}
         <Section index="01" title="Positioning & voice"
-          intro="LawShaoor is a modern, commercially-minded corporate law chambers. The identity should feel sharp, editorial and confident — never ornate or traditional-stuffy.">
+          intro="LawShaoor is a modern, commercially-minded corporate law Chambers. The identity should feel sharp, editorial and confident — never ornate or traditional-stuffy.">
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { k: 'Personality', v: 'Sharp · editorial · confident · commercial' },
@@ -171,7 +171,7 @@ export default function BrandGuide() {
 
         {/* ── 02 — LOGO / WORDMARK ── */}
         <Section index="02" title="The wordmark" breakBefore
-          intro="The identity is a wordmark — “LawShaoor” set as one word in Poppins Medium, with an optional gold full-stop. The full legal name is “LawShaoor Chambers”.">
+          intro="The identity is a wordmark — “LawShaoor” set as one word in Century Gothic, with an optional gold full-stop. The full legal name is “LawShaoor Chambers”.">
           {/* Primary + reversed */}
           <div className="grid md:grid-cols-3 gap-6">
             <div className="border border-foreground/15 flex items-center justify-center p-12 md:col-span-2" style={{ background: PAPER }}>
@@ -218,7 +218,7 @@ export default function BrandGuide() {
             <div className="border border-foreground/15 p-6">
               <span className="eyebrow text-primary">Construction</span>
               <p className="text-sm text-foreground/70 mt-3 leading-relaxed">
-                Poppins Medium (500), one word, no space, tight tracking (−2%). Capital “L” and
+                Century Gothic, one word, no space, tight tracking (−2%). Capital “L” and
                 “S”. The gold dot is optional and used on hero lockups only.
               </p>
             </div>
@@ -261,40 +261,26 @@ export default function BrandGuide() {
 
         {/* ── 04 — TYPOGRAPHY ── */}
         <Section index="04" title="Typography" breakBefore
-          intro="Two open-source typefaces. Both are free for commercial print and digital use under the SIL Open Font License — install from Google Fonts.">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="border border-foreground/15 p-6" style={{ background: PAPER }}>
-              <span className="eyebrow text-primary">Primary — Poppins</span>
-              <p className="font-display text-6xl text-foreground mt-3 leading-none">Aa</p>
-              <p className="font-display text-2xl text-foreground mt-4">Poppins Medium &amp; SemiBold</p>
-              <p className="text-sm text-foreground/70 mt-3 leading-relaxed">
-                Headlines, the wordmark, titles and short body. Geometric and modern. Weights
-                400 / 500 / 600 / 700.
-              </p>
-              <p className="font-mono text-[0.65rem] text-muted-foreground mt-3">
-                fonts.google.com/specimen/Poppins · SIL OFL
-              </p>
-            </div>
-            <div className="border border-foreground/15 p-6" style={{ background: PAPER }}>
-              <span className="eyebrow text-primary">Secondary — Jost</span>
-              <p className="font-heading text-6xl text-foreground mt-3 leading-none">Aa</p>
-              <p className="font-heading text-2xl text-foreground mt-4">Jost — labels &amp; meta</p>
-              <p className="text-sm text-foreground/70 mt-3 leading-relaxed">
-                Small uppercase labels, eyebrows, addresses and fine print. Always wide-tracked
-                when set in caps. Weights 300–700.
-              </p>
-              <p className="font-mono text-[0.65rem] text-muted-foreground mt-3">
-                fonts.google.com/specimen/Jost · SIL OFL
-              </p>
-            </div>
+          intro="A single typeface across print and screen: Century Gothic.">
+          <div className="border border-foreground/15 p-6" style={{ background: PAPER }}>
+            <span className="eyebrow text-primary">Typeface — Century Gothic</span>
+            <p className="font-display text-6xl text-foreground mt-3 leading-none">Aa</p>
+            <p className="font-display text-2xl text-foreground mt-4">Century Gothic Regular &amp; Bold</p>
+            <p className="text-sm text-foreground/70 mt-3 leading-relaxed">
+              One typeface for everything — headlines, the wordmark, body copy, labels and fine print.
+              Geometric and modern. Small uppercase labels are always wide-tracked.
+            </p>
+            <p className="font-mono text-[0.65rem] text-muted-foreground mt-3">
+              Commercial typeface (Monotype) · not on Google Fonts · licence required for web embedding
+            </p>
           </div>
 
           <div className="border border-foreground/15 divide-y divide-foreground/10 mt-6">
             {[
-              { l: 'Heading', n: 'Poppins · 500 · −2% tracking', el: <p className="display-md font-display text-foreground">Law. Strategy. Future.</p> },
-              { l: 'Subhead', n: 'Poppins · 500', el: <p className="display-sm font-display text-foreground">Corporate &amp; commercial counsel</p> },
-              { l: 'Body', n: 'Poppins · 400 · 1.6 line', el: <p className="text-foreground/80 max-w-xl leading-relaxed">Clear, practical and reliable legal services that meet the commercial needs of our clients.</p> },
-              { l: 'Label', n: 'Jost · 500 · caps · 0.2em', el: <span className="eyebrow text-foreground">Practice Areas</span> },
+              { l: 'Heading', n: 'Century Gothic · −2% tracking', el: <p className="display-md font-display text-foreground">Law. Strategy. Future.</p> },
+              { l: 'Subhead', n: 'Century Gothic', el: <p className="display-sm font-display text-foreground">Corporate &amp; commercial counsel</p> },
+              { l: 'Body', n: 'Century Gothic · Regular · 1.6 line', el: <p className="text-foreground/80 max-w-xl leading-relaxed">Clear, practical and reliable legal services that meet the commercial needs of our clients.</p> },
+              { l: 'Label', n: 'Century Gothic · caps · 0.2em', el: <span className="eyebrow text-foreground">Practice Areas</span> },
             ].map((r) => (
               <div key={r.l} className="p-5 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 print-avoid-break">
                 <div className="md:w-40 shrink-0">

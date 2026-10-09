@@ -101,7 +101,7 @@ export const SEED_TEAM_MEMBERS: (TeamMemberInput & { slug: string })[] = [
     ],
     highlights: [
       { label: 'Experience',     value: '13+ years' },
-      { label: 'Prior chambers', value: 'RIAA Barker Gillette · CMS (Saudi Arabia) · M.B. Kemp' },
+      { label: 'Prior Chambers', value: 'RIAA Barker Gillette · CMS (Saudi Arabia) · M.B. Kemp' },
       { label: 'Sectors',        value: 'Technology · Fintech · Banking · Energy' },
       { label: 'Teaching',       value: 'Visiting faculty, public sector universities in Islamabad' },
     ],

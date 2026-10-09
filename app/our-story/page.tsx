@@ -37,7 +37,7 @@ export default function OurStory() {
             <FadeIn delay={0.5}>
               <p className="mt-7 text-base md:text-lg leading-relaxed text-foreground/70 max-w-xl">
                 We advise businesses, financial institutions, investors and technology companies where law, commerce
-                and regulation meet. Six lawyers, ten practice areas, 50+ years’ combined experience. Based in
+                and regulation meet. 50+ years’ combined experience. Based in
                 Islamabad, with reach across Pakistan and the GCC through M.B. KEMP (ME) LLP.
               </p>
             </FadeIn>
@@ -51,7 +51,7 @@ export default function OurStory() {
           <div className="lg:col-span-3 space-y-7">
             <span className="eyebrow text-foreground/55">Who we are</span>
             <h2 className="display-md font-display max-w-2xl">
-              <SplitReveal>A boutique law firm</SplitReveal>{' '}
+              <SplitReveal>A practice</SplitReveal>{' '}
               <span className="text-primary"><SplitReveal>built around consequence.</SplitReveal></span>
             </h2>
             <FadeIn className="space-y-5 text-base md:text-lg leading-relaxed text-foreground/75 max-w-2xl">

@@ -188,8 +188,9 @@ export default async function Academy() {
             <div className="col-span-12 md:col-span-7 md:col-start-1">
               <FadeIn>
                 <p className="font-heading text-xl md:text-2xl leading-snug text-foreground/90 tracking-[-0.01em] max-w-2xl">
-                  Long-form notes, deal teardowns, and practical guides on corporate law. Written by the partners doing the work — for operators, founders, GCs, and the curious.
+                  A commentary on different facets of law.
                 </p>
+                <p className="eyebrow text-primary mt-6">Coming soon...</p>
               </FadeIn>
             </div>
             <div className="col-span-12 md:col-span-4 md:col-start-9">

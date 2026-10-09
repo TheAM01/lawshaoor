@@ -28,7 +28,7 @@ export const MagazineSchema = z.object({
   eyebrow:     z.string().max(60).default('Digital publication'),
   title:       z.string().max(80).default('LawShaoor'),
   subtitle:    z.string().max(80).default('Magazine.'),
-  intro:       z.string().max(600).default('A digital legal review from the chambers — commentary on corporate, banking, energy, regulatory and cross-border law. Published here and delivered to your inbox via Substack.'),
+  intro:       z.string().max(600).default('A digital legal review from the Chambers — commentary on corporate, banking, energy, regulatory and cross-border law. Published here and delivered to your inbox via Substack.'),
   substackUrl: z.string().max(500).default('https://lawshaoor.substack.com'),
   sections:    z.array(ContentBlockSchema).max(12).default([
     { title: 'The Review',   body: 'Long-form analysis of the deals, judgments and regulatory shifts that actually move the market.' },

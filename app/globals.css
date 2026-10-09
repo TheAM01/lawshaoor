@@ -111,14 +111,14 @@
 }
 
 @theme inline {
-  /* Two fonts only: a Georgia/Cambria-style serif for headings + buttons,
-     and a Century-Gothic-style geometric sans (Jost) for everything else.
-     --font-mono is mapped to the body sans so labels/eyebrows stay on-brand. */
-  --font-display: 'Poppins', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'Jost', 'Century Gothic', ui-sans-serif, system-ui, sans-serif;
-  /* Poppins is the primary text font; Jost is used only for small labels/meta */
-  --font-sans: var(--font-display);
-  --font-mono: var(--font-heading);
+  /* One font everywhere: Century Gothic. It isn't on Google Fonts, so it's
+     used from the visitor's machine (Windows / Office installs). Devices
+     without it fall back to Jost (--font-fallback, loaded lazily in layout). */
+  --font-century: 'Century Gothic', 'CenturyGothic', var(--font-fallback), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-century);
+  --font-heading: var(--font-century);
+  --font-sans: var(--font-century);
+  --font-mono: var(--font-century);
 
   --color-background: var(--background);
   --color-background-alt: var(--background-alt);

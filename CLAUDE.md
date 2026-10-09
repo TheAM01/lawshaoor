@@ -21,7 +21,7 @@ It also lists `serverExternalPackages: ['@blocknote/server-util', 'jsdom', 'mong
 
 ## Architecture
 
-Marketing site + blog (the "Academy") + admin CMS for "LawShaoor" (a fictional corporate law chambers). Built on **Next.js 16 App Router + React 19 + Tailwind v4 + shadcn/ui + MongoDB + BlockNote**.
+Marketing site + blog (the "Academy") + admin CMS for "LawShaoor" (a fictional corporate law Chambers). Built on **Next.js 16 App Router + React 19 + Tailwind v4 + shadcn/ui + MongoDB + BlockNote**.
 
 ### Tech stack
 
@@ -86,11 +86,7 @@ middleware.ts                     ← gates /admin/* and /api/admin/* (skips log
 ### Theming & styling
 
 - **Tailwind v4** with `@theme inline` block in `app/globals.css`. Design tokens are CSS variables on `:root` (light) and `.dark` (dark) — colors authored in `oklch()`. Always use `bg-primary`, `text-foreground`, etc. — not hex.
-- **Fonts (via `next/font` in `app/layout.tsx`):**
-  - `Syne` → `--font-display` (used by `.font-display`, all headings)
-  - `Space Grotesk` → `--font-heading` (body copy)
-  - `Geist` → `--font-sans`
-  - `Geist Mono` → `--font-mono` (eyebrows, chips, monospace meta)
+- **Font:** Century Gothic everywhere. All four tokens (`--font-display`, `--font-heading`, `--font-sans`, `--font-mono`) point at `--font-century` in `app/globals.css`. Century Gothic is not on Google Fonts, so it is used from the visitor's machine; `app/layout.tsx` loads Jost via `next/font` (`--font-fallback`, `preload: false`) as the lookalike fallback.
 - **Theme provider** — `components/theme-provider.tsx` is a **custom** mini provider, NOT `next-themes` (removed because of a React 19 script-tag warning). Same API: `<ThemeProvider attribute="class" defaultTheme="light" ...>` and `useTheme()` returning `{ theme, setTheme, resolvedTheme }`. Also exports `<ThemeScript />`, rendered in `<head>` from `app/layout.tsx` to set the html class before hydration (no FOUC).
 - **Custom utility classes** in `globals.css`: `display-xl/lg/md/sm/hero`, `font-display`, `font-heading`, `eyebrow`, `eyebrow-sm`, `index-chip`, `tag`, `tag-primary`, `btn-primary`, `btn-ghost`, `link-line`, `rule-heavy`, `surface`, `bracketed`, `dot-live`, `field`, `lift-card`, `hero-orb`, `bg-fixed-mist`, `bg-fixed-lavender`, `bg-fixed-deep`, `bg-grid`, `text-gradient`, `arrow-magnet`, `mask-reveal`, `bn-rendered` (public post prose styles).
 - **Design intent**: sleek, minimal, professional, editorial, illustration-heavy. Brand voice is blunt ("No drip campaigns", "We bring the law"). Match the tone when editing copy.
