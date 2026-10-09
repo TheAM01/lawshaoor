@@ -1,19 +1,19 @@
 import type { Metadata } from 'next'
-import { Jost } from 'next/font/google'
+import { Questrial } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider, ThemeScript } from '@/components/theme-provider'
 import { SiteTracker } from '@/components/analytics/site-tracker'
 import './globals.css'
 
 /* The site font is Century Gothic (see --font-century in globals.css). It is
-   not on Google Fonts, so Jost — the closest free match — is the fallback for
+   not on Google Fonts, so Questrial — the closest free match — is the fallback for
    devices without it. preload:false so it only downloads when actually used. */
-const jost = Jost({
+const questrial = Questrial({
   subsets: ['latin'],
   variable: '--font-fallback',
   display: 'swap',
   preload: false,
-  weight: ['400', '500', '600', '700'],
+  weight: '400',
 })
 
 export const metadata: Metadata = {
@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={jost.variable}
+      className={questrial.variable}
       suppressHydrationWarning
     >
       <head>

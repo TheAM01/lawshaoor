@@ -113,7 +113,7 @@
 @theme inline {
   /* One font everywhere: Century Gothic. It isn't on Google Fonts, so it's
      used from the visitor's machine (Windows / Office installs). Devices
-     without it fall back to Jost (--font-fallback, loaded lazily in layout). */
+     without it fall back to Questrial (--font-fallback, loaded lazily in layout). */
   --font-century: 'Century Gothic', 'CenturyGothic', var(--font-fallback), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-century);
   --font-heading: var(--font-century);
