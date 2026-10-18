@@ -28,17 +28,16 @@ const EQUATION: {
   motion: string
   cta: string
   href: string
-  operator?: string
   result?: boolean
 }[] = [
-  { label: '01 · Law',      phrase: ['Legally', 'astute.'],          image: '/images/seed/legally-astute.jpg',              Illo: TesseractCube,           motion: 'group-hover:rotate-[10deg]',    cta: 'Practice areas',     href: '/practice-areas', operator: '+' },
-  { label: '02 · Strategy', phrase: ['Commercially', 'aware.'],      image: '/images/seed/commercially-aware.jpg',          Illo: StackedCubes,           motion: 'group-hover:-translate-y-2',    cta: 'The team',           href: '/people',         operator: '=' },
+  { label: '01 · Law',      phrase: ['Legally', 'astute.'],          image: '/images/seed/legally-astute.jpg',              Illo: TesseractCube,           motion: 'group-hover:rotate-[10deg]',    cta: 'Practice areas',     href: '/practice-areas' },
+  { label: '02 · Strategy', phrase: ['Commercially', 'aware.'],      image: '/images/seed/commercially-aware.jpg',          Illo: StackedCubes,           motion: 'group-hover:-translate-y-2',    cta: 'The team',           href: '/people' },
   { label: '03 · Future',   phrase: ['The clarity', 'to move forward.'], image: '/images/seed/the-clarity-to-move-forward.jpg', Illo: CirclesInCircumference, motion: 'group-hover:scale-110',      cta: 'About the Chambers', href: '/our-story',      result: true },
 ]
 
 /** One term of the equation. Terms rest on paper with a faint photo and turn
  *  into the azure "result" look on hover; the result term is always azure. */
-function EquationPanel({ label, phrase, image, Illo, motion, cta, href, operator, result }: (typeof EQUATION)[number]) {
+function EquationPanel({ label, phrase, image, Illo, motion, cta, href, result }: (typeof EQUATION)[number]) {
   const ease = 'duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]'
   // Each pair: [result panel — always on, other panels — on hover]. Written out
   // in full so Tailwind can see every class.
@@ -52,7 +51,7 @@ function EquationPanel({ label, phrase, image, Illo, motion, cta, href, operator
         on('bg-primary', 'hover:bg-primary'),
       )}
     >
-      {/* Photo + azure wash, clipped here so the operator can overhang the panel edge */}
+      {/* Photo + azure wash */}
       <span aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -93,21 +92,7 @@ function EquationPanel({ label, phrase, image, Illo, motion, cta, href, operator
         </span>
       </div>
 
-      {operator && <Operator symbol={operator} />}
     </Link>
-  )
-}
-
-/** Equation operator pinned to a panel's divider — bottom edge when the
- *  panels stack, right edge when they sit side by side. */
-function Operator({ symbol }: { symbol: string }) {
-  return (
-    <span
-      aria-hidden
-      className="absolute z-10 left-1/2 -bottom-6 -translate-x-1/2 lg:left-auto lg:bottom-auto lg:-right-6 lg:top-1/2 lg:translate-x-0 lg:-translate-y-1/2 w-12 h-12 flex items-center justify-center bg-background border border-foreground/15 font-display text-2xl text-primary"
-    >
-      {symbol}
-    </span>
   )
 }
 
@@ -158,8 +143,7 @@ export function HomeContent() {
 
       {/* ────────────────────────────────────────────
           THE EQUATION — astute + aware = clarity.
-          Three panels read as one sentence; the operators
-          sit on the hairline dividers between them.
+          Three panels read as one sentence.
           ──────────────────────────────────────────── */}
       <section id="approach" className="section-pad py-24 md:py-32 border-t border-foreground/12 bg-background">
         <div className="max-w-[1560px] mx-auto">

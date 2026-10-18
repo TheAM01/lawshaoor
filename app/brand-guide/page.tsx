@@ -261,26 +261,37 @@ export default function BrandGuide() {
 
         {/* ── 04 — TYPOGRAPHY ── */}
         <Section index="04" title="Typography" breakBefore
-          intro="A single typeface across print and screen: Century Gothic.">
+          intro="Two typefaces across print and screen: Kavivanar for headings and emphasis, Questrial for body copy.">
           <div className="border border-foreground/15 p-6" style={{ background: PAPER }}>
-            <span className="eyebrow text-primary">Typeface — Century Gothic</span>
-            <p className="font-display text-6xl text-foreground mt-3 leading-none">Aa</p>
-            <p className="font-display text-2xl text-foreground mt-4">Century Gothic Regular &amp; Bold</p>
-            <p className="text-sm text-foreground/70 mt-3 leading-relaxed">
-              One typeface for everything — headlines, the wordmark, body copy, labels and fine print.
-              Geometric and modern. Small uppercase labels are always wide-tracked.
-            </p>
-            <p className="font-mono text-[0.65rem] text-muted-foreground mt-3">
-              Commercial typeface (Monotype) · not on Google Fonts · licence required for web embedding
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <span className="eyebrow text-primary">Display — Kavivanar</span>
+                <p className="font-display text-6xl text-foreground mt-3 leading-none">Aa</p>
+                <p className="font-display text-2xl text-foreground mt-4">Kavivanar Regular</p>
+                <p className="text-sm text-foreground/70 mt-3 leading-relaxed">
+                  Headlines, display text, buttons, pull quotes — anything that needs to stand out.
+                </p>
+              </div>
+              <div>
+                <span className="eyebrow text-primary">Text — Questrial</span>
+                <p className="text-6xl text-foreground mt-3 leading-none">Aa</p>
+                <p className="text-2xl text-foreground mt-4">Questrial Regular</p>
+                <p className="text-sm text-foreground/70 mt-3 leading-relaxed">
+                  Body copy, navigation, labels and fine print. Small uppercase labels are always wide-tracked.
+                </p>
+              </div>
+            </div>
+            <p className="font-mono text-[0.65rem] text-muted-foreground mt-5">
+              Both free on Google Fonts (SIL Open Font License) · single weight (Regular)
             </p>
           </div>
 
           <div className="border border-foreground/15 divide-y divide-foreground/10 mt-6">
             {[
-              { l: 'Heading', n: 'Century Gothic · −2% tracking', el: <p className="display-md font-display text-foreground">Law. Strategy. Future.</p> },
-              { l: 'Subhead', n: 'Century Gothic', el: <p className="display-sm font-display text-foreground">Corporate &amp; commercial counsel</p> },
-              { l: 'Body', n: 'Century Gothic · Regular · 1.6 line', el: <p className="text-foreground/80 max-w-xl leading-relaxed">Clear, practical and reliable legal services that meet the commercial needs of our clients.</p> },
-              { l: 'Label', n: 'Century Gothic · caps · 0.2em', el: <span className="eyebrow text-foreground">Practice Areas</span> },
+              { l: 'Heading', n: 'Kavivanar · −2% tracking', el: <p className="display-md font-display text-foreground">Law. Strategy. Future.</p> },
+              { l: 'Subhead', n: 'Kavivanar', el: <p className="display-sm font-display text-foreground">Corporate &amp; commercial counsel</p> },
+              { l: 'Body', n: 'Questrial · Regular · 1.6 line', el: <p className="text-foreground/80 max-w-xl leading-relaxed">Clear, practical and reliable legal services that meet the commercial needs of our clients.</p> },
+              { l: 'Label', n: 'Questrial · caps · 0.2em', el: <span className="eyebrow text-foreground">Practice Areas</span> },
             ].map((r) => (
               <div key={r.l} className="p-5 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 print-avoid-break">
                 <div className="md:w-40 shrink-0">

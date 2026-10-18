@@ -1,18 +1,25 @@
 import type { Metadata } from 'next'
-import { Questrial } from 'next/font/google'
+import { Kavivanar, Questrial } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider, ThemeScript } from '@/components/theme-provider'
 import { SiteTracker } from '@/components/analytics/site-tracker'
 import './globals.css'
 
-/* The site font is Century Gothic (see --font-century in globals.css). It is
-   not on Google Fonts, so Questrial — the closest free match — is the fallback for
-   devices without it. preload:false so it only downloads when actually used. */
+/* Two typefaces (wired up as tokens in globals.css):
+   Kavivanar — headings, display text, buttons and other emphasis.
+   Questrial — body copy, nav, labels and everything else.
+   Both ship a single weight (400). */
+const kavivanar = Kavivanar({
+  subsets: ['latin'],
+  variable: '--font-kavivanar',
+  display: 'swap',
+  weight: '400',
+})
+
 const questrial = Questrial({
   subsets: ['latin'],
-  variable: '--font-fallback',
+  variable: '--font-questrial',
   display: 'swap',
-  preload: false,
   weight: '400',
 })
 
@@ -48,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={questrial.variable}
+      className={`${kavivanar.variable} ${questrial.variable}`}
       suppressHydrationWarning
     >
       <head>

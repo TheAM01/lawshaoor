@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { Linkedin, Instagram, Mail } from 'lucide-react'
 import { Rule } from '@/components/motion/rule'
 
@@ -21,6 +22,19 @@ function SubstackIcon({ className }: { className?: string }) {
 }
 
 export function Footer() {
+  // Substack URL comes from the admin panel (Settings → Pages); blank hides it.
+  const [substackUrl, setSubstackUrl] = useState<string | null>(null)
+  useEffect(() => {
+    fetch('/api/site-config')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (d && typeof d.substackUrl === 'string') setSubstackUrl(d.substackUrl) })
+      .catch(() => {})
+  }, [])
+
+  const socials = SOCIALS
+    .map((s) => (s.label === 'Substack' && substackUrl !== null ? { ...s, href: substackUrl } : s))
+    .filter((s) => s.href)
+
   return (
     <footer className="relative pt-12 md:pt-16 pb-10 bg-background-deep text-foreground border-t border-foreground/15 overflow-hidden">
       <div className="section-pad max-w-[1560px] mx-auto">
@@ -41,7 +55,7 @@ export function Footer() {
             </div>
 
             <div className="pt-2 flex items-center gap-3">
-              {SOCIALS.map(({ label, href, Icon }) => (
+              {socials.map(({ label, href, Icon }) => (
                 <a
                   key={label}
                   href={href}

@@ -3,8 +3,11 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useTheme } from '@/components/theme-provider'
-import { Moon, Sun, Menu, X, ChevronDown } from 'lucide-react'
+import { Moon, Sun, Menu, X, ChevronDown, Phone } from 'lucide-react'
 import { LinkedInBanner } from '@/components/linkedin-banner'
+
+/** Chambers phone line — shown in the header on every page. */
+const PHONE = { href: 'tel:+92518742077', display: '051 8742077' }
 
 type NavLeaf = { key: string; href: string; label: string; external?: boolean }
 type NavGroup = { key: string; label: string; href?: string; wide?: boolean; children: NavLeaf[] }
@@ -55,6 +58,7 @@ type Config = {
   navLabels: Record<string, string>
   magazineVisible: boolean
   seminarsVisible: boolean
+  substackUrl: string
 }
 
 function isGroup(item: NavItem): item is NavGroup {
@@ -96,12 +100,16 @@ export function Navbar() {
   const label = (key: string, fallback: string) =>
     (config?.navLabels?.[key]?.trim() || fallback)
 
-  // Filter Knowledge children by visibility toggles.
+  // Filter Knowledge children by visibility toggles, and point the Substack
+  // link at the URL set in the admin panel (blank there = hide it).
   const visibleChildren = (children: NavLeaf[]) =>
-    children.filter((c) => {
-      if (c.key === 'magazine' && config && !config.magazineVisible) return false
-      return true
-    })
+    children
+      .filter((c) => {
+        if (c.key === 'magazine' && config && !config.magazineVisible) return false
+        if (c.key === 'substack' && config && !config.substackUrl) return false
+        return true
+      })
+      .map((c) => (c.key === 'substack' && config?.substackUrl ? { ...c, href: config.substackUrl } : c))
 
   // Logo height — shared by the tagline span so their alignment stays in sync.
   const logoH = scrolled || open ? 'h-9 md:h-12' : 'h-10 md:h-14'
@@ -130,31 +138,37 @@ export function Navbar() {
             span matches the logo's height and flex-centers its text, so the
             side-by-side vertical alignment stays metric-proof.
             Tweakables: translate-y-[..] = how far below it sits at the top;
-            md:ml-[..] = the side gap when beside the logo. */}
+            md:ml-[..] = the side gap when beside the logo.
+            Once scrolled, the tagline only sits beside the logo where there's
+            room: on md (links are in the drawer) and 2xl+, where the Link's
+            right padding reserves its width so the links can't run into it.
+            Between lg and 2xl it fades out. */}
         <Link
           href="/"
-          className="relative inline-flex items-center group"
+          className={`inline-flex items-center group transition-[padding] duration-300 ${scrolled ? '2xl:pr-[13rem]' : ''}`}
           aria-label="LawShaoor Chambers — home"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/ls-logo-tight.png"
-            alt="LawShaoor Chambers"
-            className={`${logoH} w-auto transition-[height,opacity] duration-300 group-hover:opacity-80`}
-          />
-          <span
-            aria-hidden
-            className={`pointer-events-none absolute top-0 ${logoH} flex items-center leading-none whitespace-nowrap font-mono text-[9px] md:text-[10px] tracking-[0.28em] uppercase text-foreground/55 transition-all duration-300 ${
-              scrolled
-                ? 'left-1/2 -translate-x-1/2 translate-y-[30px] opacity-0 md:left-full md:ml-4 md:translate-x-0 md:translate-y-0 md:opacity-100'
-                : 'left-1/2 -translate-x-1/2 translate-y-[38px] md:translate-y-[46px] opacity-100'
-            }`}
-          >
-            Law<span className="text-gold">.</span> Strategy<span className="text-gold">.</span> Future<span className="text-gold">.</span>
+          <span className="relative inline-flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/ls-logo-tight.png"
+              alt="LawShaoor Chambers"
+              className={`${logoH} w-auto transition-[height,opacity] duration-300 group-hover:opacity-80`}
+            />
+            <span
+              aria-hidden
+              className={`pointer-events-none absolute top-0 ${logoH} flex items-center leading-none whitespace-nowrap font-mono text-[9px] md:text-[10px] tracking-[0.28em] uppercase text-foreground/55 transition-all duration-300 ${
+                scrolled
+                  ? 'left-1/2 -translate-x-1/2 translate-y-[30px] opacity-0 md:left-full md:ml-4 md:translate-x-0 md:translate-y-0 md:opacity-100 lg:opacity-0 2xl:opacity-100'
+                  : 'left-1/2 -translate-x-1/2 translate-y-[38px] md:translate-y-[46px] opacity-100'
+              }`}
+            >
+              Law<span className="text-gold">.</span> Strategy<span className="text-gold">.</span> Future<span className="text-gold">.</span>
+            </span>
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-8">
           {NAV.map((item) =>
             isGroup(item) ? (
               <div
@@ -222,7 +236,22 @@ export function Navbar() {
           )}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 xl:gap-3">
+          {/* Phone — icon-only below xl, icon + number on wide screens. Always
+              visible (including phones) so the number is never more than a tap away. */}
+          <a
+            href={PHONE.href}
+            aria-label={`Call us on ${PHONE.display}`}
+            className="inline-flex items-center justify-center gap-2 h-9 min-w-9 xl:px-3 border border-primary/60 text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            <span className="hidden xl:inline font-heading text-[13px] tracking-[0.04em] whitespace-nowrap">{PHONE.display}</span>
+          </a>
+
+          <Link href="/contact" className="hidden md:inline-flex btn-primary !h-9 !py-0 !px-4 !text-[0.78rem]">
+            <span>{label('contact', 'Contact')}</span>
+          </Link>
+
           <button
             type="button"
             onClick={() => setTheme(isDark ? 'light' : 'dark')}
@@ -231,10 +260,6 @@ export function Navbar() {
           >
             {mounted && (isDark ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />)}
           </button>
-
-          <Link href="/contact" className="hidden md:inline-flex btn-primary !h-9 !py-0 !px-4 !text-[0.78rem]">
-            <span>{label('contact', 'Contact')}</span>
-          </Link>
 
           <button
             type="button"
@@ -308,7 +333,14 @@ export function Navbar() {
               </Link>
             )
           )}
-          <Link href="/contact" onClick={() => setOpen(false)} className="btn-primary mt-4 self-start ">
+          <a
+            href={PHONE.href}
+            className="mt-4 inline-flex items-center gap-3 font-display text-2xl font-semibold tracking-[-0.01em] text-primary"
+          >
+            <Phone className="w-5 h-5" />
+            {PHONE.display}
+          </a>
+          <Link href="/contact" onClick={() => setOpen(false)} className="btn-primary self-start ">
             <span>{label('contact', 'Contact')}</span>
           </Link>
           <button

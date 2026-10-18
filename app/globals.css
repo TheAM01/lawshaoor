@@ -110,16 +110,21 @@
   --grad-text-to:   oklch(0.74 0.14 261);
 }
 
-@theme inline {
-  /* One font everywhere: Century Gothic. It isn't on Google Fonts, so it's
-     used from the visitor's machine (Windows / Office installs). Devices
-     without it fall back to Questrial (--font-fallback, loaded lazily in layout). */
-  --font-century: 'Century Gothic', 'CenturyGothic', var(--font-fallback), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-century);
-  --font-heading: var(--font-century);
-  --font-sans: var(--font-century);
-  --font-mono: var(--font-century);
+/* Two typefaces, loaded via next/font/google in app/layout.tsx (which sets
+   --font-kavivanar / --font-questrial on <html>):
+     display  → Kavivanar: headings, display text, buttons, pull quotes.
+     heading / sans / mono → Questrial: body, nav links, labels, tags, code.
+   `static` (not `inline`) so these are emitted as real CSS variables — the
+   hand-written rules below use var(--font-*) directly, and an inline theme
+   would leave those empty (everything silently fell back to system fonts). */
+@theme static {
+  --font-display: var(--font-kavivanar), ui-serif, Georgia, serif;
+  --font-heading: var(--font-questrial), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-questrial), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-questrial), ui-sans-serif, system-ui, sans-serif;
+}
 
+@theme inline {
   --color-background: var(--background);
   --color-background-alt: var(--background-alt);
   --color-background-deep: var(--background-deep);
@@ -182,6 +187,8 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 500;
+    /* Kavivanar has one weight — don't let the browser fake a blurry bold. */
+    font-synthesis-weight: none;
     letter-spacing: -0.02em;
     line-height: 1.12;
   }
@@ -204,7 +211,7 @@
    Type scale + helpers — wide tracking everywhere
    ============================================================ */
 
-.font-display { font-family: var(--font-display); }
+.font-display { font-family: var(--font-display); font-synthesis-weight: none; }
 .font-heading { font-family: var(--font-heading); }
 .font-mono    { font-family: var(--font-mono); }
 
@@ -301,6 +308,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 600;
+  font-synthesis-weight: none;
   white-space: nowrap;
   border: 1px solid var(--primary);
   cursor: pointer;
@@ -322,6 +330,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 600;
+  font-synthesis-weight: none;
   white-space: nowrap;
   border: 1px solid color-mix(in oklch, var(--primary) 45%, transparent);
   cursor: pointer;
