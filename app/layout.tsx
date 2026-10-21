@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
-import { Kavivanar, Questrial } from 'next/font/google'
+import { Caveat_Brush, Questrial } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider, ThemeScript } from '@/components/theme-provider'
 import { SiteTracker } from '@/components/analytics/site-tracker'
+import { HeadingStyleSwitcher } from '@/components/dev/heading-style-switcher' // DEV TEST — remove later
 import './globals.css'
 
 /* Two typefaces (wired up as tokens in globals.css):
-   Kavivanar — headings, display text, buttons and other emphasis.
+   Caveat Brush — headings, display text, buttons and other emphasis (always uppercase).
    Questrial — body copy, nav, labels and everything else.
    Both ship a single weight (400). */
-const kavivanar = Kavivanar({
+const caveatBrush = Caveat_Brush({
   subsets: ['latin'],
-  variable: '--font-kavivanar',
+  variable: '--font-caveat-brush',
   display: 'swap',
   weight: '400',
 })
@@ -55,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${kavivanar.variable} ${questrial.variable}`}
+      className={`${caveatBrush.variable} ${questrial.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -66,6 +67,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
         <SiteTracker />
+        <HeadingStyleSwitcher /> {/* DEV TEST — remove later */}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
