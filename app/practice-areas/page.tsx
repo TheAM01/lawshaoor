@@ -31,7 +31,7 @@ export default function PracticeAreas() {
           </div>
           <FadeIn delay={0.4} className="lg:col-span-2">
             <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden">
-              <PanelImage src="/images/seed/practice-areas.jpg" />
+              <PanelImage src="/images/remastered/web/corporate_3.jpg" />
               <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />
               <OrbitRings className="absolute inset-0 m-auto w-[80%] h-[80%] opacity-70" uid="pa-hero-orbit" rotate={false} />
               <GridDots className="absolute right-5 top-5 w-20 h-20 opacity-70" uid="pa-hero-gd" />

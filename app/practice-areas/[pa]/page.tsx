@@ -6,7 +6,8 @@ import { Footer } from '@/components/footer'
 import { SplitReveal } from '@/components/motion/split-reveal'
 import { FadeIn } from '@/components/motion/fade-in'
 import { PanelImage } from '@/components/panel-image'
-import { PRACTICES, getPractice, practiceImage, summarize } from '../_data'
+import { cn } from '@/lib/utils'
+import { PRACTICES, getPractice, practiceGallery, practiceImage, summarize } from '../_data'
 
 type Props = { params: Promise<{ pa: string }> }
 
@@ -35,6 +36,7 @@ export default async function PracticeArea({ params }: Props) {
   const Illo = p.Illo
   // The first paragraph introduces the practice in the hero; the overview carries the rest.
   const [intro, ...rest] = p.paragraphs
+  const gallery = practiceGallery(p.id)
 
   return (
     <main className="relative overflow-x-clip">
@@ -70,6 +72,37 @@ export default async function PracticeArea({ params }: Props) {
           </FadeIn>
         </div>
       </section>
+
+      {/* GALLERY — wide sketch strip, only for practices that have extra sketches */}
+      {gallery.length > 0 && (
+        <section aria-hidden className="section-pad pb-16 md:pb-24 bg-fixed-mist">
+          <FadeIn
+            staggerChildren
+            className={cn(
+              'max-w-[1560px] mx-auto grid gap-px bg-foreground/12 border border-foreground/12',
+              gallery.length > 1 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1',
+            )}
+          >
+            {gallery.map((src) => (
+              <div
+                key={src}
+                className={cn(
+                  'relative overflow-hidden bg-background-alt',
+                  gallery.length > 1 ? 'aspect-[4/3]' : 'aspect-[4/3] md:aspect-[21/9]',
+                )}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt=""
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 mix-blend-multiply opacity-90 dark:mix-blend-normal dark:brightness-90 dark:opacity-60"
+                />
+              </div>
+            ))}
+          </FadeIn>
+        </section>
+      )}
 
       {/* BODY — 60/40 */}
       <section className="relative section-pad py-20 md:py-28 border-t border-foreground/12 bg-background">

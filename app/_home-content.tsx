@@ -31,7 +31,7 @@ const EQUATION: {
   result?: boolean
 }[] = [
   { label: '01 · Law',      phrase: ['Legally', 'astute.'],          image: '/images/seed/legally-astute.jpg',              Illo: TesseractCube,           motion: 'group-hover:rotate-[10deg]',    cta: 'Practice areas',     href: '/practice-areas' },
-  { label: '02 · Strategy', phrase: ['Commercially', 'aware.'],      image: '/images/seed/commercially-aware.jpg',          Illo: StackedCubes,           motion: 'group-hover:-translate-y-2',    cta: 'The team',           href: '/people' },
+  { label: '02 · Strategy', phrase: ['Commercially', 'aware.'],      image: '/images/remastered/web/corporate_5.jpg',          Illo: StackedCubes,           motion: 'group-hover:-translate-y-2',    cta: 'The team',           href: '/people' },
   { label: '03 · Future',   phrase: ['The clarity', 'to move forward.'], image: '/images/seed/the-clarity-to-move-forward.jpg', Illo: CirclesInCircumference, motion: 'group-hover:scale-110',      cta: 'About the Chambers', href: '/our-story',      result: true },
 ]
 

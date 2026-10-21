@@ -43,7 +43,7 @@ export default async function Seminars() {
           </div>
           <FadeIn delay={0.4} className="lg:col-span-2">
             <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden flex items-center justify-center">
-              <PanelImage seed="seminars" />
+              <PanelImage src="/images/remastered/web/corporate_3.jpg" />
               <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />
               <HexagonalCascade className="absolute inset-0 m-auto w-[60%] h-[60%] opacity-70" uid="sem-hero-hex" />
             </div>

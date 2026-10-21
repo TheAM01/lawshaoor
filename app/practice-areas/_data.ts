@@ -26,8 +26,36 @@ export type Practice = {
   Illo: IllustrationComponent
 }
 
-/** Seed sketch that sits behind the illustration on cards and the detail hero. */
-export const practiceImage = (id: string) => `/images/seed/pa-${id}.jpg`
+const REMASTERED = '/images/remastered/web'
+
+/** Sketch per practice: sits behind the illustration on cards and the detail hero. */
+const PRACTICE_IMAGES: Record<string, string> = {
+  technology: '1_tech',
+  'banking-finance': '2_fintech',
+  'corporate-commercial': '3_corporate_transactions',
+  'ip-data': '4_ip',
+  'dispute-resolution': '5_dispute_resolution',
+  'labour-employment': '6_employment',
+  'government-sector': '7_govt_relations',
+  'healthcare-pharma': '8_healthcare',
+  'non-profit': '9_non_govt',
+  'cross-border': '10_gcc',
+}
+
+export const practiceImage = (id: string) =>
+  PRACTICE_IMAGES[id] ? `${REMASTERED}/${PRACTICE_IMAGES[id]}.jpg` : `/images/seed/pa-${id}.jpg`
+
+/** Extra sketches shown as a wide strip on some detail pages. */
+const PRACTICE_GALLERY: Record<string, string[]> = {
+  'banking-finance': ['fintech'],
+  'corporate-commercial': ['corporate_4'],
+  'ip-data': ['ip', 'ip2'],
+  'dispute-resolution': ['dispute_resolution_1'],
+  'labour-employment': ['hr'],
+}
+
+export const practiceGallery = (id: string) =>
+  (PRACTICE_GALLERY[id] ?? []).map((name) => `${REMASTERED}/${name}.jpg`)
 
 export const PRACTICES: Practice[] = [
   {

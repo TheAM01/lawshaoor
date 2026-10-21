@@ -42,12 +42,28 @@ export default function OurStory() {
               </p>
             </FadeIn>
           </div>
+
+          {/* Right 40% — visual panel */}
+          <FadeIn delay={0.4} className="lg:col-span-2">
+            <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden flex items-center justify-center">
+              <PanelImage src="/images/seed/our-story-chambers.jpg" />
+              <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40" />
+              <CirclesInCircumference className="absolute inset-0 m-auto w-[70%] h-[70%] opacity-70" uid="story-hero-circ" />
+              <VectorNode className="absolute right-5 bottom-5 w-20 h-20 opacity-70" uid="story-hero-vn" />
+            </div>
+          </FadeIn>
         </div>
       </section>
 
-      {/* INTRODUCTION — 60/40, short paragraphs */}
+      {/* INTRODUCTION — 40/60: sketch left, short paragraphs right */}
       <section id="introduction" className="section-pad py-20 md:py-28 bg-background relative overflow-x-clip scroll-mt-32">
         <div className="max-w-[1560px] mx-auto relative grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-10">
+          <div className="lg:col-span-2">
+            <FadeIn className="lg:sticky lg:top-[120px] relative aspect-[3/4] bg-background-alt border border-foreground/12 overflow-hidden">
+              <PanelImage src="/images/remastered/web/ip2.jpg" />
+            </FadeIn>
+          </div>
+
           <div className="lg:col-span-3 space-y-7">
             <span className="eyebrow text-foreground/55">Who we are</span>
             <h2 className="display-md font-display max-w-2xl">
@@ -68,16 +84,6 @@ export default function OurStory() {
                 We regularly appear before courts, tribunals and regulators across Pakistan, including in energy and
                 other heavily regulated sectors.
               </p>
-            </FadeIn>
-          </div>
-
-          {/* Right 40% — simple office/visual panel */}
-          <div className="lg:col-span-2">
-            <FadeIn className="lg:sticky lg:top-[120px] relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden flex items-center justify-center">
-              <PanelImage src="/images/seed/our-story-chambers.jpg" />
-              <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40" />
-              <CirclesInCircumference className="absolute inset-0 m-auto w-[70%] h-[70%] opacity-70" uid="story-hero-circ" />
-              <VectorNode className="absolute right-5 bottom-5 w-20 h-20 opacity-70" uid="story-hero-vn" />
             </FadeIn>
           </div>
         </div>
