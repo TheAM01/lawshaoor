@@ -3,7 +3,6 @@ import { Caveat_Brush, Questrial } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider, ThemeScript } from '@/components/theme-provider'
 import { SiteTracker } from '@/components/analytics/site-tracker'
-import { HeadingStyleSwitcher } from '@/components/dev/heading-style-switcher' // DEV TEST — remove later
 import './globals.css'
 
 /* Two typefaces (wired up as tokens in globals.css):
@@ -67,7 +66,6 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
         <SiteTracker />
-        <HeadingStyleSwitcher /> {/* DEV TEST — remove later */}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

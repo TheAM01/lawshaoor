@@ -118,11 +118,6 @@
    `static` (not `inline`) so these are emitted as real CSS variables — the
    hand-written rules below use var(--font-*) directly, and an inline theme
    would leave those empty (everything silently fell back to system fonts). */
-:root {
-  /* Heading case — overridden by the dev heading-style switcher (components/dev). */
-  --display-transform: uppercase;
-}
-
 @theme static {
   --font-display: var(--font-caveat-brush), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-questrial), ui-sans-serif, system-ui, sans-serif;
@@ -193,7 +188,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 500;
-    text-transform: var(--display-transform);
+    text-transform: uppercase;
     /* Caveat Brush has one weight — don't let the browser fake a blurry bold. */
     font-synthesis-weight: none;
     letter-spacing: -0.02em;
@@ -218,7 +213,7 @@
    Type scale + helpers — wide tracking everywhere
    ============================================================ */
 
-.font-display { font-family: var(--font-display); font-synthesis-weight: none; text-transform: var(--display-transform); }
+.font-display { font-family: var(--font-display); font-synthesis-weight: none; text-transform: uppercase; }
 .font-heading { font-family: var(--font-heading); }
 .font-mono    { font-family: var(--font-mono); }
 
@@ -705,7 +700,7 @@ button:hover .arrow-magnet {
 .bn-rendered h6 {
   font-family: var(--font-display);
   font-weight: 500;
-  text-transform: var(--display-transform);
+  text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 1.08;
   margin-top: 2em;
@@ -745,7 +740,7 @@ button:hover .arrow-magnet {
   border-left: 2px solid var(--primary);
   padding-left: 1.25em;
   font-family: var(--font-display);
-  text-transform: var(--display-transform);
+  text-transform: uppercase;
   font-size: 1.35rem;
   line-height: 1.4;
   letter-spacing: -0.015em;

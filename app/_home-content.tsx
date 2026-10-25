@@ -127,7 +127,7 @@ export function HomeContent() {
           {/* RIGHT — 40% : abstract, professional visual panel */}
           <FadeIn delay={0.5} className="lg:col-span-2">
             <div className="relative aspect-[4/5] bg-background-alt border border-foreground/12 overflow-hidden">
-              <PanelImage src="/images/remastered/web/ip.jpg" />
+              <PanelImage src="/images/remastered/web/landing.jpg" />
               <span aria-hidden className="hero-orb accent-breathe top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50" />
               <OrbitRings className="absolute inset-0 m-auto w-[78%] h-[78%] opacity-70" uid="hero-orbit" rotate />
               <CirclesInCircumference className="absolute right-5 top-5 w-20 h-20 opacity-80" uid="hero-c1" />
